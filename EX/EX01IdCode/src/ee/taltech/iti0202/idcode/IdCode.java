@@ -107,7 +107,15 @@ public class IdCode {
      * @return int with person's birth year.
      */
     public int getFullYear() {
-        return 0;
+        char sex = idCodeValue.charAt(0);
+        String year = idCodeValue.substring(5,7);
+
+        if (sex == '1' || sex == '2') {
+            return Integer.parseInt("18" + year);
+        } else if (sex == '3' || sex == '4') {
+            return Integer.parseInt("19" + year);
+        }
+        return Integer.parseInt("20" + year);
     }
 
     /**
