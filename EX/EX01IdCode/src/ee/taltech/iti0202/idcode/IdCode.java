@@ -152,9 +152,9 @@ public class IdCode {
 
         boolean day_30 = month.equals("04") || month.equals("05") || month.equals("08") || month.equals("10");
 
-        if (getFullYear() % 4 == 0) {
+        if ((getFullYear() % 4 == 0 && getFullYear() % 100 != 0) || getFullYear() % 400 == 0 ) {
             if (month.equals("02")) {
-                return Integer.parseInt(day) < 29;
+                return Integer.parseInt(day) <= 29;
             } else if (day_30) {
                 return Integer.parseInt(day) <= 30;
             } else {
