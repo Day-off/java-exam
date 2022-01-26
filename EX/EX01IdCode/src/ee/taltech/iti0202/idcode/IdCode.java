@@ -124,7 +124,7 @@ public class IdCode {
      * @return boolean describing whether the gender number is correct.
      */
     private boolean isGenderNumberCorrect() {
-        return false;
+        return Integer.parseInt(String.valueOf(idCodeValue.charAt(0))) <= 6;
     }
 
     /**
@@ -166,7 +166,7 @@ public class IdCode {
     /**
      * Check if the given year is a leap year.
      *
-     * @param fullYear
+     * @param *fullYear
      * @return boolean describing whether the given year is a leap year.
      */
     private boolean isLeapYear(int fullYear) {
