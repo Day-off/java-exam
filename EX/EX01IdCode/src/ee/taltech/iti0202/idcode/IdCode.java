@@ -29,7 +29,7 @@ public class IdCode {
      * @return boolean describing whether or not the id code was correct.
      */
     public boolean isCorrect() {
-        return idCodeValue.length() == 11 && idCodeValue.matches("[0-9]+");
+        return idCodeValue.length() == 11 && idCodeValue.matches("[0-9]+") && isControlNumberCorrect() && isDayNumberCorrect() && isGenderNumberCorrect() && isMonthNumberCorrect() && isYearNumberCorrect();
     }
 
     /**
@@ -209,7 +209,7 @@ public class IdCode {
      * @param args info.
      */
     public static void main(String[] args) {
-        IdCode validMaleIdCode = new IdCode("44005036009");
+        IdCode validMaleIdCode = new IdCode("49808270242");
         System.out.println(validMaleIdCode.isCorrect());
         System.out.println(validMaleIdCode.getInformation());
         System.out.println(validMaleIdCode.getGender());
