@@ -37,6 +37,11 @@ public class IdCode {
      * @return String containing information.
      */
     public String getInformation() {
+        String sex = idCodeValue.substring(0, 0),
+               day = idCodeValue.substring(1, 3),
+               month = idCodeValue.substring(3,5),
+               year = idCodeValue.substring(5,7),
+               city = idCodeValue.substring(7,10);
 
         return null;
     }
@@ -47,7 +52,12 @@ public class IdCode {
      * @return enum describing person's gender
      */
     public Gender getGender() {
-        return null;
+        int sex = idCodeValue.charAt(0);
+
+        if (sex % 2 == 0) {
+            return Gender.FEMALE;
+        }
+        return Gender.MALE;
     }
 
     /**
