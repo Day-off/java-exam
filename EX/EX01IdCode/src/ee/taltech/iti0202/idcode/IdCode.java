@@ -154,7 +154,7 @@ public class IdCode {
 
         if (getFullYear() % 4 == 0) {
             if (month.equals("02")) {
-                return Integer.parseInt(day) <= 29;
+                return Integer.parseInt(day) < 29;
             } else if (day_30) {
                 return Integer.parseInt(day) <= 30;
             } else {
@@ -162,7 +162,7 @@ public class IdCode {
             }
         }
         if (month.equals("02")) {
-            return Integer.parseInt(day) <= 28;
+            return Integer.parseInt(day) <=28;
         } else if (day_30) {
             return Integer.parseInt(day) <= 30;
         } else {
@@ -195,7 +195,7 @@ public class IdCode {
      * @param args info.
      */
     public static void main(String[] args) {
-        IdCode validMaleIdCode = new IdCode("30002290299");
+        IdCode validMaleIdCode = new IdCode("30002290231");
         System.out.println(validMaleIdCode.isCorrect());
         System.out.println(validMaleIdCode.getInformation());
         System.out.println(validMaleIdCode.getGender());
