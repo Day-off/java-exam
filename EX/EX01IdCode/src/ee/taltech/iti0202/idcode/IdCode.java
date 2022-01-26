@@ -39,10 +39,10 @@ public class IdCode {
      */
     public String getInformation() {
         String sex = idCodeValue.substring(0, 0),
-               day = idCodeValue.substring(1, 3),
-               month = idCodeValue.substring(3,5),
-               year = idCodeValue.substring(5,7),
-               city = idCodeValue.substring(7,10);
+                day = idCodeValue.substring(1, 3),
+                month = idCodeValue.substring(3, 5),
+                year = idCodeValue.substring(5, 7),
+                city = idCodeValue.substring(7, 10);
 
         return null;
     }
@@ -61,7 +61,7 @@ public class IdCode {
         return Gender.MALE;
     }
 
-    private static boolean isNumeric(String str){
+    private static boolean isNumeric(String str) {
         return str != null && str.matches("[0-9.]+");
     }
 
@@ -71,7 +71,7 @@ public class IdCode {
      * @return String with the person's birth place.
      */
     public String getBirthPlace() {
-        String city = idCodeValue.substring(7,10);
+        String city = idCodeValue.substring(7, 10);
         int code = Integer.parseInt(city);
         if (1 <= code && code <= 10) {
             return "Kuressaare";
@@ -108,7 +108,7 @@ public class IdCode {
      */
     public int getFullYear() {
         char sex = idCodeValue.charAt(0);
-        String year = idCodeValue.substring(1,3);
+        String year = idCodeValue.substring(1, 3);
 
         if (sex == '1' || sex == '2') {
             return Integer.parseInt("18" + year);
@@ -133,7 +133,7 @@ public class IdCode {
      * @return boolean describing whether the year number is correct.
      */
     private boolean isYearNumberCorrect() {
-        return false;
+        return getFullYear() < 2100;
     }
 
     /**
@@ -142,7 +142,7 @@ public class IdCode {
      * @return boolean describing whether the month number is correct.
      */
     private boolean isMonthNumberCorrect() {
-        return false;
+        return Integer.parseInt(idCodeValue.substring(3, 5)) < 13 && Integer.parseInt(idCodeValue.substring(3, 5)) > 0;
     }
 
     /**
@@ -151,7 +151,27 @@ public class IdCode {
      * @return boolean describing whether the day number is correct.
      */
     private boolean isDayNumberCorrect() {
-        return false;
+        String month = idCodeValue.substring(3, 5),
+               day = idCodeValue.substring(5, 7);
+
+        boolean day_30 = month.equals("04") || month.equals("05") || month.equals("08") || month.equals("10");
+
+        if (getFullYear() % 4 == 0) {
+            if (month.equals("02")) {
+                return Integer.parseInt(day) <= 29;
+            } else if (day_30) {
+                return Integer.parseInt(day) <= 30;
+            } else {
+                return Integer.parseInt(day) <= 31;
+            }
+        }
+        if (month.equals("02")) {
+            return Integer.parseInt(day) <= 29;
+        } else if (day_30) {
+            return Integer.parseInt(day) <= 30;
+        } else {
+            return Integer.parseInt(day) <= 31;
+        }
     }
 
     /**
@@ -179,7 +199,7 @@ public class IdCode {
      * @param args info.
      */
     public static void main(String[] args) {
-        IdCode validMaleIdCode = new IdCode("37605030299");
+        IdCode validMaleIdCode = new IdCode("37602300299");
         System.out.println(validMaleIdCode.isCorrect());
         System.out.println(validMaleIdCode.getInformation());
         System.out.println(validMaleIdCode.getGender());
