@@ -29,7 +29,12 @@ public class IdCode {
      * @return boolean describing whether or not the id code was correct.
      */
     public boolean isCorrect() {
-        return idCodeValue.length() == 11 && idCodeValue.matches("[0-9]+") && isControlNumberCorrect() && isDayNumberCorrect() && isGenderNumberCorrect() && isMonthNumberCorrect() && isYearNumberCorrect();
+        boolean res = idCodeValue.length() == 11 && idCodeValue.matches("[0-9]+") && isControlNumberCorrect() && isDayNumberCorrect() && isGenderNumberCorrect() && isMonthNumberCorrect() && isYearNumberCorrect();
+        if (res) {
+            return true;
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
