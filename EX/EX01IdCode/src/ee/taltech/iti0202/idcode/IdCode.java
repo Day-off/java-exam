@@ -203,11 +203,10 @@ public class IdCode {
     /**
      * Check if the given year is a leap year.
      *
-     * @param *fullYear
      * @return boolean describing whether the given year is a leap year.
      */
     private boolean isLeapYear(int fullYear) {
-        return false;
+        return  ((getFullYear() % 4 == 0 && getFullYear() % 100 != 0) || (getFullYear() % 400 == 0) );
     }
 
     /**
@@ -216,7 +215,7 @@ public class IdCode {
      * @param args info.
      */
     public static void main(String[] args) {
-        IdCode validMaleIdCode = new IdCode("47605036009");
+        IdCode validMaleIdCode = new IdCode("40005036009");
         System.out.println(validMaleIdCode.isCorrect());
         System.out.println(validMaleIdCode.getInformation());
         System.out.println(validMaleIdCode.getGender());
