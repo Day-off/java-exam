@@ -61,10 +61,6 @@ public class IdCode {
         return Gender.MALE;
     }
 
-    private static boolean isNumeric(String str) {
-        return str != null && str.matches("[0-9.]+");
-    }
-
     /**
      * Get person's birth location.
      *
@@ -166,7 +162,7 @@ public class IdCode {
             }
         }
         if (month.equals("02")) {
-            return Integer.parseInt(day) <= 29;
+            return Integer.parseInt(day) <= 28;
         } else if (day_30) {
             return Integer.parseInt(day) <= 30;
         } else {
