@@ -152,7 +152,7 @@ public class IdCode {
 
         boolean day_30 = month.equals("04") || month.equals("05") || month.equals("08") || month.equals("10");
 
-        if ((getFullYear() % 4 == 0 && getFullYear() % 100 != 0) || getFullYear() % 400 == 0 ) {
+        if ((getFullYear() % 4 == 0 && getFullYear() % 100 != 0) || (getFullYear() % 400 == 0) ) {
             if (month.equals("02")) {
                 return Integer.parseInt(day) <= 29;
             } else if (day_30) {
@@ -176,7 +176,28 @@ public class IdCode {
      * @return boolean describing whether the control number is correct.
      */
     private boolean isControlNumberCorrect() {
-        return false;
+        int sum1 = Character.getNumericValue(idCodeValue.charAt(0)) + Character.getNumericValue(idCodeValue.charAt(1)) * 2 +
+                Character.getNumericValue(idCodeValue.charAt(2)) * 3 + Character.getNumericValue(idCodeValue.charAt(3)) * 4 +
+                Character.getNumericValue(idCodeValue.charAt(4)) * 5 + Character.getNumericValue(idCodeValue.charAt(5)) * 6 +
+                Character.getNumericValue(idCodeValue.charAt(6)) * 7 + Character.getNumericValue(idCodeValue.charAt(7)) * 8 +
+                Character.getNumericValue(idCodeValue.charAt(8)) * 9 + Character.getNumericValue(idCodeValue.charAt(9));
+        int sum2 = Character.getNumericValue(idCodeValue.charAt(0)) * 3 + Character.getNumericValue(idCodeValue.charAt(1)) * 4 +
+                Character.getNumericValue(idCodeValue.charAt(2)) * 5 + Character.getNumericValue(idCodeValue.charAt(3)) * 6 +
+                Character.getNumericValue(idCodeValue.charAt(4)) * 7 + Character.getNumericValue(idCodeValue.charAt(5)) * 8 +
+                Character.getNumericValue(idCodeValue.charAt(6)) * 9 + Character.getNumericValue(idCodeValue.charAt(7)) +
+                Character.getNumericValue(idCodeValue.charAt(8)) * 2 + Character.getNumericValue(idCodeValue.charAt(9)) * 3;
+        int k_num = sum1 % 11, k_num2 = sum2 % 11;
+        boolean res = k_num == Character.getNumericValue(idCodeValue.charAt(10)),
+                res2 = k_num2 == Character.getNumericValue(idCodeValue.charAt(10));
+        if (res) {
+            return true;
+        } else {
+            if (res2) {
+                return true;
+            }else {
+                return Character.getNumericValue(idCodeValue.charAt(10)) == 10;
+            }
+        }
     }
 
     /**
@@ -195,7 +216,7 @@ public class IdCode {
      * @param args info.
      */
     public static void main(String[] args) {
-        IdCode validMaleIdCode = new IdCode("30002290231");
+        IdCode validMaleIdCode = new IdCode("47605036009");
         System.out.println(validMaleIdCode.isCorrect());
         System.out.println(validMaleIdCode.getInformation());
         System.out.println(validMaleIdCode.getGender());
