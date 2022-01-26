@@ -17,7 +17,7 @@ public class Hello {
         if (name.isEmpty()) {
             return "Hello!";
         }
-        return "Hello!, " + name + '!';
+        return "Hello, " + name + '!';
     }
 
     /**
