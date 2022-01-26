@@ -108,7 +108,7 @@ public class IdCode {
      */
     public int getFullYear() {
         char sex = idCodeValue.charAt(0);
-        String year = idCodeValue.substring(5,7);
+        String year = idCodeValue.substring(1,3);
 
         if (sex == '1' || sex == '2') {
             return Integer.parseInt("18" + year);
