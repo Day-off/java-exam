@@ -1,6 +1,7 @@
 
 package ee.taltech.iti0202.idcode;
 
+
 public class IdCode {
 
     private final String idCodeValue;
@@ -60,13 +61,44 @@ public class IdCode {
         return Gender.MALE;
     }
 
+    private static boolean isNumeric(String str){
+        return str != null && str.matches("[0-9.]+");
+    }
+
     /**
      * Get person's birth location.
      *
      * @return String with the person's birth place.
      */
     public String getBirthPlace() {
-        return null;
+        String city = idCodeValue.substring(7,10);
+        int code = Integer.parseInt(city);
+        if (1 <= code && code <= 10) {
+            return "Kuressaare";
+        } else if (11 <= code && code <= 20) {
+            return "Tartu";
+        } else if ((21 <= code && code <= 220) || (471 <= code && code <= 490)) {
+            return "Tallinn";
+        } else if (221 <= code && code <= 270) {
+            return "Kohtla-Järve";
+        } else if (271 <= code && code <= 370) {
+            return "Tartu";
+        } else if (371 <= code && code <= 420) {
+            return "Narva";
+        } else if (421 <= code && code <= 470) {
+            return "Pärnu";
+        } else if (491 <= code && code <= 520) {
+            return "Paide";
+        } else if (521 <= code && code <= 570) {
+            return "Rakvere";
+        } else if (571 <= code && code <= 600) {
+            return "Valga";
+        } else if (601 <= code && code <= 650) {
+            return "Viljandi";
+        } else if (651 <= code && code <= 710) {
+            return "Võru";
+        }
+        return "unknown";
     }
 
     /**
