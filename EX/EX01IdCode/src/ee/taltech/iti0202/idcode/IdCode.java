@@ -38,7 +38,7 @@ public class IdCode {
      * @return String containing information.
      */
     public String getInformation() {
-        return "This is a "+ getGender() +" born on " + idCodeValue.substring(5, 7) + "." + idCodeValue.substring(3, 5) + "." + getFullYear()+ " in " + getBirthPlace() + ".";
+        return "This is a "+ getGender() +" born on " + idCodeValue.substring(5, 7) + "." + idCodeValue.substring(3, 5) + "." + getFullYear()+ " in " + getBirthPlace();
     }
 
     /**
@@ -209,7 +209,7 @@ public class IdCode {
      * @param args info.
      */
     public static void main(String[] args) {
-        IdCode validMaleIdCode = new IdCode("40105036009");
+        IdCode validMaleIdCode = new IdCode("44005036009");
         System.out.println(validMaleIdCode.isCorrect());
         System.out.println(validMaleIdCode.getInformation());
         System.out.println(validMaleIdCode.getGender());
