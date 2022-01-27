@@ -21,7 +21,6 @@ public class IdCode {
     public IdCode(String idCodeValue) {
         this.idCodeValue = idCodeValue;
         if (!isCorrect()){
-            getInformation();
             throw new IllegalArgumentException();
         }
     }
