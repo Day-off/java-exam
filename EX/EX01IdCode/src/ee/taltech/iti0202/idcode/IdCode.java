@@ -1,4 +1,3 @@
-
 package ee.taltech.iti0202.idcode;
 
 
@@ -20,7 +19,11 @@ public class IdCode {
     }
 
     public IdCode(String idCodeValue) {
-        this.idCodeValue = idCodeValue;
+        if (isCorrect(idCodeValue)) {
+            this.idCodeValue = idCodeValue;
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
@@ -28,13 +31,10 @@ public class IdCode {
      *
      * @return boolean describing whether or not the id code was correct.
      */
-    public boolean isCorrect() {
-        boolean res = idCodeValue.length() == 11 && idCodeValue.matches("[0-9]+") && isControlNumberCorrect() && isDayNumberCorrect() && isGenderNumberCorrect() && isMonthNumberCorrect() && isYearNumberCorrect();
-        if (res) {
-            return true;
-        } else {
-            throw new IllegalArgumentException();
-        }
+    public boolean isCorrect(String idCodeValue) {
+        return idCodeValue.length() == 11 && idCodeValue.matches("[0-9]+")
+                && isControlNumberCorrect(idCodeValue) && isDayNumberCorrect(idCodeValue) && isGenderNumberCorrect(idCodeValue)
+                && isMonthNumberCorrect(idCodeValue) && isYearNumberCorrect(idCodeValue);
     }
 
     /**
@@ -43,7 +43,7 @@ public class IdCode {
      * @return String containing information.
      */
     public String getInformation() {
-        return "This is a "+ getGender() +" born on " + idCodeValue.substring(5, 7) + "." + idCodeValue.substring(3, 5) + "." + getFullYear()+ " in " + getBirthPlace();
+        return "This is a " + getGender() + " born on " + idCodeValue.substring(5, 7) + "." + idCodeValue.substring(3, 5) + "." + getFullYear(idCodeValue) + " in " + getBirthPlace();
     }
 
     /**
@@ -101,7 +101,7 @@ public class IdCode {
      *
      * @return int with person's birth year.
      */
-    public int getFullYear() {
+    public int getFullYear(String idCodeValue) {
         char sex = idCodeValue.charAt(0);
         String year = idCodeValue.substring(1, 3);
 
@@ -118,7 +118,7 @@ public class IdCode {
      *
      * @return boolean describing whether the gender number is correct.
      */
-    private boolean isGenderNumberCorrect() {
+    private boolean isGenderNumberCorrect(String idCodeValue) {
         return Integer.parseInt(String.valueOf(idCodeValue.charAt(0))) <= 6;
     }
 
@@ -127,8 +127,8 @@ public class IdCode {
      *
      * @return boolean describing whether the year number is correct.
      */
-    private boolean isYearNumberCorrect() {
-        return getFullYear() < 2100;
+    private boolean isYearNumberCorrect(String idCodeValue) {
+        return getFullYear(idCodeValue) < 2100;
     }
 
     /**
@@ -136,7 +136,7 @@ public class IdCode {
      *
      * @return boolean describing whether the month number is correct.
      */
-    private boolean isMonthNumberCorrect() {
+    private boolean isMonthNumberCorrect(String idCodeValue) {
         return Integer.parseInt(idCodeValue.substring(3, 5)) < 13 && Integer.parseInt(idCodeValue.substring(3, 5)) > 0;
     }
 
@@ -145,13 +145,12 @@ public class IdCode {
      *
      * @return boolean describing whether the day number is correct.
      */
-    private boolean isDayNumberCorrect() {
-        String month = idCodeValue.substring(3, 5),
-               day = idCodeValue.substring(5, 7);
+    private boolean isDayNumberCorrect(String idCodeValue) {
+        String month = idCodeValue.substring(3, 5), day = idCodeValue.substring(5, 7);
 
         boolean day_30 = month.equals("04") || month.equals("05") || month.equals("08") || month.equals("10");
 
-        if ((getFullYear() % 4 == 0 && getFullYear() % 100 != 0) || (getFullYear() % 400 == 0) ) {
+        if ((getFullYear(idCodeValue) % 4 == 0 && getFullYear(idCodeValue) % 100 != 0) || (getFullYear(idCodeValue) % 400 == 0)) {
             if (month.equals("02")) {
                 return Integer.parseInt(day) <= 29;
             } else if (day_30) {
@@ -161,7 +160,7 @@ public class IdCode {
             }
         }
         if (month.equals("02")) {
-            return Integer.parseInt(day) <=28;
+            return Integer.parseInt(day) <= 28;
         } else if (day_30) {
             return Integer.parseInt(day) <= 30;
         } else {
@@ -174,26 +173,17 @@ public class IdCode {
      *
      * @return boolean describing whether the control number is correct.
      */
-    private boolean isControlNumberCorrect() {
-        int sum1 = Character.getNumericValue(idCodeValue.charAt(0)) + Character.getNumericValue(idCodeValue.charAt(1)) * 2 +
-                Character.getNumericValue(idCodeValue.charAt(2)) * 3 + Character.getNumericValue(idCodeValue.charAt(3)) * 4 +
-                Character.getNumericValue(idCodeValue.charAt(4)) * 5 + Character.getNumericValue(idCodeValue.charAt(5)) * 6 +
-                Character.getNumericValue(idCodeValue.charAt(6)) * 7 + Character.getNumericValue(idCodeValue.charAt(7)) * 8 +
-                Character.getNumericValue(idCodeValue.charAt(8)) * 9 + Character.getNumericValue(idCodeValue.charAt(9));
-        int sum2 = Character.getNumericValue(idCodeValue.charAt(0)) * 3 + Character.getNumericValue(idCodeValue.charAt(1)) * 4 +
-                Character.getNumericValue(idCodeValue.charAt(2)) * 5 + Character.getNumericValue(idCodeValue.charAt(3)) * 6 +
-                Character.getNumericValue(idCodeValue.charAt(4)) * 7 + Character.getNumericValue(idCodeValue.charAt(5)) * 8 +
-                Character.getNumericValue(idCodeValue.charAt(6)) * 9 + Character.getNumericValue(idCodeValue.charAt(7)) +
-                Character.getNumericValue(idCodeValue.charAt(8)) * 2 + Character.getNumericValue(idCodeValue.charAt(9)) * 3;
+    private boolean isControlNumberCorrect(String idCodeValue) {
+        int sum1 = Character.getNumericValue(idCodeValue.charAt(0)) + Character.getNumericValue(idCodeValue.charAt(1)) * 2 + Character.getNumericValue(idCodeValue.charAt(2)) * 3 + Character.getNumericValue(idCodeValue.charAt(3)) * 4 + Character.getNumericValue(idCodeValue.charAt(4)) * 5 + Character.getNumericValue(idCodeValue.charAt(5)) * 6 + Character.getNumericValue(idCodeValue.charAt(6)) * 7 + Character.getNumericValue(idCodeValue.charAt(7)) * 8 + Character.getNumericValue(idCodeValue.charAt(8)) * 9 + Character.getNumericValue(idCodeValue.charAt(9));
+        int sum2 = Character.getNumericValue(idCodeValue.charAt(0)) * 3 + Character.getNumericValue(idCodeValue.charAt(1)) * 4 + Character.getNumericValue(idCodeValue.charAt(2)) * 5 + Character.getNumericValue(idCodeValue.charAt(3)) * 6 + Character.getNumericValue(idCodeValue.charAt(4)) * 7 + Character.getNumericValue(idCodeValue.charAt(5)) * 8 + Character.getNumericValue(idCodeValue.charAt(6)) * 9 + Character.getNumericValue(idCodeValue.charAt(7)) + Character.getNumericValue(idCodeValue.charAt(8)) * 2 + Character.getNumericValue(idCodeValue.charAt(9)) * 3;
         int k_num = sum1 % 11, k_num2 = sum2 % 11;
-        boolean res = k_num == Character.getNumericValue(idCodeValue.charAt(10)),
-                res2 = k_num2 == Character.getNumericValue(idCodeValue.charAt(10));
+        boolean res = k_num == Character.getNumericValue(idCodeValue.charAt(10)), res2 = k_num2 == Character.getNumericValue(idCodeValue.charAt(10));
         if (res) {
             return true;
         } else {
             if (res2) {
                 return true;
-            }else {
+            } else {
                 return Character.getNumericValue(idCodeValue.charAt(10)) == 10;
             }
         }
@@ -205,7 +195,7 @@ public class IdCode {
      * @return boolean describing whether the given year is a leap year.
      */
     private boolean isLeapYear(int fullYear) {
-        return  ((getFullYear() % 4 == 0 && getFullYear() % 100 != 0) || (getFullYear() % 400 == 0) );
+        return ((getFullYear(idCodeValue) % 4 == 0 && getFullYear(idCodeValue) % 100 != 0) || (getFullYear(idCodeValue) % 400 == 0));
     }
 
     /**
@@ -214,18 +204,18 @@ public class IdCode {
      * @param args info.
      */
     public static void main(String[] args) {
-        IdCode validMaleIdCode = new IdCode("49808270242");
-        System.out.println(validMaleIdCode.isCorrect());
+        IdCode validMaleIdCode = new IdCode("37605030290");
+        //System.out.println(validMaleIdCode.isCorrect());
         System.out.println(validMaleIdCode.getInformation());
         System.out.println(validMaleIdCode.getGender());
         System.out.println(validMaleIdCode.getBirthPlace());
-        System.out.println(validMaleIdCode.getFullYear());
-        System.out.println(validMaleIdCode.isGenderNumberCorrect());
-        System.out.println(validMaleIdCode.isYearNumberCorrect());
-        System.out.println(validMaleIdCode.isMonthNumberCorrect());
-        System.out.println(validMaleIdCode.isDayNumberCorrect());
-        System.out.println(validMaleIdCode.isControlNumberCorrect());
-        System.out.println(validMaleIdCode.isLeapYear(validMaleIdCode.getFullYear()));
+//        System.out.println(validMaleIdCode.getFullYear());
+        //System.out.println(validMaleIdCode.isGenderNumberCorrect());
+        //System.out.println(validMaleIdCode.isYearNumberCorrect());
+        //System.out.println(validMaleIdCode.isMonthNumberCorrect());
+//        System.out.println(validMaleIdCode.isDayNumberCorrect());
+//        System.out.println(validMaleIdCode.isControlNumberCorrect());
+//        System.out.println(validMaleIdCode.isLeapYear(validMaleIdCode.getFullYear()));
     }
 
 }
