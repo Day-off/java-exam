@@ -150,7 +150,7 @@ public class IdCode {
     private boolean isDayNumberCorrect() {
         String month = getIdCodeValue().substring(3, 5), day = getIdCodeValue().substring(5, 7);
 
-        boolean day_30 = month.equals("04") || month.equals("05") || month.equals("08") || month.equals("10");
+        boolean day_30 = month.equals("04") || month.equals("06") || month.equals("09") || month.equals("11");
 
         if ((getFullYear() % 4 == 0 && getFullYear() % 100 != 0) || (getFullYear() % 400 == 0)) {
             if (month.equals("02")) {
@@ -217,7 +217,7 @@ public class IdCode {
      * @return boolean describing whether the given year is a leap year.
      */
     private boolean isLeapYear(int fullYear) {
-        return ((getFullYear() % 4 == 0 && getFullYear() % 100 != 0) || (getFullYear() % 400 == 0));
+        return ((fullYear % 4 == 0 && fullYear % 100 != 0) || (fullYear % 400 == 0));
     }
 
     /**
