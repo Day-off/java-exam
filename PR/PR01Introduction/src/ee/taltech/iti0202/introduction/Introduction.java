@@ -38,6 +38,10 @@ public class Introduction {
      * @return list of even numbers.
      */
     public List<Integer> findEvenNumbersList(List<Integer> numbers) {
+        if (numbers.size() == 0){
+            return null;
+        }
+
         List<Integer> lst = new ArrayList<>();
         for (Integer x: numbers) {
             if (x % 2 == 0){
