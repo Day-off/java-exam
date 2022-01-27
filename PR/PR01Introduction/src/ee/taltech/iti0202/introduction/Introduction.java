@@ -38,10 +38,6 @@ public class Introduction {
      * @return list of even numbers.
      */
     public List<Integer> findEvenNumbersList(List<Integer> numbers) {
-        if (numbers.size() == 0){
-            return null;
-        }
-
         List<Integer> lst = new ArrayList<>();
         for (Integer x: numbers) {
             if (x % 2 == 0){
@@ -101,7 +97,7 @@ public class Introduction {
         Introduction introduction = new Introduction();
         System.out.println(introduction.howIsOutcome(12, 6)); // "bad"
 
-        List<Integer> nums = new ArrayList<>(Arrays.asList(4, 7, 5, 2, 1, 2, -2, 0));
+        List<Integer> nums = new ArrayList<>(Arrays.asList(1, 3));
         System.out.println(introduction.findEvenNumbersList(nums)); // [4, 2, 2, -2, 0]
 
         int[] array = {9, 0, 24, -6, 3};
