@@ -94,6 +94,9 @@ public class Introduction {
         if ((first == null || first.length() == 0) && (second == null || second.length() == 0)) {
             return "FALSE";
         }
+        if (first.length() == second.length()) {
+            return first + second;
+        }
         boolean letter = first.length() > second.length();
         while (second.length() != first.length()) {
             if (first.length() > second.length()) {
@@ -140,9 +143,9 @@ public class Introduction {
         System.out.println(result);  // GOODNOON
         result = introduction.findTheString("Hello", "lo");
         System.out.println(result);  // lolo
-        System.out.println(introduction.findTheString("", ""));  // FALSE
+        System.out.println(introduction.findTheString(null, null));  // FALSE
         System.out.println(introduction.findTheString("", "   "));  // FALSE
-        System.out.println(introduction.findTheString("  ", "a"));  //  a  (with space in front)
+        System.out.println(introduction.findTheString("ab", "ab"));  //  a  (with space in front)
 
         System.out.println(introduction.countTripleChars("aaabbbabbb"));  // 3
         System.out.println(introduction.countTripleChars("aaa"));  // 1
