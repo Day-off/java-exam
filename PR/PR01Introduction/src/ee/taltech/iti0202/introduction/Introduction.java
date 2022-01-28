@@ -104,6 +104,9 @@ public class Introduction {
                 second = second.substring(1);
             }
         }
+        if (first.length() == 0) {
+            return "FALSE";
+        }
         String str = first + second;
         if (letter) {
             return str.toLowerCase();
