@@ -4,6 +4,7 @@ import java.sql.Array;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 
 public class Introduction {
 
@@ -40,11 +41,12 @@ public class Introduction {
      */
     public List<Integer> findEvenNumbersList(List<Integer> numbers) {
         List<Integer> lst = new ArrayList<>();
-        for (Integer x: numbers) {
-            if (x % 2 == 0){
+        for (Integer x : numbers) {
+            if (x % 2 == 0) {
                 lst.add(x);
             }
-        } return lst;
+        }
+        return lst;
     }
 
     /**
@@ -61,21 +63,18 @@ public class Introduction {
         List<Integer> lst = new ArrayList<>();
         int index = 0;
         int[] res = new int[0];
-        while (index != numbers.length + 1){
-            if (index == numbers.length){
+        while (index != numbers.length + 1) {
+            if (index == numbers.length) {
                 res = new int[lst.size()];
-                for (int index_r = 0; index_r < lst.size(); index_r++){
+                for (int index_r = 0; index_r < lst.size(); index_r++) {
                     res[index_r] = lst.get(index_r);
                 }
-            }
-            else if (numbers[index] % 2 == 0) {
+            } else if (numbers[index] % 2 == 0) {
                 lst.add(numbers[index]);
             }
             index += 1;
-
         }
         return res;
-
     }
 
     /**
@@ -92,7 +91,24 @@ public class Introduction {
      * @return String based on the values of first and second
      */
     public String findTheString(String first, String second) {
-        return "";
+        if ((first == null || first.length() == 0) && (second == null || second.length() == 0)) {
+            return "FALSE";
+        }
+        assert first != null;
+        boolean letter = first.length() > second.length();
+        while (second.length() != first.length()) {
+            if (first.length() > second.length()) {
+                first = first.substring(1);
+            }
+            if (first.length() < second.length()) {
+                second = second.substring(1);
+            }
+        }
+        String str = first + second;
+        if (letter) {
+            return str.toLowerCase();
+        }
+        return str.toUpperCase();
     }
 
     /**
