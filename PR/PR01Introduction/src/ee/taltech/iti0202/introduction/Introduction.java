@@ -94,6 +94,11 @@ public class Introduction {
         if ((first == null || first.length() == 0) && (second == null || second.length() == 0)) {
             return "FALSE";
         }
+        boolean isAllCharsSame1 = first.chars().distinct().count() == 1,
+                isAllCharsSame2 = second.chars().distinct().count() == 1;
+        if (isAllCharsSame2 && isAllCharsSame1){
+            return "FALSE";
+        }
         if (first.length() == second.length()) {
             return first + second;
         }
@@ -172,13 +177,13 @@ public class Introduction {
         int[] array = {9, 0, 24, -6, 3};
         System.out.println(Arrays.toString(introduction.findEvenNumbersArray(array))); // [0, 24, -6]
 
-        String result = introduction.findTheString("Good", "afternoon");
-        System.out.println(result);  // GOODNOON
-        result = introduction.findTheString("Hello", "lo");
-        System.out.println(result);  // lolo
+//        String result = introduction.findTheString("Good", "afternoon");
+//        System.out.println(result);  // GOODNOON
+//        result = introduction.findTheString("Hello", "lo");
+//        System.out.println(result);  // lolo
         System.out.println(introduction.findTheString(null, null));  // FALSE
         System.out.println(introduction.findTheString("    ", "   "));  // FALSE
-        System.out.println(introduction.findTheString("a", "    "));  //  a  (with space in front)
+        System.out.println(introduction.findTheString("a  ", "b      "));  //  a  (with space in front)
 
         System.out.println(introduction.countTripleChars("aaabbbabbb"));  // 3
         System.out.println(introduction.countTripleChars("aaa"));  // 1
