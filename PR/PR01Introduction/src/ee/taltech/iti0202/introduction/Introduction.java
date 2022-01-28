@@ -94,7 +94,6 @@ public class Introduction {
         if ((first == null || first.length() == 0) && (second == null || second.length() == 0)) {
             return "FALSE";
         }
-        assert first != null;
         boolean letter = first.length() > second.length();
         while (second.length() != first.length()) {
             if (first.length() > second.length()) {
@@ -103,9 +102,6 @@ public class Introduction {
             if (first.length() < second.length()) {
                 second = second.substring(1);
             }
-        }
-        if (first.length() == 0) {
-            return "FALSE";
         }
         String str = first + second;
         if (letter) {
