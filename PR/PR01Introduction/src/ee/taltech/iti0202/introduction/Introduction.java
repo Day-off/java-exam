@@ -121,7 +121,40 @@ public class Introduction {
      * @return The number of triples
      */
     public int countTripleChars(String word) {
-        return -1;
+        int count = 0;
+        if (word.length() == 3){
+            boolean isAllCharsSame = word.chars().distinct().count() == 1;
+            if (isAllCharsSame){
+                return 1;
+            } return 0;
+        }
+        for (int i = 1 ; i + 1 < word.length(); i++){
+            char a = word.charAt(i - 1), b = word.charAt(i), c = word.charAt(i + 1);
+            if (a == b && b == c){
+                if (i + 2 < word.length()){
+                    char v = word.charAt(i + 2);
+                    if (v != b){
+                        if (i - 1 != 0){
+                            char d = word.charAt(i - 2);
+                            if (b != d) {
+                                count += 1;
+                            }
+                        }else {
+                            count += 1;
+                        }
+                    }
+                }
+                else if (i + 2 == word.length()){
+                    char v = word.charAt(i - 2);
+                    if (v != b){
+                        count += 1;
+                    }
+                }
+                else {
+                    count += 1;
+                }
+            }
+        }return count;
     }
 
     /**
@@ -144,8 +177,8 @@ public class Introduction {
         result = introduction.findTheString("Hello", "lo");
         System.out.println(result);  // lolo
         System.out.println(introduction.findTheString(null, null));  // FALSE
-        System.out.println(introduction.findTheString("", "   "));  // FALSE
-        System.out.println(introduction.findTheString("ab", "ab"));  //  a  (with space in front)
+        System.out.println(introduction.findTheString("    ", "   "));  // FALSE
+        System.out.println(introduction.findTheString("a", "    "));  //  a  (with space in front)
 
         System.out.println(introduction.countTripleChars("aaabbbabbb"));  // 3
         System.out.println(introduction.countTripleChars("aaa"));  // 1
