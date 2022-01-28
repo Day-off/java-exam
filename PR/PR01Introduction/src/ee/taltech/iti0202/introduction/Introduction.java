@@ -1,5 +1,6 @@
 package ee.taltech.iti0202.introduction;
 
+import java.sql.Array;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,7 +58,24 @@ public class Introduction {
      * @return array of even numbers.
      */
     public int[] findEvenNumbersArray(int[] numbers) {
-        return null;
+        List<Integer> lst = new ArrayList<>();
+        int index = 0;
+        int[] res = new int[0];
+        while (index != numbers.length + 1){
+            if (index == numbers.length){
+                res = new int[lst.size()];
+                for (int index_r = 0; index_r < lst.size(); index_r++){
+                    res[index_r] = lst.get(index_r);
+                }
+            }
+            else if (numbers[index] % 2 == 0) {
+                lst.add(numbers[index]);
+            }
+            index += 1;
+
+        }
+        return res;
+
     }
 
     /**
