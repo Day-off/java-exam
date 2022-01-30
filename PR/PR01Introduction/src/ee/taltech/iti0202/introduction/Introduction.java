@@ -15,7 +15,7 @@ public class Introduction {
      * Outcome is "bad" if any of values is less than 5.
      * Outcome is "good" if one value equals doubled second value.
      * Outcome is "ok" if both values equal at least 5.
-     * The priority is as follows: "bad", "good", "ok" (if several cases apply, take the higher / earlier).
+     * The priority is as follows: "ba", "good", "ok" (if several cases apply, take the higher / earlier).
      *
      * @param valueOne int
      * @param valueTwo int
