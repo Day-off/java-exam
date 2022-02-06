@@ -1,5 +1,8 @@
 package ee.taltech.iti0202.webbrowser;
 
+import com.sun.jdi.Value;
+
+import java.security.Key;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -15,7 +18,7 @@ public class WebBrowser {
     public List<Integer> sortedList = new ArrayList<>();
     public HashMap<Integer, String> map = new HashMap<>();
     public String ans = "";
-    public int index = 0;
+    public int top3 = 1;
 
     public void history() {
         if (history.size() != 0) {
@@ -107,27 +110,31 @@ public class WebBrowser {
 
     public void sort() {
         List<Integer> top = new ArrayList<>();
+        HashMap<String, Integer> map = new HashMap<>();
         for (String page : history) {
-            if (!map.containsValue(page)) {
+            if (!map.containsKey(page)) {
                 int amount = Collections.frequency(history, page);
-                map.put(amount, page);
+                map.put(page, amount);
                 top.add(amount);
             }
         }
+        String k = "";
         sortedList = top.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
         for (Integer amount : sortedList) {
-            if (index <= 2) {
-                if (map.get(sortedList.get(index)) != null) {
-                    if (amount == 1) {
-                        ans += map.get(sortedList.get(index)) + " - " + sortedList.get(index) + " visit" + "\n";
-                    } else {
-                        ans += map.get(sortedList.get(index)) + " - " + sortedList.get(index) + " visits" + "\n";
+            if (top3 <= 3) {
+                for (String key : map.keySet()) {
+                    if (amount.equals(map.get(key))) {
+                        k = key;
+                        break;
                     }
-                    map.remove(amount);
-                    index += 1;
-                } else {
-                    break;
                 }
+                if (amount == 1) {
+                    ans += k + " - " + amount + " visit" + "\n";
+                } else {
+                    ans += k + " - " + amount + " visits" + "\n";
+                }
+                map.remove(k);
+                top3 += 1;
             } else {
                 break;
             }
@@ -174,48 +181,59 @@ public class WebBrowser {
      * @param args info.
      */
     public static void main(String[] args) {
-        WebBrowser mari = new WebBrowser();
-        mari.goTo("Facr.com");
-        mari.back();
-        mari.back();
-        System.out.print(mari.getHistory() + "\n");
-        System.out.print("");
+//        WebBrowser mari = new WebBrowser();
+//        mari.goTo("Facr.com");
+//        mari.back();
+//        mari.back();
+//        System.out.print(mari.getHistory() + "\n");
+//        System.out.print("");
+//
+//        WebBrowser a = new WebBrowser();
+//        a.setHomePage("neti.ee");
+//        a.goTo("facebook.com");
+//        a.forward();
+//        a.forward();
+//        System.out.print(a.getHistory() + "\n");
+//        System.out.print("");
+//
+//        WebBrowser j = new WebBrowser();
+//        j.setHomePage("neti.ee");
+//        j.goTo("facebook.com");
+//        j.back();
+//        j.homePage();
+//        j.forward();
+//        System.out.print(j.getHistory() + "\n");
+//        System.out.print(j.getTop3VisitedPages() + "\n");
+//        System.out.print("");
+//
+//
+//        WebBrowser jhon = new WebBrowser();
+//        System.out.print(jhon.getCurrentUrl() + "\n");
+//        jhon.setHomePage("neti.ee");
+//        jhon.goTo("facebook.com");
+//        System.out.print(jhon.getCurrentUrl() + "\n");
+//        jhon.goTo("google.com");
+//        System.out.print(jhon.getCurrentUrl() + "\n");
+//        jhon.back();
+//        System.out.print(jhon.getCurrentUrl() + "\n");
+//        jhon.addAsBookmark();
+//        jhon.forward();
+//        System.out.print(jhon.getCurrentUrl() + "\n");
+//        jhon.homePage();
+//        System.out.print(jhon.getCurrentUrl() + "\n");
+//        jhon.addAsBookmark();
+//        System.out.print(jhon.getBookmarks() + "\n");
+//        System.out.print(jhon.getHistory() + "\n");
+//        System.out.print(jhon.getTop3VisitedPages() + "\n");
+//        System.out.print("");
 
-        WebBrowser a = new WebBrowser();
-        a.setHomePage("neti.ee");
-        a.goTo("facebook.com");
-        a.forward();
-        a.forward();
-        System.out.print(a.getHistory() + "\n");
-
-        WebBrowser j = new WebBrowser();
-        j.setHomePage("neti.ee");
-        j.goTo("facebook.com");
-        j.back();
-        j.homePage();
-        j.forward();
-        System.out.print(j.getHistory() + "\n");
-        System.out.print(j.getTop3VisitedPages() + "\n");
-
-
-        WebBrowser jhon = new WebBrowser();
-        System.out.print(jhon.getCurrentUrl() + "\n");
-        jhon.setHomePage("neti.ee");
-        jhon.goTo("facebook.com");
-        System.out.print(jhon.getCurrentUrl() + "\n");
-        jhon.goTo("google.com");
-        System.out.print(jhon.getCurrentUrl() + "\n");
-        jhon.back();
-        System.out.print(jhon.getCurrentUrl() + "\n");
-        jhon.addAsBookmark();
-        jhon.forward();
-        System.out.print(jhon.getCurrentUrl() + "\n");
-        jhon.homePage();
-        System.out.print(jhon.getCurrentUrl() + "\n");
-        jhon.addAsBookmark();
-        System.out.print(jhon.getBookmarks() + "\n");
-        System.out.print(jhon.getHistory() + "\n");
-        System.out.print(jhon.getTop3VisitedPages() + "\n");
+        WebBrowser g = new WebBrowser();
+        g.setHomePage("neti.ee");
+        g.goTo("facebook.com");
+        g.goTo("mangalib.com");
+        g.homePage();
+        System.out.print(g.getHistory() + "\n");
+        System.out.print(g.getTop3VisitedPages() + "\n");
     }
 
 }
