@@ -15,7 +15,7 @@ public class WebBrowser {
     public List<String> history = new ArrayList<>();
     public List<String> bookMark = new ArrayList<>();
 
-    public void History() {
+    public void history() {
         if (history.size() != 0) {
             if (!Objects.equals(currentPage, history.get(history.size() - 1))) {
                 history.add(currentPage);
@@ -47,7 +47,7 @@ public class WebBrowser {
         if (back.size() >= 1) {
             currentPage = back.pop();
         }
-        History();
+        history();
     }
 
     /**
@@ -58,7 +58,7 @@ public class WebBrowser {
         if (forward.size() >= 1) {
             currentPage = forward.pop();
         }
-        History();
+        history();
     }
 
     /**
@@ -70,14 +70,20 @@ public class WebBrowser {
         back.push(currentPage);
         currentPage = url;
         forward.clear();
-        History();
+        history();
     }
 
     /**
      * Add a webpage as a bookmark.
      */
     public void addAsBookmark() {
-        bookMark.add(currentPage);
+        if (bookMark.size() != 0) {
+            if (!bookMark.contains(currentPage)) {
+                bookMark.add(currentPage);
+            }
+        } else {
+            bookMark.add(currentPage);
+        }
     }
 
     /**
@@ -141,7 +147,7 @@ public class WebBrowser {
         mari.goTo("Facr.com");
         mari.back();
         mari.back();
-        System.out.print(mari.getHistory()+ "\n");
+        System.out.print(mari.getHistory() + "\n");
         System.out.print("");
 
         WebBrowser a = new WebBrowser();
@@ -149,7 +155,7 @@ public class WebBrowser {
         a.goTo("facebook.com");
         a.forward();
         a.forward();
-        System.out.print(a.getHistory()+ "\n");
+        System.out.print(a.getHistory() + "\n");
 
         WebBrowser j = new WebBrowser();
         j.setHomePage("neti.ee");
@@ -157,7 +163,7 @@ public class WebBrowser {
         j.back();
         j.homePage();
         j.forward();
-        System.out.print(j.getHistory()+ "\n");
+        System.out.print(j.getHistory() + "\n");
 
         WebBrowser jhon = new WebBrowser();
         System.out.print(jhon.getCurrentUrl() + "\n");
