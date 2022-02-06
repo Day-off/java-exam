@@ -110,19 +110,21 @@ public class WebBrowser {
 
     public void sort() {
         List<Integer> top = new ArrayList<>();
+        List<String> topKey = new ArrayList<>();
         HashMap<String, Integer> map = new HashMap<>();
         for (String page : history) {
             if (!map.containsKey(page)) {
                 int amount = Collections.frequency(history, page);
                 map.put(page, amount);
                 top.add(amount);
+                topKey.add(page);
             }
         }
         String k = "";
         sortedList = top.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
         for (Integer amount : sortedList) {
             if (top3 <= 3) {
-                for (String key : map.keySet()) {
+                for (String key : topKey) {
                     if (amount.equals(map.get(key))) {
                         k = key;
                         break;
