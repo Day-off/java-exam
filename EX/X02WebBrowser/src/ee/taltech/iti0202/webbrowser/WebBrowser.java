@@ -93,7 +93,7 @@ public class WebBrowser {
 
 
     /**
-     * Get top 3 visited pages.
+     * Get top 3 visited pageоs.
      *
      * @return a String that contains top three visited pages separated with a newline "\n"
      */
