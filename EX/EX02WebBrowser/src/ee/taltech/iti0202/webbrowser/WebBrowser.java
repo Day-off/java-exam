@@ -1,10 +1,15 @@
 package ee.taltech.iti0202.webbrowser;
 
-import com.sun.jdi.Value;
 
-import java.security.Key;
-import java.util.*;
+import java.util.Stack;
+import java.util.List;
+import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
+import java.util.Objects;
+import java.util.Collections;
+import java.util.Comparator;
+
 
 public class WebBrowser {
     private String homePage;
