@@ -5,10 +5,10 @@ import java.util.Objects;
 import java.util.Stack;
 
 public class WebBrowser {
-    public static Stack<String> back_stack = new Stack<>();
-    public static Stack<String> forward_stack = new Stack<>();
-    public static String current_web = "google.com";
-    public static String home_page = "google.com";
+    public static Stack<String> backstack = new Stack<>();
+    public static Stack<String> forwardstack = new Stack<>();
+    public static String currentweb = "google.com";
+    public static String homepage = "google.com";
     public static List<String> bookmakrs = new ArrayList<>();
     public static List<String> history = new ArrayList<>();
 
@@ -30,18 +30,18 @@ public class WebBrowser {
      * Goes to homepage.
      */
     public void homePage() {
-        addHistory(current_web);
-        current_web = home_page;
+        addHistory(currentweb);
+        currentweb = homepage;
     }
 
     /**
      * Goes back to previous page.
      */
     public void back() {
-        addHistory(current_web);
-        forward_stack.push(current_web);
-        if (back_stack.size() >= 1){
-            current_web  = back_stack.pop();
+        addHistory(currentweb);
+        forwardstack.push(currentweb);
+        if (backstack.size() >= 1){
+            currentweb  = backstack.pop();
         }
     }
 
@@ -49,10 +49,10 @@ public class WebBrowser {
      * Goes forward to next page.
      */
     public void forward() {
-        addHistory(current_web);
-        back_stack.push(current_web);
-        if (forward_stack.size() >= 1){
-            current_web  = forward_stack.pop();
+        addHistory(currentweb);
+        backstack.push(currentweb);
+        if (forwardstack.size() >= 1){
+            currentweb  = forwardstack.pop();
         }
     }
 
@@ -62,16 +62,17 @@ public class WebBrowser {
      * @param url url to go to
      */
     public void goTo(String url) {
-        addHistory(current_web);
-        back_stack.push(current_web);
-        current_web = url;
+        addHistory(currentweb);
+        backstack.push(currentweb);
+        currentweb = url;
     }
 
     /**
      * Add a webpage as a bookmark.
      */
     public void addAsBookmark() {
-        bookmakrs.add(current_web);
+        bookmakrs.add(currentweb);
+        addHistory(currentweb);
     }
 
     /**
@@ -80,7 +81,8 @@ public class WebBrowser {
      * @param bookmark to remove
      */
     public void removeBookmark(String bookmark) {
-        bookmakrs.remove(current_web);
+        bookmakrs.remove(currentweb);
+        addHistory(currentweb);
     }
 
     public List<String> getBookmarks() {
@@ -88,7 +90,7 @@ public class WebBrowser {
     }
 
     public void setHomePage(String homePage) {
-        home_page = homePage;
+        homepage = homePage;
     }
 
 
@@ -121,7 +123,55 @@ public class WebBrowser {
      * @return active web page
      */
     public String getCurrentUrl() {
-        return current_web;
+        return currentweb;
+    }
+    /**
+     * Run tests.
+     *
+     * @param args info.
+     */
+    public static void main(String[] args) {
+//        WebBrowser mari = new WebBrowser();
+//        mari.goTo("Facr.com");
+//        mari.back();
+//        mari.back();
+//        System.out.print(mari.getHistory());
+//        System.out.print("");
+
+//        WebBrowser jhon = new WebBrowser();
+//        jhon.setHomePage("neti.ee");
+//        jhon.goTo("facebook.com");
+//        jhon.forward();
+//        jhon.forward();
+//        System.out.print(jhon.getHistory());
+//
+//        WebBrowser jhon = new WebBrowser();
+//        jhon.setHomePage("neti.ee");
+//        jhon.goTo("facebook.com");
+//        jhon.back();
+//        jhon.homePage();
+//        jhon.forward();
+//        System.out.print(jhon.getHistory());
+
+        WebBrowser jhon = new WebBrowser();
+        System.out.print(jhon.getCurrentUrl()+"\n");
+        jhon.setHomePage("neti.ee");
+        jhon.goTo("facebook.com");
+        System.out.print(jhon.getCurrentUrl()+"\n");
+        jhon.goTo("google.com");
+        System.out.print(jhon.getCurrentUrl()+"\n");
+        jhon.back();
+        System.out.print(jhon.getCurrentUrl()+"\n");
+        jhon.addAsBookmark();
+        jhon.forward();
+        System.out.print(jhon.getCurrentUrl()+"\n");
+        jhon.homePage();
+        System.out.print(jhon.getCurrentUrl()+"\n");
+        jhon.addAsBookmark();
+        System.out.print(jhon.getBookmarks()+"\n");
+        System.out.print(jhon.getHistory());
+
+
     }
 
 }
