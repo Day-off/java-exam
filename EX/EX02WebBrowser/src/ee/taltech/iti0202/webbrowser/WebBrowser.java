@@ -1,9 +1,7 @@
 package ee.taltech.iti0202.webbrowser;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Stack;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class WebBrowser {
     private String homePage;
@@ -14,6 +12,10 @@ public class WebBrowser {
     public String currentPage = "google.com";
     public List<String> history = new ArrayList<>();
     public List<String> bookMark = new ArrayList<>();
+    public List<Integer> sortedList = new ArrayList<>();
+    public HashMap<Integer, String> map = new HashMap<>();
+    public String ans = "";
+    public int index = 0;
 
     public void history() {
         if (history.size() != 0) {
@@ -103,6 +105,30 @@ public class WebBrowser {
         homepage = homePage;
     }
 
+    public void sort() {
+        List<Integer> top = new ArrayList<>();
+        for (String page : history) {
+            if (!map.containsValue(page)) {
+                int amount = Collections.frequency(history, page);
+                map.put(amount, page);
+                top.add(amount);
+            }
+        }
+        sortedList = top.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+        for (Integer amount : sortedList) {
+            if (index <= 2) {
+                if (map.get(sortedList.get(index)) != null) {
+                    ans += map.get(sortedList.get(index)) + " - " + sortedList.get(index) + " visits" + "\n";
+                    map.remove(amount);
+                    index += 1;
+                } else {
+                    break;
+                }
+            } else {
+                break;
+            }
+        }
+    }
 
     /**
      * Get top 3 visited pages.
@@ -110,7 +136,8 @@ public class WebBrowser {
      * @return a String that contains top three visited pages separated with a newline "\n"
      */
     public String getTop3VisitedPages() {
-        return null;
+        sort();
+        return ans;
     }
 
     /**
@@ -164,6 +191,8 @@ public class WebBrowser {
         j.homePage();
         j.forward();
         System.out.print(j.getHistory() + "\n");
+        System.out.print(j.getTop3VisitedPages() + "\n");
+
 
         WebBrowser jhon = new WebBrowser();
         System.out.print(jhon.getCurrentUrl() + "\n");
@@ -181,7 +210,8 @@ public class WebBrowser {
         System.out.print(jhon.getCurrentUrl() + "\n");
         jhon.addAsBookmark();
         System.out.print(jhon.getBookmarks() + "\n");
-        System.out.print(jhon.getHistory());
+        System.out.print(jhon.getHistory() + "\n");
+        System.out.print(jhon.getTop3VisitedPages() + "\n");
     }
 
 }
