@@ -16,7 +16,9 @@ public class WebBrowser {
     public List<String> history = new ArrayList<>();
     public List<String> bookMark = new ArrayList<>();
     public List<Integer> sortedList = new ArrayList<>();
-    public HashMap<Integer, String> map = new HashMap<>();
+    public HashMap<String, Integer> map = new HashMap<>();
+    public List<Integer> top = new ArrayList<>();
+    public List<String> topKey = new ArrayList<>();
     public String ans = "";
     public int top3 = 1;
 
@@ -109,9 +111,6 @@ public class WebBrowser {
     }
 
     public void sort() {
-        List<Integer> top = new ArrayList<>();
-        List<String> topKey = new ArrayList<>();
-        HashMap<String, Integer> map = new HashMap<>();
         for (String page : history) {
             if (!map.containsKey(page)) {
                 int amount = Collections.frequency(history, page);
