@@ -118,7 +118,11 @@ public class WebBrowser {
         for (Integer amount : sortedList) {
             if (index <= 2) {
                 if (map.get(sortedList.get(index)) != null) {
-                    ans += map.get(sortedList.get(index)) + " - " + sortedList.get(index) + " visits" + "\n";
+                    if (amount == 1) {
+                        ans += map.get(sortedList.get(index)) + " - " + sortedList.get(index) + " visit" + "\n";
+                    } else {
+                        ans += map.get(sortedList.get(index)) + " - " + sortedList.get(index) + " visits" + "\n";
+                    }
                     map.remove(amount);
                     index += 1;
                 } else {
