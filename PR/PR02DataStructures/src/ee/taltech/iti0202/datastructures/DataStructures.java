@@ -71,7 +71,14 @@ public class DataStructures {
      * @return list of strings matching criteria
      */
     public static List<String> onlyEvenWords(List<String> words) {
-        return null;
+        List<String> res = new ArrayList<>();
+        for (String word: words){
+            int amount = Collections.frequency(words, word);
+            if(amount > 1 && !res.contains(word)){
+                res.add(word);
+            }
+        }
+        return res;
     }
 
     /**
