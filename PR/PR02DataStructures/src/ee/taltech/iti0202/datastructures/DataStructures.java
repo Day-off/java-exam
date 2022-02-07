@@ -1,9 +1,13 @@
 package ee.taltech.iti0202.datastructures;
 
+
 import java.util.*;
 
 public class DataStructures {
+
     public HashMap<String, Integer> studentInfot = new HashMap<>();
+    public HashMap<String, Integer> append = new HashMap<>();
+
 
     /**
      * Given String is a sentence with some words.
@@ -75,8 +79,9 @@ public class DataStructures {
         List<String> res = new ArrayList<>();
         for (String word : words) {
             int amount = Collections.frequency(words, word);
-            if (amount > 1 && !res.contains(word)) {
-                res.add(word);
+            if (amount >= 2) {
+                if (!res.contains(word)){
+                    res.add(word);}
             }
         }
         return res;
@@ -108,7 +113,8 @@ public class DataStructures {
     public int getStudentGrade(String name) {
         if (studentInfot.containsKey(name)) {
             return studentInfot.get(name);
-        }return -1;
+        }
+        return -1;
     }
 
     /**
