@@ -3,6 +3,7 @@ package ee.taltech.iti0202.datastructures;
 import java.util.*;
 
 public class DataStructures {
+    public HashMap<String, Integer> studentInfot = new HashMap<>();
 
     /**
      * Given String is a sentence with some words.
@@ -72,9 +73,9 @@ public class DataStructures {
      */
     public static List<String> onlyEvenWords(List<String> words) {
         List<String> res = new ArrayList<>();
-        for (String word: words){
+        for (String word : words) {
             int amount = Collections.frequency(words, word);
-            if(amount > 1 && !res.contains(word)){
+            if (amount > 1 && !res.contains(word)) {
                 res.add(word);
             }
         }
@@ -88,6 +89,11 @@ public class DataStructures {
      * @param studentInfo String with a pattern (name:grade)
      */
     public void addStudent(String studentInfo) {
+        String[] student = studentInfo.split(":");
+        int number = Integer.parseInt(student[1]);
+        if (number >= 0 && number <= 5) {
+            studentInfot.put(student[0], number);
+        }
 
     }
 
@@ -100,7 +106,9 @@ public class DataStructures {
      * @return int student's grade.
      */
     public int getStudentGrade(String name) {
-        return 0;
+        if (studentInfot.containsKey(name)) {
+            return studentInfot.get(name);
+        }return -1;
     }
 
     /**
