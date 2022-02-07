@@ -6,7 +6,6 @@ import java.util.*;
 public class DataStructures {
 
     public HashMap<String, Integer> studentInfot = new HashMap<>();
-    public HashMap<String, Integer> append = new HashMap<>();
 
 
     /**
@@ -76,16 +75,19 @@ public class DataStructures {
      * @return list of strings matching criteria
      */
     public static List<String> onlyEvenWords(List<String> words) {
-
+        HashMap<String, Integer> append = new HashMap<>();
         List<String> res = new ArrayList<>();
         for (String word : words) {
             int amount = Collections.frequency(words, word);
-            if (amount % 2 == 0) {
-                if (!res.contains(word)){
-                    res.add(word);}
+                if (!append.containsKey(word)){
+                    append.put(word, amount);}
             }
-        }
-        return res;
+        for (Map.Entry<String, Integer> entry: append.entrySet()){
+            int count = entry.getValue();
+            for (int i = 0; i < count /2; i++){
+                res.add(entry.getKey());
+            }
+        }return res;
     }
 
     /**
@@ -131,7 +133,7 @@ public class DataStructures {
         System.out.println(wordCount(new String[]{})); // empty
         System.out.println(wordCount(new String[]{"eggs", "SPAM", "eggs", "bacon", "SPAM", "bacon", "SPAM"})); // {bacon=2, eggs=2, SPAM=3}
 
-        System.out.println(onlyEvenWords(Arrays.asList("foo", "bar", "baz", "baz", "bar", "foo"))); // [baz, bar, foo] any order
+        System.out.println(onlyEvenWords(Arrays.asList("foo", "bar", "baz", "baz","baz","baz", "baz", "bar", "foo"))); // [baz, bar, foo] any order
         System.out.println(onlyEvenWords(Arrays.asList("a", "b", "b", "a"))); // [b, a] any order
         System.out.println(onlyEvenWords(Arrays.asList("eggs", "bacon", "SPAM", "ham", "SPAM", "SPAM"))); // [SPAM]
 
