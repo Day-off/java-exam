@@ -56,7 +56,7 @@ public class DataStructures {
                 res.put(word, amount);
             }
         }
-        return new TreeMap<>(res);
+        return res;
     }
 
     /**
