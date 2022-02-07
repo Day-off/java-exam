@@ -112,7 +112,7 @@ public class DataStructures {
      * Return the student's grade by his/hers name.
      * You can assume that the user is already added(previous function with student's info already called).
      *
-     * @param name String students name
+     * @param name String students
      * @return int student's grade.
      */
     public int getStudentGrade(String name) {
