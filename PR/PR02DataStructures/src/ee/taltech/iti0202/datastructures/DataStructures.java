@@ -1,12 +1,6 @@
 package ee.taltech.iti0202.datastructures;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class DataStructures {
 
@@ -21,7 +15,7 @@ public class DataStructures {
      * <p>
      * Hints:
      * You can split words into an array using "str.split()"
-     * Sorting the list with the longest words can definitely help you to find the word which comes alphabetically first.
+     * Sorting the list with the longest words can definitely the word which comes alphabetically first.
      *
      * @param sentence input String to find the longest words
      * @return the longest String from input
@@ -30,15 +24,16 @@ public class DataStructures {
         String[] splitstring = sentence.split("\s");
         int length = 0;
         List<String> res = new ArrayList<>();
-        for (String word: splitstring){
-            if (word.length() == length){
+        for (String word : splitstring) {
+            if (word.length() == length) {
                 res.add(word);
-            } else if (word.length() > length){
+            } else if (word.length() > length) {
                 res.clear();
                 res.add(word);
                 length = word.length();
             }
-        }java.util.Collections.sort(res);
+        }
+        java.util.Collections.sort(res);
         return res.get(0);
     }
 
@@ -51,7 +46,17 @@ public class DataStructures {
      * @return map containing all word to count mappings.
      */
     public static Map<String, Integer> wordCount(String[] sentence) {
-        return null;
+        HashMap<String, Integer> res = new HashMap<>();
+        if (Arrays.stream(sentence).toList().size() == 0) {
+            return res;
+        }
+        for (String word : sentence) {
+            if (!res.containsKey(word)) {
+                int amount = Collections.frequency(List.of(sentence), word);
+                res.put(word, amount);
+            }
+        }
+        return new TreeMap<>(res);
     }
 
     /**
