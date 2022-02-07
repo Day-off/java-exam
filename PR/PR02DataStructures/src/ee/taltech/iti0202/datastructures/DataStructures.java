@@ -76,10 +76,11 @@ public class DataStructures {
      * @return list of strings matching criteria
      */
     public static List<String> onlyEvenWords(List<String> words) {
+
         List<String> res = new ArrayList<>();
         for (String word : words) {
             int amount = Collections.frequency(words, word);
-            if (amount >= 2) {
+            if (amount % 2 == 0) {
                 if (!res.contains(word)){
                     res.add(word);}
             }
