@@ -47,7 +47,7 @@ public class DataStructures {
      */
     public static Map<String, Integer> wordCount(String[] sentence) {
         HashMap<String, Integer> res = new HashMap<>();
-        if (Arrays.stream(sentence).toList().size() == 0) {
+        if (sentence == null) {
             return res;
         }
         for (String word : sentence) {
