@@ -59,11 +59,7 @@ public class Book {
     }
 
     public boolean buy(Person buyer) {
-        if (buyer.getBuyingState()) {
-            setOwner(buyer);
-            return true;
-        }
-        return false;
+        return buyer == owner;
     }
 
     public static void main(String[] args) {
