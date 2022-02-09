@@ -15,8 +15,8 @@ public class Book {
         return nextbId;
     }
 
-    public void createNextId(){
-        nextbId ++;
+    public void createNextId() {
+        nextbId += 2;
     }
 
     public Book(String title, String author, int yearOfPublishing, int price) {
