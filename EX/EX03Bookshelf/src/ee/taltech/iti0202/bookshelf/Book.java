@@ -60,22 +60,9 @@ public class Book {
     }
 
     public boolean buy(Person buyer) {
-        return buyer == owner;
+        return buyer.buyBook(new Book(bName, bAuthor, byearOfPublishing, bprice));
     }
 
-    public static void main(String[] args) {
-        // second part
-        Book b0 = new Book("Java EX00\n", "ron\n", 1, 2);
-        Book b1 = new Book("Java EX01\n", "Ago Luberg\n", 2018, 3);
-        Book b2 = new Book("Java EX02\n", "som\n", 1, 2);
-
-        System.out.print(b0.getAuthor());
-        System.out.print(b1.getAuthor());
-        System.out.print(b2.getAuthor());
-        System.out.print(b0.getTitle());
-        System.out.print(b1.getTitle());
-        System.out.print(b2.getTitle());
-    }
 
 
 }
