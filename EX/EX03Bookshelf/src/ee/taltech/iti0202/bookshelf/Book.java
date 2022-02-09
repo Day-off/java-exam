@@ -4,14 +4,19 @@ import java.util.List;
 import java.util.Objects;
 
 public class Book {
-    private String bName, bAuthor;
+    private String bName = "", bAuthor = "";
     Person owner;
-    private Integer byearOfPublishing;
-    private Integer bprice, bId = -1;
-    private static Integer nextId = 0;
+    private Integer byearOfPublishing = 0;
+    private Integer bprice = 0, bId = 0;
+    private static Integer nextbId = 0;
+
 
     public static int getAndIncrementNextId() {
-        return nextId + 1;
+        return nextbId;
+    }
+
+    public void createNextId(){
+        nextbId ++;
     }
 
     public Book(String title, String author, int yearOfPublishing, int price) {
@@ -19,7 +24,8 @@ public class Book {
         bAuthor = author;
         byearOfPublishing = yearOfPublishing;
         bprice = price;
-        bId += getAndIncrementNextId();
+        bId = nextbId;
+        createNextId();
     }
 
     public String getTitle() {
@@ -59,18 +65,20 @@ public class Book {
         }
         return false;
     }
+
     public static void main(String[] args) {
         // second part
-        Book b0 = new Book("Java EX00\n", "ron\n",1,2);
+        Book b0 = new Book("Java EX00\n", "ron\n", 1, 2);
         Book b1 = new Book("Java EX01\n", "Ago Luberg\n", 2018, 3);
-        Book b2 = new Book("Java EX02\n","som\n",1,2);
+        Book b2 = new Book("Java EX02\n", "som\n", 1, 2);
 
         System.out.print(b0.getAuthor());
         System.out.print(b1.getAuthor());
         System.out.print(b2.getAuthor());
         System.out.print(b0.getTitle());
         System.out.print(b1.getTitle());
-        System.out.print(b2.getTitle());}
+        System.out.print(b2.getTitle());
+    }
 
 
 }
