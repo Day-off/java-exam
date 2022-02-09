@@ -5,10 +5,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class Person {
-    private String personName;
+    private final String personName;
     private int personMoney;
-    private List<Book> books = new ArrayList<Book>();
-    private boolean buying = false;
+    private final List<Book> books = new ArrayList<Book>();
 
     public Person(String name, int money) {
         personMoney = money;
@@ -34,10 +33,10 @@ public class Person {
     }
 
     public boolean buyBook(Book book) {
-        if (personMoney >= book.getPrice() && !(books.contains(book))) {
+        if (personMoney >= book.getPrice() && !books.contains(book)) {
                 personMoney -= book.getPrice();
                 addBook(book);
-                buying = true;
+                book.setOwner(new Person(personName, personMoney));
                 return true;
         }
         return false;
@@ -47,6 +46,7 @@ public class Person {
         if (books.contains(book)){
             personMoney += book.getPrice();
             removeBook(book);
+            book.setOwner(null);
             return true;
         }
         return false;
@@ -54,8 +54,5 @@ public class Person {
 
     public List<Book> getBooks(){
         return books;
-    }
-    public boolean getBuyingState(){
-        return buying;
     }
 }
