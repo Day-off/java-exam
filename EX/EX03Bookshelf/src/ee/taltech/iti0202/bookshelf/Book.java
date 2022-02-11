@@ -8,18 +8,20 @@ public class Book {
     private final String bName;
     private final String bAuthor;
     Person owner;
-    Book cop;
+    static Book cop;
     private Integer byearOfPublishing = 0;
     private final Integer bprice;
     private Integer bId = 0;
     private static Integer nextbId = -1;
-    private static List<Book> bookList = new ArrayList<>();
+    private static final List<Book> listofBooks = new ArrayList<>();
+    private static final List<Book> personbooks = new ArrayList<>();
+    private static final List<Book> authorbooks = new ArrayList<>();
 
     /***
      * index counter
      */
     public static int getAndIncrementNextId() {
-        return nextbId += 1 ;
+        return nextbId += 1;
     }
 
     /***
@@ -101,24 +103,61 @@ public class Book {
         }
     }
 
-    public static Book of(String title, String author, int yearOfPublishing, int price){
-        return null;
+    public static Book of(String title, String author, int yearOfPublishing, int price) {
+        for (Book bookinlist : listofBooks) {
+            if (bookinlist.getPrice() == price && Objects.equals(bookinlist.getAuthor(), author) && Objects.equals(bookinlist.getTitle(), title) && bookinlist.getYearOfPublishing() == yearOfPublishing) {
+                return bookinlist;
+            }
+        }
+        cop = new Book(title, author, yearOfPublishing, price);
+        listofBooks.add(cop);
+        return cop;
+
     }
 
-    public static Book of(String title, int price){
-        return null;
+    public static Book of(String title, int price) {
+        if (listofBooks.size() == 0) {
+            return null;
+        } else if (listofBooks.get(listofBooks.size() - 1).getPrice() != price && !Objects.equals(listofBooks.get(listofBooks.size() - 1).getTitle(), title)) {
+            cop = new Book(title, listofBooks.get(listofBooks.size() - 1).getAuthor(), listofBooks.get(listofBooks.size() - 1).getYearOfPublishing(), price);
+            listofBooks.add(cop);
+            return cop;
+        }
+        return listofBooks.get(listofBooks.size() - 1);
     }
 
-    public static List<Book> getBooksByOwner(Person owner){
-        return null;
+    public static List<Book> getBooksByOwner(Person owner) {
+        for (Book bookinlist: listofBooks){
+            if (bookinlist.getOwner() == owner){
+                personbooks.add(bookinlist);
+            }
+        }
+        return personbooks;
     }
 
-    public static boolean removeBook(Book book){
+    public static boolean removeBook(Book book) {
+        if (book == null){
+            return false;
+        }
+        for (Book bookinlist: listofBooks){
+            if (bookinlist == book){
+                bookinlist.getOwner().sellBook(book);
+                personbooks.remove(bookinlist);
+                listofBooks.remove(book);
+                authorbooks.remove(book);
+                return true;
+            }
+        }
         return false;
     }
 
-    public static List<Book> getBooksByAuthor(String author){
-        return bookList;
+    public static List<Book> getBooksByAuthor(String author) {
+        for (Book bookinlist: listofBooks){
+            if (Objects.equals(bookinlist.getAuthor(), author)){
+                authorbooks.add(bookinlist);
+            }
+        }
+        return authorbooks;
     }
 
 }
