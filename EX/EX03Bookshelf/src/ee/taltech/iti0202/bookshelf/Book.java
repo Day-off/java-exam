@@ -62,7 +62,7 @@ public class Book {
         if (this.owner != null) {
             if (buyer != null) {
                 return this.owner.sellBook(this) && buyer.buyBook(this);
-            }
+            }return this.owner.sellBook(this);
         }
         return false;
     }
