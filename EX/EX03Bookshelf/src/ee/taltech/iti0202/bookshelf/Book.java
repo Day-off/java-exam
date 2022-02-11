@@ -12,7 +12,7 @@ public class Book {
 
 
     public static int getAndIncrementNextId() {
-        return nextbId ++;
+        return nextbId;
     }
 
     public void createNextId() {
