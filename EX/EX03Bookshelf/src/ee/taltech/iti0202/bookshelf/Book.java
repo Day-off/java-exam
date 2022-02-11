@@ -4,17 +4,15 @@ import java.util.List;
 import java.util.Objects;
 
 public class Book {
-    private String bName = "";
-    private String bAuthor = "";
+    private String bName = "", bAuthor = "";
     Person owner;
     private Integer byearOfPublishing = 0;
-    private Integer bprice = 0;
-    private Integer bId = 0;
+    private Integer bprice = 0, bId = 0;
     private static Integer nextbId = 0;
 
 
     public static int getAndIncrementNextId() {
-        return nextbId;
+        return nextbId ++;
     }
 
     public void createNextId() {
@@ -61,7 +59,7 @@ public class Book {
     }
 
     public boolean buy(Person buyer) {
-        return (this.owner != buyer) && (buyer.getMoney() >= this.bprice) && this.owner.sellBook(this) && buyer.buyBook(this);
+        return this.owner.sellBook(this) && buyer.buyBook(this);
     }
 
 
