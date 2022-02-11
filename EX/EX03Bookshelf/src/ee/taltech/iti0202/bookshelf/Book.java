@@ -60,14 +60,16 @@ public class Book {
     }
 
     public boolean buy(Person buyer) {
-        if (this.owner != null) {
+        if (this.owner == null) {
             if (buyer != null) {
-                return this.owner.sellBook(this) && buyer.buyBook(this);
+                return buyer.buyBook(this);
             }
-            this.owner.sellBook(this);
-            return true;
-        } else {
             return false;
+        } else {
+            if (buyer != null) {
+                return buyer.buyBook(this);
+            }
+            return this.owner.sellBook(this);
         }
     }
 
