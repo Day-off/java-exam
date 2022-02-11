@@ -18,7 +18,7 @@ public class Book {
 
     public static int getAndIncrementNextId() {
         createNextId();
-        return nextbId + 2;
+        return nextbId;
     }
 
 
@@ -28,7 +28,7 @@ public class Book {
         byearOfPublishing = yearOfPublishing;
         bprice = price;
         bId = nextbId;
-        getAndIncrementNextId();
+        createNextId();
     }
 
     public String getTitle() {
