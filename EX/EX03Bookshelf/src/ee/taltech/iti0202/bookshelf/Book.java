@@ -8,7 +8,7 @@ public class Book {
     private final String bAuthor;
     Person owner;
     private Integer byearOfPublishing = 0;
-    private Integer bprice = 0;
+    private final Integer bprice;
     private Integer bId = 0;
     private static Integer nextbId = 0;
 
