@@ -4,16 +4,17 @@ import java.util.List;
 import java.util.Objects;
 
 public class Book {
-    private String bName = "", bAuthor = "";
+    private final String bName;
+    private final String bAuthor;
     Person owner;
-    private Integer byearOfPublishing = 0;
-    private Integer bprice = 0, bId = 0;
+    private final Integer byearOfPublishing ;
+    private final Integer bprice;
+    private final Integer bId;
     private static Integer nextbId = 0;
 
 
     public static int getAndIncrementNextId() {
-        nextbId ++;
-        return nextbId + 1;
+        return nextbId;
     }
 
     public void createNextId() {
@@ -21,48 +22,47 @@ public class Book {
     }
 
     public Book(String title, String author, int yearOfPublishing, int price) {
-        bName = title;
-        bAuthor = author;
-        byearOfPublishing = yearOfPublishing;
-        bprice = price;
-        bId = nextbId;
+        this.bName = title;
+        this.bAuthor = author;
+        this.byearOfPublishing = yearOfPublishing;
+        this.bprice = price;
+        this.bId = nextbId;
         createNextId();
     }
 
     public String getTitle() {
 
-        return bName;
+        return this.bName;
     }
 
     public String getAuthor() {
 
-        return bAuthor;
+        return this.bAuthor;
     }
 
     public int getYearOfPublishing() {
-        return byearOfPublishing;
+        return this.byearOfPublishing;
     }
 
     public Person getOwner() {
-        return owner;
+        return this.owner;
     }
 
     public int getPrice() {
-        return bprice;
+        return this.bprice;
     }
 
     public int getId() {
-        return bId;
+        return this.bId;
     }
 
     public void setOwner(Person newOwner) {
-        owner = newOwner;
+        this.owner = newOwner;
     }
 
     public boolean buy(Person buyer) {
-        return buyer.buyBook(new Book(bName, bAuthor, byearOfPublishing, bprice));
+        return (this.owner != buyer)&& (buyer.getMoney() >= this.bprice) && this.owner.sellBook(this) && buyer.buyBook(this);
     }
-
 
 
 }
