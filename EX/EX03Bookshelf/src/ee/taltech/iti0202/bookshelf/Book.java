@@ -8,7 +8,7 @@ public class Book {
     private final String bName;
     private final String bAuthor;
     Person owner;
-    static Book cop, lastBook;
+    static Book cop;
     private Integer byearOfPublishing = 0;
     private final Integer bprice;
     private Integer bId = 0;
@@ -119,12 +119,11 @@ public class Book {
         if (listofBooks.size() == 0) {
             return null;
         } else if (listofBooks.get(listofBooks.size() - 1).getPrice() != price && !Objects.equals(listofBooks.get(listofBooks.size() - 1).getTitle(), title)) {
-            cop = new Book(title, lastBook.getAuthor(), lastBook.getYearOfPublishing(), price);
+            cop = new Book(title, listofBooks.get(listofBooks.size() - 1).getAuthor(), listofBooks.get(listofBooks.size() - 1).getYearOfPublishing(), price);
             listofBooks.add(cop);
             return cop;
         }
-        lastBook = (listofBooks.get(listofBooks.size() - 1));
-        return lastBook;
+        return listofBooks.get(listofBooks.size() - 1);
     }
 
     public static List<Book> getBooksByOwner(Person owner) {
