@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class Book {
-    private String bName = "", bAuthor = "";
+    private final String bName;
+    private final String bAuthor;
     Person owner;
     private Integer byearOfPublishing = 0;
     private Integer bprice = 0, bId = 0;
@@ -35,7 +36,7 @@ public class Book {
 
     public String getAuthor() {
 
-        return this.bAuthor;
+        return bAuthor;
     }
 
     public int getYearOfPublishing() {
@@ -43,7 +44,7 @@ public class Book {
     }
 
     public Person getOwner() {
-        return this.owner;
+        return owner;
     }
 
     public int getPrice() {
@@ -62,9 +63,12 @@ public class Book {
         if (this.owner != null) {
             if (buyer != null) {
                 return this.owner.sellBook(this) && buyer.buyBook(this);
-            }return this.owner.sellBook(this);
+            }
+            this.owner.sellBook(this);
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
 
