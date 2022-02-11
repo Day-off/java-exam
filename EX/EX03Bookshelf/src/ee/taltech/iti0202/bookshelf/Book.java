@@ -12,15 +12,15 @@ public class Book {
     private Integer bId = 0;
     private static Integer nextbId = 0;
 
-
-    public static int getAndIncrementNextId() {
+    public static void createNextId() {
         nextbId += 1;
-        return nextbId + 1;
     }
 
-//    public void createNextId() {
-//        nextbId++;
-//    }
+    public static int getAndIncrementNextId() {
+        createNextId();
+        return nextbId + 2;
+    }
+
 
     public Book(String title, String author, int yearOfPublishing, int price) {
         bName = title;
