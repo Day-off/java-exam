@@ -119,11 +119,7 @@ public class Book {
         if (listofBooks.size() == 0) {
             return null;
         } else if (listofBooks.get(listofBooks.size() - 1).getPrice() != price && !Objects.equals(listofBooks.get(listofBooks.size() - 1).getTitle(), title)) {
-            if (lastBook == null){
-                lastBook = (listofBooks.get(listofBooks.size() - 1));
-            }
             cop = new Book(title, lastBook.getAuthor(), lastBook.getYearOfPublishing(), price);
-            lastBook = cop;
             listofBooks.add(cop);
             return cop;
         }
