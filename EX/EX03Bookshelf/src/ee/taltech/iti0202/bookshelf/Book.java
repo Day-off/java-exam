@@ -8,8 +8,8 @@ public class Book {
     private final String bAuthor;
     Person owner;
     private final Integer byearOfPublishing ;
-    private final Integer bprice;
-    private final Integer bId;
+    private Integer bprice = 0;
+    private Integer bId = 0;
     private static Integer nextbId = 0;
 
 
