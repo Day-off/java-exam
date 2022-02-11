@@ -127,8 +127,8 @@ public class Book {
     }
 
     public static List<Book> getBooksByOwner(Person owner) {
-        for (Book bookinlist: listofBooks){
-            if (bookinlist.getOwner() == owner){
+        for (Book bookinlist : listofBooks) {
+            if (bookinlist.getOwner() == owner) {
                 personbooks.add(bookinlist);
             }
         }
@@ -136,12 +136,14 @@ public class Book {
     }
 
     public static boolean removeBook(Book book) {
-        if (book == null){
+        if (book == null) {
             return false;
         }
-        for (Book bookinlist: listofBooks){
-            if (bookinlist == book){
-                bookinlist.getOwner().sellBook(book);
+        for (Book bookinlist : listofBooks) {
+            if (bookinlist == book) {
+                if (book.getOwner() != null) {
+                    bookinlist.getOwner().sellBook(book);
+                }
                 personbooks.remove(bookinlist);
                 listofBooks.remove(book);
                 authorbooks.remove(book);
@@ -152,8 +154,8 @@ public class Book {
     }
 
     public static List<Book> getBooksByAuthor(String author) {
-        for (Book bookinlist: listofBooks){
-            if (Objects.equals(bookinlist.getAuthor(), author)){
+        for (Book bookinlist : listofBooks) {
+            if (Objects.equals(bookinlist.getAuthor(), author)) {
                 authorbooks.add(bookinlist);
             }
         }
