@@ -17,7 +17,7 @@ public class Book {
     }
 
     public static int getAndIncrementNextId() {
-//        createNextId();
+        nextbId += 1;
         return nextbId += 1 ;
     }
 
