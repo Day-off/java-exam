@@ -10,41 +10,52 @@ public class Person {
     private final List<Book> books = new ArrayList<Book>();
 
     public Person(String name, int money) {
-        personMoney = money;
-        personName = name;
+        this.personMoney = money;
+        this.personName = name;
     }
 
     public int getMoney() {
 
-        return personMoney;
+        return this.personMoney;
     }
 
     public String getName() {
 
-        return personName;
+        return this.personName;
     }
 
-    public void removeBook(Book book){
+    public void removeMoney(Integer money) {
+        this.personMoney -= money;
+    }
+
+    public void addMoney(Integer money) {
+        this.personMoney += money;
+    }
+
+    public void removeBook(Book book) {
         books.remove(book);
     }
 
-    public void addBook(Book book){
+    public void addBook(Book book) {
         books.add(book);
     }
 
     public boolean buyBook(Book book) {
-        if (personMoney >= book.getPrice() && !books.contains(book)) {
-                personMoney -= book.getPrice();
-                addBook(book);
-                book.setOwner(new Person(personName, personMoney));
-                return true;
+        if (personMoney >= book.getPrice() && (book.getOwner() != this)) {
+            removeMoney(book.getPrice());
+            if (book.getOwner() != null) {
+                book.getOwner().addMoney(book.getPrice());
+            }
+            addBook(book);
+            book.setOwner(this);
+            return true;
         }
         return false;
     }
 
     public boolean sellBook(Book book) {
-        if (books.contains(book)){
-            personMoney += book.getPrice();
+        if (books.contains(book)) {
+            addMoney(book.getPrice());
             removeBook(book);
             book.setOwner(null);
             return true;
@@ -52,7 +63,7 @@ public class Person {
         return false;
     }
 
-    public List<Book> getBooks(){
+    public List<Book> getBooks() {
         return books;
     }
 }
