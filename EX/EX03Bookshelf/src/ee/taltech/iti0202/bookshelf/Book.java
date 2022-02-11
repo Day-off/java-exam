@@ -59,7 +59,12 @@ public class Book {
     }
 
     public boolean buy(Person buyer) {
-        return this.owner.sellBook(this) && buyer.buyBook(this);
+        if (this.owner != null) {
+            if (buyer != null) {
+                return this.owner.sellBook(this) && buyer.buyBook(this);
+            }
+        }
+        return false;
     }
 
 
