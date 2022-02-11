@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class Book {
-    private final String bName;
-    private final String bAuthor;
+    private String bName = "";
+    private String bAuthor = "";
     Person owner;
-    private final Integer byearOfPublishing ;
+    private Integer byearOfPublishing = 0;
     private Integer bprice = 0;
     private Integer bId = 0;
     private static Integer nextbId = 0;
@@ -61,7 +61,7 @@ public class Book {
     }
 
     public boolean buy(Person buyer) {
-        return (this.owner != buyer)&& (buyer.getMoney() >= this.bprice) && this.owner.sellBook(this) && buyer.buyBook(this);
+        return (this.owner != buyer) && (buyer.getMoney() >= this.bprice) && this.owner.sellBook(this) && buyer.buyBook(this);
     }
 
 
