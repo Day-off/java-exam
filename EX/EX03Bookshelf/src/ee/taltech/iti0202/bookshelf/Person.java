@@ -41,6 +41,9 @@ public class Person {
     }
 
     public boolean buyBook(Book book) {
+        if (book == null) {
+            return false;
+        }
         if (personMoney >= book.getPrice() && (book.getOwner() != this)) {
             removeMoney(book.getPrice());
             if (book.getOwner() != null) {
@@ -49,8 +52,7 @@ public class Person {
             addBook(book);
             book.setOwner(this);
             return true;
-        }
-        return false;
+        }return false;
     }
 
     public boolean sellBook(Book book) {
