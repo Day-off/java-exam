@@ -8,7 +8,8 @@ public class Book {
     private final String bAuthor;
     Person owner;
     private Integer byearOfPublishing = 0;
-    private Integer bprice = 0, bId = 0;
+    private Integer bprice = 0;
+    private Integer bId = 0;
     private static Integer nextbId = 0;
 
 
@@ -21,11 +22,11 @@ public class Book {
     }
 
     public Book(String title, String author, int yearOfPublishing, int price) {
-        this.bName = title;
-        this.bAuthor = author;
-        this.byearOfPublishing = yearOfPublishing;
-        this.bprice = price;
-        this.bId = nextbId;
+        bName = title;
+        bAuthor = author;
+        byearOfPublishing = yearOfPublishing;
+        bprice = price;
+        bId = nextbId;
         createNextId();
     }
 
@@ -48,11 +49,11 @@ public class Book {
     }
 
     public int getPrice() {
-        return this.bprice;
+        return bprice;
     }
 
     public int getId() {
-        return this.bId;
+        return bId;
     }
 
     public void setOwner(Person newOwner) {
