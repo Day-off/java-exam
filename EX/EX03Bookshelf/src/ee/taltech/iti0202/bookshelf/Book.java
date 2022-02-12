@@ -153,8 +153,8 @@ public class Book {
                 if (book.getOwner() != null) {
                     bookinlist.getOwner().sellBook(book);
                 }
-                personbooks.remove(bookinlist);
                 listofBooks.remove(book);
+                personbooks.remove(bookinlist);
                 authorbooks.remove(book);
                 return true;
             }
