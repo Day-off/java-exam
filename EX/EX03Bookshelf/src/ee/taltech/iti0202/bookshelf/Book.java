@@ -2,6 +2,7 @@ package ee.taltech.iti0202.bookshelf;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Book {
@@ -149,13 +150,12 @@ public class Book {
                 authorbooks.remove(book);
                 return true;
             }
-        }
-        return false;
+        }return false;
     }
 
     public static List<Book> getBooksByAuthor(String author) {
         for (Book bookinlist : listofBooks) {
-            if (Objects.equals(bookinlist.getAuthor(), author)) {
+            if (Objects.equals(bookinlist.getAuthor().toLowerCase(Locale.ROOT), author.toLowerCase(Locale.ROOT))) {
                 authorbooks.add(bookinlist);
             }
         }
