@@ -14,8 +14,6 @@ public class Book {
     private final Integer bprice;
     private Integer bId = 0;
     private static Integer nextbId = -1;
-    static Book last;
-    private static int lastsize;
     private static final List<Book> listofBooks = new ArrayList<>();
     private static final List<Book> personbooks = new ArrayList<>();
     private static final List<Book> authorbooks = new ArrayList<>();
@@ -122,22 +120,10 @@ public class Book {
         if (listofBooks.size() == 0) {
             return null;
         } else if (listofBooks.get(listofBooks.size() - 1).getPrice() != price && !Objects.equals(listofBooks.get(listofBooks.size() - 1).getTitle(), title)) {
-            if (lastsize == listofBooks.size()) {
-                cop = new Book(title, listofBooks.get(listofBooks.size() - 1).getAuthor(), listofBooks.get(listofBooks.size() - 1).getYearOfPublishing(), price);
-                listofBooks.add(cop);
-                lastsize = listofBooks.size();
-                last = cop;
-                return cop;
-            }else {
-                cop = new Book(title, last.getAuthor(), last.getYearOfPublishing(), price);
-                listofBooks.add(cop);
-                lastsize = listofBooks.size();
-                last = cop;
-                return cop;
-            }
+            cop = new Book(title, listofBooks.get(listofBooks.size() - 1).getAuthor(), listofBooks.get(listofBooks.size() - 1).getYearOfPublishing(), price);
+            listofBooks.add(cop);
+            return cop;
         }
-        lastsize = listofBooks.size();
-        last = listofBooks.get(listofBooks.size() - 1);
         return listofBooks.get(listofBooks.size() - 1);
     }
 
@@ -164,8 +150,7 @@ public class Book {
                 authorbooks.remove(book);
                 return true;
             }
-        }
-        return false;
+        }return false;
     }
 
     public static List<Book> getBooksByAuthor(String author) {
