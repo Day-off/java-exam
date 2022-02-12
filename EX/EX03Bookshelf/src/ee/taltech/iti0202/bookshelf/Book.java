@@ -119,7 +119,8 @@ public class Book {
     public static Book of(String title, int price) {
         if (listofBooks.size() == 0) {
             return null;
-        } else if (listofBooks.get(listofBooks.size() - 1).getPrice() != price && !Objects.equals(listofBooks.get(listofBooks.size() - 1).getTitle(), title)) {
+        }
+        if (listofBooks.get(listofBooks.size() - 1).getPrice() != price && !Objects.equals(listofBooks.get(listofBooks.size() - 1).getTitle(), title)) {
             cop = new Book(title, listofBooks.get(listofBooks.size() - 1).getAuthor(), listofBooks.get(listofBooks.size() - 1).getYearOfPublishing(), price);
             listofBooks.add(cop);
             return cop;
@@ -130,7 +131,9 @@ public class Book {
     public static List<Book> getBooksByOwner(Person owner) {
         for (Book bookinlist : listofBooks) {
             if (bookinlist.getOwner() == owner) {
-                personbooks.add(bookinlist);
+                if (!personbooks.contains(bookinlist)) {
+                    personbooks.add(bookinlist);
+                }
             }
         }
         return personbooks;
@@ -150,13 +153,16 @@ public class Book {
                 authorbooks.remove(book);
                 return true;
             }
-        }return false;
+        }
+        return false;
     }
 
     public static List<Book> getBooksByAuthor(String author) {
         for (Book bookinlist : listofBooks) {
             if (Objects.equals(bookinlist.getAuthor().toLowerCase(Locale.ROOT), author.toLowerCase(Locale.ROOT))) {
-                authorbooks.add(bookinlist);
+                if (!authorbooks.contains(bookinlist)) {
+                    authorbooks.add(bookinlist);
+                }
             }
         }
         return authorbooks;
