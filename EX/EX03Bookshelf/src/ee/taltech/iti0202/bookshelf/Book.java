@@ -9,7 +9,7 @@ public class Book {
     private final String bName;
     private final String bAuthor;
     Person owner;
-    static Book cop, rop, las;
+    static Book cop;
     private Integer byearOfPublishing = 0;
     private final Integer bprice;
     private Integer bId = 0;
@@ -119,26 +119,18 @@ public class Book {
     public static Book of(String title, int price) {
         if (listofBooks.size() == 0) {
             return null;
+        }if (listofBooks.get(listofBooks.size() - 1).getPrice() != price && !Objects.equals(listofBooks.get(listofBooks.size() - 1).getTitle(), title)) {
+            cop = new Book(title, listofBooks.get(listofBooks.size() - 1).getAuthor(), listofBooks.get(listofBooks.size() - 1).getYearOfPublishing(), price);
+            listofBooks.add(cop);
+            return cop;
         }
-        if (listofBooks.get(listofBooks.size() - 1).getPrice() != price && !Objects.equals(listofBooks.get(listofBooks.size() - 1).getTitle(), title)) {
-            if (las != null) {
-                rop = new Book(title, las.getAuthor(), las.getYearOfPublishing(), price);
-            }else {
-                rop = new Book(title, listofBooks.get(listofBooks.size() - 1).getAuthor(), listofBooks.get(listofBooks.size() - 1).getYearOfPublishing(), price);
-            }listofBooks.add(rop);
-            las = rop;
-            return las;
-        }
-        las = listofBooks.get(listofBooks.size() - 1);
-        return las;
+        return listofBooks.get(listofBooks.size() - 1);
     }
 
     public static List<Book> getBooksByOwner(Person owner) {
         for (Book bookinlist : listofBooks) {
             if (bookinlist.getOwner() == owner) {
-                if (!personbooks.contains(bookinlist)) {
-                    personbooks.add(bookinlist);
-                }
+                personbooks.add(bookinlist);
             }
         }
         return personbooks;
@@ -153,21 +145,19 @@ public class Book {
                 if (book.getOwner() != null) {
                     bookinlist.getOwner().sellBook(book);
                 }
-                listofBooks.remove(book);
                 personbooks.remove(bookinlist);
+                listofBooks.remove(book);
                 authorbooks.remove(book);
                 return true;
             }
-        }
-        return false;
+        }return false;
     }
 
     public static List<Book> getBooksByAuthor(String author) {
         for (Book bookinlist : listofBooks) {
             if (Objects.equals(bookinlist.getAuthor().toLowerCase(Locale.ROOT), author.toLowerCase(Locale.ROOT))) {
-                if (!authorbooks.contains(bookinlist)) {
-                    authorbooks.add(bookinlist);
-                }
+
+                authorbooks.add(bookinlist);
             }
         }
         return authorbooks;
