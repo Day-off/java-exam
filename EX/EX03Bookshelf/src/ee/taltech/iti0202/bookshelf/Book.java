@@ -175,7 +175,6 @@ public class Book {
                 }
             }
             listBooks.remove(object);
-            authorDict.get(book.getAuthor()).remove(book);
             return true;
 
         }
