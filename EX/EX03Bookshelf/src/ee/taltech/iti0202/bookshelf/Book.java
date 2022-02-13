@@ -172,12 +172,11 @@ public class Book {
         for (Book object : listBooks) {
             if (object == book) {
                 if (object.getOwner() != null) {
-                    object.getOwner().sellBook(object);
+                    object.getOwner().addMoney(book.getPrice());
+                    object.getOwner().removeBook(book);
                 }
             }
             listBooks.remove(object);
-            authorDict.clear();
-            sortByAuthor();
             return true;
 
         }
