@@ -1,15 +1,13 @@
 package ee.taltech.iti0202.bookshelf;
 
 public class Main {
+
     private final static Integer M1 = 1926;
     private final static Integer P1 = 100;
     private final static Integer M2 = 1976;
     private final static Integer P2 = 200;
     private final static Integer BP1 = 200;
     private final static Integer BP2 = 300;
-
-
-
 
 
     public static void main(String[] args) {
