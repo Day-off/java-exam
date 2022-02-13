@@ -3,6 +3,7 @@ package ee.taltech.iti0202.bookshelf;
 import java.util.*;
 
 public class Book {
+
     private final String bName;
     private final String bAuthor;
     private static String lastAuthor;
