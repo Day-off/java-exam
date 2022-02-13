@@ -188,10 +188,10 @@ public class Book {
                 }
             }
             listBooks.remove(object);
-            authorDict.clear();
-            sortByAuthor();
-            personDict.clear();
-            sortByPerson();
+//            authorDict.clear();
+//            sortByAuthor();
+//            personDict.clear();
+//            sortByPerson();
             return true;
 
         }
