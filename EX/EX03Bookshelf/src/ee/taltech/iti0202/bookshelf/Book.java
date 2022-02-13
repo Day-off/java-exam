@@ -1,22 +1,25 @@
 package ee.taltech.iti0202.bookshelf;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
+import java.util.*;
 
 public class Book {
     private final String bName;
     private final String bAuthor;
+    private static String lastAuthor;
+    private static Integer lastYear;
     Person owner;
     static Book cop, las;
     private Integer byearOfPublishing = 0;
     private final Integer bprice;
     private Integer bId = 0;
     private static Integer nextbId = -1;
-    private static final List<Book> listofBooks = new ArrayList<>();
+    private static final List<Book> listBooks = new ArrayList<>();
     private static final List<Book> personbooks = new ArrayList<>();
     private static final List<Book> authorbooks = new ArrayList<>();
+
+    private static HashMap<Person, List<Book>> personDict = new HashMap<>();
+    private static HashMap<String, List<Book>> authorDict = new HashMap<>();
+
 
     /***
      * index counter
@@ -104,76 +107,95 @@ public class Book {
         }
     }
 
+    /***
+     * create book
+     */
     public static Book of(String title, String author, int yearOfPublishing, int price) {
-        for (Book bookinlist : listofBooks) {
-            if (bookinlist.getPrice() == price && Objects.equals(bookinlist.getAuthor(), author) && Objects.equals(bookinlist.getTitle(), title) && bookinlist.getYearOfPublishing() == yearOfPublishing) {
-                return bookinlist;
+        for (Book object : listBooks) {
+            if (Objects.equals(object.getTitle(), title) && Objects.equals(object.getAuthor(), author) && object.getYearOfPublishing() == yearOfPublishing) {
+                return object;
             }
         }
         cop = new Book(title, author, yearOfPublishing, price);
-        listofBooks.add(cop);
+        listBooks.add(cop);
+        lastAuthor = cop.getAuthor();
+        lastYear = cop.getYearOfPublishing();
         return cop;
-
     }
 
+    /***
+     *
+     */
     public static Book of(String title, int price) {
-        if (listofBooks.size() == 0) {
+        if (listBooks.size() == 0) {
             return null;
-        }
-        if (las != null) {
-            if (las.getPrice() != price && !Objects.equals(las.getTitle(), title)) {
-                cop = new Book(title, las.getAuthor(), las.getYearOfPublishing(), price);
-                listofBooks.add(cop);
-                las = cop;
-                return las;
-            }
+        } else if (!Objects.equals(listBooks.get(listBooks.size() - 1).getTitle(), title) && listBooks.get(listBooks.size() - 1).getPrice() != price) {
+            cop = new Book(title, lastAuthor, lastYear, price);
+            listBooks.add(cop);
+            return cop;
         } else {
-            if (listofBooks.get(listofBooks.size() - 1).getPrice() != price && !Objects.equals(listofBooks.get(listofBooks.size() - 1).getTitle(), title)) {
-                cop = new Book(title, listofBooks.get(listofBooks.size() - 1).getAuthor(), listofBooks.get(listofBooks.size() - 1).getYearOfPublishing(), price);
-                listofBooks.add(cop);
-                las = cop;
-                return las;
-            }
+            return listBooks.get(listBooks.size() - 1);
         }
-        las = listofBooks.get(listofBooks.size() - 1);
-        return las;
+
     }
 
+    public static void sortByPerson() {
+        for (Book object : listBooks) {
+            List<Book> n = new ArrayList<>();
+            if (personDict.containsKey(object.getOwner())) {
+                n = personDict.get(object.getOwner());
+            }
+            n.add(object);
+            personDict.put(object.getOwner(), n);
+        }
+    }
+
+    /***
+     *
+     */
     public static List<Book> getBooksByOwner(Person owner) {
-        for (Book bookinlist : listofBooks) {
-            if (bookinlist.getOwner() == owner) {
-                personbooks.add(bookinlist);
-            }
-        }
-        return personbooks;
+        sortByPerson();
+        return personDict.get(owner);
     }
 
+    public static void sortByAuthor() {
+        for (Book object : listBooks) {
+            List<Book> n = new ArrayList<>();
+            if (!authorDict.containsKey(object.getAuthor().toLowerCase(Locale.ROOT))) {
+                n = authorDict.get(object.getAuthor().toLowerCase(Locale.ROOT));
+            }
+            n.add(object);
+            authorDict.put(object.getAuthor().toLowerCase(Locale.ROOT), n);
+        }
+    }
+
+    public static List<Book> getBooksByAuthor(String author) {
+        sortByAuthor();
+        return authorDict.get(author.toLowerCase(Locale.ROOT));
+    }
+
+    /***
+     *
+     */
     public static boolean removeBook(Book book) {
         if (book == null) {
             return false;
         }
-        for (Book bookinlist : listofBooks) {
-            if (bookinlist == book) {
-                if (book.getOwner() != null) {
-                    bookinlist.getOwner().sellBook(book);
+        for (Book object : listBooks) {
+            if (object == book) {
+                if (object.getOwner() != null) {
+                    object.getOwner().sellBook(object);
                 }
-                personbooks.remove(bookinlist);
-                listofBooks.remove(book);
-                authorbooks.remove(book);
-                return true;
             }
+            listBooks.remove(object);
+            authorDict = null;
+            sortByAuthor();
+            personDict = null;
+            sortByPerson();
+            return true;
+
         }
         return false;
+
     }
-
-    public static List<Book> getBooksByAuthor(String author) {
-        for (Book bookinlist : listofBooks) {
-            if (Objects.equals(bookinlist.getAuthor().toLowerCase(Locale.ROOT), author.toLowerCase(Locale.ROOT))) {
-
-                authorbooks.add(bookinlist);
-            }
-        }
-        return authorbooks;
-    }
-
 }
