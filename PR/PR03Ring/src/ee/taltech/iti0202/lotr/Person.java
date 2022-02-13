@@ -3,38 +3,38 @@ package ee.taltech.iti0202.lotr;
 import java.util.Objects;
 
 public class Person {
-    private final String Race;
-    private final String Name;
+    private final String pRace;
+    private final String pName;
     private String res;
-    private Ring Ring;
+    private Ring pRing;
 
     public Person(String race, String name, Ring ring) {
-        Race = race;
-        Name = name;
-        Ring = ring;
+        pRace = race;
+        pName = name;
+        pRing = ring;
     }
 
     public Person(String race, String name) {
-        Race = race;
-        Name = name;
+        pRace = race;
+        pName = name;
     }
 
     public void setRing(Ring ring) {
-        Ring = ring;
+        pRing = ring;
     }
 
     public void check() {
-        if (Objects.equals(Name, "Sauron") && Ring.getType() == ee.taltech.iti0202.lotr.Ring.Type.THE_ONE
-                && Ring.getMaterial() == ee.taltech.iti0202.lotr.Ring.Material.GOLD) {
+        if (Objects.equals(pName, "Sauron") && pRing.getType() == ee.taltech.iti0202.lotr.Ring.Type.THE_ONE
+                && pRing.getMaterial() == ee.taltech.iti0202.lotr.Ring.Material.GOLD) {
             res = "Affirmative";
-        } else if (Objects.equals(Name, "Sauron") && Ring.getType() == ee.taltech.iti0202.lotr.Ring.Type.THE_ONE
-                && Ring.getMaterial() != ee.taltech.iti0202.lotr.Ring.Material.GOLD) {
+        } else if (Objects.equals(pName, "Sauron") && pRing.getType() == ee.taltech.iti0202.lotr.Ring.Type.THE_ONE
+                && pRing.getMaterial() != ee.taltech.iti0202.lotr.Ring.Material.GOLD) {
             res = "No, the ring is fake!";
-        } else if (!Objects.equals(Name, "Sauron") && Ring.getType() == ee.taltech.iti0202.lotr.Ring.Type.THE_ONE
-                && Ring.getMaterial() == ee.taltech.iti0202.lotr.Ring.Material.GOLD) {
+        } else if (!Objects.equals(pName, "Sauron") && pRing.getType() == ee.taltech.iti0202.lotr.Ring.Type.THE_ONE
+                && pRing.getMaterial() == ee.taltech.iti0202.lotr.Ring.Material.GOLD) {
             res = "No, he just stole the ring.";
-        } else if (Objects.equals(Name, "Sauron") && (Ring.getType() != ee.taltech.iti0202.lotr.Ring.Type.THE_ONE
-                || Ring == null)) {
+        } else if (Objects.equals(pName, "Sauron") && (pRing.getType() != ee.taltech.iti0202.lotr.Ring.Type.THE_ONE
+                || pRing == null)) {
             res = "No, but he's claiming to be";
         } else {
             res = "No";
@@ -48,14 +48,14 @@ public class Person {
     }
 
     public String getRace() {
-        return Race;
+        return pRace;
     }
 
     public String getName() {
-        return Name;
+        return pName;
     }
 
     public ee.taltech.iti0202.lotr.Ring getRing() {
-        return Ring;
+        return pRing;
     }
 }
