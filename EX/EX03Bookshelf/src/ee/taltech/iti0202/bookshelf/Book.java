@@ -17,7 +17,6 @@ public class Book {
     private static final List<Book> personbooks = new ArrayList<>();
     private static final List<Book> authorbooks = new ArrayList<>();
 
-    private static HashMap<Person, List<Book>> personDict = new HashMap<>();
     private static HashMap<String, List<Book>> authorDict = new HashMap<>();
 
 
@@ -177,10 +176,8 @@ public class Book {
                 }
             }
             listBooks.remove(object);
-//            authorDict.clear();
-//            sortByAuthor();
-//            personDict.clear();
-//            sortByPerson();
+            authorDict.clear();
+            sortByAuthor();
             return true;
 
         }
