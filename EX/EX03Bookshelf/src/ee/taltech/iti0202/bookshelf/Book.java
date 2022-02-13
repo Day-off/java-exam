@@ -124,7 +124,7 @@ public class Book {
     }
 
     /***
-     *
+     *create book without author and year
      */
     public static Book of(String title, int price) {
         if (listBooks.size() == 0) {
@@ -142,12 +142,15 @@ public class Book {
 
 
     /***
-     *
+     *person books
      */
     public static List<Book> getBooksByOwner(Person owner) {
         return owner.getBooks();
     }
 
+    /***
+     * sorting
+     */
     public static void sortByAuthor(Book object) {
         List<Book> n = new ArrayList<>();
         if (authorDict.containsKey(object.getAuthor().toLowerCase(Locale.ROOT))) {
@@ -158,6 +161,9 @@ public class Book {
 
     }
 
+    /***
+     * getter
+     */
     public static List<Book> getBooksByAuthor(String author) {
         if (authorDict.containsKey(author.toLowerCase(Locale.ROOT))) {
             return authorDict.get(author.toLowerCase(Locale.ROOT));
@@ -167,7 +173,7 @@ public class Book {
     }
 
     /***
-     *
+     *delet book
      */
     public static boolean removeBook(Book book) {
         if (book == null || !listBooks.contains(book)) {
