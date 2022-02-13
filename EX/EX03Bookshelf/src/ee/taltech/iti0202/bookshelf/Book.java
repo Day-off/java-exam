@@ -147,7 +147,6 @@ public class Book {
     }
 
     public static void sortByAuthor(Book object) {
-
         List<Book> n = new ArrayList<>();
         if (authorDict.containsKey(object.getAuthor().toLowerCase(Locale.ROOT))) {
             n = authorDict.get(object.getAuthor().toLowerCase(Locale.ROOT));
@@ -165,7 +164,7 @@ public class Book {
      *
      */
     public static boolean removeBook(Book book) {
-        if (book == null) {
+        if (book == null || !listBooks.contains(book)) {
             return false;
         }
         for (Book object : listBooks) {
