@@ -139,23 +139,12 @@ public class Book {
 
     }
 
-    public static void sortByPerson() {
-        for (Book object : listBooks) {
-            List<Book> n = new ArrayList<>();
-            if (personDict.containsKey(object.getOwner())) {
-                n = personDict.get(object.getOwner());
-            }
-            n.add(object);
-            personDict.put(object.getOwner(), n);
-        }
-    }
 
     /***
      *
      */
     public static List<Book> getBooksByOwner(Person owner) {
-        sortByPerson();
-        return personDict.get(owner);
+        return owner.getBooks();
     }
 
     public static void sortByAuthor() {
