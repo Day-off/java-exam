@@ -157,6 +157,9 @@ public class Book {
     }
 
     public static List<Book> getBooksByAuthor(String author) {
+        if (!authorDict.containsKey(author)){
+            return new ArrayList<>();
+        }
         return authorDict.get(author.toLowerCase(Locale.ROOT));
     }
 
