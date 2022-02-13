@@ -157,10 +157,9 @@ public class Book {
     }
 
     public static List<Book> getBooksByAuthor(String author) {
-        if (!authorDict.containsKey(author)){
-            return new ArrayList<>();
-        }
-        return authorDict.get(author.toLowerCase(Locale.ROOT));
+        if (authorDict.containsKey(author)){
+            return authorDict.get(author.toLowerCase(Locale.ROOT));
+        }else {return new ArrayList<Book>();}
     }
 
     /***
@@ -175,7 +174,8 @@ public class Book {
             book.getOwner().removeBook(book);
         }
         listBooks.remove(book);
-        authorDict.get(book.getAuthor().toLowerCase(Locale.ROOT)).remove(book);
+        if (authorDict.containsKey(book.getAuthor().toLowerCase(Locale.ROOT))) {
+            authorDict.get(book.getAuthor().toLowerCase(Locale.ROOT)).remove(book);
 
         return true;
     }
