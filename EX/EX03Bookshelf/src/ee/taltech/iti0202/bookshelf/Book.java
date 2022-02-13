@@ -8,16 +8,14 @@ public class Book {
     private static String lastAuthor;
     private static Integer lastYear;
     Person owner;
-    static Book cop, las;
+    static Book cop;
     private Integer byearOfPublishing = 0;
     private final Integer bprice;
     private Integer bId = 0;
     private static Integer nextbId = -1;
     private static final List<Book> listBooks = new ArrayList<>();
-    private static final List<Book> personbooks = new ArrayList<>();
-    private static final List<Book> authorbooks = new ArrayList<>();
 
-    private static HashMap<String, List<Book>> authorDict = new HashMap<>();
+    private static final HashMap<String, List<Book>> authorDict = new HashMap<>();
 
 
     /***
@@ -149,7 +147,7 @@ public class Book {
     public static void sortByAuthor() {
         for (Book object : listBooks) {
             List<Book> n = new ArrayList<>();
-            if (!authorDict.containsKey(object.getAuthor().toLowerCase(Locale.ROOT))) {
+            if (authorDict.containsKey(object.getAuthor().toLowerCase(Locale.ROOT))) {
                 n = authorDict.get(object.getAuthor().toLowerCase(Locale.ROOT));
             }
             n.add(object);
