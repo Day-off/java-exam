@@ -108,9 +108,11 @@ public class Book {
      * create book
      */
     public static Book of(String title, String author, int yearOfPublishing, int price) {
-        for (Book object : authorDict.get(author.toLowerCase(Locale.ROOT))) {
-            if (Objects.equals(object.getTitle(), title) && object.getYearOfPublishing() == yearOfPublishing) {
-                return object;
+        if (authorDict.containsKey(author.toLowerCase(Locale.ROOT))) {
+            for (Book object : authorDict.get(author.toLowerCase(Locale.ROOT))) {
+                if (Objects.equals(object.getTitle(), title) && object.getYearOfPublishing() == yearOfPublishing) {
+                    return object;
+                }
             }
         }
         cop = new Book(title, author, yearOfPublishing, price);
