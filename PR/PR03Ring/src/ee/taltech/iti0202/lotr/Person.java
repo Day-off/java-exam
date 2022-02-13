@@ -38,6 +38,8 @@ public class Person {
                 res = "No, he just stole the ring";
             } else if (Objects.equals(pName, "Sauron") && pRing.getType() != ee.taltech.iti0202.lotr.Ring.Type.THE_ONE) {
                 res = "No, but he's claiming to be";
+            }else {
+                res = "No";
             }
         } else {
             res = "No";
