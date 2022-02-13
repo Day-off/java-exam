@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Person {
+
     private final String personName;
     private int personMoney;
     private final List<Book> books = new ArrayList<>();
