@@ -167,12 +167,14 @@ public class Book {
         if (book == null || !listBooks.contains(book)) {
             return false;
         }
-        if (book.getOwner() != null){
+        if (book.getOwner() != null) {
             book.getOwner().addMoney(book.getPrice());
             book.getOwner().removeBook(book);
         }
         listBooks.remove(book);
-        authorDict.get(book.getAuthor().toLowerCase(Locale.ROOT)).remove(book);
+        if (authorDict.containsKey(book.getAuthor())) {
+            authorDict.get(book.getAuthor().toLowerCase(Locale.ROOT)).remove(book);
+        }
         return true;
     }
 
