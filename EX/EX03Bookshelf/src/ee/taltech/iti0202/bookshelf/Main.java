@@ -1,6 +1,7 @@
 package ee.taltech.iti0202.bookshelf;
+
 public class Main {
-    
+
     public static void main(String[] args) {
         Book tammsaare = new Book("Truth and Justice", "Tammsaare", 1926, 100);
         Book meri = new Book("Silverwhite", "Meri", 1976, 200);
@@ -10,7 +11,8 @@ public class Main {
 
         System.out.println(mati.buyBook(tammsaare)); // true
         System.out.println(mati.getMoney());  // 100
-        System.out.println(tammsaare.getOwner().getName()); // Mati
+        System.out.println(tammsaare.getOwner().getName());
+        System.out.println(tammsaare.getPrice());// 100
 
         System.out.print("\n");
 
@@ -20,11 +22,11 @@ public class Main {
 
         System.out.print("\n");
 
-        System.out.println(mati.sellBook(tammsaare)); // false
+        System.out.println(mati.sellBook(null)); // false
 
         System.out.println("\n");
 
-        System.out.println(mati.buyBook(meri)); // true
+        System.out.println(mati.buyBook(null)); // true
         System.out.println(mati.getMoney()); // 0
 
         System.out.println("\n");
