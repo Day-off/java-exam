@@ -33,8 +33,9 @@ public class Person {
         } else if (!Objects.equals(pName, "Sauron") && pRing.getType() == ee.taltech.iti0202.lotr.Ring.Type.THE_ONE
                 && pRing.getMaterial() == ee.taltech.iti0202.lotr.Ring.Material.GOLD) {
             res = "No, he just stole the ring";
-        } else if (Objects.equals(pName, "Sauron") && (pRing == null ||
-                pRing.getType() != ee.taltech.iti0202.lotr.Ring.Type.THE_ONE)) {
+        } else if (Objects.equals(pName, "Sauron") && pRing == null) {
+            res = "No, but he's claiming to be";
+        } else if (Objects.equals(pName, "Sauron") && pRing.getType() != ee.taltech.iti0202.lotr.Ring.Type.THE_ONE) {
             res = "No, but he's claiming to be";
         } else {
             res = "No";
