@@ -32,7 +32,7 @@ public class Person {
             res = "No, the ring is fake!";
         } else if (!Objects.equals(pName, "Sauron") && pRing.getType() == ee.taltech.iti0202.lotr.Ring.Type.THE_ONE
                 && pRing.getMaterial() == ee.taltech.iti0202.lotr.Ring.Material.GOLD) {
-            res = "No, he just stole the ring.";
+            res = "No, he just stole the ring";
         } else if (Objects.equals(pName, "Sauron") && (pRing.getType() != ee.taltech.iti0202.lotr.Ring.Type.THE_ONE
                 || pRing == null)) {
             res = "No, but he's claiming to be";
