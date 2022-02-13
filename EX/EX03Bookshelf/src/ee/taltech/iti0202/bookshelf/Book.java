@@ -188,9 +188,9 @@ public class Book {
                 }
             }
             listBooks.remove(object);
-            authorDict = null;
+            authorDict = new HashMap<>();
             sortByAuthor();
-            personDict = null;
+            personDict = new HashMap<>();
             sortByPerson();
             return true;
 
