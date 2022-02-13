@@ -25,11 +25,11 @@ public class Person {
     }
 
     public void removeMoney(Integer money) {
-        this.personMoney -= money;
+        personMoney -= money;
     }
 
     public void addMoney(Integer money) {
-        this.personMoney += money;
+        personMoney += money;
     }
 
     public void removeBook(Book book) {
@@ -60,7 +60,7 @@ public class Person {
             if (books.contains(book)) {
                 addMoney(book.getPrice());
                 removeBook(book);
-                book.setOwner(null);
+//                book.setOwner(null);
                 return true;
             }
         }
@@ -68,6 +68,7 @@ public class Person {
     }
 
     public List<Book> getBooks() {
+
         return books;
     }
 }
