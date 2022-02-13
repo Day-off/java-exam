@@ -2,12 +2,11 @@ package ee.taltech.iti0202.bookshelf;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Person {
     private final String personName;
     private int personMoney;
-    private final List<Book> books = new ArrayList<Book>();
+    private final List<Book> books = new ArrayList<>();
 
     public Person(String name, int money) {
         this.personMoney = money;
