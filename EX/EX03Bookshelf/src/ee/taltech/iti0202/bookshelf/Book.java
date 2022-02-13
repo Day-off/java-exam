@@ -18,15 +18,16 @@ public class Book {
     private final Integer bprice;
     private Integer bId = 0;
     private static Integer nextbId = -1;
-    private static final List<Book> listbooks = new ArrayList<>();
-    private static final HashMap<String, List<Book>> authordict = new HashMap<>();
+    private static final List<Book> Listbooks = new ArrayList<>();
+    private static final HashMap<String, List<Book>> Authordict = new HashMap<>();
 
 
     /***
      * index counter
      */
     public static int getAndIncrementNextId() {
-        return nextbId += 1;
+        nextbId += 1;
+        return nextbId;
     }
 
     /***
@@ -112,15 +113,15 @@ public class Book {
      * create book
      */
     public static Book of(String title, String author, int yearOfPublishing, int price) {
-        if (authordict.containsKey(author.toLowerCase(Locale.ROOT))) {
-            for (Book object : authordict.get(author.toLowerCase(Locale.ROOT))) {
+        if (Authordict.containsKey(author.toLowerCase(Locale.ROOT))) {
+            for (Book object : Authordict.get(author.toLowerCase(Locale.ROOT))) {
                 if (Objects.equals(object.getTitle(), title) && object.getYearOfPublishing() == yearOfPublishing) {
                     return object;
                 }
             }
         }
         cop = new Book(title, author, yearOfPublishing, price);
-        listbooks.add(cop);
+        Listbooks.add(cop);
         lastAuthor = cop.getAuthor();
         lastYear = cop.getYearOfPublishing();
         sortByAuthor(cop);
@@ -131,16 +132,16 @@ public class Book {
      *create book without author and year
      */
     public static Book of(String title, int price) {
-        if (listbooks.size() == 0) {
+        if (Listbooks.size() == 0) {
             return null;
-        } else if (!Objects.equals(listbooks.get(listbooks.size() - 1).getTitle(), title) &&
-                listbooks.get(listbooks.size() - 1).getPrice() != price) {
+        } else if (!Objects.equals(Listbooks.get(Listbooks.size() - 1).getTitle(), title)
+                && Listbooks.get(Listbooks.size() - 1).getPrice() != price) {
             cop = new Book(title, lastAuthor, lastYear, price);
-            listbooks.add(cop);
+            Listbooks.add(cop);
             sortByAuthor(cop);
             return cop;
         } else {
-            return listbooks.get(listbooks.size() - 1);
+            return Listbooks.get(Listbooks.size() - 1);
         }
 
     }
@@ -158,11 +159,11 @@ public class Book {
      */
     public static void sortByAuthor(Book object) {
         List<Book> n = new ArrayList<>();
-        if (authordict.containsKey(object.getAuthor().toLowerCase(Locale.ROOT))) {
-            n = authordict.get(object.getAuthor().toLowerCase(Locale.ROOT));
+        if (Authordict.containsKey(object.getAuthor().toLowerCase(Locale.ROOT))) {
+            n = Authordict.get(object.getAuthor().toLowerCase(Locale.ROOT));
         }
         n.add(object);
-        authordict.put(object.getAuthor().toLowerCase(Locale.ROOT), n);
+        Authordict.put(object.getAuthor().toLowerCase(Locale.ROOT), n);
 
     }
 
@@ -170,8 +171,8 @@ public class Book {
      * getter
      */
     public static List<Book> getBooksByAuthor(String author) {
-        if (authordict.containsKey(author.toLowerCase(Locale.ROOT))) {
-            return authordict.get(author.toLowerCase(Locale.ROOT));
+        if (Authordict.containsKey(author.toLowerCase(Locale.ROOT))) {
+            return Authordict.get(author.toLowerCase(Locale.ROOT));
         } else {
             return new ArrayList<Book>();
         }
@@ -181,16 +182,16 @@ public class Book {
      *delet book
      */
     public static boolean removeBook(Book book) {
-        if (book == null || !listbooks.contains(book)) {
+        if (book == null || !Listbooks.contains(book)) {
             return false;
         }
         if (book.getOwner() != null) {
             book.getOwner().addMoney(book.getPrice());
             book.getOwner().removeBook(book);
         }
-        listbooks.remove(book);
-        if (authordict.containsKey(book.getAuthor().toLowerCase(Locale.ROOT))) {
-            authordict.get(book.getAuthor().toLowerCase(Locale.ROOT)).remove(book);
+        Listbooks.remove(book);
+        if (Authordict.containsKey(book.getAuthor().toLowerCase(Locale.ROOT))) {
+            Authordict.get(book.getAuthor().toLowerCase(Locale.ROOT)).remove(book);
         }
 
         return true;
