@@ -172,15 +172,15 @@ public class Book {
                 if (object.getOwner() != null) {
                     object.getOwner().addMoney(book.getPrice());
                     object.getOwner().removeBook(book);
-                    authorDict.get(book.getAuthor()).remove(book);
                 }
             }
             listBooks.remove(object);
-//            authorDict.get(book.getAuthor()).remove(book);
+            authorDict.get(book.getAuthor()).remove(book);
             return true;
 
         }
-        return false;
-
+        return true;
     }
+
+
 }
