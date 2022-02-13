@@ -172,7 +172,7 @@ public class Book {
             book.getOwner().removeBook(book);
         }
         listBooks.remove(book);
-        authorDict.get(book.getAuthor()).remove(book);
+        authorDict.get(book.getAuthor().toLowerCase(Locale.ROOT)).remove(book);
         return true;
     }
 
