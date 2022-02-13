@@ -1,13 +1,23 @@
 package ee.taltech.iti0202.bookshelf;
 
 public class Main {
+    private final static Integer M1 = 1926;
+    private final static Integer P1 = 100;
+    private final static Integer M2 = 1976;
+    private final static Integer P2 = 200;
+    private final static Integer BP1 = 200;
+    private final static Integer BP2 = 300;
+
+
+
+
 
     public static void main(String[] args) {
-        Book tammsaare = new Book("Truth and Justice", "Tammsaare", 1926, 100);
-        Book meri = new Book("Silverwhite", "Meri", 1976, 200);
+        Book tammsaare = new Book("Truth and Justice", "Tammsaare", M1, P1);
+        Book meri = new Book("Silverwhite", "Meri", M2, P2);
 
-        Person mati = new Person("Mati", 200);
-        Person kati = new Person("Kati", 300);
+        Person mati = new Person("Mati", BP1);
+        Person kati = new Person("Kati", BP2);
 
         System.out.println(mati.buyBook(tammsaare)); // true
         System.out.println(mati.getMoney());  // 100
