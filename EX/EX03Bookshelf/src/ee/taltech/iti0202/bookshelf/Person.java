@@ -8,37 +8,61 @@ public class Person {
     private int personMoney;
     private final List<Book> books = new ArrayList<>();
 
+    /***
+     * constructor
+     */
     public Person(String name, int money) {
         this.personMoney = money;
         this.personName = name;
     }
 
+    /***
+     * getter
+     */
     public int getMoney() {
 
         return this.personMoney;
     }
 
+    /***
+     * getter
+     */
     public String getName() {
 
         return this.personName;
     }
 
+    /***
+     * getter
+     */
     public void removeMoney(Integer money) {
         personMoney -= money;
     }
 
+    /***
+     * getter
+     */
     public void addMoney(Integer money) {
         personMoney += money;
     }
 
+    /***
+     * del book
+     */
     public void removeBook(Book book) {
         books.remove(book);
     }
 
+    /***
+     * add book
+     */
     public void addBook(Book book) {
         books.add(book);
     }
 
+    /***
+     * buy book
+     */
     public boolean buyBook(Book book) {
         if (book == null) {
             return false;
@@ -55,6 +79,10 @@ public class Person {
         return false;
     }
 
+
+    /***
+     * sell book
+     */
     public boolean sellBook(Book book) {
         if (book != null) {
             if (books.contains(book)) {
@@ -67,6 +95,9 @@ public class Person {
         return false;
     }
 
+    /***
+     * getter
+     */
     public List<Book> getBooks() {
 
         return books;
