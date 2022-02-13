@@ -60,7 +60,7 @@ public class Person {
             if (books.contains(book)) {
                 addMoney(book.getPrice());
                 removeBook(book);
-//                book.setOwner(null);
+                book.setOwner(null);
                 return true;
             }
         }
