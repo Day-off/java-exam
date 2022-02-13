@@ -117,6 +117,7 @@ public class Book {
         listBooks.add(cop);
         lastAuthor = cop.getAuthor();
         lastYear = cop.getYearOfPublishing();
+        sortByAuthor(cop);
         return cop;
     }
 
@@ -129,6 +130,7 @@ public class Book {
         } else if (!Objects.equals(listBooks.get(listBooks.size() - 1).getTitle(), title) && listBooks.get(listBooks.size() - 1).getPrice() != price) {
             cop = new Book(title, lastAuthor, lastYear, price);
             listBooks.add(cop);
+            sortByAuthor(cop);
             return cop;
         } else {
             return listBooks.get(listBooks.size() - 1);
@@ -144,19 +146,18 @@ public class Book {
         return owner.getBooks();
     }
 
-    public static void sortByAuthor() {
-        for (Book object : listBooks) {
-            List<Book> n = new ArrayList<>();
-            if (authorDict.containsKey(object.getAuthor().toLowerCase(Locale.ROOT))) {
-                n = authorDict.get(object.getAuthor().toLowerCase(Locale.ROOT));
-            }
-            n.add(object);
-            authorDict.put(object.getAuthor().toLowerCase(Locale.ROOT), n);
+    public static void sortByAuthor(Book object) {
+
+        List<Book> n = new ArrayList<>();
+        if (authorDict.containsKey(object.getAuthor().toLowerCase(Locale.ROOT))) {
+            n = authorDict.get(object.getAuthor().toLowerCase(Locale.ROOT));
         }
+        n.add(object);
+        authorDict.put(object.getAuthor().toLowerCase(Locale.ROOT), n);
+
     }
 
     public static List<Book> getBooksByAuthor(String author) {
-        sortByAuthor();
         return authorDict.get(author.toLowerCase(Locale.ROOT));
     }
 
