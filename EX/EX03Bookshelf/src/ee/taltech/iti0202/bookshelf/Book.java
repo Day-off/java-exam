@@ -167,18 +167,13 @@ public class Book {
         if (book == null || !listBooks.contains(book)) {
             return false;
         }
-        for (Book object : listBooks) {
-            if (object == book) {
-                if (object.getOwner() != null) {
-                    object.getOwner().addMoney(book.getPrice());
-                    object.getOwner().removeBook(book);
-                }
-            }
-            listBooks.remove(object);
-            authorDict.get(book.getAuthor()).remove(book);
-            return true;
-
-        }return false;
+        if (book.getOwner() != null){
+            book.getOwner().addMoney(book.getPrice());
+            book.getOwner().removeBook(book);
+        }
+        listBooks.remove(book);
+        authorDict.get(book.getAuthor()).remove(book);
+        return true;
     }
 
 
