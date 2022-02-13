@@ -52,7 +52,8 @@ public class Person {
             addBook(book);
             book.setOwner(this);
             return true;
-        }return false;
+        }
+        return false;
     }
 
     public boolean sellBook(Book book) {
