@@ -15,10 +15,9 @@ public class SocialNetwork {
     private final Set<Group> allGroups = new HashSet<>();
 
 
-    public SocialNetwork(){
+    public SocialNetwork() {
 
     }
-
 
 
     public void registerGroup(Group group) {
@@ -36,7 +35,8 @@ public class SocialNetwork {
             if (group.getParticipants().contains(user)) {
                 userGroup.add(group);
             }
-        }return userGroup;
+        }
+        return userGroup;
     }
 
     public Set<Message> findAllMessages(User user, List<Group> userGroup) {
@@ -47,7 +47,8 @@ public class SocialNetwork {
                     userAllMessages.add(post);
                 }
             }
-        }return userAllMessages;
+        }
+        return userAllMessages;
     }
 
     public Feed getFeedForUser(User user) {
