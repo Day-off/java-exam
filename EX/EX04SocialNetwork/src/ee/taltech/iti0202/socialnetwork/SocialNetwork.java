@@ -29,8 +29,8 @@ public class SocialNetwork {
         return allGroups;
     }
 
-    public List<Group> findGroupsByUser(User user) {
-        List<Group> userGroup = new ArrayList<>();
+    public Set<Group> findGroupsByUser(User user) {
+        Set<Group> userGroup = new HashSet<>();
         for (Group group : allGroups) {
             if (group.getParticipants().contains(user)) {
                 userGroup.add(group);
@@ -39,7 +39,7 @@ public class SocialNetwork {
         return userGroup;
     }
 
-    public Set<Message> findAllMessages(User user, List<Group> userGroup) {
+    public Set<Message> findAllMessages(User user, Set<Group> userGroup) {
         Set<Message> userAllMessages = new HashSet<>();
         for (Group group : userGroup) {
             for (Message post : group.getMessages()) {
@@ -53,7 +53,7 @@ public class SocialNetwork {
 
     public Feed getFeedForUser(User user) {
         //sort groups by user
-        List<Group> userGroup = findGroupsByUser(user);
+        Set<Group> userGroup = findGroupsByUser(user);
         //groups sort messages by user
         Set<Message> userAllMessages = findAllMessages(user, userGroup);
 
