@@ -12,8 +12,10 @@
     public class SocialNetwork {
 
         private final Set<Group> groups = new HashSet<>();
-        private final List<Group> userGroup = new ArrayList<>();
-        private final Set<Message> userAllMessages = new HashSet<>();
+        private List<Group> userGroup = new ArrayList<>();
+
+        private Set<Message> userAllMessages = new HashSet<>();
+
 
         public void registerGroup(Group group) {
             groups.add(group);
