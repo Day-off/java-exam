@@ -12,9 +12,9 @@ import java.util.Set;
 
 public class SocialNetwork {
 
-    private final Set<Group> allGroups = new HashSet<>();
-    private final List<Group> userGroup = new ArrayList<>();
-    private final Set<Message> userAllMessages = new HashSet<>();
+    private Set<Group> allGroups = new HashSet<>();
+    private List<Group> userGroup = new ArrayList<>();
+    private Set<Message> userAllMessages = new HashSet<>();
 
     public SocialNetwork() {
 
