@@ -12,9 +12,8 @@ import java.util.Set;
 
 public class SocialNetwork {
 
-    private Set<Group> allGroups = new HashSet<>();
-    private List<Group> userGroup = new ArrayList<>();
-    private Set<Message> userAllMessages = new HashSet<>();
+    private final Set<Group> allGroups = new HashSet<>();
+
 
     public SocialNetwork(){
 
@@ -31,29 +30,31 @@ public class SocialNetwork {
         return allGroups;
     }
 
-    public void sortByUser(User user) {
+    public List<Group> findGroupsByUser(User user) {
+        List<Group> userGroup = new ArrayList<>();
         for (Group group : allGroups) {
             if (group.getParticipants().contains(user)) {
                 userGroup.add(group);
             }
-        }
+        }return userGroup;
     }
 
-    public void findAllMessages(User user) {
+    public Set<Message> findAllMessages(User user, List<Group> userGroup) {
+        Set<Message> userAllMessages = new HashSet<>();
         for (Group group : userGroup) {
             for (Message post : group.getMessages()) {
                 if (post.getAuthor() == user) {
                     userAllMessages.add(post);
                 }
             }
-        }
+        }return userAllMessages;
     }
 
     public Feed getFeedForUser(User user) {
         //sort groups by user
-        sortByUser(user);
+        List<Group> userGroup = findGroupsByUser(user);
         //groups sort messages by user
-        findAllMessages(user);
+        Set<Message> userAllMessages = findAllMessages(user, userGroup);
 
         return new Feed(user, userAllMessages);
     }
