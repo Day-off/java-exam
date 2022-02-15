@@ -16,9 +16,10 @@ public class SocialNetwork {
     private List<Group> userGroup = new ArrayList<>();
     private Set<Message> userAllMessages = new HashSet<>();
 
-    public SocialNetwork() {
+    public SocialNetwork(){
 
     }
+
 
 
     public void registerGroup(Group group) {
