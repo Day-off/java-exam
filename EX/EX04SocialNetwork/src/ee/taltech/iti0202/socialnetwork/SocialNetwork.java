@@ -1,55 +1,60 @@
-    package ee.taltech.iti0202.socialnetwork;
-    import ee.taltech.iti0202.socialnetwork.feed.Feed;
-    import ee.taltech.iti0202.socialnetwork.group.Group;
-    import ee.taltech.iti0202.socialnetwork.message.Message;
-    import ee.taltech.iti0202.socialnetwork.user.User;
+package ee.taltech.iti0202.socialnetwork;
 
-    import java.util.ArrayList;
-    import java.util.HashSet;
-    import java.util.List;
-    import java.util.Set;
+import ee.taltech.iti0202.socialnetwork.feed.Feed;
+import ee.taltech.iti0202.socialnetwork.group.Group;
+import ee.taltech.iti0202.socialnetwork.message.Message;
+import ee.taltech.iti0202.socialnetwork.user.User;
 
-    public class SocialNetwork {
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-        private final Set<Group> groups = new HashSet<>();
-        private List<Group> userGroup = new ArrayList<>();
+public class SocialNetwork {
 
-        private Set<Message> userAllMessages = new HashSet<>();
+    private final Set<Group> groups = new HashSet<>();
+    private List<Group> userGroup = new ArrayList<>();
+
+    private Set<Message> userAllMessages = new HashSet<>();
+
+    private Feed feed;
 
 
-        public void registerGroup(Group group) {
-            groups.add(group);
-        }
+    public void registerGroup(Group group) {
+        groups.add(group);
+    }
 
-        public Set<Group> getGroups() {
+    public Set<Group> getGroups() {
 
-            return groups;
-        }
+        return groups;
+    }
 
-        public void sortByUser(User user){
-            for (Group group: groups){
-                if (group.getParticipants().contains(user)){
-                    userGroup.add(group);
-                }
+    public void sortByUser(User user) {
+        for (Group group : groups) {
+            if (group.getParticipants().contains(user)) {
+                userGroup.add(group);
             }
-        }
-
-        public void findAllMessages(User user){
-            for (Group group: userGroup){
-                for (Message post: group.getMessages()){
-                    if (post.getAuthor() == user){
-                        userAllMessages.add(post);
-                    }
-                }
-            }
-        }
-
-        public Feed getFeedForUser(User user) {
-            //sort groups by user
-            sortByUser(user);
-            //groups sort messages by user
-            findAllMessages(user);
-
-            return new Feed(user, userAllMessages);
         }
     }
+
+    public void findAllMessages(User user) {
+        for (Group group : userGroup) {
+            for (Message post : group.getMessages()) {
+                if (post.getAuthor() == user) {
+                    userAllMessages.add(post);
+                }
+            }
+        }
+    }
+
+    public Feed getFeedForUser(User user) {
+        //sort groups by user
+        sortByUser(user);
+        //groups sort messages by user
+        findAllMessages(user);
+
+        feed = new Feed(user, userAllMessages);
+
+        return feed;
+    }
+}
