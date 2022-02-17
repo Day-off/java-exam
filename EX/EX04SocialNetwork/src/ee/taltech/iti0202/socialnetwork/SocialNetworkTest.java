@@ -51,7 +51,8 @@ class SocialNetworkTest {
         group2.addUser(mark);
         group2.publishMessage(message3);
         group2.publishMessage(message4);
-        assertEquals(new HashSet<>(List.of(message1, message2, message3, message4)), insta.getFeedForUser(mari).getMessages());
+        assertEquals(new HashSet<>(List.of(message1, message2, message3, message4)),
+                insta.getFeedForUser(mari).getMessages());
     }
 
 }
