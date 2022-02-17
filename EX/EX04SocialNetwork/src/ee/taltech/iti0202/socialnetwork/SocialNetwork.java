@@ -12,21 +12,31 @@ public class SocialNetwork {
 
     private final Set<Group> allGroups = new HashSet<>();
 
-
+    /***
+     * Construcrot
+     */
     public SocialNetwork() {
 
     }
 
-
+    /***
+     * add group to set
+     */
     public void registerGroup(Group group) {
         allGroups.add(group);
     }
 
+    /***
+     * getter
+     */
     public Set<Group> getGroups() {
 
         return allGroups;
     }
 
+    /***
+     * filter
+     */
     public Set<Group> findGroupsByUser(User user) {
         Set<Group> userGroup = new HashSet<>();
         for (Group group : allGroups) {
@@ -37,6 +47,9 @@ public class SocialNetwork {
         return userGroup;
     }
 
+    /***
+     * add messages
+     */
     public Set<Message> findAllMessages(Set<Group> userGroup) {
         Set<Message> userAllMessages = new HashSet<>();
         for (Group group : userGroup) {
@@ -45,6 +58,9 @@ public class SocialNetwork {
         return userAllMessages;
     }
 
+    /***
+     * create feed
+     */
     public Feed getFeedForUser(User user) {
         //sort groups by user
         Set<Group> userGroup = findGroupsByUser(user);

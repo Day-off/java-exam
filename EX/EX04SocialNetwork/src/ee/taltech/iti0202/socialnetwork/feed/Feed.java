@@ -7,22 +7,29 @@ import java.util.Set;
 
 public class Feed {
 
-    private User userFeed;
-    private Set<Message> messagesUser;
+    private final User userFeed;
+    private final Set<Message> messagesUser;
 
-
-    public Feed(User user, Set<Message> messages){
+    /***
+     * Constructor
+     */
+    public Feed(User user, Set<Message> messages) {
         userFeed = user;
         messagesUser = messages;
     }
 
-    public User getUser(){
+    /***
+     * Getter
+     */
+    public User getUser() {
         return userFeed;
     }
 
-    public Set<Message> getMessages(){
+    /***
+     * Getter
+     */
+    public Set<Message> getMessages() {
         return messagesUser;
     }
-
 
 }

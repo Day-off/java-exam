@@ -10,47 +10,71 @@ import java.util.Set;
 
 public class Group {
 
-    private String NAME;
+    private String nameGroup;
     private final User groupOwner;
     private final Set<User> members = new HashSet<>();
     private final List<Message> posts = new ArrayList<>();
 
+    /***
+     * Constructor
+     */
     public Group(String name, User owner) {
         setName(name);
         groupOwner = owner;
         members.add(groupOwner);
     }
 
+    /***
+     * getter
+     */
     public String getName() {
 
-        return NAME;
+        return nameGroup;
     }
 
+    /***
+     * setter
+     */
     public void setName(String name) {
-        NAME = name;
+        nameGroup = name;
     }
 
+    /***
+     * Getter
+     */
     public User getOwner() {
 
         return groupOwner;
     }
 
+    /***
+     * add
+     */
     public void addUser(User user) {
         members.add(user);
     }
 
+    /***
+     * getter
+     */
     public Set<User> getParticipants() {
 
         return members;
     }
 
+    /***
+     * publish
+     */
     public void publishMessage(Message message) {
-        if (members.contains(message.getAuthor())){
+        if (members.contains(message.getAuthor())) {
 
             posts.add(message);
         }
     }
 
+    /***
+     * getter
+     */
     public List<Message> getMessages() {
         return posts;
     }
