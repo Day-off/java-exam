@@ -43,7 +43,7 @@ public class SocialNetwork {
         Set<Message> userAllMessages = new HashSet<>();
         for (Group group : userGroup) {
             for (Message post : group.getMessages()) {
-                if (post.getAuthor() == user) {
+                if (post.getAuthor().equals(user)) {
                     userAllMessages.add(post);
                 }
             }
