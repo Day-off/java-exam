@@ -3,10 +3,7 @@ package ee.taltech.iti0202.stock.stock;
 import ee.taltech.iti0202.stock.exceptions.StockException;
 import ee.taltech.iti0202.stock.product.Product;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Stream;
 
 /**
@@ -77,6 +74,7 @@ public class Stock {
             return Optional.of(sortedProducts.get(0));
 
         } else {
+            sortedProducts = new ArrayList<>();
             return Optional.empty();
         }
     }
@@ -144,7 +142,7 @@ public class Stock {
      */
     public int getTotalPrice() {
         int totalPrice = 0;
-        for (Product product: stock){
+        for (Product product : stock) {
             totalPrice += product.getPrice();
         }
         return totalPrice;
@@ -160,35 +158,60 @@ public class Stock {
     }
 
     public static void main(String[] args) throws StockException {
-        Product manka = new Product("manka", 1);
-        Product puding = new Product("puding", 1);
-        Product zele = new Product("zele", 3);
+        Product manka = new Product("manka", 1);//1
+        Product puding = new Product("puding", 1);//2
+        Product zele = new Product("zele", 3);//3
 
-        Product sok = new Product("sok", 2);
-        Product kesel = new Product("sok", 2);
-        Product kesl = new Product("sok", 2);
+        Product q = new Product("sok", 1); //4
+        Product w = new Product("sok", 2);//5
+        Product e = new Product("sok", 3);//6
+        Product r = new Product("sok", 2);//7
+        Product t = new Product("sok", 2);//8
+        Product y = new Product("sok", 1);//9
 
 
+        Stock stock = new Stock("Holodilnik", 10);
 
-        Stock stock = new Stock("Holodilnik", 5);
-
-        stock.addProduct(sok);
-        stock.addProduct(kesel);
+        stock.addProduct(q);
+        stock.addProduct(w);
         System.out.println(stock.getProducts().size());//2
 
+        stock.addProduct(e);
+        stock.addProduct(r);
+        stock.addProduct(t);
+        stock.addProduct(y);
         stock.addProduct(puding);
+        stock.addProduct(manka);
         stock.addProduct(zele);
-        stock.addProduct(kesl);
+
         System.out.println(stock.getProducts().size());//5
+
+        System.out.println("");
+
+        stock.getProducts("sok").forEach(s -> System.out.println(s.getId() + " " + s.getPrice()));
+        System.out.println("");
 
         System.out.println(stock.findCheaperProduct("sok").get().getId());
         System.out.println(stock.removeProduct("sok"));
+        System.out.println(stock.removeProduct("sok"));
+        System.out.println(stock.removeProduct("sok"));
+        System.out.println(stock.removeProduct("sok"));
+        System.out.println(stock.removeProduct("sok"));
+        System.out.println(stock.removeProduct("sok"));
 
-        System.out.println(stock.getProducts().size());//4
+        System.out.println("");
 
-        System.out.println(stock.getProducts("sok").size());
-        System.out.println(stock.getProducts("sok").get(0).getId());
+        stock.getProducts().forEach(s -> System.out.println(s.getId()));//4
 
+        System.out.println("");
+
+
+        System.out.println(stock.getProducts("sok"));
+
+        System.out.println("");
+
+
+//        System.out.println(stock.getProducts("sok").get(0).getId());
 
 
     }
