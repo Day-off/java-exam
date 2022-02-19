@@ -63,14 +63,13 @@ public class Stock {
      * find product
      */
     public Optional<Product> findCheaperProduct(String name) {
-        List<Product> sameProducts = stock.stream().filter(object -> object.getName().equals(name)).toList();
+        List<Product> sameProducts = stock.stream().filter(object -> object.getName().startsWith(name)).toList();
         if (sameProducts.size() != 0) {
             Comparator<Product> comparator = Comparator.comparing(Product::getPrice);
             comparator.thenComparing(Product::getId);
             // Sort the stream:
             Stream<Product> sortedProduct = sameProducts.stream().sorted(comparator);
             sortedProducts = sortedProduct.toList();
-
             return Optional.of(sortedProducts.get(0));
 
         } else {
@@ -162,16 +161,19 @@ public class Stock {
         Product puding = new Product("puding", 1);//2
         Product zele = new Product("zele", 3);//3
 
-        Product q = new Product("sok", 1); //4
-        Product w = new Product("sok", 2);//5
-        Product e = new Product("sok", 3);//6
-        Product r = new Product("sok", 2);//7
-        Product t = new Product("sok", 2);//8
-        Product y = new Product("sok", 1);//9
+        Product q = new Product("sok1", 1); //4
+        Product w = new Product("sok2", 2);//5
+        Product e = new Product("sok3", 3);//6
+        Product r = new Product("sok4", 2);//7
+        Product t = new Product("sok5", 2);//8
+        Product y = new Product("sok6", 1);//9
 
 
         Stock stock = new Stock("Holodilnik", 10);
 
+        stock.addProduct(manka);
+        stock.addProduct(puding);
+        stock.addProduct(zele);
         stock.addProduct(q);
         stock.addProduct(w);
         System.out.println(stock.getProducts().size());//2
@@ -180,9 +182,6 @@ public class Stock {
         stock.addProduct(r);
         stock.addProduct(t);
         stock.addProduct(y);
-        stock.addProduct(puding);
-        stock.addProduct(manka);
-        stock.addProduct(zele);
 
         System.out.println(stock.getProducts().size());//5
 
@@ -197,11 +196,11 @@ public class Stock {
         System.out.println(stock.removeProduct("sok"));
         System.out.println(stock.removeProduct("sok"));
         System.out.println(stock.removeProduct("sok"));
-        System.out.println(stock.removeProduct("sok"));
+//        System.out.println(stock.removeProduct("sok"));
 
         System.out.println("");
 
-        stock.getProducts().forEach(s -> System.out.println(s.getId()));//4
+        stock.getProducts().forEach(s -> System.out.println(s.getId() +" "+ s.getName()));//4
 
         System.out.println("");
 
@@ -209,10 +208,6 @@ public class Stock {
         System.out.println(stock.getProducts("sok"));
 
         System.out.println("");
-
-
-//        System.out.println(stock.getProducts("sok").get(0).getId());
-
 
     }
 
