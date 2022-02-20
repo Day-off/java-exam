@@ -67,6 +67,7 @@ public class Stock {
         List<Product> sameProducts = stock.stream().filter(object -> object.getName().equals(name)).toList();
         if (sameProducts.size() != 0) {
             // Sort the stream:
+            sortedProducts.clear();
             sortedProducts = sameProducts.stream().sorted(Comparator.comparing(Product::getPrice).thenComparing(Product::getId)).collect(Collectors.toList());
             return Optional.of(sortedProducts.get(0));
 
