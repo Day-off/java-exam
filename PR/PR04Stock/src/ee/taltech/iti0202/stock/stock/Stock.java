@@ -103,7 +103,7 @@ public class Stock {
      */
 
     public Optional<Product> removeProduct(String name) {
-        Optional<Product> product = getProduct(name);
+        Optional<Product> product = findCheaperProduct(name);
         if (product.isEmpty()) {
             return Optional.empty();
         } else {
@@ -155,6 +155,7 @@ public class Stock {
     public boolean isFull() {
         return stock.size() == stockCapacity;
     }
+
 
     public static void main(String[] args) throws StockException {
         Product manka = new Product("manka", 1);//1
