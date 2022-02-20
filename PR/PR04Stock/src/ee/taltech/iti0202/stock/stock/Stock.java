@@ -25,7 +25,7 @@ public class Stock {
 
     private final int stockCapacity;
     private final List<Product> stock = new ArrayList<>();
-    private List<Product> sortedProducts = new ArrayList<>();;
+    private List<Product> sortedProducts ;
 
 
     /**
@@ -67,12 +67,12 @@ public class Stock {
         List<Product> sameProducts = stock.stream().filter(object -> object.getName().equals(name)).toList();
         if (sameProducts.size() != 0) {
             // Sort the stream:
-            sortedProducts.clear();
+            sortedProducts = new ArrayList<>();
             sortedProducts = sameProducts.stream().sorted(Comparator.comparing(Product::getPrice).thenComparing(Product::getId)).collect(Collectors.toList());
             return Optional.of(sortedProducts.get(0));
 
         } else {
-            sortedProducts.clear();
+            sortedProducts = new ArrayList<>();
             return Optional.empty();
         }
     }
