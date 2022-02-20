@@ -131,9 +131,6 @@ public class Stock {
      * Get a list of current products in the stock filtered by name.
      * <p>
      * Order the products by price ascending. In case of the same price, by id ascending.
-     *
-     * @param name Name to be filtered.
-     * @return List
      */
     public List<Product> getProducts(String name) {
         findCheaperProduct(name);
@@ -161,53 +158,4 @@ public class Stock {
     public boolean isFull() {
         return stock.size() == stockCapacity;
     }
-
-
-    public static void main(String[] args) throws StockException {
-        Product manka = new Product("manka", 1);//1
-        Product puding = new Product("puding", 1);//2
-        Product zele = new Product("zele", 3);//3
-
-        Product q = new Product("sok", 1); //4
-        Product w = new Product("sok", 2);//5
-        Product e = new Product("sok", 2);//6
-        Product r = new Product("sok", 2);//7
-        Product t = new Product("sok", 2);//8
-        Product y = new Product("sok", 1);//9
-
-
-        Stock stock = new Stock("Holodilnik", 10);
-
-        stock.addProduct(manka);
-        stock.addProduct(puding);
-        stock.addProduct(zele);
-        stock.addProduct(q);
-        stock.addProduct(w);
-        System.out.println(stock.getProducts().size());//2
-
-        stock.addProduct(e);
-        stock.addProduct(r);
-        stock.addProduct(t);
-        stock.addProduct(y);
-
-        System.out.println(stock.getProducts().size());//5
-
-        stock.getProducts("sok").forEach(s -> System.out.println(s.getId() + " " + s.getPrice()));
-
-        System.out.println(stock.removeProduct("sok"));
-        System.out.println(stock.removeProduct("sok"));
-        System.out.println(stock.removeProduct("sok"));
-        System.out.println(stock.removeProduct("sok"));
-        System.out.println(stock.removeProduct("sok"));
-//        System.out.println(stock.removeProduct("sok"));
-
-
-        stock.getProducts().forEach(s -> System.out.println(s.getId() + " " + s.getName()));//4
-
-
-        System.out.println(stock.getProducts("sok"));
-
-
-    }
-
 }

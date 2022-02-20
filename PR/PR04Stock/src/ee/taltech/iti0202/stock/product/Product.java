@@ -7,7 +7,7 @@ public class Product {
     private final String nameProduct;
     private final int priceProduct;
     private static int nextId = 0;
-    private final int Id;
+    private final int id;
 
     /**
      * Create a new product with the given name and price.
@@ -24,7 +24,7 @@ public class Product {
         }
         nameProduct = name;
         priceProduct = price;
-        Id = getNextId();
+        id = getNextId();
     }
 
     /**
@@ -45,7 +45,7 @@ public class Product {
      * @return id of the product.
      */
     public int getId() {
-        return Id;
+        return id;
     }
 
     /**
@@ -68,6 +68,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return nameProduct + " " + "pr: " + priceProduct + " Id: " + Id;
+        return nameProduct + " " + "pr: " + priceProduct + " Id: " + id;
     }
 }
