@@ -65,6 +65,7 @@ public class Stock {
 
     /***
      * find product
+     * @param name
      * @return Optional
      */
     public Optional<Product> findCheaperProduct(String name) {
@@ -131,6 +132,7 @@ public class Stock {
      * Get a list of current products in the stock filtered by name.
      * <p>
      * Order the products by price ascending. In case of the same price, by id ascending.
+     * @param name
      */
     public List<Product> getProducts(String name) {
         findCheaperProduct(name);
