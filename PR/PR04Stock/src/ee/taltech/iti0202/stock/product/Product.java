@@ -64,4 +64,10 @@ public class Product {
     public int getPrice() {
         return priceProduct;
     }
+
+    @Override
+    public String toString(){
+        return nameProduct + " " + priceProduct;
+    }
+
 }
