@@ -3,9 +3,12 @@ package ee.taltech.iti0202.stock.stock;
 import ee.taltech.iti0202.stock.exceptions.StockException;
 import ee.taltech.iti0202.stock.product.Product;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 /**
  * The stock class.
@@ -25,7 +28,7 @@ public class Stock {
 
     private final int stockCapacity;
     private final List<Product> stock = new ArrayList<>();
-    private List<Product> sortedProducts ;
+    private List<Product> sortedProducts;
 
 
     /**
@@ -62,13 +65,17 @@ public class Stock {
 
     /***
      * find product
+     * @return Optional
      */
     public Optional<Product> findCheaperProduct(String name) {
         List<Product> sameProducts = stock.stream().filter(object -> object.getName().equals(name)).toList();
         if (sameProducts.size() != 0) {
             // Sort the stream:
             sortedProducts = new ArrayList<>();
-            sortedProducts = sameProducts.stream().sorted(Comparator.comparing(Product::getPrice).thenComparing(Product::getId)).collect(Collectors.toList());
+            sortedProducts = sameProducts.stream().sorted(Comparator
+                            .comparing(Product::getPrice)
+                            .thenComparing(Product::getId))
+                    .collect(Collectors.toList());
             return Optional.of(sortedProducts.get(0));
 
         } else {
@@ -185,12 +192,8 @@ public class Stock {
 
         System.out.println(stock.getProducts().size());//5
 
-        System.out.println("");
-
         stock.getProducts("sok").forEach(s -> System.out.println(s.getId() + " " + s.getPrice()));
-        System.out.println("");
 
-        System.out.println(stock.findCheaperProduct("sok").get().getId());
         System.out.println(stock.removeProduct("sok"));
         System.out.println(stock.removeProduct("sok"));
         System.out.println(stock.removeProduct("sok"));
@@ -198,16 +201,12 @@ public class Stock {
         System.out.println(stock.removeProduct("sok"));
 //        System.out.println(stock.removeProduct("sok"));
 
-        System.out.println("");
 
-        stock.getProducts().forEach(s -> System.out.println(s.getId() +" "+ s.getName()));//4
-
-        System.out.println("");
+        stock.getProducts().forEach(s -> System.out.println(s.getId() + " " + s.getName()));//4
 
 
         System.out.println(stock.getProducts("sok"));
 
-        System.out.println("");
 
     }
 
