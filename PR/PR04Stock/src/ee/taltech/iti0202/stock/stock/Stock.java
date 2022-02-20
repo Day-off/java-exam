@@ -92,6 +92,7 @@ public class Stock {
      * returns the product with the lowest id.
      *
      * @param name the product's name
+     * @return Optional
      */
     public Optional<Product> getProduct(String name) {
         return findCheaperProduct(name);
@@ -133,6 +134,7 @@ public class Stock {
      * <p>
      * Order the products by price ascending. In case of the same price, by id ascending.
      * @param name
+     * @return List
      */
     public List<Product> getProducts(String name) {
         findCheaperProduct(name);
