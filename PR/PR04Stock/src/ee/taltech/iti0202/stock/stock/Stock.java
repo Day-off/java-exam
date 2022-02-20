@@ -4,6 +4,7 @@ import ee.taltech.iti0202.stock.exceptions.StockException;
 import ee.taltech.iti0202.stock.product.Product;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -65,11 +66,9 @@ public class Stock {
     public Optional<Product> findCheaperProduct(String name) {
         List<Product> sameProducts = stock.stream().filter(object -> object.getName().equals(name)).toList();
         if (sameProducts.size() != 0) {
-            Comparator<Product> comparator = Comparator.comparing(Product::getPrice);
-            comparator.thenComparing(Product::getId);
             // Sort the stream:
-            Stream<Product> sortedProduct = sameProducts.stream().sorted(comparator);
-            sortedProducts = sortedProduct.toList();
+            sortedProducts = new ArrayList<>();
+            sortedProducts = sameProducts.stream().sorted(Comparator.comparing(Product::getPrice).thenComparing(Product::getId)).collect(Collectors.toList());
             return Optional.of(sortedProducts.get(0));
 
         } else {
@@ -164,7 +163,7 @@ public class Stock {
 
         Product q = new Product("sok", 1); //4
         Product w = new Product("sok", 2);//5
-        Product e = new Product("sok", 3);//6
+        Product e = new Product("sok", 2);//6
         Product r = new Product("sok", 2);//7
         Product t = new Product("sok", 2);//8
         Product y = new Product("sok", 1);//9
