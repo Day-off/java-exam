@@ -1,9 +1,7 @@
 package ee.taltech.iti0202.stream;
 
-import java.util.IntSummaryStatistics;
-import java.util.List;
-import java.util.Optional;
-import java.util.OptionalDouble;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class KittenStatistics {
@@ -22,31 +20,42 @@ public class KittenStatistics {
     }
 
     public Optional<Kitten> findOldestKitten() {
-        return Optional.empty();
+        List<Kitten> res = kittens.stream().sorted(Comparator.comparing(Kitten::getAge).reversed()).toList();
+        return Optional.of(res.get(0));
     }
 
     public List<Kitten> findYoungestKittens() {
-        return null;
+        Map<Integer, List<Kitten>> res = kittens.stream().collect(Collectors.groupingBy(Kitten::getAge));
+        Integer min = Collections.min(res.keySet());
+        return res.get(min);
     }
 
     public List<Kitten> findKittensAccordingToGender(Kitten.Gender gender) {
-        return null;
+        Map<Kitten.Gender, List<Kitten>> res = kittens.stream().collect(Collectors.groupingBy(Kitten::getGender));
+        return res.get(gender);
     }
 
     public List<Kitten> findKittensBetweenAges(int minAge, int maxAge) {
-        return null;
+        Map<Integer, List<Kitten>> mapCollect = kittens.stream().collect(Collectors.groupingBy(Kitten::getAge));
+        List<List<Kitten>> filterKit = mapCollect.entrySet()
+                .stream().filter(age -> age.getKey() >= maxAge && age.getKey() <= maxAge)
+                .map(Map.Entry::getValue).toList();
+        return filterKit.stream().flatMap(Collection::stream).toList();
     }
 
     public Optional<Kitten> findFirstKittenWithGivenName(String givenName) {
-        return Optional.empty();
+        List<Kitten> filterKit = kittens.stream().filter(cat -> cat.getName() == givenName).toList();
+        List<Kitten> res = filterKit.stream().sorted(Comparator.comparing(Kitten::getAge).reversed()).toList();
+        return Optional.of(res.get(0));
     }
 
     public List<Kitten> kittensSortedByAgeYoungerFirst() {
-        return null;
+        return kittens.stream().sorted(Comparator.comparing(Kitten::getAge)).toList();
     }
 
     public List<Kitten> kittensSortedByAgeOlderFirst() {
-        return null;
+
+        return kittens.stream().sorted(Comparator.comparing(Kitten::getAge).reversed()).toList();
     }
 
 }
