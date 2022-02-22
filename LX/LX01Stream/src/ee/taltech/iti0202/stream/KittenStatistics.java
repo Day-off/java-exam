@@ -47,6 +47,9 @@ public class KittenStatistics {
 
     public Optional<Kitten> findFirstKittenWithGivenName(String givenName) {
         List<Kitten> filterKit = kittens.stream().filter(cat -> Objects.equals(cat.getName(), givenName)).toList();
+        if (filterKit.size() == 0){
+            return Optional.empty();
+        }
         return Optional.of(filterKit.get(0));
     }
 
