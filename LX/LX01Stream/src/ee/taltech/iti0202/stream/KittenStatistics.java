@@ -46,12 +46,8 @@ public class KittenStatistics {
     }
 
     public Optional<Kitten> findFirstKittenWithGivenName(String givenName) {
-        if (kittens.size() == 0){
-            return Optional.empty();
-        }
-        List<Kitten> filterKit = kittens.stream().filter(cat -> cat.getName() == givenName).toList();
-        List<Kitten> res = filterKit.stream().sorted(Comparator.comparing(Kitten::getAge).reversed()).toList();
-        return Optional.of(res.get(0));
+        List<Kitten> filterKit = kittens.stream().filter(cat -> Objects.equals(cat.getName(), givenName)).toList();
+        return Optional.of(filterKit.get(0));
     }
 
     public List<Kitten> kittensSortedByAgeYoungerFirst() {
