@@ -1,7 +1,8 @@
 package ee.taltech.iti0202.tk0;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Stream;
+
 public class Exam {
 
 
@@ -16,7 +17,9 @@ public class Exam {
      * evenOdd([2, 2, 2]) → [2, 2, 2]
      */
     public static List<Integer> evenOdd(List<Integer> nums) {
-        return nums.stream().sorted().toList();
+        List<Integer> odd = nums.stream().filter(a -> a % 2 == 0).toList();
+        List<Integer> even = nums.stream().filter(a -> a % 2 != 0).toList();
+        return Stream.of(odd, even).flatMap(Collection::stream).toList();
     }
 
 
@@ -59,6 +62,13 @@ public class Exam {
      */
     public static Map<String, String> topping(Map<String, String> map) {
         return null;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(evenOdd(Arrays.asList(1, 0, 1, 0, 0, 1, 1)));
+        System.out.println(evenOdd(Arrays.asList(3, 3, 4, 2)));
+        System.out.println(evenOdd(Arrays.asList()));
+
     }
 
 
