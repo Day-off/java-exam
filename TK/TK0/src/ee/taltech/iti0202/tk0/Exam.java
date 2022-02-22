@@ -32,7 +32,19 @@ public class Exam {
      * loneSum(3, 3, 3) → 0
      */
     public static int loneSum(int a, int b, int c) {
-        return 0;
+        if (a != b && b != c && c != a) {
+            return a + b + c;
+        } else if (b == c && c == a) {
+            return 0;
+        } else {
+            if (a - b == 0) {
+                return c;
+            } else if (a - c == 0) {
+                return b;
+            } else {
+                return a;
+            }
+        }
     }
 
 
@@ -65,9 +77,6 @@ public class Exam {
     }
 
     public static void main(String[] args) {
-        System.out.println(evenOdd(Arrays.asList(1, 0, 1, 0, 0, 1, 1)));
-        System.out.println(evenOdd(Arrays.asList(3, 3, 4, 2)));
-        System.out.println(evenOdd(Arrays.asList()));
 
     }
 
