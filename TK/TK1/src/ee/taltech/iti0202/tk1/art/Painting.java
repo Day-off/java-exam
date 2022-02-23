@@ -5,8 +5,8 @@ public class Painting {
     private String authorP;
 
     public Painting(String name, String author) {
-        nameP = name;
-        authorP = author;
+        setTitle(name);
+        setAuthor(author);
     }
 
     public void setTitle(String nameP) {
