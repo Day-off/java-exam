@@ -92,42 +92,62 @@ public class Exam {
         if (map.size() == 1) {
             return map;
         }
+        boolean same = false;
         Map<String, String> res = new HashMap<>();
         Collection<String> val = map.values();
         ArrayList<String> al = new ArrayList<String>(val);
         int ind = 0;
         for (Map.Entry<String, String> elem : map.entrySet()) {
-            if (ind + 1 < val.size()) {
-                ind += 1;
-            } else {
-                if (!Objects.equals(elem.getValue(), al.get(ind - 1))) {
-                    res.put(elem.getKey(), elem.getValue());
-                }
-            }
-            if (!Objects.equals(elem.getValue(), al.get(ind))) {
-                if (ind >= 2) {
-                    if (!Objects.equals(elem.getValue(), al.get(ind - 2))) {
-                        res.put(elem.getKey(), elem.getValue());
-                    }
+            if (!same){
+                if (ind + 1 < val.size()) {
+                    ind += 1;
                 } else {
                     res.put(elem.getKey(), elem.getValue());
                 }
+                if (!Objects.equals(elem.getValue(), al.get(ind))) {
+                    res.put(elem.getKey(), elem.getValue());
+                } else {
+                    same = true;
+                }}
+            else {
+                same = false;
+                if (ind + 1 < val.size()) {
+                    ind += 1;
+                }
             }
         }
+//        for (Map.Entry<String, String> elem : map.entrySet()) {
+//            if (ind + 1 < val.size()) {
+//                ind += 1;
+//            } else {
+//                if (!Objects.equals(elem.getValue(), al.get(ind - 1))) {
+//                    res.put(elem.getKey(), elem.getValue());
+//                }
+//            }
+//            if (!Objects.equals(elem.getValue(), al.get(ind))) {
+//                if (ind >= 2) {
+//                    if (!Objects.equals(elem.getValue(), al.get(ind - 2))) {
+//                        res.put(elem.getKey(), elem.getValue());
+//                    }
+//                } else {
+//                    res.put(elem.getKey(), elem.getValue());
+//                }
+//            }
+//        }
         return res;
     }
 
     public static void main(String[] args) {
-        List<Integer> list = Arrays.asList(1, 1, 5, 5, 10, 8, 7);
-        System.out.println(centeredAverage(list));
-//        Map<String, String> res = new HashMap<>();
-//        res.put("a", "aka");
-//        res.put("b", "aaa");
-//        res.put("c", "ana");
-//        res.put("d", "ana");
+        Map<String, String> res = new HashMap<>();
+        res.put("a", "aka");
+        res.put("b", "aaa");
+        res.put("c", "aaa");
+        res.put("d", "aaa");
+//        res.put("g", "aaa");
+
 //        res.put("f", "ana");
-//
-//
-//        System.out.println(mapAB(res));
+
+
+        System.out.println(mapAB(res));
     }
 }
