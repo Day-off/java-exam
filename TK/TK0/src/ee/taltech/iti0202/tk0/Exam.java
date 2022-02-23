@@ -60,15 +60,18 @@ public class Exam {
      * getSandwich("xxbreadyy") → ""
      */
     public static String getSandwich(String str) {
-        int startIn = str.indexOf("bread")+5;
-        if (!str.substring(startIn).contains("bread")){
+        if (str.length() < 10) {
+            return "";
+        }
+        int startIn = str.indexOf("bread") + 5;
+        if (!str.substring(startIn).contains("bread")) {
             return "";
         }
 //        Matcher match =  Pattern.compile("bread(?!bread)|bread(?=$)").matcher(str);
         Pattern pattern = Pattern.compile("bread(?!bread)|bread(?=$)");
         Matcher matcher = pattern.matcher(str.substring(startIn));
-        if (matcher.find()){
-            return str.substring(startIn, matcher.start()+startIn);
+        if (matcher.find()) {
+            return str.substring(startIn, matcher.start() + startIn);
 
         }
         return "";
@@ -96,9 +99,6 @@ public class Exam {
         System.out.println(getSandwich("xxbredjambrx"));
         System.out.println(getSandwich("breadbreadbreadbread"));
         System.out.println(getSandwich("xxbreadjambreadxx"));
-
-
-
 
 
     }
