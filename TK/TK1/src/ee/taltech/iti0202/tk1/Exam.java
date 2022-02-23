@@ -85,8 +85,10 @@ public class Exam {
         for (Map.Entry<String, String> elem : map.entrySet()) {
             if (ind + 1 < val.size()) {
                 ind += 1;
-            } else {
-                res.put(elem.getKey(), elem.getValue());
+            }else {
+                if (!Objects.equals(elem.getValue(), al.get(ind - 1))) {
+                    res.put(elem.getKey(), elem.getValue());
+                }
             }
             if (!Objects.equals(elem.getValue(), al.get(ind))) {
                 if (ind >= 2) {
@@ -103,9 +105,9 @@ public class Exam {
 
     public static void main(String[] args) {
         Map<String, String> res = new HashMap<>();
-        res.put("a", "aaa");
-        res.put("b", "aam");
-        res.put("c", "aaa");
+        res.put("a", "afaa");
+        res.put("b", "afa");
+        res.put("c", "aafa");
         System.out.println(mapAB(res));
     }
 }
