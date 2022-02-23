@@ -13,18 +13,32 @@ public class Painting {
         setTitle(name);
     }
 
+    /***
+     * Setter
+     */
     public void setTitle(String name) {
         namepainting = name;
     }
 
+    /***
+     * Setter
+     */
     public void setAuthor(String author) {
         authorpain = author;
     }
 
+    /***
+     * Getter
+     * @return String
+     */
     public String getTitle() {
         return namepainting;
     }
 
+    /***
+     * Getter
+     * @return String
+     */
     public String getAuthor() {
         return authorpain;
     }
