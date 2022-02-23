@@ -2,7 +2,7 @@ package ee.taltech.iti0202.tk1.art;
 
 public class Painting {
     private String namepainting;
-    private String authorpain;
+    private String authorpain = "an unknown artist";
 
     public Painting(String name, String author) {
         setTitle(name);
