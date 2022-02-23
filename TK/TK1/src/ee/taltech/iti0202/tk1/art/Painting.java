@@ -31,6 +31,6 @@ public class Painting {
 
     @Override
     public String toString() {
-        return namepainting + " " + authorpain;
+        return "This is a painting named " + namepainting + " and made by " + authorpain + ".";
     }
 }
