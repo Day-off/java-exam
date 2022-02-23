@@ -79,6 +79,9 @@ public class Exam {
      * mapAB({"a": "aaa", "b": "bbb", "c": "aaa"}) → {"a": "aaa", "b": "bbb", "c": "aaa"}
      */
     public static Map<String, String> mapAB(Map<String, String> map) {
+        if (map.size() == 1) {
+            return map;
+        }
         Map<String, String> res = new HashMap<>();
         Collection<String> val = map.values();
         ArrayList<String> al = new ArrayList<String>(val);
@@ -86,7 +89,7 @@ public class Exam {
         for (Map.Entry<String, String> elem : map.entrySet()) {
             if (ind + 1 < val.size()) {
                 ind += 1;
-            }else {
+            } else {
                 if (!Objects.equals(elem.getValue(), al.get(ind - 1))) {
                     res.put(elem.getKey(), elem.getValue());
                 }
@@ -107,8 +110,6 @@ public class Exam {
     public static void main(String[] args) {
         Map<String, String> res = new HashMap<>();
         res.put("a", "aaa");
-        res.put("b", "aaa");
-        res.put("c", "aafa");
         System.out.println(mapAB(res));
     }
 }
