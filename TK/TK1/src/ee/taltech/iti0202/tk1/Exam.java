@@ -18,11 +18,11 @@ public class Exam {
      * centeredAverage([-10, -4, -2, -4, -2, 0]) → -3
      */
     public static int centeredAverage(List<Integer> nums) {
-        Integer minnum = nums.stream().min(Comparator.comparing(Integer::valueOf)).get();
-        Integer maxnum = nums.stream().max(Comparator.comparing(Integer::valueOf)).get();
+        List<Integer> copy = new ArrayList<>(nums);
+        Integer minnum = copy.stream().min(Comparator.comparing(Integer::valueOf)).get();
+        Integer maxnum = copy.stream().max(Comparator.comparing(Integer::valueOf)).get();
         nums.remove(Integer.valueOf(minnum));
         nums.remove(Integer.valueOf(maxnum));
-        List<Integer> copy = new ArrayList<>(nums);
         int sum = copy.stream().mapToInt(Integer::intValue).sum();
 
         return sum / copy.size();
@@ -109,7 +109,13 @@ public class Exam {
 
     public static void main(String[] args) {
         Map<String, String> res = new HashMap<>();
-        res.put("a", "aaa");
+        res.put("a", "aka");
+        res.put("b", "aaa");
+        res.put("c", "ana");
+        res.put("d", "ana");
+        res.put("f", "ana");
+
+
         System.out.println(mapAB(res));
     }
 }
