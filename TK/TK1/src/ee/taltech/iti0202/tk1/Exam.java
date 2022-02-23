@@ -22,9 +22,10 @@ public class Exam {
         Integer maxnum = nums.stream().max(Comparator.comparing(Integer::valueOf)).get();
         nums.remove(Integer.valueOf(minnum));
         nums.remove(Integer.valueOf(maxnum));
-        int sum = nums.stream().mapToInt(Integer::intValue).sum();
+        List<Integer> copy = new ArrayList<>(nums);
+        int sum = copy.stream().mapToInt(Integer::intValue).sum();
 
-        return sum / nums.size();
+        return sum / copy.size();
     }
 
 
@@ -105,8 +106,8 @@ public class Exam {
 
     public static void main(String[] args) {
         Map<String, String> res = new HashMap<>();
-        res.put("a", "afaa");
-        res.put("b", "afa");
+        res.put("a", "aaa");
+        res.put("b", "aaa");
         res.put("c", "aafa");
         System.out.println(mapAB(res));
     }
