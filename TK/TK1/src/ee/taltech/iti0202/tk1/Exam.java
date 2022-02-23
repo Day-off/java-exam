@@ -18,6 +18,7 @@ public class Exam {
      * centeredAverage([-10, -4, -2, -4, -2, 0]) → -3
      */
     public static int centeredAverage(List<Integer> nums) {
+        List<Integer> res = new ArrayList<>();
         int min = nums.get(0), max = nums.get(0);
         for (Integer n : nums) {
             if (n <= min) {
@@ -26,17 +27,15 @@ public class Exam {
             if (n >= max) {
                 max = n;
             }
+            res.add(n);
         }
-        int sum = 0;
-        int skip = 0;
-        for (Integer n : nums) {
-            if (n != min && n != max) {
-                sum += n;
-            } else {
-                skip += 1;
-            }
-        }
-        return sum / (nums.size() - skip);
+        res.remove(Integer.valueOf(min));
+        res.remove(Integer.valueOf(max));
+        Integer sum = res.stream()
+                .reduce(0, Integer::sum);
+        return sum / res.size();
+
+//        return sum / (nums.size() - 2);
     }
 
 
@@ -119,7 +118,7 @@ public class Exam {
     }
 
     public static void main(String[] args) {
-        List<Integer> list = Arrays.asList(1, 2, 3, 4, 100);
+        List<Integer> list = Arrays.asList(1, 1, 5, 5, 10, 8, 7);
         System.out.println(centeredAverage(list));
 //        Map<String, String> res = new HashMap<>();
 //        res.put("a", "aka");
