@@ -11,7 +11,6 @@ public class Painting {
 
     public Painting(String name) {
         setTitle(name);
-        setAuthor("an unknown artist");
     }
 
     /***
@@ -46,6 +45,9 @@ public class Painting {
 
     @Override
     public String toString() {
+        if (this.authorpain == null) {
+            return "This is a painting named " + namepainting + " and made by " + "an unknown artist.";
+        }
         return "This is a painting named " + namepainting + " and made by " + authorpain + ".";
     }
 }
