@@ -4,9 +4,17 @@ public class Painting {
     private String nameP;
     private String authorP;
 
-    public Painting(String name, String author){
+    public Painting(String name, String author) {
         nameP = name;
         authorP = author;
+    }
+
+    public void setTitle(String nameP) {
+        this.nameP = nameP;
+    }
+
+    public void setAuthor(String authorP) {
+        this.authorP = authorP;
     }
 
     public String getTitle() {
@@ -15,5 +23,10 @@ public class Painting {
 
     public String getAuthor() {
         return authorP;
+    }
+
+    @Override
+    public String toString() {
+        return nameP + " " + authorP;
     }
 }
