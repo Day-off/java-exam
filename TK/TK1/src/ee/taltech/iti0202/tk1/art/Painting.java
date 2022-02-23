@@ -9,6 +9,10 @@ public class Painting {
         setAuthor(author);
     }
 
+    public Painting(String name) {
+        setTitle(name);
+    }
+
     public void setTitle(String name) {
         namepainting = name;
     }
