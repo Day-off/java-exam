@@ -1,8 +1,7 @@
 package ee.taltech.iti0202.tk1;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.awt.image.Kernel;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class Exam {
@@ -79,10 +78,34 @@ public class Exam {
      * mapAB({"a": "aaa", "b": "bbb", "c": "aaa"}) → {"a": "aaa", "b": "bbb", "c": "aaa"}
      */
     public static Map<String, String> mapAB(Map<String, String> map) {
-        return null;
+        Map<String, String> res = new HashMap<>();
+        Collection<String> val = map.values();
+        ArrayList<String> al = new ArrayList<String>(val);
+        int ind = 0;
+        for (Map.Entry<String, String> elem : map.entrySet()) {
+            if (ind + 1 < val.size()) {
+                ind += 1;
+            } else {
+                res.put(elem.getKey(), elem.getValue());
+            }
+            if (!Objects.equals(elem.getValue(), al.get(ind))) {
+                if (ind >= 2) {
+                    if (!Objects.equals(elem.getValue(), al.get(ind - 2))) {
+                        res.put(elem.getKey(), elem.getValue());
+                    }
+                } else {
+                    res.put(elem.getKey(), elem.getValue());
+                }
+            }
+        }
+        return res;
     }
 
     public static void main(String[] args) {
-        System.out.println(repeatEnd("Hello", 1));
+        Map<String, String> res = new HashMap<>();
+        res.put("a", "aaa");
+        res.put("b", "aam");
+        res.put("c", "aaa");
+        System.out.println(mapAB(res));
     }
 }
