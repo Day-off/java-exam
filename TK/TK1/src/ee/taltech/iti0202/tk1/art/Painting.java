@@ -10,11 +10,11 @@ public class Painting {
     }
 
     public void setTitle(String nameP) {
-        this.nameP = nameP;
+        nameP = nameP;
     }
 
     public void setAuthor(String authorP) {
-        this.authorP = authorP;
+        authorP = authorP;
     }
 
     public String getTitle() {
