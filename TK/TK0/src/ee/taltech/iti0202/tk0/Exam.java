@@ -58,12 +58,15 @@ public class Exam {
      * getSandwich("xxbreadyy") → ""
      */
     public static String getSandwich(String str) {
+        if (!str.contains("bread")){
+            return "";
+        }
         int indexStart = str.indexOf("bread")+5;
-        int indexFinish = str.substring(indexStart).indexOf("bread");
+        int indexFinish = str.indexOf("bread", indexStart);
         if (indexFinish == -1){
             return "";
         }
-        return str.substring(indexStart, indexStart + indexFinish);
+        return str.substring(indexStart, indexFinish);
     }
 
 
@@ -86,6 +89,8 @@ public class Exam {
         System.out.println(getSandwich("bjjbreadjambreadfgfg"));
         System.out.println(getSandwich("xxbreadjambreadxx"));
         System.out.println(getSandwich("xxbreadjambrx"));
+        System.out.println(getSandwich("xxbredjambrx"));
+
 
 
     }
