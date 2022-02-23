@@ -21,11 +21,11 @@ public class Exam {
     public static int centeredAverage(List<Integer> nums) {
         Integer minnum = nums.stream().min(Comparator.comparing(Integer::valueOf)).get();
         Integer maxnum = nums.stream().max(Comparator.comparing(Integer::valueOf)).get();
-        nums.remove(minnum);
-        nums.remove(maxnum);
+        nums.remove(Integer.valueOf(minnum));
+        nums.remove(Integer.valueOf(maxnum));
         int sum = nums.stream().mapToInt(Integer::intValue).sum();
 
-        return sum/nums.size();
+        return sum / nums.size();
     }
 
 
@@ -38,7 +38,13 @@ public class Exam {
      * blackjack(19, 22) → 19
      */
     public static int blackjack(int a, int b) {
-        return 0;
+        if (a > 21 && b > 21) {
+            return 0;
+        }if (a > 21 || (21 - a > 21 - b)){
+            return b;
+        }if (b>21 || (21 - a < 21 - b)){
+            return a;
+        }return 0;
     }
 
 
@@ -65,5 +71,9 @@ public class Exam {
      */
     public static Map<String, String> mapAB(Map<String, String> map) {
         return null;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(blackjack(10, 12));
     }
 }
