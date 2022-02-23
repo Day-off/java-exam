@@ -28,12 +28,14 @@ public class Exam {
             }
         }
         int sum = 0;
+        int div = 0;
         for (Integer n : nums) {
             if (n != min && n != max) {
                 sum += n;
+                div += 1;
             }
         }
-        return sum / (nums.size() - 2);
+        return sum / div;
     }
 
 
@@ -116,14 +118,16 @@ public class Exam {
     }
 
     public static void main(String[] args) {
-        Map<String, String> res = new HashMap<>();
-        res.put("a", "aka");
-        res.put("b", "aaa");
-        res.put("c", "ana");
-        res.put("d", "ana");
-        res.put("f", "ana");
-
-
-        System.out.println(mapAB(res));
+        List<Integer> list = Arrays.asList(-10, -4, -2, -4, -2, 0, 0, 0, -10);
+        System.out.println(centeredAverage(list));
+//        Map<String, String> res = new HashMap<>();
+//        res.put("a", "aka");
+//        res.put("b", "aaa");
+//        res.put("c", "ana");
+//        res.put("d", "ana");
+//        res.put("f", "ana");
+//
+//
+//        System.out.println(mapAB(res));
     }
 }
