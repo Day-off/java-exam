@@ -1,6 +1,8 @@
 package ee.taltech.iti0202.tk0;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class Exam {
@@ -58,15 +60,18 @@ public class Exam {
      * getSandwich("xxbreadyy") → ""
      */
     public static String getSandwich(String str) {
-        if (!str.contains("bread")){
+        int startIn = str.indexOf("bread")+5;
+        if (!str.substring(startIn).contains("bread")){
             return "";
         }
-        int indexStart = str.indexOf("bread")+5;
-        int indexFinish = str.indexOf("bread", indexStart);
-        if (indexFinish == -1){
-            return "";
+//        Matcher match =  Pattern.compile("bread(?!bread)|bread(?=$)").matcher(str);
+        Pattern pattern = Pattern.compile("bread(?!bread)|bread(?=$)");
+        Matcher matcher = pattern.matcher(str.substring(startIn));
+        if (matcher.find()){
+            return str.substring(startIn, matcher.start()+startIn);
+
         }
-        return str.substring(indexStart, indexFinish);
+        return "";
     }
 
 
@@ -87,9 +92,12 @@ public class Exam {
     public static void main(String[] args) {
         System.out.println(getSandwich("breadjambutterbread"));
         System.out.println(getSandwich("bjjbreadjambreadfgfg"));
-        System.out.println(getSandwich("xxbreadjambreadxx"));
         System.out.println(getSandwich("xxbreadjambrx"));
         System.out.println(getSandwich("xxbredjambrx"));
+        System.out.println(getSandwich("breadbreadbreadbread"));
+        System.out.println(getSandwich("xxbreadjambreadxx"));
+
+
 
 
 
