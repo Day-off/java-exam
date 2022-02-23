@@ -82,6 +82,6 @@ public class Exam {
     }
 
     public static void main(String[] args) {
-        System.out.println(blackjack(10, 12));
+        System.out.println(blackjack(16, 23));
     }
 }
