@@ -9,11 +9,11 @@ public class Painting {
         authorP = author;
     }
 
-    public String getNameP() {
+    public String getTitle() {
         return nameP;
     }
 
-    public String getAuthorP() {
+    public String getAuthor() {
         return authorP;
     }
 }
