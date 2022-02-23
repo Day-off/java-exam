@@ -18,14 +18,22 @@ public class Exam {
      * centeredAverage([-10, -4, -2, -4, -2, 0]) → -3
      */
     public static int centeredAverage(List<Integer> nums) {
-        List<Integer> copy = new ArrayList<>(nums);
-        Integer minnum = copy.stream().min(Comparator.comparing(Integer::valueOf)).get();
-        Integer maxnum = copy.stream().max(Comparator.comparing(Integer::valueOf)).get();
-        nums.remove(Integer.valueOf(minnum));
-        nums.remove(Integer.valueOf(maxnum));
-        int sum = copy.stream().mapToInt(Integer::intValue).sum();
-
-        return sum / copy.size();
+        int min = 0, max = 0;
+        for (Integer n : nums) {
+            if (n <= min) {
+                min = n;
+            }
+            if (n >= max) {
+                max = n;
+            }
+        }
+        int sum = 0;
+        for (Integer n : nums) {
+            if (n != min && n != max) {
+                sum += n;
+            }
+        }
+        return sum / (nums.size() - 2);
     }
 
 
