@@ -1,8 +1,8 @@
 package ee.taltech.iti0202.tk1.art;
 
 public class Painting {
-    private String nameP;
-    private String authorP;
+    private String namepainting;
+    private String authorpain;
 
     public Painting(String name, String author) {
         setTitle(name);
@@ -10,23 +10,23 @@ public class Painting {
     }
 
     public void setTitle(String name) {
-        nameP = name;
+        namepainting = name;
     }
 
     public void setAuthor(String author) {
-        authorP = author;
+        authorpain = author;
     }
 
     public String getTitle() {
-        return nameP;
+        return namepainting;
     }
 
     public String getAuthor() {
-        return authorP;
+        return authorpain;
     }
 
     @Override
     public String toString() {
-        return nameP + " " + authorP;
+        return namepainting + " " + authorpain;
     }
 }
