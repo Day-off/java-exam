@@ -5,15 +5,16 @@ public class Painting {
     private String authorP;
 
     public Painting(String name, String author) {
-
+        setTitle(name);
+        setAuthor(author);
     }
 
-    public void setTitle(String nameP) {
-        nameP = nameP;
+    public void setTitle(String name) {
+        nameP = name;
     }
 
-    public void setAuthor(String authorP) {
-        authorP = authorP;
+    public void setAuthor(String author) {
+        authorP = author;
     }
 
     public String getTitle() {
