@@ -9,12 +9,12 @@ public class Shop {
 
     private List<Product> korv = new ArrayList<>();
 
-//    /***
-//     * con
-//     */
-//    public Shop() {
-//
-//    }
+    /***
+     * con
+     */
+    public Shop() {
+
+    }
 
     /***
      * con
@@ -26,7 +26,7 @@ public class Shop {
             return false;
         }
         for (Product ob : korv) {
-            if (product.getName() == null) {
+            if (Objects.equals(ob.getName(), null)) {
                 if (Objects.equals(ob.getPrice(), product.getPrice())) {
                     return false;
                 }
