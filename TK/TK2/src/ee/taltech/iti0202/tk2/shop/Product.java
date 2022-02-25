@@ -13,18 +13,31 @@ public class Product {
         priceP = price;
     }
 
+    /***
+     * op
+     * @param price
+     */
     public Product(Integer price) {
         priceP = price;
     }
 
+    /***
+     * op
+     */
     public String getName() {
         return nameP;
     }
 
+    /***
+     * op
+     */
     public Integer getPrice() {
         return priceP;
     }
 
+    /***
+     * op
+     */
     @Override
     public String toString() {
         return nameP + " " + priceP;
