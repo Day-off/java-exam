@@ -46,23 +46,22 @@ public class Shop {
      * @return
      */
     public Optional<Product> sellProduct(String name, int maxPrice) {
-//        Integer pr = 0;
-//        Product needed = null;
-//        for (Product ob : korv) {
-//            if (ob.getPrice() <= maxPrice && Objects.equals(ob.getName(), name)) {
-//                if (ob.getPrice() > pr) {
-//                    pr = ob.getPrice();
-//                    needed = ob;
-//                }
-//            }
-//        }
-//        if (needed == null) {
-//            return Optional.empty();
-//        } else {
-//            korv.remove(needed);
-//            return Optional.of(needed);
-//        }
-        return Optional.empty();
+        Integer pr = 0;
+        Product needed = null;
+        for (Product ob : korv) {
+            if (ob.getPrice() <= maxPrice && Objects.equals(ob.getName(), name)) {
+                if (ob.getPrice() > pr) {
+                    pr = ob.getPrice();
+                    needed = ob;
+                }
+            }
+        }
+        if (needed == null) {
+            return Optional.empty();
+        } else {
+            korv.remove(needed);
+            return Optional.of(needed);
+        }
     }
 
     /***
