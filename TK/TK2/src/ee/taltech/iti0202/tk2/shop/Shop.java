@@ -9,12 +9,12 @@ public class Shop {
 
     private List<Product> korv = new ArrayList<>();
 
-    /***
-     * con
-     */
-    public Shop() {
-
-    }
+//    /***
+//     * con
+//     */
+//    public Shop() {
+//
+//    }
 
     /***
      * con
@@ -22,20 +22,20 @@ public class Shop {
      * @return
      */
     public boolean addProduct(Product product) {
-//        if (product.getPrice() < 0) {
-//            return false;
-//        }
-//        for (Product ob : korv) {
-//            if (product.getName() == null) {
-//                if (Objects.equals(ob.getPrice(), product.getPrice())) {
-//                    return false;
-//                }
-//            } else if (Objects.equals(ob.getPrice(), product.getPrice())
-//                    && Objects.equals(ob.getName(), product.getName())) {
-//                return false;
-//            }
-//        }
-//        korv.add(product);
+        if (product.getPrice() < 0) {
+            return false;
+        }
+        for (Product ob : korv) {
+            if (product.getName() == null) {
+                if (Objects.equals(ob.getPrice(), product.getPrice())) {
+                    return false;
+                }
+            } else if (Objects.equals(ob.getPrice(), product.getPrice())
+                    && Objects.equals(ob.getName(), product.getName())) {
+                return false;
+            }
+        }
+        korv.add(product);
         return true;
     }
 
