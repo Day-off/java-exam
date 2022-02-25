@@ -18,7 +18,7 @@ public class Shop {
             return false;
         }
         for (Product ob : korv) {
-            if (!Objects.equals(product.getPrice(), ob.getPrice()) && !Objects.equals(ob.getName(), product.getName())) {
+            if (!Objects.equals(product, ob)) {
                 korv.add(product);
                 return true;
             }
@@ -42,5 +42,9 @@ public class Shop {
         } else {
             return Optional.of(needed);
         }
+    }
+
+    public List<Product> getProducts() {
+        return korv;
     }
 }
