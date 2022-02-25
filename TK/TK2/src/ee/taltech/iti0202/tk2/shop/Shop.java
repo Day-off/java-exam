@@ -44,6 +44,7 @@ public class Shop {
         if (needed == null) {
             return Optional.empty();
         } else {
+            korv.remove(needed);
             return Optional.of(needed);
         }
     }
