@@ -54,9 +54,9 @@ public class Exam {
         String res = Integer.toString(sum);
         int last = Integer.parseInt(res.substring(res.length() - 1));
         if (last >= 5) {
-            return sum + (10 - last);
-        } else {
             return sum - last;
+        } else {
+            return sum + (10 - last);
         }
     }
 
@@ -92,6 +92,6 @@ public class Exam {
     public static void main(String[] args) {
         List<Integer> a = new ArrayList<Integer>(Arrays.asList(1, 1, 6, 7, 2));
 //        System.out.println(sum67(a));
-        System.out.println(roundSum(12,13,14));
+        System.out.println(roundSum(6, 4, 4));
     }
 }
