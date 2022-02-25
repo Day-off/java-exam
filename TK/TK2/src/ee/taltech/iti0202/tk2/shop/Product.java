@@ -31,7 +31,7 @@ public class Product {
     /***
      * op
      */
-    public Integer getPrice() {
+    public int getPrice() {
         return priceP;
     }
 
