@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Exam {
 
@@ -54,9 +55,9 @@ public class Exam {
         String res = Integer.toString(sum);
         int last = Integer.parseInt(res.substring(res.length() - 1));
         if (last >= 5) {
-            return sum - last;
-        } else {
             return sum + (10 - last);
+        } else {
+            return sum - last;
         }
     }
 
@@ -73,7 +74,28 @@ public class Exam {
      * oneTwo("a") => ""
      */
     public static String oneTwo(String str) {
-        return null;
+        if (str.length() < 3) {
+            return "";
+        }
+        String news = str.substring(0, str.length() - str.length() % 3);
+        List<Character> res = news.chars().mapToObj(e -> (char) e).toList();
+        Character one = null;
+        StringBuilder result = new StringBuilder();
+        int count = 0;
+        for (Character cha : res) {
+            count += 1;
+            if (count == 1) {
+                one = cha;
+            } else if (count == 2 || count == 3) {
+                result.append(cha);
+            } else {
+                result.append(one);
+                one = cha;
+                count = 1;
+            }
+        }
+        result.append(one);
+        return result.toString();
     }
 
     /**
@@ -92,6 +114,7 @@ public class Exam {
     public static void main(String[] args) {
         List<Integer> a = new ArrayList<Integer>(Arrays.asList(1, 1, 6, 7, 2));
 //        System.out.println(sum67(a));
-        System.out.println(roundSum(6, 4, 4));
+//        System.out.println(roundSum(6,4,4));
+        System.out.println(oneTwo("abcd"));
     }
 }
