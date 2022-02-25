@@ -18,12 +18,16 @@ public class Shop {
             return false;
         }
         for (Product ob : korv) {
-            if (!Objects.equals(product, ob)) {
-                korv.add(product);
-                return true;
+            if (product.getName() == null) {
+                if (Objects.equals(ob.getPrice(), product.getPrice())) {
+                    return false;
+                }
+            } else if (Objects.equals(ob.getPrice(), product.getPrice()) && Objects.equals(ob.getName(), product.getName())) {
+                return false;
             }
         }
-        return false;
+        korv.add(product);
+        return true;
     }
 
     public Optional<Product> sellProduct(String name, int maxPrice) {
@@ -46,5 +50,29 @@ public class Shop {
 
     public List<Product> getProducts() {
         return korv;
+    }
+
+    public static void main(String[] args) {
+
+        Shop shop = new Shop();
+        Product p1 = new Product("Bread", 3);
+        Product p2 = new Product("Milk", 4);
+        Product p3 = new Product("Milk", 4);
+        Product p4 = new Product("Milk", 7);
+        Product p5 = new Product("Cheat", -1);
+        Product p6 = new Product("", 2);
+        Product p7 = new Product(11);
+        System.out.println(shop.addProduct(p1));  // true
+        System.out.println(shop.addProduct(p2));  // true
+        System.out.println(shop.addProduct(p3));  // false
+        System.out.println(shop.addProduct(p4));  // true
+        System.out.println(shop.addProduct(p5));  // false
+        System.out.println(shop.addProduct(p6));  // true
+        System.out.println(shop.addProduct(p7));  // true
+        System.out.println(shop.sellProduct("Pizza", 10));  // Optional.empty
+        System.out.println(shop.sellProduct("Milk", 10).get());  // Milk (7)
+        System.out.println(shop.sellProduct("Milk", 10).get());  // Milk (4)
+        System.out.println(shop.sellProduct("Milk", 10));  // Optional.empty
+        System.out.println(shop.sellProduct("", 20).get());  //  (2)
     }
 }
