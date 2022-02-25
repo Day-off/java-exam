@@ -9,10 +9,18 @@ public class Shop {
 
     private List<Product> korv = new ArrayList<>();
 
+    /***
+     * con
+     */
     public Shop() {
 
     }
 
+    /***
+     * con
+     * @param product
+     * @return
+     */
     public boolean addProduct(Product product) {
         if (product.getPrice() < 0) {
             return false;
@@ -30,6 +38,12 @@ public class Shop {
         return true;
     }
 
+    /***
+     * po
+     * @param name
+     * @param maxPrice
+     * @return
+     */
     public Optional<Product> sellProduct(String name, int maxPrice) {
         Integer pr = 0;
         Product needed = null;
@@ -49,10 +63,18 @@ public class Shop {
         }
     }
 
+    /***
+     * gh
+     * @return
+     */
     public List<Product> getProducts() {
         return korv;
     }
 
+    /***
+     * test
+     * @param args
+     */
     public static void main(String[] args) {
 
         Shop shop = new Shop();
