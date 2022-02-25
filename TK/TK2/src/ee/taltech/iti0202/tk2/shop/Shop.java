@@ -34,7 +34,7 @@ public class Shop {
         Integer pr = 0;
         Product needed = null;
         for (Product ob : korv) {
-            if (ob.getPrice() <= maxPrice) {
+            if (ob.getPrice() <= maxPrice && Objects.equals(ob.getName(), name)) {
                 if (ob.getPrice() > pr) {
                     pr = ob.getPrice();
                     needed = ob;
