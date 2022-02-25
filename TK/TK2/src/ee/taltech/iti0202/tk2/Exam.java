@@ -48,14 +48,29 @@ public class Exam {
      * roundSum(6, 4, 4) => 10
      */
     public static int roundSum(int a, int b, int c) {
-        Integer sum = a + b + c;
-        String res = Integer.toString(sum);
-        Integer last = Integer.parseInt(res.substring(res.length() - 1));
-        if (last >= 5) {
-            return sum + (10 - last);
-        } else {
-            return sum - last;
+        Integer sum = 0;
+//        String res = Integer.toString(sum);
+//        Integer last = Integer.parseInt(res.substring(res.length() - 1));
+        if (a % 10 >= 5) {
+            sum += a + (10 - a % 10);
         }
+        if (b % 10 >= 5) {
+            sum += b + (10 - b % 10);
+        }
+        if (c % 10 >= 5) {
+            sum += c + (10 - c % 10);
+
+        }
+        if (a % 10 < 5) {
+            sum += a - a % 10;
+        }
+        if (b % 10 < 5) {
+            sum += b - b % 10;
+        }
+        if (c % 10 < 5) {
+            sum += c - c % 10;
+        }
+        return sum;
     }
 
     /**
