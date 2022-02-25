@@ -108,13 +108,21 @@ public class Exam {
      * mapAXorB({"a": "aaa", "b": "bbb", "c": "cake"}) => {"a": "aaa", "b": "bbb", "c": "cake"}
      */
     public static Map<String, String> mapAXorB(Map<String, String> map) {
-        return null;
+        if (map.containsKey("b") && map.containsKey("a")) {
+            return map;
+        } else if (map.containsKey("b")) {
+            map.put("a", map.get("b"));
+            return map;
+        } else {
+            map.put("b", map.get("a"));
+            return map;
+        }
     }
 
     public static void main(String[] args) {
         List<Integer> a = new ArrayList<Integer>(Arrays.asList(1, 1, 6, 7, 2));
 //        System.out.println(sum67(a));
 //        System.out.println(roundSum(6,4,4));
-        System.out.println(oneTwo("abcd"));
+        System.out.println(oneTwo("tcagdos"));
     }
 }
