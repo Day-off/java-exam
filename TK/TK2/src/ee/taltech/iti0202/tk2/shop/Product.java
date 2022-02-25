@@ -3,12 +3,12 @@ package ee.taltech.iti0202.tk2.shop;
 public class Product {
 
     private String nameP;
-    private Integer priceP;
+    private int priceP;
 
     /***
      * Cons.
      */
-    public Product(String name, Integer price) {
+    public Product(String name, int price) {
         nameP = name;
         priceP = price;
     }
@@ -17,7 +17,7 @@ public class Product {
      * op
      * @param price
      */
-    public Product(Integer price) {
+    public Product(int price) {
         priceP = price;
     }
 
