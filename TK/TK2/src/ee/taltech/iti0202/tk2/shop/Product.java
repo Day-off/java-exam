@@ -40,6 +40,9 @@ public class Product {
      */
     @Override
     public String toString() {
-        return nameP + " " + priceP;
+        if (this.getName() == null) {
+            return "(" + priceP + ")";
+        }
+        return nameP + " " +"(" + priceP + ")";
     }
 }
