@@ -108,7 +108,7 @@ public class Exam {
      * mapAXorB({"a": "aaa", "b": "bbb", "c": "cake"}) => {"a": "aaa", "b": "bbb", "c": "cake"}
      */
     public static Map<String, String> mapAXorB(Map<String, String> map) {
-        if (map.containsKey("b") && map.containsKey("a")) {
+        if (map.containsKey("b") && map.containsKey("a") || (!map.containsKey("a") && !map.containsKey("b"))) {
             return map;
         } else if (map.containsKey("b")) {
             map.put("a", map.get("b"));
