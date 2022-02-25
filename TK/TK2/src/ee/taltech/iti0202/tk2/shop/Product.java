@@ -43,6 +43,6 @@ public class Product {
         if (this.getName() == null) {
             return "(" + priceP + ")";
         }
-        return nameP + " " +"(" + priceP + ")";
+        return nameP + " " + "(" + priceP + ")";
     }
 }
