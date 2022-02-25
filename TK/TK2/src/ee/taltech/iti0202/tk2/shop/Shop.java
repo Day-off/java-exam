@@ -30,7 +30,8 @@ public class Shop {
                 if (Objects.equals(ob.getPrice(), product.getPrice())) {
                     return false;
                 }
-            } else if (Objects.equals(ob.getPrice(), product.getPrice()) && Objects.equals(ob.getName(), product.getName())) {
+            } else if (Objects.equals(ob.getPrice(), product.getPrice())
+                    && Objects.equals(ob.getName(), product.getName())) {
                 return false;
             }
         }
