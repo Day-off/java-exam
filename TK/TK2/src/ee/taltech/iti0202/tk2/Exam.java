@@ -51,9 +51,9 @@ public class Exam {
      * roundSum(6, 4, 4) => 10
      */
     public static int roundSum(int a, int b, int c) {
-        int sum = a + b + c;
+        Integer sum = a + b + c;
         String res = Integer.toString(sum);
-        int last = Integer.parseInt(res.substring(res.length() - 1));
+        Integer last = Integer.parseInt(res.substring(res.length() - 1));
         if (last >= 5) {
             return sum + (10 - last);
         } else {
@@ -120,9 +120,8 @@ public class Exam {
     }
 
     public static void main(String[] args) {
-        List<Integer> a = new ArrayList<Integer>(Arrays.asList(1, 1, 6, 7, 2));
-//        System.out.println(sum67(a));
-//        System.out.println(roundSum(6,4,4));
-        System.out.println(oneTwo("tcagdos"));
+        System.out.println(roundSum(16, 17, 18));
+        System.out.println(roundSum(12, 13, 14));
+        System.out.println(roundSum(6, 4, 4));
     }
 }
