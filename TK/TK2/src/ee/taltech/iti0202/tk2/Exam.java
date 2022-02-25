@@ -23,7 +23,7 @@ public class Exam {
             return 0;
         }
         boolean pose = false;
-        Integer sum = 0;
+        int sum = 0;
         for (Integer num : numbers) {
             if (!pose) {
                 if (num == 6) {
@@ -50,7 +50,14 @@ public class Exam {
      * roundSum(6, 4, 4) => 10
      */
     public static int roundSum(int a, int b, int c) {
-        return -1;
+        int sum = a + b + c;
+        String res = Integer.toString(sum);
+        int last = Integer.parseInt(res.substring(res.length() - 1));
+        if (last >= 5) {
+            return sum + (10 - last);
+        } else {
+            return sum - last;
+        }
     }
 
     /**
@@ -84,6 +91,7 @@ public class Exam {
 
     public static void main(String[] args) {
         List<Integer> a = new ArrayList<Integer>(Arrays.asList(1, 1, 6, 7, 2));
-        System.out.println(sum67(a));
+//        System.out.println(sum67(a));
+        System.out.println(roundSum(12,13,14));
     }
 }
