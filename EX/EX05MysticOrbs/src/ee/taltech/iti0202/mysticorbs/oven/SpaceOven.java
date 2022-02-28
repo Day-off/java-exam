@@ -28,25 +28,25 @@ public class SpaceOven extends Oven implements Fixable {
 
     @Override
     public Optional<Orb> craftOrb() {
-        resource1 = "pearl";
-        resource2 = "silver";
-        res1amount = 1;
-        res2amount = 1;
+//        resource1 = "pearl";
+//        resource2 = "silver";
+//        res1amount = 1;
+//        res2amount = 1;
         if (sourceStorage.hasEnoughResource("meteorite stone", 1)
-                && sourceStorage.hasEnoughResource("star fragment", 15) && !broken) {
+                && sourceStorage.hasEnoughResource("star fragment", 15) && !isBroken()) {
             SpaceOrb orb = new SpaceOrb(getName());
             orbs.add(orb);
             sourceStorage.takeResource("meteorite stone", 1);
             sourceStorage.takeResource("star fragment", 15);
             return Optional.of(orb);
-        } else if (sourceStorage.hasEnoughResource(resource1, res1amount)
-                && sourceStorage.hasEnoughResource(resource2, res2amount)) {
+        } else if (sourceStorage.hasEnoughResource("pearl", 1)
+                && sourceStorage.hasEnoughResource("silver", 1)) {
             Orb orb = new Orb(getName());
-            orb.charge(resource1, res1amount);
-            orb.charge(resource2, res2amount);
+            sourceStorage.takeResource("pearl", 1);
+            sourceStorage.takeResource("silver", 1);
+            orb.charge("pearl", 1);
+            orb.charge("silver", 1);
             orbs.add(orb);
-            sourceStorage.takeResource(resource1, res1amount);
-            sourceStorage.takeResource(resource2, res2amount);
             return Optional.of(orb);
         } else {
             return Optional.empty();
