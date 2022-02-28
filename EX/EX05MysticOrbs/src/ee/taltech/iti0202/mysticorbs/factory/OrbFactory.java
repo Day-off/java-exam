@@ -42,7 +42,7 @@ public class OrbFactory {
         return res;
     }
 
-    public void checkAndFix(Oven ov) throws CannotFixException {
+    public void checkAndFix(Oven ov){
         if (ov.isBroken()) {
             if (ov.getClass() == MagicOven.class) {
                 try {
@@ -65,14 +65,14 @@ public class OrbFactory {
         }
     }
 
-    public int produceOrbs() throws CannotFixException {
+    public int produceOrbs() {
         for (Oven ov : ovens) {
             checkAndFix(ov);
         }
         return orbsAll.size();
     }
 
-    public int produceOrbs(int cycles) throws CannotFixException {
+    public int produceOrbs(int cycles) {
         int count = 0;
         while (count != cycles) {
             for (Oven ov : ovens) {
