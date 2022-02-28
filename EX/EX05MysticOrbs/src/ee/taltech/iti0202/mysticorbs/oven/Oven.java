@@ -1,5 +1,6 @@
 package ee.taltech.iti0202.mysticorbs.oven;
 
+import ee.taltech.iti0202.mysticorbs.orb.MagicOrb;
 import ee.taltech.iti0202.mysticorbs.orb.Orb;
 import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
 
@@ -73,20 +74,20 @@ public class Oven implements Comparable<Oven> {
             } else if (this.getClass() != SpaceOven.class && o.getClass() == SpaceOven.class) {
                 return -1;
             } else {
-                if (this.getClass() == MagicOven.class && o.getClass() != MagicOven.class) {
+                if (this instanceof MagicOven && !(o instanceof MagicOven)) {
                     return 1;
-                } else if (this.getClass() != MagicOven.class && o.getClass() == MagicOven.class) {
+                } else if (!(this instanceof MagicOven) && o instanceof MagicOven) {
                     return -1;
                 } else {
-                    if (this.getClass() == MagicOven.class && o.getClass() == MagicOven.class) {
+                    if (this instanceof MagicOven) {
                         if (this.orbs.size() % 2 != 0 && o.orbs.size() % 2 == 0) {
                             return 1;
                         } else if (this.orbs.size() % 2 == 0 && o.orbs.size() % 2 != 0) {
                             return -1;
                         } else {
-                            if (this.getClass() == InfinityMagicOven.class && o.getClass() != InfinityMagicOven.class) {
+                            if (this instanceof InfinityMagicOven && !(o instanceof InfinityMagicOven)) {
                                 return 1;
-                            } else if (this.getClass() != InfinityMagicOven.class && o.getClass() == InfinityMagicOven.class) {
+                            } else if (o instanceof InfinityMagicOven && !(this instanceof InfinityMagicOven)) {
                                 return -1;
                             } else {
                                 if (this.orbs.size() < o.orbs.size()) {
