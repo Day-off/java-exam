@@ -22,6 +22,10 @@ public class OrbFactory {
         resource = resourceStorage;
     }
 
+    /***
+     * add ovens
+     * @param oven
+     */
     public void addOven(Oven oven) {
         if (!ovens.contains(oven) && this.resource == oven.getResourceStorage()) {
             ovens.add(oven);
