@@ -22,7 +22,7 @@ public class ResourceStorage {
     }
 
     public void addResource(String resource, int amount) {
-        if (resource.trim().length() > 0) {
+        if (resource.trim().length() > 0 && amount > 0) {
             if (storage.containsKey(resource.toLowerCase(Locale.ROOT))) {
                 storage.put(resource.toLowerCase(Locale.ROOT), storage.get(resource.toLowerCase(Locale.ROOT)) + amount);
             } else {
