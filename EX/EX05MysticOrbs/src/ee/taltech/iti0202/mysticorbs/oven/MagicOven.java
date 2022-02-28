@@ -30,13 +30,7 @@ public class MagicOven extends Oven implements Fixable {
         res2amount = 3;
         if (orbs.size() == 0 && sourceStorage.hasEnoughResource(resource1, res1amount)
                 && sourceStorage.hasEnoughResource(resource2, res2amount)) {
-            Orb orb = new Orb(getName());
-            orb.charge(resource1, res1amount);
-            orb.charge(resource2, res2amount);
-            orbs.add(orb);
-            sourceStorage.takeResource(resource1, res1amount);
-            sourceStorage.takeResource(resource2, res2amount);
-            return Optional.of(orb);
+            return getOrb();
         } else if ((orbs.size() + 1) % 2 == 0) {
             if (!broken && sourceStorage.hasEnoughResource(resource1, res1amount)
                     && sourceStorage.hasEnoughResource(resource2, res2amount)) {
@@ -51,16 +45,20 @@ public class MagicOven extends Oven implements Fixable {
             return Optional.empty();
         } else if (sourceStorage.hasEnoughResource(resource1, res1amount)
                 && sourceStorage.hasEnoughResource(resource2, res2amount) && !broken) {
-            Orb orb = new Orb(getName());
-            orb.charge(resource1, res1amount);
-            orb.charge(resource2, res2amount);
-            orbs.add(orb);
-            sourceStorage.takeResource(resource1, res1amount);
-            sourceStorage.takeResource(resource2, res2amount);
-            return Optional.of(orb);
+            return getOrb();
         } else {
             return Optional.empty();
         }
+    }
+
+    private Optional<Orb> getOrb() {
+        Orb orb = new Orb(getName());
+        orb.charge(resource1, res1amount);
+        orb.charge(resource2, res2amount);
+        orbs.add(orb);
+        sourceStorage.takeResource(resource1, res1amount);
+        sourceStorage.takeResource(resource2, res2amount);
+        return Optional.of(orb);
     }
 
     @Override
