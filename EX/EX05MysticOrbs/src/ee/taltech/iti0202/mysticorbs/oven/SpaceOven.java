@@ -37,7 +37,7 @@ public class SpaceOven extends Oven implements Fixable {
             sourceStorage.takeResource("meteorite stone", 1);
             sourceStorage.takeResource("star fragment", 15);
             return Optional.of(orb);
-        } else if (sourceStorage.hasEnoughResource(resource1, res1amount)
+        } else if (!broken && sourceStorage.hasEnoughResource(resource1, res1amount)
                 && sourceStorage.hasEnoughResource(resource2, res2amount)) {
             Orb orb = new Orb(getName());
             orb.charge(resource1, res1amount);
@@ -57,13 +57,16 @@ public class SpaceOven extends Oven implements Fixable {
             throw new CannotFixException(this, CannotFixException.Reason.IS_NOT_BROKEN);
         } else if (!sourceStorage.hasEnoughResource("liquid silver", 40)) {
             if (!sourceStorage.hasEnoughResource("star essence", 10)) {
+                broken = true;
                 throw new CannotFixException(this, CannotFixException.Reason.NOT_ENOUGH_RESOURCES);
             } else {
+                broken = false;
                 fixTime += 1;
                 sourceStorage.takeResource("star essence", 10);
                 orbs.clear();
             }
         } else {
+            broken = false;
             fixTime += 1;
             sourceStorage.takeResource("liquid silver", 40);
             orbs.clear();
