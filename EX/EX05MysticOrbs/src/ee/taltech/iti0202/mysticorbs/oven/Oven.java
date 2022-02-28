@@ -17,6 +17,7 @@ public class Oven implements Comparable<Oven> {
     protected ResourceStorage sourceStorage;
     protected List<Orb> orbs = new ArrayList<>();
     protected int amount = 15;
+    protected boolean broken = false;
 
     public Oven(String name, ResourceStorage resourceStorage) {
         ovenName = name;
@@ -40,7 +41,8 @@ public class Oven implements Comparable<Oven> {
     }
 
     public boolean isBroken() {
-        return orbs.size() >= amount;
+        broken = orbs.size() >= amount;
+        return broken;
     }
 
     public Optional<Orb> craftOrb() {

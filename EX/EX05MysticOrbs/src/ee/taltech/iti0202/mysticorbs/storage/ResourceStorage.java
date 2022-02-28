@@ -1,6 +1,7 @@
 package ee.taltech.iti0202.mysticorbs.storage;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class ResourceStorage {
@@ -13,7 +14,7 @@ public class ResourceStorage {
 
     public boolean isEmpty() {
         for (Map.Entry<String, Integer> source : storage.entrySet()) {
-            if (source.getValue() <= 1) {
+            if (source.getValue() >= 1) {
                 return false;
             }
         }
@@ -21,22 +22,24 @@ public class ResourceStorage {
     }
 
     public void addResource(String resource, int amount) {
-        if (storage.containsKey(resource)) {
-            storage.put(resource, storage.get(resource) + amount);
-        } else {
-            storage.put(resource, amount);
+        if (!resource.isEmpty() && amount > 0) {
+            if (storage.containsKey(resource.toLowerCase(Locale.ROOT))) {
+                storage.put(resource.toLowerCase(Locale.ROOT), storage.get(resource.toLowerCase(Locale.ROOT)) + amount);
+            } else {
+                storage.put(resource.toLowerCase(Locale.ROOT), amount);
+            }
         }
     }
 
     public int getResourceAmount(String resource) {
-        return storage.getOrDefault(resource, 0);
+        return storage.getOrDefault(resource.toLowerCase(Locale.ROOT), 0);
     }
 
     public boolean hasEnoughResource(String resource, int amount) {
-        if (amount < 1 || !storage.containsKey(resource)) {
+        if (amount < 1 || !storage.containsKey(resource.toLowerCase(Locale.ROOT))) {
             return false;
         } else {
-            return storage.get(resource) >= amount;
+            return storage.get(resource.toLowerCase(Locale.ROOT)) >= amount;
         }
     }
 

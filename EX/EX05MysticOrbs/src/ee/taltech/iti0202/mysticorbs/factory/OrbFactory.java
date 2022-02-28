@@ -43,8 +43,10 @@ public class OrbFactory {
                 ((MagicOven) ov).fix();
                 getRidOfOvensThatCannotBeFixed();
             }
-            ov.craftOrb();
-            orbsAll.add(ov.getOrbs().get(ov.getOrbs().size() - 1));
+            if (!ov.isBroken()) {
+                ov.craftOrb();
+                orbsAll.add(ov.getOrbs().get(ov.getOrbs().size() - 1));
+            }
         }
         return orbsAll.size();
     }
