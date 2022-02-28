@@ -13,12 +13,12 @@ public class SpaceOven extends Oven implements Fixable {
 
     public SpaceOven(String name, ResourceStorage resourceStorage) {
         super(name, resourceStorage);
+        amount = 25;
     }
 
     @Override
     public boolean isBroken() {
         if (fixTime < 5) {
-            amount = 25;
             return super.isBroken();
         } else {
             broken = false;
@@ -28,10 +28,6 @@ public class SpaceOven extends Oven implements Fixable {
 
     @Override
     public Optional<Orb> craftOrb() {
-//        resource1 = "pearl";
-//        resource2 = "silver";
-//        res1amount = 1;
-//        res2amount = 1;
         if (sourceStorage.hasEnoughResource("meteorite stone", 1)
                 && sourceStorage.hasEnoughResource("star fragment", 15) && !isBroken()) {
             SpaceOrb orb = new SpaceOrb(getName());
@@ -64,13 +60,13 @@ public class SpaceOven extends Oven implements Fixable {
                 broken = false;
                 fixTime += 1;
                 sourceStorage.takeResource("star essence", 10);
-                orbs.clear();
+                amount += 25;
             }
         } else {
             broken = false;
             fixTime += 1;
             sourceStorage.takeResource("liquid silver", 40);
-            orbs.clear();
+            amount += 25;
         }
     }
 
