@@ -5,7 +5,10 @@ import java.util.Locale;
 public class MagicOrb extends Orb{
 
     public MagicOrb(String creator) {
+
         super(creator);
+        sort = "MagicOrb by ";
+
     }
 
     @Override
@@ -18,7 +21,7 @@ public class MagicOrb extends Orb{
 
     @Override
     public String toString() {
-        return "MagicOrb by " + sourceOven;
+        return sort + sourceOven;
     }
 
 }

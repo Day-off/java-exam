@@ -36,16 +36,16 @@ public class ResourceStorage {
     }
 
     public boolean hasEnoughResource(String resource, int amount) {
-        if (amount < 1 || !storage.containsKey(resource.toLowerCase(Locale.ROOT))) {
-            return false;
-        } else {
+        if (amount >= 1 && storage.containsKey(resource.toLowerCase(Locale.ROOT))) {
             return storage.get(resource.toLowerCase(Locale.ROOT)) >= amount;
+
         }
+        return false;
     }
 
     public boolean takeResource(String resource, int amount) {
         if (hasEnoughResource(resource, amount)) {
-            storage.put(resource, storage.get(resource) - amount);
+            storage.put(resource.toLowerCase(Locale.ROOT), storage.get(resource.toLowerCase(Locale.ROOT)) - amount);
             return true;
         } else {
             return false;

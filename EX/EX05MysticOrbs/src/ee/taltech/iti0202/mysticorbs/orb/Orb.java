@@ -6,9 +6,11 @@ public class Orb {
 
     protected String sourceOven;
     protected int charge;
+    public String sort = "Orb by ";
 
     public Orb(String creator) {
         sourceOven = creator;
+        sort = "Orb by ";
     }
 
     public void charge(String resource, int amount) {
@@ -24,6 +26,6 @@ public class Orb {
 
     @Override
     public String toString() {
-        return "Orb by " + sourceOven;
+        return sort + sourceOven;
     }
 }

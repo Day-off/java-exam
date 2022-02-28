@@ -14,11 +14,12 @@ public class MagicOven extends Oven implements Fixable {
 
     public MagicOven(String name, ResourceStorage resourceStorage) {
         super(name, resourceStorage);
+        amount = 5;
+
     }
 
     @Override
     public boolean isBroken() {
-        amount = 5;
         return super.isBroken();
     }
 
@@ -35,6 +36,7 @@ public class MagicOven extends Oven implements Fixable {
             if (!broken && sourceStorage.hasEnoughResource(resource1, res1amount)
                     && sourceStorage.hasEnoughResource(resource2, res2amount)) {
                 MagicOrb orb = new MagicOrb(getName());
+                orb.sort = "MagicOrb by ";
                 orb.charge(resource1, res1amount);
                 orb.charge(resource2, res2amount);
                 orbs.add(orb);
@@ -53,12 +55,14 @@ public class MagicOven extends Oven implements Fixable {
 
     private Optional<Orb> getOrb() {
         Orb orb = new Orb(getName());
+        orb.sort = "Orb by ";
         orb.charge(resource1, res1amount);
         orb.charge(resource2, res2amount);
         orbs.add(orb);
         sourceStorage.takeResource(resource1, res1amount);
         sourceStorage.takeResource(resource2, res2amount);
         return Optional.of(orb);
+
     }
 
     @Override
@@ -72,9 +76,10 @@ public class MagicOven extends Oven implements Fixable {
             throw new CannotFixException(this, CannotFixException.Reason.NOT_ENOUGH_RESOURCES);
         } else {
             fixTime += 1;
-            sourceStorage.takeResource("clay", 25 * (fixTime + 1));
-            sourceStorage.takeResource("freezing powder", 100 * (fixTime + 1));
-            orbs.clear();
+            broken = false;
+            sourceStorage.takeResource("clay", 25 * (fixTime));
+            sourceStorage.takeResource("freezing powder", 100 * (fixTime));
+            amount += 5;
         }
     }
 
@@ -82,4 +87,6 @@ public class MagicOven extends Oven implements Fixable {
     public int getTimesFixed() {
         return fixTime;
     }
+
+
 }

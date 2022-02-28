@@ -5,6 +5,8 @@ public class SpaceOrb extends Orb {
     public SpaceOrb(String creator) {
         super(creator);
         charge = 100;
+        sort = "SpaceOrb by ";
+
     }
 
     @Override
@@ -13,7 +15,7 @@ public class SpaceOrb extends Orb {
 
     @Override
     public String toString() {
-        return "SpaceOrb by " + sourceOven;
+        return sort + sourceOven;
     }
 
     public boolean absorb(Orb orb) {

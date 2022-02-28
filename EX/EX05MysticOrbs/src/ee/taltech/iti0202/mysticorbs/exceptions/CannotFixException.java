@@ -7,7 +7,7 @@ import java.awt.desktop.UserSessionEvent;
 public class CannotFixException extends Exception{
 
     private final Oven brokenOven;
-    private Reason error;
+    private final Reason error;
 
     public enum Reason {
         IS_NOT_BROKEN,

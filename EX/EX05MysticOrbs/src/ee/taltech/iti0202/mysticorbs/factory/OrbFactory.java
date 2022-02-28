@@ -4,6 +4,7 @@ import ee.taltech.iti0202.mysticorbs.exceptions.CannotFixException;
 import ee.taltech.iti0202.mysticorbs.orb.Orb;
 import ee.taltech.iti0202.mysticorbs.oven.MagicOven;
 import ee.taltech.iti0202.mysticorbs.oven.Oven;
+import ee.taltech.iti0202.mysticorbs.oven.SpaceOven;
 import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
 
 import java.util.ArrayList;
@@ -37,26 +38,41 @@ public class OrbFactory {
         return res;
     }
 
+    public void checkAndFix(Oven ov) throws CannotFixException {
+        if (ov.isBroken()) {
+            if (ov.getClass() == MagicOven.class) {
+                try {
+                    ((MagicOven) ov).fix();
+                } catch (CannotFixException ignored) {
+
+                }
+            } else {
+                if (ov.getClass() == SpaceOven.class) {
+                    try {
+                        ((SpaceOven) ov).fix();
+                    } catch (CannotFixException ignored) {
+
+                    }
+                }
+            }
+        }
+        if (ov.craftOrb().isPresent()) {
+            orbsAll.add(ov.getOrbs().get(ov.getOrbs().size() - 1));
+        }
+    }
+
     public int produceOrbs() throws CannotFixException {
         for (Oven ov : ovens) {
-            if (ov.isBroken() && ov.getClass() == MagicOven.class) {
-                ((MagicOven) ov).fix();
-                getRidOfOvensThatCannotBeFixed();
-            }
-            if (!ov.isBroken()) {
-                ov.craftOrb();
-                orbsAll.add(ov.getOrbs().get(ov.getOrbs().size() - 1));
-            }
+            checkAndFix(ov);
         }
         return orbsAll.size();
     }
 
-    public int produceOrbs(int cycles) {
+    public int produceOrbs(int cycles) throws CannotFixException {
         int count = 0;
         while (count != cycles) {
             for (Oven ov : ovens) {
-                ov.craftOrb();
-                orbsAll.add(ov.getOrbs().get(ov.getOrbs().size() - 1));
+                checkAndFix(ov);
             }
             count += 1;
         }
@@ -64,14 +80,24 @@ public class OrbFactory {
     }
 
     public void getRidOfOvensThatCannotBeFixed() {
-        for (Oven ov : ovens) {
+        List<Oven> copy = List.copyOf(ovens);
+        for (Oven ov: copy){
             if (ov.getClass() == MagicOven.class) {
                 if (((MagicOven) ov).getTimesFixed() == 10 && ov.isBroken()) {
                     ovens.remove(ov);
                     brokenOven.add(ov);
                 }
+            }else if (ov.getClass() == SpaceOven.class) {
+                if (((SpaceOven) ov).getTimesFixed() == 25 && ov.isBroken()) {
+                    ovens.remove(ov);
+                    brokenOven.add(ov);
+                }
+            }else if (ov.isBroken()) {
+                ovens.remove(ov);
+                brokenOven.add(ov);
             }
         }
+
     }
 
     public List<Oven> getOvensThatCannotBeFixed() {
