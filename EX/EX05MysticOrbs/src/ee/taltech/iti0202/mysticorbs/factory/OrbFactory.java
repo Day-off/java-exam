@@ -84,6 +84,10 @@ public class OrbFactory {
     }
 
     public void getRidOfOvensThatCannotBeFixed() {
+        brokenOven.clear();
+    }
+
+    public void findBrokenOvens(){
         List<Oven> copy = List.copyOf(ovens);
         for (Oven ov: copy){
             if (ov.getClass() == MagicOven.class) {
@@ -101,11 +105,10 @@ public class OrbFactory {
                 brokenOven.add(ov);
             }
         }
-
     }
 
     public List<Oven> getOvensThatCannotBeFixed() {
-        getRidOfOvensThatCannotBeFixed();
+        findBrokenOvens();
         return brokenOven;
     }
 
