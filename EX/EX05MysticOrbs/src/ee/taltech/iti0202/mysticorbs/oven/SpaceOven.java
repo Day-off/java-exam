@@ -18,7 +18,7 @@ public class SpaceOven extends Oven implements Fixable {
 
     @Override
     public boolean isBroken() {
-        if (fixTime < 5) {
+        if (fixTime <= 5) {
             return super.isBroken();
         } else {
             broken = false;
