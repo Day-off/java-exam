@@ -15,7 +15,8 @@ public class Orb {
 
     public void charge(String resource, int amount) {
         String dust = "dust";
-        if (!resource.trim().isEmpty() && !resource.toLowerCase(Locale.ROOT).equals(dust)) {
+        if (!resource.trim().isEmpty() && !resource.toLowerCase(Locale.ROOT).equals(dust) &&
+                amount > 0) {
             charge += resource.length() * amount;
         }
     }
