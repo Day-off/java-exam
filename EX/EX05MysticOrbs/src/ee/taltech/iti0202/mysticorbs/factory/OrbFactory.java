@@ -43,7 +43,7 @@ public class OrbFactory {
         return res;
     }
 
-    public void checkAndFix(Oven ov){
+    public void checkAndFix(Oven ov) {
         if (ov.isBroken()) {
             if (ov.getClass() == MagicOven.class) {
                 try {
@@ -88,20 +88,20 @@ public class OrbFactory {
         brokenOven.clear();
     }
 
-    public void findBrokenOvens(){
+    public void findBrokenOvens() {
         List<Oven> copy = List.copyOf(ovens);
-        for (Oven ov: copy){
+        for (Oven ov : copy) {
             if (ov.getClass() == MagicOven.class) {
                 if (((MagicOven) ov).getTimesFixed() == 10 && ov.isBroken()) {
                     ovens.remove(ov);
                     brokenOven.add(ov);
                 }
-            }else if (ov.getClass() == SpaceOven.class) {
+            } else if (ov.getClass() == SpaceOven.class) {
                 if (((SpaceOven) ov).getTimesFixed() == 25 && ov.isBroken()) {
                     ovens.remove(ov);
                     brokenOven.add(ov);
                 }
-            }else if (ov.isBroken()) {
+            } else if (ov.isBroken()) {
                 ovens.remove(ov);
                 brokenOven.add(ov);
             }
@@ -114,6 +114,7 @@ public class OrbFactory {
     }
 
     public void optimizeOvensOrder() {
-        ovens = ovens.stream().sorted(Oven::compareTo).collect(Collectors.toList());
+        List<Oven> copy = List.copyOf(ovens);
+        ovens = copy.stream().sorted(Oven::compareTo).collect(Collectors.toList());
     }
 }
