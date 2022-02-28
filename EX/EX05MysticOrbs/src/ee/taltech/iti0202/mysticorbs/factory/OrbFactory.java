@@ -114,6 +114,6 @@ public class OrbFactory {
     }
 
     public void optimizeOvensOrder() {
-        ovens = ovens.stream().sorted().collect(Collectors.toList());
+        ovens = ovens.stream().sorted(Oven::compareTo).collect(Collectors.toList());
     }
 }
