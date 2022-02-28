@@ -9,6 +9,7 @@ import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OrbFactory {
 
@@ -113,6 +114,6 @@ public class OrbFactory {
     }
 
     public void optimizeOvensOrder() {
-
+        ovens = ovens.stream().sorted().collect(Collectors.toList());
     }
 }
