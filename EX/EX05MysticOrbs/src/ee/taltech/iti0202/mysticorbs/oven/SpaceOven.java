@@ -21,21 +21,33 @@ public class SpaceOven extends Oven implements Fixable {
             amount = 20;
             return super.isBroken();
         } else {
+            broken = false;
             return false;
         }
     }
 
     @Override
     public Optional<Orb> craftOrb() {
+        String resource1 = "pearl";
+        String resource2 = "silver";
         if (sourceStorage.hasEnoughResource("meteorite stone", 1)
-                && sourceStorage.hasEnoughResource("star fragment", 15)) {
-            Orb orb = new SpaceOrb(getName());
+                && sourceStorage.hasEnoughResource("star fragment", 15) && !broken) {
+            SpaceOrb orb = new SpaceOrb(getName());
             orbs.add(orb);
             sourceStorage.takeResource("meteorite stone", 1);
             sourceStorage.takeResource("star fragment", 15);
             return Optional.of(orb);
+        } else if (sourceStorage.hasEnoughResource(resource1, res1amount)
+                && sourceStorage.hasEnoughResource(resource2, res2amount)) {
+            Orb orb = new Orb(getName());
+            orb.charge(resource1, res1amount);
+            orb.charge(resource2, res2amount);
+            orbs.add(orb);
+            sourceStorage.takeResource(resource1, res1amount);
+            sourceStorage.takeResource(resource2, res2amount);
+            return Optional.of(orb);
         } else {
-            return super.craftOrb();
+            return Optional.empty();
         }
     }
 
