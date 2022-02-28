@@ -8,6 +8,7 @@ import ee.taltech.iti0202.mysticorbs.oven.SpaceOven;
 import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,7 +44,7 @@ public class OrbFactory {
         return res;
     }
 
-    public void checkAndFix(Oven ov) {
+    public void checkAndFix(Oven ov){
         if (ov.isBroken()) {
             if (ov.getClass() == MagicOven.class) {
                 try {
@@ -88,20 +89,20 @@ public class OrbFactory {
         brokenOven.clear();
     }
 
-    public void findBrokenOvens() {
+    public void findBrokenOvens(){
         List<Oven> copy = List.copyOf(ovens);
-        for (Oven ov : copy) {
+        for (Oven ov: copy){
             if (ov.getClass() == MagicOven.class) {
                 if (((MagicOven) ov).getTimesFixed() == 10 && ov.isBroken()) {
                     ovens.remove(ov);
                     brokenOven.add(ov);
                 }
-            } else if (ov.getClass() == SpaceOven.class) {
+            }else if (ov.getClass() == SpaceOven.class) {
                 if (((SpaceOven) ov).getTimesFixed() == 25 && ov.isBroken()) {
                     ovens.remove(ov);
                     brokenOven.add(ov);
                 }
-            } else if (ov.isBroken()) {
+            }else if (ov.isBroken()) {
                 ovens.remove(ov);
                 brokenOven.add(ov);
             }
@@ -114,7 +115,7 @@ public class OrbFactory {
     }
 
     public void optimizeOvensOrder() {
-        List<Oven> copy = List.copyOf(ovens);
-        ovens = copy.stream().sorted(Oven::compareTo).collect(Collectors.toList());
+        ovens = ovens.stream().sorted(Oven::compareTo).collect(Collectors.toList());
+        ovens = ovens.stream().sorted(Collections.reverseOrder()).collect(Collectors.toList());
     }
 }
