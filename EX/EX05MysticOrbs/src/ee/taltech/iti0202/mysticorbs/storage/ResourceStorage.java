@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class ResourceStorage {
 
-    private Map<String, Integer> storage = new HashMap<>();
+    private final Map<String, Integer> storage = new HashMap<>();
 
     /***
      * constructor
@@ -17,7 +17,6 @@ public class ResourceStorage {
 
     /***
      * check empty
-     * @return
      */
     public boolean isEmpty() {
         for (Map.Entry<String, Integer> source : storage.entrySet()) {
@@ -30,8 +29,6 @@ public class ResourceStorage {
 
     /***
      * add resource
-     * @param resource
-     * @param amount
      */
     public void addResource(String resource, int amount) {
         if (resource.trim().length() > 0 && amount >= 0) {
@@ -45,8 +42,6 @@ public class ResourceStorage {
 
     /***
      * getter
-     * @param resource
-     * @return
      */
     public int getResourceAmount(String resource) {
         return storage.getOrDefault(resource.toLowerCase(Locale.ROOT), 0);
@@ -54,9 +49,6 @@ public class ResourceStorage {
 
     /***
      * check resource
-     * @param resource
-     * @param amount
-     * @return
      */
     public boolean hasEnoughResource(String resource, int amount) {
         if (amount >= 1 && storage.containsKey(resource.toLowerCase(Locale.ROOT))) {
@@ -68,9 +60,6 @@ public class ResourceStorage {
 
     /***
      * take resource
-     * @param resource
-     * @param amount
-     * @return
      */
     public boolean takeResource(String resource, int amount) {
         if (hasEnoughResource(resource, amount)) {
