@@ -1,6 +1,5 @@
 package ee.taltech.iti0202.mysticorbs.oven;
 
-import ee.taltech.iti0202.mysticorbs.orb.MagicOrb;
 import ee.taltech.iti0202.mysticorbs.orb.Orb;
 import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
 
@@ -17,9 +16,13 @@ public class Oven implements Comparable<Oven> {
     protected int res2amount = 1;
     protected ResourceStorage sourceStorage;
     protected List<Orb> orbs = new ArrayList<>();
-    protected int amount = 15;
+    private static final int FIFTEEN = 25;
+    protected int amount = FIFTEEN;
     protected boolean broken = false;
 
+    /***
+     * constructor
+     */
     public Oven(String name, ResourceStorage resourceStorage) {
         ovenName = name;
         sourceStorage = resourceStorage;
@@ -41,11 +44,17 @@ public class Oven implements Comparable<Oven> {
         return orbs.size();
     }
 
+    /***
+     * check if broken
+     */
     public boolean isBroken() {
         broken = orbs.size() >= amount;
         return broken;
     }
 
+    /***
+     * craft
+     */
     public Optional<Orb> craftOrb() {
         String resource1 = "pearl";
         String resource2 = "silver";
@@ -85,9 +94,11 @@ public class Oven implements Comparable<Oven> {
                         } else if (this.orbs.size() % 2 == 0 && o.orbs.size() % 2 != 0) {
                             return -1;
                         } else {
-                            if (this instanceof InfinityMagicOven && !(o instanceof InfinityMagicOven) && this.orbs.size() == o.orbs.size()) {
+                            if (this instanceof InfinityMagicOven && !(o instanceof InfinityMagicOven)
+                                    && this.orbs.size() == o.orbs.size()) {
                                 return 1;
-                            } else if (o instanceof InfinityMagicOven && !(this instanceof InfinityMagicOven) && this.orbs.size() == o.orbs.size()) {
+                            } else if (o instanceof InfinityMagicOven && !(this instanceof InfinityMagicOven)
+                                    && this.orbs.size() == o.orbs.size()) {
                                 return -1;
                             } else {
                                 if (this.orbs.size() < o.orbs.size()) {
