@@ -85,9 +85,9 @@ public class Oven implements Comparable<Oven> {
                         } else if (this.orbs.size() % 2 == 0 && o.orbs.size() % 2 != 0) {
                             return -1;
                         } else {
-                            if (this instanceof InfinityMagicOven && !(o instanceof InfinityMagicOven)) {
+                            if (this instanceof InfinityMagicOven && !(o instanceof InfinityMagicOven) && this.orbs.size() == o.orbs.size()) {
                                 return 1;
-                            } else if (o instanceof InfinityMagicOven && !(this instanceof InfinityMagicOven)) {
+                            } else if (o instanceof InfinityMagicOven && !(this instanceof InfinityMagicOven) && this.orbs.size() == o.orbs.size()) {
                                 return -1;
                             } else {
                                 if (this.orbs.size() < o.orbs.size()) {
