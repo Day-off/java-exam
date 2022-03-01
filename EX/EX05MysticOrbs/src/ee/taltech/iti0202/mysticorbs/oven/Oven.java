@@ -16,7 +16,7 @@ public class Oven implements Comparable<Oven> {
     protected int res2amount = 1;
     protected ResourceStorage sourceStorage;
     protected List<Orb> orbs = new ArrayList<>();
-    private static final int FIFTEEN = 25;
+    private static final int FIFTEEN = 15;
     protected int amount = FIFTEEN;
     protected boolean broken = false;
 
