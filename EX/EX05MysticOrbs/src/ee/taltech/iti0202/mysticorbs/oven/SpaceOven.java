@@ -10,10 +10,17 @@ import java.util.Optional;
 public class SpaceOven extends Oven implements Fixable {
 
     private int fixTime = 0;
+    private static final int TWENTY_FIVE = 25;
+    private static final int FORTY = 40;
+    private static final int FIFTEEN = 15;
 
+
+    /***
+     * constructor
+     */
     public SpaceOven(String name, ResourceStorage resourceStorage) {
         super(name, resourceStorage);
-        amount = 25;
+        amount = TWENTY_FIVE;
     }
 
     @Override
@@ -29,11 +36,11 @@ public class SpaceOven extends Oven implements Fixable {
     @Override
     public Optional<Orb> craftOrb() {
         if (sourceStorage.hasEnoughResource("meteorite stone", 1)
-                && sourceStorage.hasEnoughResource("star fragment", 15) && !isBroken()) {
+                && sourceStorage.hasEnoughResource("star fragment", FIFTEEN) && !isBroken()) {
             SpaceOrb orb = new SpaceOrb(getName());
             orbs.add(orb);
             sourceStorage.takeResource("meteorite stone", 1);
-            sourceStorage.takeResource("star fragment", 15);
+            sourceStorage.takeResource("star fragment", FIFTEEN);
             return Optional.of(orb);
         } else if (sourceStorage.hasEnoughResource("pearl", 1)
                 && sourceStorage.hasEnoughResource("silver", 1)) {
@@ -53,20 +60,20 @@ public class SpaceOven extends Oven implements Fixable {
     public void fix() throws CannotFixException {
         if (!isBroken()) {
             throw new CannotFixException(this, CannotFixException.Reason.IS_NOT_BROKEN);
-        } else if (!sourceStorage.hasEnoughResource("liquid silver", 40)) {
+        } else if (!sourceStorage.hasEnoughResource("liquid silver", FORTY)) {
             if (!sourceStorage.hasEnoughResource("star essence", 10)) {
                 throw new CannotFixException(this, CannotFixException.Reason.NOT_ENOUGH_RESOURCES);
             } else {
                 broken = false;
                 fixTime += 1;
                 sourceStorage.takeResource("star essence", 10);
-                amount += 25;
+                amount += TWENTY_FIVE;
             }
         } else {
             broken = false;
             fixTime += 1;
-            sourceStorage.takeResource("liquid silver", 40);
-            amount += 25;
+            sourceStorage.takeResource("liquid silver", FORTY);
+            amount += TWENTY_FIVE;
         }
     }
 
