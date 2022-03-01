@@ -16,17 +16,22 @@ public class OrbFactory {
 
 
     private List<Oven> ovens = new ArrayList<>();
-    private ResourceStorage resource;
-    private List<Orb> orbsAll = new ArrayList<>();
-    private List<Oven> brokenOven = new ArrayList<>();
+    private final ResourceStorage resource;
+    private final List<Orb> orbsAll = new ArrayList<>();
+    private final List<Oven> brokenOven = new ArrayList<>();
 
+    private static final int TWENTY_FIVE = 25;
+
+
+    /***
+     * constructor
+     */
     public OrbFactory(ResourceStorage resourceStorage) {
         resource = resourceStorage;
     }
 
     /***
      * add ovens
-     * @param oven
      */
     public void addOven(Oven oven) {
         if (!ovens.contains(oven) && this.resource == oven.getResourceStorage()) {
@@ -34,17 +39,26 @@ public class OrbFactory {
         }
     }
 
+    /***
+     * getter
+     */
     public List<Oven> getOvens() {
         return ovens;
     }
 
+    /***
+     * getter
+     */
     public List<Orb> getAndClearProducedOrbsList() {
         List<Orb> res = List.copyOf(orbsAll);
         orbsAll.clear();
         return res;
     }
 
-    public void checkAndFix(Oven ov){
+    /***
+     * check
+     */
+    public void checkAndFix(Oven ov) {
         if (ov.isBroken()) {
             if (ov.getClass() == MagicOven.class) {
                 try {
@@ -67,6 +81,9 @@ public class OrbFactory {
         }
     }
 
+    /***
+     * produce orbs one time
+     */
     public int produceOrbs() {
         for (Oven ov : ovens) {
             checkAndFix(ov);
@@ -74,6 +91,9 @@ public class OrbFactory {
         return orbsAll.size();
     }
 
+    /***
+     * produce orbs
+     */
     public int produceOrbs(int cycles) {
         int count = 0;
         while (count != cycles) {
@@ -85,35 +105,47 @@ public class OrbFactory {
         return orbsAll.size();
     }
 
+    /***
+     * getter
+     */
     public void getRidOfOvensThatCannotBeFixed() {
         brokenOven.clear();
     }
 
-    public void findBrokenOvens(){
+    /***
+     * broken ovens
+     */
+    public void findBrokenOvens() {
         List<Oven> copy = List.copyOf(ovens);
-        for (Oven ov: copy){
+        for (Oven ov : copy) {
             if (ov.getClass() == MagicOven.class) {
                 if (((MagicOven) ov).getTimesFixed() == 10 && ov.isBroken()) {
                     ovens.remove(ov);
                     brokenOven.add(ov);
                 }
-            }else if (ov.getClass() == SpaceOven.class) {
-                if (((SpaceOven) ov).getTimesFixed() == 25 && ov.isBroken()) {
+            } else if (ov.getClass() == SpaceOven.class) {
+                if (((SpaceOven) ov).getTimesFixed() == TWENTY_FIVE && ov.isBroken()) {
                     ovens.remove(ov);
                     brokenOven.add(ov);
                 }
-            }else if (ov.isBroken()) {
+            } else if (ov.isBroken()) {
                 ovens.remove(ov);
                 brokenOven.add(ov);
             }
         }
     }
 
+    /***
+     * getter
+     */
     public List<Oven> getOvensThatCannotBeFixed() {
         findBrokenOvens();
         return brokenOven;
     }
 
+    /***
+     * sort
+     */
     public void optimizeOvensOrder() {
         ovens = ovens.stream().sorted(Oven::compareTo).collect(Collectors.toList());
         ovens = ovens.stream().sorted(Collections.reverseOrder()).collect(Collectors.toList());
