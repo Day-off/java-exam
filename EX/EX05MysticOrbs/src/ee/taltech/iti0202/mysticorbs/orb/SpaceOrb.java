@@ -2,6 +2,9 @@ package ee.taltech.iti0202.mysticorbs.orb;
 
 public class SpaceOrb extends Orb {
 
+    /***
+     * constructor
+     */
     public SpaceOrb(String creator) {
         super(creator);
         charge = 100;
@@ -18,6 +21,9 @@ public class SpaceOrb extends Orb {
         return sort + sourceOven;
     }
 
+    /***
+     * stole energy
+     */
     public boolean absorb(Orb orb) {
         if (orb.getEnergy() < this.getEnergy()) {
             this.charge += orb.getEnergy();

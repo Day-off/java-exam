@@ -4,6 +4,9 @@ import java.util.Locale;
 
 public class MagicOrb extends Orb {
 
+    /***
+     * constructor
+     */
     public MagicOrb(String creator) {
 
         super(creator);
