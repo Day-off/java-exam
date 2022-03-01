@@ -7,6 +7,10 @@ import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
 import java.util.Optional;
 
 public class InfinityMagicOven extends MagicOven {
+
+    /***
+     * constructor
+     */
     public InfinityMagicOven(String name, ResourceStorage resourceStorage) {
         super(name, resourceStorage);
     }
