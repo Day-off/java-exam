@@ -11,6 +11,8 @@ import java.util.Optional;
 public class MagicOven extends Oven implements Fixable {
 
     private int fixTime = 0;
+    private static final int twentyFive = 25;
+
 
     /***
      * constructor
@@ -70,7 +72,6 @@ public class MagicOven extends Oven implements Fixable {
 
     @Override
     public void fix() throws CannotFixException {
-        int twentyFive = 25;
         if (!isBroken()) {
             throw new CannotFixException(this, CannotFixException.Reason.IS_NOT_BROKEN);
         } else if (fixTime >= 10) {
