@@ -21,8 +21,7 @@ public class InputFilesBufferReader implements InputFilesReader {
                 lines.add(line);
             }
         } catch (IOException e) {
-            System.out.println("Error reading file:" + e.getMessage());
-            e.printStackTrace();
+            return null;
         }
         return lines;
     }
