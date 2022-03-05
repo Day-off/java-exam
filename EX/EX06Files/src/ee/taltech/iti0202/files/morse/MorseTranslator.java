@@ -38,7 +38,7 @@ public class MorseTranslator {
             }
             res.append(" ");
         }
-        return res.toString().substring(0, res.length() - 1);
+        return res.substring(0, res.length() - 1);
     }
 
     public List<String> translateLinesToMorse(List<String> lines) {
