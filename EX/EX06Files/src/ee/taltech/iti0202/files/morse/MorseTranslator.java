@@ -13,8 +13,8 @@ public class MorseTranslator {
             String[] res = part.split(" ");
             String part1 = res[0];
             String part2 = res[1];
-            toMorseCode.put(part1, part2);
-            fromMorseCode.put(part2, part1);
+            toMorseCode.put(part1.toLowerCase(Locale.ROOT), part2);
+            fromMorseCode.put(part2, part1.toLowerCase(Locale.ROOT));
         }
         return toMorseCode;
     }
@@ -34,7 +34,7 @@ public class MorseTranslator {
         for (String lin : lowercase) {
             String[] letter = lin.split(" ");
             for (String cha : letter) {
-                res.append(fromMorseCode.get(cha));
+                res.append(fromMorseCode.get(cha.toLowerCase(Locale.ROOT)));
             }
             res.append(" ");
         }
