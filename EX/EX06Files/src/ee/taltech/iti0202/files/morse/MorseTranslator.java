@@ -30,7 +30,7 @@ public class MorseTranslator {
 
     private String translateLineFromMorse(String line) {
         StringBuilder res = new StringBuilder(" ");
-        String[] lowercase = line.toUpperCase(Locale.ROOT).split("\t");
+        String[] lowercase = line.toLowerCase(Locale.ROOT).split("\t");
         for (String lin : lowercase) {
             String[] letter = lin.split(" ");
             for (String cha : letter) {
