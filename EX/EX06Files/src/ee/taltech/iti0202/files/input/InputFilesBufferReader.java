@@ -20,8 +20,8 @@ public class InputFilesBufferReader implements InputFilesReader {
                 if (line == null) break;
                 lines.add(line);
             }
-        } catch (IOException e) {
-            return null;
+        } catch (FileReaderException | IOException e) {
+            System.out.println("No such file");
         }
         return lines;
     }
