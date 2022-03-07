@@ -20,12 +20,21 @@ public class MorseTranslator {
     }
 
     private String translateLineToMorse(String line) {
-        StringBuilder res = new StringBuilder(" ");
+        StringBuilder res = new StringBuilder("");
         String lowercase = line.toLowerCase(Locale.ROOT);
         for (int i = 0; i < line.length(); i++) {
-            res.append(toMorseCode.getOrDefault(Character.toString(lowercase.charAt(i)), "  ")).append(" ");
+            if (i + 1 < line.length()) {
+                if (toMorseCode.containsKey(Character.toString(lowercase.charAt(i)))) {
+                    res.append(toMorseCode.get(Character.toString(lowercase.charAt(i))));
+                    if (toMorseCode.containsKey(Character.toString(lowercase.charAt(i + 1)))) {
+                        res.append(" ");
+                    }
+                } else {
+                    res.append("\t");
+                }
+            }
         }
-        return res.substring(1, res.length() - 1);
+        return res.substring(0, res.length() - 1);
     }
 
     private String translateLineFromMorse(String line) {
