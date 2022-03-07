@@ -23,7 +23,7 @@ public class InputFilesBufferReader implements InputFilesReader {
         } catch (FileReaderException | IOException e) {
 //            System.out.println(e.getMessage());
 //            return null;
-            throw new FileReaderException("No such file", e.initCause(null));
+            throw new FileReaderException("No such file", e.getCause());
         }
         return lines;
     }
