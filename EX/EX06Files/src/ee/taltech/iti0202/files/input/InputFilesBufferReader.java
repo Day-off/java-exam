@@ -21,10 +21,8 @@ public class InputFilesBufferReader implements InputFilesReader {
                 if (line == null) break;
                 lines.add(line);
             }
-        } catch (FileReaderException e) {
+        } catch (FileReaderException | IOException e) {
             throw new FileReaderException("No such file", null);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         return lines;
     }
