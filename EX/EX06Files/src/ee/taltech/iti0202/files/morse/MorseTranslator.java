@@ -25,7 +25,7 @@ public class MorseTranslator {
         for (int i = 0; i < line.length(); i++) {
             res.append(toMorseCode.getOrDefault(Character.toString(lowercase.charAt(i)), "  ")).append(" ");
         }
-        return res.toString();
+        return res.substring(1, res.length() - 1);
     }
 
     private String translateLineFromMorse(String line) {
