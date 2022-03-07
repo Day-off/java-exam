@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class InputFilesScanner implements InputFilesReader {
 
     @Override
-    public List<String> readTextFromFile(String filename) throws Throwable {
+    public List<String> readTextFromFile(String filename) {
         List<String> lines = new ArrayList<>();
         File file = new File(filename);
         try (Scanner scanner = new Scanner(file)) {
@@ -18,9 +18,12 @@ public class InputFilesScanner implements InputFilesReader {
                 lines.add(line);
             }
         } catch (FileReaderException e) {
-            throw new FileReaderException("No such file", null).getRes();
+            throw new FileReaderException("No such file", null);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        }
+        if (lines.size() == 0) {
+            return null;
         }
         return lines;
     }
