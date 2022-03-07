@@ -25,6 +25,7 @@ public class InputFilesBufferReader implements InputFilesReader {
             e.printStackTrace();
             throw new FileReaderException("No such file", null);
         }
+
         return lines;
     }
 }
