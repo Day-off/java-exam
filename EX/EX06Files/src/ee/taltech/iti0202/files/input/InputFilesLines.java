@@ -18,8 +18,10 @@ public class InputFilesLines implements InputFilesReader {
         try (Stream<String> stream = Files.lines(path)) {
             lines = stream.collect(Collectors.toList());
         } catch (FileReaderException | IOException e) {
-            System.out.println("No such file");
-            return null;
+//            System.out.println("No such file");
+//            return null;
+            System.out.println(e.getMessage());
+            throw new FileReaderException("No such file", null);
         }
         return lines;
     }
