@@ -22,9 +22,6 @@ public class InputFilesScanner implements InputFilesReader {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        if (lines.size() == 0) {
-            return null;
-        }
         return lines;
     }
 
