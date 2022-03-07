@@ -24,6 +24,9 @@ public class InputFilesBufferReader implements InputFilesReader {
             String message = e.getMessage();
             System.out.println(message);
         }
+        if (lines.size() == 0) {
+            return null;
+        }
         return lines;
     }
 }
