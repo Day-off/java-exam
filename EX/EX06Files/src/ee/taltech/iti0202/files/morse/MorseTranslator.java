@@ -23,7 +23,7 @@ public class MorseTranslator {
         StringBuilder res = new StringBuilder(" ");
         String lowercase = line.toLowerCase(Locale.ROOT);
         for (int i = 0; i < line.length(); i++) {
-            res.append(toMorseCode.getOrDefault(lowercase.charAt(i), " "));
+            res.append(toMorseCode.getOrDefault(Character.toString(lowercase.charAt(i)), " "));
         }
         return res.toString();
     }
