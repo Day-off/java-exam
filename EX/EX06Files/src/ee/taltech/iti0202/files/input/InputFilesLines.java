@@ -1,6 +1,5 @@
 package ee.taltech.iti0202.files.input;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,9 +17,7 @@ public class InputFilesLines implements InputFilesReader {
         List<String> lines = new ArrayList<>();
         try (Stream<String> stream = Files.lines(path)) {
             lines = stream.collect(Collectors.toList());
-        } catch (FileReaderException e) {
-            throw new FileReaderException("No such file", null);
-        } catch (IOException e) {
+        } catch (FileReaderException | IOException e) {
             e.printStackTrace();
         }
         return lines;
