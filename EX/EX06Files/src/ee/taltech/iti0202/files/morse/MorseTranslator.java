@@ -1,5 +1,6 @@
 package ee.taltech.iti0202.files.morse;
 
+
 import java.util.*;
 
 public class MorseTranslator {

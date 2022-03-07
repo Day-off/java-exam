@@ -1,7 +1,6 @@
 package ee.taltech.iti0202.files.input;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +8,9 @@ import java.util.Scanner;
 
 public class InputFilesScanner implements InputFilesReader {
 
+    /***
+     * reader
+     */
     @Override
     public List<String> readTextFromFile(String filename) {
         List<String> lines = new ArrayList<>();

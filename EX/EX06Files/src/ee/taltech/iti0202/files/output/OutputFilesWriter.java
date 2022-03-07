@@ -9,6 +9,9 @@ import java.util.List;
 
 public class OutputFilesWriter {
 
+    /***
+     * new file
+     */
     public boolean writeLinesToFile(List<String> lines, String filename) {
         Path path = Paths.get(filename);
         boolean attempt;

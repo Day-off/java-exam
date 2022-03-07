@@ -11,6 +11,9 @@ import java.util.stream.Stream;
 
 public class InputFilesLines implements InputFilesReader {
 
+    /***
+     * reader
+     */
     @Override
     public List<String> readTextFromFile(String filename) {
         Path path = Paths.get(filename);

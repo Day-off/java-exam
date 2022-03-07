@@ -5,7 +5,7 @@ public class FileReaderException extends RuntimeException {
     /***
      * Constructor
      */
-    public FileReaderException(String message, Throwable reason){
-       super(message, reason);
+    public FileReaderException(String message, Throwable reason) {
+        super(message, reason);
     }
 }
