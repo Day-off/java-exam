@@ -22,6 +22,7 @@ public class InputFilesScanner implements InputFilesReader {
 //            throw new FileReaderException("No such file", e.getCause());
             System.err.print("ERROR: File containing _______ information not found:\n");
             e.printStackTrace();
+            return null;
         }
         return lines;
     }
