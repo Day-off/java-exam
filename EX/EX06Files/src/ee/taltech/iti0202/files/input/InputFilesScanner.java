@@ -17,12 +17,10 @@ public class InputFilesScanner implements InputFilesReader {
                 String line = scanner.nextLine();
                 lines.add(line);
             }
-        } catch (FileReaderException | FileNotFoundException e) {
-//            System.out.println(e.getMessage());
-//            throw new FileReaderException("No such file", e.getCause());
-            System.err.print("ERROR: File containing _______ information not found:\n");
+        } catch (FileReaderException e) {
+            throw new FileReaderException("No such file", null);
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-            return null;
         }
         return lines;
     }
