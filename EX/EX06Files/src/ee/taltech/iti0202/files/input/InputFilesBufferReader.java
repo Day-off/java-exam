@@ -1,6 +1,7 @@
 package ee.taltech.iti0202.files.input;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -20,10 +21,10 @@ public class InputFilesBufferReader implements InputFilesReader {
                 if (line == null) break;
                 lines.add(line);
             }
-        } catch (FileReaderException | IOException e) {
-//            System.out.println(e.getMessage());
-//            return null;
-            throw new FileReaderException("No such file", e.getCause());
+        } catch (FileReaderException e) {
+            throw new FileReaderException("No such file", null);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return lines;
     }
