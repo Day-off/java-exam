@@ -23,18 +23,18 @@ public class MorseTranslator {
         StringBuilder res = new StringBuilder("");
         String lowercase = line.toLowerCase(Locale.ROOT);
         for (int i = 0; i < line.length(); i++) {
-            if (i + 1 < line.length()) {
-                if (toMorseCode.containsKey(Character.toString(lowercase.charAt(i)))) {
-                    res.append(toMorseCode.get(Character.toString(lowercase.charAt(i))));
+            if (toMorseCode.containsKey(Character.toString(lowercase.charAt(i)))) {
+                res.append(toMorseCode.get(Character.toString(lowercase.charAt(i))));
+                if (i + 1 < line.length()) {
                     if (toMorseCode.containsKey(Character.toString(lowercase.charAt(i + 1)))) {
                         res.append(" ");
                     }
-                } else {
-                    res.append("\t");
                 }
+            } else {
+                res.append("\t");
             }
         }
-        return res.substring(0, res.length() - 1);
+        return res.toString();
     }
 
     private String translateLineFromMorse(String line) {
