@@ -22,8 +22,6 @@ public class InputFilesBufferReader implements InputFilesReader {
             }
         } catch (FileReaderException | IOException e) {
             System.out.println("No such file");
-        }
-        if (lines.size() == 0) {
             return null;
         }
         return lines;

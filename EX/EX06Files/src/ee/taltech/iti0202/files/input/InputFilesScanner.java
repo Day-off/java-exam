@@ -19,9 +19,6 @@ public class InputFilesScanner implements InputFilesReader {
             }
         } catch (FileReaderException | FileNotFoundException e) {
             System.out.println("No such file");
-
-        }
-        if (lines.size() == 0) {
             return null;
         }
         return lines;
