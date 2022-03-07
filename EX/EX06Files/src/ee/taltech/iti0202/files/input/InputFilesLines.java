@@ -21,9 +21,9 @@ public class InputFilesLines implements InputFilesReader {
 //            System.out.println("No such file");
 //            return null;
 //            System.out.println(e.getMessage());
-//            throw new FileReaderException("No such file", null);
-            System.out.println(e.getMessage());
-            return null;
+            throw new FileReaderException("No such file", e.initCause(null));
+//            System.out.println(e.getMessage());
+//            return null;
         }
         return lines;
     }
