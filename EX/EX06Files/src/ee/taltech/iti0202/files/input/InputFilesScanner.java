@@ -17,10 +17,8 @@ public class InputFilesScanner implements InputFilesReader {
                 String line = scanner.nextLine();
                 lines.add(line);
             }
-        } catch (FileReaderException e) {
-            throw new FileReaderException("No such file", null);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        } catch (FileReaderException | FileNotFoundException e) {
+            throw new FileReaderException("No such file", e.getCause());
         }
         return lines;
     }
