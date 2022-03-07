@@ -2,6 +2,7 @@ package ee.taltech.iti0202.files.input;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -17,8 +18,8 @@ public class InputFilesScanner implements InputFilesReader {
                 String line = scanner.nextLine();
                 lines.add(line);
             }
-        } catch (FileReaderException | FileNotFoundException e) {
-            throw new FileReaderException("No such file", e.getCause());
+        } catch (FileReaderException | IOException e) {
+            throw new FileReaderException("No such file", e.initCause(null));
         }
         return lines;
     }
