@@ -7,7 +7,9 @@ public class MorseTranslator {
     private final Map<String, String> toMorseCode = new HashMap<>();
     private final Map<String, String> fromMorseCode = new HashMap<>();
 
-
+    /***
+     * add Morse dictionary
+     */
     public Map<String, String> addMorseCodes(List<String> lines) {
         for (String part : lines) {
             String[] res = part.split(" ");
@@ -19,6 +21,9 @@ public class MorseTranslator {
         return toMorseCode;
     }
 
+    /***
+     * To morse one line
+     */
     private String translateLineToMorse(String line) {
         StringBuilder res = new StringBuilder("");
         String lowercase = line.toLowerCase(Locale.ROOT);
@@ -37,6 +42,9 @@ public class MorseTranslator {
         return res.toString();
     }
 
+    /***
+     * From morse one line
+     */
     private String translateLineFromMorse(String line) {
         StringBuilder res = new StringBuilder("");
         String[] lowercase = line.toLowerCase(Locale.ROOT).split("\t");
@@ -50,6 +58,9 @@ public class MorseTranslator {
         return res.substring(0, res.length() - 1);
     }
 
+    /***
+     * To morse lines
+     */
     public List<String> translateLinesToMorse(List<String> lines) {
         List<String> res = new ArrayList<>();
         for (String line : lines) {
@@ -58,6 +69,9 @@ public class MorseTranslator {
         return res;
     }
 
+    /***
+     * From morse lines
+     */
     public List<String> translateLinesFromMorse(List<String> lines) {
         List<String> res = new ArrayList<>();
         for (String line : lines) {
