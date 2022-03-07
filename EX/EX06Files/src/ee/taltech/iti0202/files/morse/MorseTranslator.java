@@ -1,7 +1,11 @@
 package ee.taltech.iti0202.files.morse;
 
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.ArrayList;
 
 public class MorseTranslator {
 
