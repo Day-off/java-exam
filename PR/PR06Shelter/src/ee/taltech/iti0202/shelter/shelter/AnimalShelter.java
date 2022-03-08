@@ -13,6 +13,7 @@ public class AnimalShelter {
 
     /***
      * Constructor
+     * @param animalProvider
      */
     public AnimalShelter(AnimalProvider animalProvider) {
         this.animalProvider = animalProvider;
