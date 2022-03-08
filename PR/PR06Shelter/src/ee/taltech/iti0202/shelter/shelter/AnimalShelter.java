@@ -11,6 +11,9 @@ public class AnimalShelter {
 
     private AnimalProvider animalProvider;
 
+    /***
+     * Constructor
+     */
     public AnimalShelter(AnimalProvider animalProvider) {
         this.animalProvider = animalProvider;
     }
@@ -40,7 +43,9 @@ public class AnimalShelter {
                 return neededAnimals;
             }
             for (Animal animal : providerList) {
-                if (Objects.equals(animal.getColor(), color) && neededAnimals.size() < count && !neededAnimals.contains(animal)) {
+                if (Objects.equals(animal.getColor(), color)
+                        && neededAnimals.size() < count
+                        && !neededAnimals.contains(animal)) {
                     counter += 1;
                     neededAnimals.add(animal);
                 }
