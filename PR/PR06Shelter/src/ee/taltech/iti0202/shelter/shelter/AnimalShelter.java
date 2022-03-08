@@ -9,10 +9,10 @@ import java.util.Objects;
 
 public class AnimalShelter {
 
-    private final AnimalProvider provider;
+    private AnimalProvider animalProvider;
 
     public AnimalShelter(AnimalProvider animalProvider) {
-        provider = animalProvider;
+        this.animalProvider = animalProvider;
     }
 
     /**
@@ -35,7 +35,7 @@ public class AnimalShelter {
         List<Animal> neededAnimals = new ArrayList<>();
         int counter = 0;
         while (neededAnimals.size() < count) {
-            List<Animal> providerList = this.provider.provide(animalType);
+            List<Animal> providerList = this.animalProvider.provide(animalType);
             if (providerList.size() == 0) {
                 return neededAnimals;
             }
