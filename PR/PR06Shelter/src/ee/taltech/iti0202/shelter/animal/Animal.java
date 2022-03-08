@@ -21,7 +21,7 @@ public abstract class Animal {
 
     /***
      * getter
-     * @return
+     * @return color
      */
     public String getColor() {
         return color;
