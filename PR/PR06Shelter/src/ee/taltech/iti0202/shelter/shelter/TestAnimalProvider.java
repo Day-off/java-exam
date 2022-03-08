@@ -9,6 +9,6 @@ import java.util.List;
 public class TestAnimalProvider implements AnimalProvider {
     @Override
     public List<Animal> provide(Animal.Type type) {
-        return new ArrayList<>();
+        return null;
     }
 }
