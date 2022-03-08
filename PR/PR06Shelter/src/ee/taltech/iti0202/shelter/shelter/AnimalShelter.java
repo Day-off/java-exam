@@ -5,6 +5,7 @@ import ee.taltech.iti0202.shelter.animalprovider.AnimalProvider;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AnimalShelter {
 
@@ -39,7 +40,7 @@ public class AnimalShelter {
                 return neededAnimals;
             }
             for (Animal animal : providerList) {
-                if (animal.getColor() == color && neededAnimals.size() < count && !neededAnimals.contains(animal)) {
+                if (Objects.equals(animal.getColor(), color) && neededAnimals.size() < count && !neededAnimals.contains(animal)) {
                     counter += 1;
                     neededAnimals.add(animal);
                 }
