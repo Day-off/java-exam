@@ -8,6 +8,7 @@ import java.util.List;
  * The goal of the provider is to ... provide animals.
  */
 public interface AnimalProvider {
+
     /**
      * Provides a list of animals of the given type.
      * The list can be empty if there is nothing to provide at the moment.
