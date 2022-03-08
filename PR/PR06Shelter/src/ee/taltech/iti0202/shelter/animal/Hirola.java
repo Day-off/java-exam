@@ -7,6 +7,7 @@ public class Hirola extends Animal {
 
     /***
      * Constructor
+     * @param color
      */
     public Hirola(String color) {
         super(color);

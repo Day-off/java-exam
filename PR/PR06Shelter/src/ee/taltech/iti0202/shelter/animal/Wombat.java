@@ -7,6 +7,7 @@ public class Wombat extends Animal {
 
     /***
      * Constructor
+     * @param color
      */
     public Wombat(String color) {
         super(color);

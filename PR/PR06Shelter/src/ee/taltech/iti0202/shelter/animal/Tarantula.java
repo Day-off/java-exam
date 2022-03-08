@@ -7,6 +7,7 @@ public class Tarantula extends Animal {
 
     /***
      * Constructor
+     * @param color
      */
     public Tarantula(String color) {
         super(color);

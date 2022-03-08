@@ -13,15 +13,23 @@ public abstract class Animal {
 
     /***
      * Constructor
+     * @param color
      */
     public Animal(String color) {
         this.color = color;
     }
 
+    /***
+     * getter
+     */
     public String getColor() {
         return color;
     }
 
+    /***
+     * Setter
+     * @param color
+     */
     public void setColor(String color) {
         this.color = color;
     }
