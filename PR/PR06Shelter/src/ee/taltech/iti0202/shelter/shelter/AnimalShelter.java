@@ -50,7 +50,7 @@ public class AnimalShelter {
             }
 
         }
-        return null;
+        return neededAnimals;
     }
 
 }
