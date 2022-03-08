@@ -6,10 +6,9 @@ import ee.taltech.iti0202.shelter.animalprovider.AnimalProvider;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnimalShelter implements AnimalProvider{
+public class AnimalShelter {
 
-    private List<Animal> animals = new ArrayList<>();
-    private AnimalProvider provider;
+    private final AnimalProvider provider;
 
     public AnimalShelter(AnimalProvider animalProvider) {
         provider = animalProvider;
@@ -32,11 +31,25 @@ public class AnimalShelter implements AnimalProvider{
      * @return Maximum {count} number of animals with the given type and color.
      */
     public List<Animal> getAnimals(Animal.Type animalType, String color, int count) {
+        List<Animal> neededAnimals = new ArrayList<>();
+        int counter = 0;
+        while (neededAnimals.size() < count) {
+            List<Animal> providerList = this.provider.provide(animalType);
+            if (providerList.size() == 0) {
+                return neededAnimals;
+            }
+            for (Animal animal : providerList) {
+                if (animal.getColor() == color && neededAnimals.size() < count && !neededAnimals.contains(animal)) {
+                    counter += 1;
+                    neededAnimals.add(animal);
+                }
+                if (count < counter) {
+                    break;
+                }
+            }
+
+        }
         return null;
     }
 
-    @Override
-    public List<Animal> provide(Animal.Type type) {
-        return null;
-    }
 }
