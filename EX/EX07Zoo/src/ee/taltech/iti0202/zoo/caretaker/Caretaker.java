@@ -8,7 +8,7 @@ import java.util.List;
 public class Caretaker {
 
     private String name;
-    private List<String> canFeed;
+    private List<Animal.Type> canFeed;
     private final List<Animal> tasks = new ArrayList<>();
 
 
@@ -17,7 +17,7 @@ public class Caretaker {
      * @param name
      * @param canFeed
      */
-    public Caretaker(String name, List<String> canFeed) {
+    public Caretaker(String name, List<Animal.Type> canFeed) {
         setName(name);
         setCanFeed(canFeed);
     }
@@ -30,7 +30,7 @@ public class Caretaker {
         this.name = name;
     }
 
-    public void setCanFeed(List<String> canFeed) {
+    public void setCanFeed(List<Animal.Type> canFeed) {
         this.canFeed = canFeed;
     }
 
@@ -81,16 +81,16 @@ public class Caretaker {
         return tasks;
     }
 
-    public List<String> getCanFeed() {
+    public List<Animal.Type> getCanFeed() {
         return canFeed;
     }
 
     @Override
     public String toString() {
         return "Caretaker{"
-                + "name='" + name + '\''
-                + ", canFeed=" + canFeed
-                + ", tasks=" + tasks
+                + "name='" + getName() + '\''
+                + ", canFeed=" + getCanFeed()
+                + ", tasks=" + getTasks()
                 + '}';
     }
 }

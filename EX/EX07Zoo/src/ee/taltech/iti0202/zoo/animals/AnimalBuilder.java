@@ -2,7 +2,7 @@ package ee.taltech.iti0202.zoo.animals;
 
 public class AnimalBuilder {
     private String name;
-    private String type;
+    private Animal.Type type;
     private String sound1;
     private String sound2;
     private String hungrySound;
@@ -17,7 +17,7 @@ public class AnimalBuilder {
         return this;
     }
 
-    public AnimalBuilder setType(String type) {
+    public AnimalBuilder setType(Animal.Type type) {
         this.type = type;
         return this;
     }

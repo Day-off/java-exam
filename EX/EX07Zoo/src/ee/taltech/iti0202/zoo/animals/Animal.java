@@ -8,9 +8,9 @@ import java.util.Random;
 
 public class Animal {
 
-    private static final List<String> TYPES = new ArrayList<>();
+//    private static final List<String> TYPES = new ArrayList<>();
 
-    private String type;
+    private Type type;
     private String defaultSound1;
     private String defaultSound2;
     private String hungrySound = "";
@@ -27,7 +27,7 @@ public class Animal {
      * @param sound2
      * @param type
      */
-    public Animal(String name, String type, String sound1, String sound2, String hungrySound, Integer days) {
+    public Animal(String name, Type type, String sound1, String sound2, String hungrySound, Integer days) {
         setName(name);
         setType(type);
         setDefaultSound1(sound1);
@@ -36,12 +36,15 @@ public class Animal {
         setFeedTimer(days);
     }
 
+    public enum Type{
+        MAMMAL, BIRD, FISH, REPTILE, AMPHIBIAN
+    }
+
     /*
     SETTERS
      */
 
-    private void setType(String type) {
-        addType(type);
+    private void setType(Type type) {
         this.type = type;
     }
 
@@ -71,15 +74,15 @@ public class Animal {
     METHODS
      */
 
-    /***
-     * Add new animal type if it isn't exist
-     * @param type
-     */
-    public void addType(String type) {
-        if (!TYPES.contains(type)) {
-            TYPES.add(type);
-        }
-    }
+//    /***
+//     * Add new animal type if it isn't exist
+//     * @param type
+//     */
+//    public void addType(String type) {
+//        if (!TYPES.contains(type)) {
+//            TYPES.add(type);
+//        }
+//    }
 
     /***
      * Animals goes hungrier
@@ -123,7 +126,7 @@ public class Animal {
         return name;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
@@ -141,10 +144,10 @@ public class Animal {
     @Override
     public String toString() {
         return "Animal{"
-                + "type='" + type + '\''
-                + ", feedTimer=" + feedTimer
-                + ", needToFeed=" + needToFeed
-                + ", name='" + name + '\''
+                + "type='" + getType() + '\''
+                + ", feedTimer=" + getFeedTimer()
+                + ", needToFeed=" + getNeedToFeed()
+                + ", name='" + getName() + '\''
                 + '}';
     }
 }
