@@ -44,6 +44,7 @@ public class AnimalBuilder {
 
     /***
      * Create animal
+     * @return Animal
      */
     public Animal createAnimal() {
         return new Animal(name, type, sound1, sound2, hungrySound, days);

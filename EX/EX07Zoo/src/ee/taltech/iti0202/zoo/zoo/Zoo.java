@@ -25,6 +25,7 @@ public class Zoo {
 
     /***
      *Adding new stuff
+     * @param newStuff
      */
     public void addStuff(Caretaker newStuff) {
         if (!stuff.contains(newStuff)) {
@@ -34,6 +35,7 @@ public class Zoo {
 
     /***
      *Adding new animal
+     * @param newAnimal
      */
     public void addAnimal(Animal newAnimal) {
         if (!allAnimals.contains(newAnimal)) {
@@ -125,31 +127,19 @@ public class Zoo {
      *
      */
 
-    /***
-     * getter
-     */
     public Caretaker getBestCaretaker() {
         bestCaretaker();
         return Collections.max(bestCare.entrySet(), Map.Entry.comparingByValue()).getKey();
     }
 
-    /***
-     * getter
-     */
     public List<Caretaker> getStuff() {
         return stuff;
     }
 
-    /***
-     * getter
-     */
     public List<Animal> getAllAnimals() {
         return allAnimals;
     }
 
-    /***
-     * getter
-     */
     public List<Animal> getHungryAnimals() {
         findHungryAnimals();
         return hungryAnimals;

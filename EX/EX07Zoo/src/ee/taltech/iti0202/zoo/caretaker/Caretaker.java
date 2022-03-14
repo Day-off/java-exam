@@ -14,6 +14,8 @@ public class Caretaker {
 
     /***
      * Constructor
+     * @param name
+     * @param canFeed
      */
     public Caretaker(String name, List<String> canFeed) {
         setName(name);
@@ -21,21 +23,13 @@ public class Caretaker {
     }
 
     /*
-    *
     SETTERS
-    *
      */
 
-    /***
-     * setter
-     */
     public void setName(String name) {
         this.name = name;
     }
 
-    /***
-     * setter
-     */
     public void setCanFeed(List<String> canFeed) {
         this.canFeed = canFeed;
     }
@@ -46,6 +40,7 @@ public class Caretaker {
 
     /***
      *Add new tasks to stuff
+     * @param newAnimals
      */
     public void addTasks(List<Animal> newAnimals) {
         for (Animal animal : newAnimals) {
@@ -78,23 +73,14 @@ public class Caretaker {
     GETTERS
      */
 
-    /***
-     * getter
-     */
     public String getName() {
         return name;
     }
 
-    /***
-     * getter
-     */
     public List<Animal> getTasks() {
         return tasks;
     }
 
-    /***
-     * getter
-     */
     public List<String> getCanFeed() {
         return canFeed;
     }

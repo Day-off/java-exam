@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Animal {
 
-    private static final List<String> types = new ArrayList<>();
+    private static final List<String> TYPES = new ArrayList<>();
 
     private String type;
     private String defaultSound1;
@@ -20,6 +20,12 @@ public class Animal {
 
     /***
      * Main constructor
+     * @param name
+     * @param sound1
+     * @param days
+     * @param hungrySound
+     * @param sound2
+     * @param type
      */
     public Animal(String name, String type, String sound1, String sound2, String hungrySound, Integer days) {
         setName(name);
@@ -69,8 +75,8 @@ public class Animal {
      * Add new animal type if it isn't exist
      */
     public void addType(String type) {
-        if (!types.contains(type)) {
-            types.add(type);
+        if (!TYPES.contains(type)) {
+            TYPES.add(type);
         }
     }
 
@@ -132,11 +138,11 @@ public class Animal {
      */
     @Override
     public String toString() {
-        return "Animal{" +
-                "type='" + type + '\'' +
-                ", feedTimer=" + feedTimer +
-                ", needToFeed=" + needToFeed +
-                ", name='" + name + '\'' +
-                '}';
+        return "Animal{"
+                + "type='" + type + '\''
+                + ", feedTimer=" + feedTimer
+                + ", needToFeed=" + needToFeed
+                + ", name='" + name + '\''
+                + '}';
     }
 }
