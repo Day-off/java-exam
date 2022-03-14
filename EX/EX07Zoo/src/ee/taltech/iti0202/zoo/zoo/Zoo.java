@@ -90,7 +90,6 @@ public class Zoo {
      * Find most effective stuff
      */
     public void bestCaretaker() {
-//        findHungryAnimals();
         for (Caretaker person : stuff) {
             int count = 0;
             for (Animal anim : allAnimals) {
