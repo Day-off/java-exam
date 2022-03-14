@@ -87,10 +87,10 @@ public class Caretaker {
 
     @Override
     public String toString() {
-        return "Caretaker{" +
-                "name='" + name + '\'' +
-                ", canFeed=" + canFeed +
-                ", tasks=" + tasks +
-                '}';
+        return "Caretaker{"
+                + "name='" + name + '\''
+                + ", canFeed=" + canFeed
+                + ", tasks=" + tasks
+                + '}';
     }
 }

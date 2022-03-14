@@ -73,6 +73,7 @@ public class Animal {
 
     /***
      * Add new animal type if it isn't exist
+     * @param type
      */
     public void addType(String type) {
         if (!TYPES.contains(type)) {
@@ -82,6 +83,7 @@ public class Animal {
 
     /***
      * Animals goes hungrier
+     * @param day
      */
     public void changeTimer(Integer day) {
         if (feedTimer != null) {

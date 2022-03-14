@@ -3,7 +3,11 @@ package ee.taltech.iti0202.zoo.zoo;
 import ee.taltech.iti0202.zoo.animals.Animal;
 import ee.taltech.iti0202.zoo.caretaker.Caretaker;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Collections;
 
 public class Zoo {
 
