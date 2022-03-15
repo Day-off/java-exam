@@ -129,6 +129,10 @@ public class Zoo {
      *
      */
 
+    /***
+     * find and get most effective stuff
+     * @return
+     */
     public Caretaker getBestCaretaker() {
         bestCaretaker();
         return Collections.max(bestCare.entrySet(), Map.Entry.comparingByValue()).getKey();
@@ -142,6 +146,10 @@ public class Zoo {
         return allAnimals;
     }
 
+    /***
+     * getter
+     * @return
+     */
     public List<Animal> getHungryAnimals() {
         findHungryAnimals();
         return hungryAnimals;
