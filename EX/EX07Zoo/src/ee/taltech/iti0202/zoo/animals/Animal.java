@@ -61,6 +61,9 @@ public class Animal {
         this.hungrySound = hungrySound;
     }
 
+    /***
+     * set feed timer and amount
+     */
     public void setFeedTimer(Integer days) {
         this.needToFeed = days;
         this.feedTimer = needToFeed;
@@ -88,6 +91,9 @@ public class Animal {
     GETTERS
      */
 
+    /***
+     * get sounds depends on animal state
+     */
     public String getDefaultSound() {
         if (getFeedTimer() != null && getFeedTimer() <= 0) {
             if (getHungrySound() == null) {

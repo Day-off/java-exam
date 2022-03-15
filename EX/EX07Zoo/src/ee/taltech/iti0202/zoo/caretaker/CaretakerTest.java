@@ -22,7 +22,7 @@ class CaretakerTest {
     List<Animal> ex = new ArrayList<>();
 
     @Test
-    public void PersonElements() {
+    public void personElements() {
         assertEquals("Caretaker{name='Kati', canFeed=[MAMMAL, AMPHIBIAN, FISH], tasks=[]}", s2.toString());
     }
 
