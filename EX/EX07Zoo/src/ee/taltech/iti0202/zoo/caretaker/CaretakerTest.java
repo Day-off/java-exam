@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CaretakerTest {
     Caretaker s1 = new Caretaker("Mari", List.of(Animal.Type.MAMMAL, Animal.Type.FISH));
-    Caretaker s2 = new Caretaker("Kati", List.of(Animal.Type.MAMMAL,Animal.Type.AMPHIBIAN,Animal.Type.FISH));
+    Caretaker s2 = new Caretaker("Kati", List.of(Animal.Type.MAMMAL, Animal.Type.AMPHIBIAN, Animal.Type.FISH));
 
     Animal a1 = new AnimalBuilder().setName("Dog").setType(Animal.Type.MAMMAL)
             .setSound1("BARK-BARK").setDays(1).createAnimal();
@@ -22,12 +22,12 @@ class CaretakerTest {
     List<Animal> ex = new ArrayList<>();
 
     @Test
-    public void PersonElements(){
+    public void PersonElements() {
         assertEquals("Caretaker{name='Kati', canFeed=[MAMMAL, AMPHIBIAN, FISH], tasks=[]}", s2.toString());
     }
 
     @Test
-    public void feeding(){
+    public void feeding() {
         ex.add(a1);
         ex.add(a2);
         ex.add(a3);

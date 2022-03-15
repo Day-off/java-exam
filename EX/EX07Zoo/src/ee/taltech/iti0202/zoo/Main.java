@@ -16,12 +16,12 @@ public class Main {
         Animal a3 = new AnimalBuilder().setName("Monkey").setType(Animal.Type.MAMMAL).setSound1("uuh").setSound2("aah")
                 .setHungrySound("BANANA").setDays(1).createAnimal();
         Animal a4 = new AnimalBuilder().setName("Lammas").setType(Animal.Type.MAMMAL).setSound1("MAA").createAnimal();
-        Animal a5 =new AnimalBuilder().setName("Parrot").setType(Animal.Type.BIRD).setSound1("HI-HI").setDays(2).createAnimal();
+        Animal a5 = new AnimalBuilder().setName("Parrot").setType(Animal.Type.BIRD).setSound1("HI-HI").setDays(2).createAnimal();
 
         Zoo zoo = new Zoo();
 
         Caretaker s1 = new Caretaker("Mari", List.of(Animal.Type.MAMMAL, Animal.Type.FISH));
-        Caretaker s2 = new Caretaker("Kati", List.of(Animal.Type.MAMMAL,Animal.Type.AMPHIBIAN,Animal.Type.FISH));
+        Caretaker s2 = new Caretaker("Kati", List.of(Animal.Type.MAMMAL, Animal.Type.AMPHIBIAN, Animal.Type.FISH));
 
 
         zoo.addAnimal(a1);

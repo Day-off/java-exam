@@ -36,7 +36,7 @@ public class Animal {
         setFeedTimer(days);
     }
 
-    public enum Type{
+    public enum Type {
         MAMMAL, BIRD, FISH, REPTILE, AMPHIBIAN
     }
 
@@ -73,16 +73,6 @@ public class Animal {
     /*
     METHODS
      */
-
-//    /***
-//     * Add new animal type if it isn't exist
-//     * @param type
-//     */
-//    public void addType(String type) {
-//        if (!TYPES.contains(type)) {
-//            TYPES.add(type);
-//        }
-//    }
 
     /***
      * Animals goes hungrier

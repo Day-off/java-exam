@@ -2,7 +2,8 @@ package ee.taltech.iti0202.zoo.animals;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class AnimalTest {
     Animal a1 = new AnimalBuilder().setName("Dog").setType(Animal.Type.MAMMAL)
@@ -14,12 +15,12 @@ class AnimalTest {
 
 
     @Test
-    public void Animal() {
+    public void animal() {
         assertEquals("Animal{type='MAMMAL', feedTimer=1, needToFeed=1, name='Dog'}", a1.toString());
     }
 
     @Test
-    public void ChangeSound() {
+    public void changeSound() {
         a1.changeTimer(1);
         a3.changeTimer(1);
         assertEquals("", a1.getDefaultSound());
@@ -27,17 +28,17 @@ class AnimalTest {
     }
 
     @Test
-    public void Turtle() {
+    public void turtle() {
         assertEquals("", a2.getDefaultSound());
     }
 
     @Test
-    public void Monkey() {
+    public void monkey() {
         assertEquals("BANANA", a3.getHungrySound());
     }
 
     @Test
-    public void Sheep() {
+    public void sheep() {
         assertNull(a4.getFeedTimer());
     }
 
