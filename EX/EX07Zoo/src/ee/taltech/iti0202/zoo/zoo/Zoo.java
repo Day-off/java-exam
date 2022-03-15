@@ -49,9 +49,7 @@ public class Zoo {
 
 
     /*
-    *
     MAIN METHODS
-    *
      */
 
     /***
