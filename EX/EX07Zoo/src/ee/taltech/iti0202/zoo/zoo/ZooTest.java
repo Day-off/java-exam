@@ -16,7 +16,8 @@ class ZooTest {
     Animal a3 = new AnimalBuilder().setName("Monkey").setType(Animal.Type.MAMMAL).setSound1("uuh").setSound2("aah")
             .setHungrySound("BANANA").setDays(1).createAnimal();
     Animal a4 = new AnimalBuilder().setName("Lammas").setType(Animal.Type.MAMMAL).setSound1("MAA").createAnimal();
-    Animal a5 = new AnimalBuilder().setName("Parrot").setType(Animal.Type.BIRD).setSound1("HI-HI").setDays(2).createAnimal();
+    Animal a5 = new AnimalBuilder()
+            .setName("Parrot").setType(Animal.Type.BIRD).setSound1("HI-HI").setDays(2).createAnimal();
 
     Zoo zoo = new Zoo();
 
