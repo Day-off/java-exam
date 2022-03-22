@@ -29,7 +29,8 @@ public class Main {
 
         CoffeeMachine m1 = new CoffeeMachineBuilder().setType(CoffeeMachine.Type.AUTOMATIC)
                 .setWater(tank1).createCoffeeMachine();
-        CoffeeMachine m2 = new CoffeeMachineBuilder().setType(CoffeeMachine.Type.ORDINARY).setWater(tank2).createCoffeeMachine();
+        CoffeeMachine m2 = new CoffeeMachineBuilder()
+                .setType(CoffeeMachine.Type.ORDINARY).setWater(tank2).createCoffeeMachine();
         CoffeeMachine m3 = new CoffeeMachineBuilder().setType(CoffeeMachine.Type.CAPSULE)
                 .setWater(tank1).createCoffeeMachine();
 
@@ -71,12 +72,14 @@ public class Main {
         m3.setCapsule(new Capsule(Drinks.DrinksTypes.LATTE));
         caffe2.order(m3, Drinks.DrinksTypes.CAPPUCCINO);
 
+        int one = 1;
         int a = 0;
-        while (a != 9) {
+        int res1 = 9;
+        while (a != res1) {
             m3.removeCapsule();
             m3.setCapsule(new Capsule(Drinks.DrinksTypes.LATTE));
             caffe2.order(m3, Drinks.DrinksTypes.CAPPUCCINO);
-            a += 1;
+            a += one;
         }
 
         m3.cleanTrashTank();
@@ -86,9 +89,10 @@ public class Main {
 
         //AUTO
         int b = 0;
-        while (b != 15) {
+        int res2 = 15;
+        while (b != res2) {
             caffe1.order(m1, Drinks.DrinksTypes.CAPPUCCINO);
-            b += 1;
+            b += one;
         }
 
     }
