@@ -23,8 +23,11 @@ public class Main {
         Handler fileHandler = new FileHandler();
         LOGGER.addHandler(fileHandler);
 
-        WaterTank tank1 = new WaterTank(11);
-        WaterTank tank2 = new WaterTank(6);
+        int elev = 11;
+        int six = 6;
+
+        WaterTank tank1 = new WaterTank(elev);
+        WaterTank tank2 = new WaterTank(six);
 
 
         CoffeeMachine m1 = new CoffeeMachineBuilder().setType(CoffeeMachine.Type.AUTOMATIC)
@@ -49,27 +52,39 @@ public class Main {
          */
 
         caffe1.order(m2, Drinks.DrinksTypes.COFFEE);
+
         caffe1.order(m2, Drinks.DrinksTypes.COFFEE);
+
         caffe1.order(m2, Drinks.DrinksTypes.COFFEE);
+
         caffe1.order(m2, Drinks.DrinksTypes.COFFEE);
+
         caffe1.order(m2, Drinks.DrinksTypes.COFFEE);
+
         caffe1.order(m2, Drinks.DrinksTypes.KAKAO); //error trash is full
 
         m2.cleanTrashTank();//trash is cleaned
         caffe1.order(m2, Drinks.DrinksTypes.CAPPUCCINO);
 
         caffe1.order(m2, Drinks.DrinksTypes.CAPPUCCINO);//tank is empty
+
         caffe1.order(m2, Drinks.DrinksTypes.CAPPUCCINO);//tank is empty
 
         m2.getWater().refillTank();//refill tank
 
         //Capsule
         caffe2.order(m3, Drinks.DrinksTypes.KAKAO);//Drink is water
+
         m3.setCapsule(new Capsule(Drinks.DrinksTypes.LATTE));
+
         m3.removeCapsule();
+
         m3.setCapsule(new Capsule(Drinks.DrinksTypes.CAPPUCCINO));//error capsule in machine
+
         m3.removeCapsule();
+
         m3.setCapsule(new Capsule(Drinks.DrinksTypes.LATTE));
+
         caffe2.order(m3, Drinks.DrinksTypes.CAPPUCCINO);
 
         int one = 1;
