@@ -1,8 +1,5 @@
 package ee.taltech.iti0202.coffeeMachine;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import static ee.taltech.iti0202.example.Main.LOGGER;
 
 public class WaterTank {
@@ -28,7 +25,7 @@ public class WaterTank {
         return litersOfWater >= 1;
     }
 
-    public void reduceVolume(){
+    public void reduceVolume() {
         litersOfWater -= 1;
         LOGGER.info("Water was reduce");
     }

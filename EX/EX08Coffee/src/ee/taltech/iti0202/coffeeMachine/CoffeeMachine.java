@@ -4,7 +4,6 @@ import ee.taltech.iti0202.drinks.Drinks;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static ee.taltech.iti0202.example.Main.LOGGER;
 
@@ -18,8 +17,6 @@ public class CoffeeMachine {
     private boolean isFull = false;
 
     private final ArrayList<Capsule> compartment = new ArrayList<>();
-
-//    private final static Logger LOGGER = Logger.getLogger(CoffeeMachine.class.getName());
 
 
     public enum Type {
@@ -74,7 +71,8 @@ public class CoffeeMachine {
             compartment.add(capsule);
             LOGGER.info("Capsule was added");
         } else {
-            LOGGER.log(Level.WARNING, "Remove old capsule", new RuntimeException("Compartment already contains capsule"));
+            LOGGER.log(Level.WARNING, "Remove old capsule",
+                    new RuntimeException("Compartment already contains capsule"));
         }
     }
 
@@ -87,13 +85,15 @@ public class CoffeeMachine {
 
     public Drinks startCapsule(Drinks.DrinksTypes flavor) {
         if (isFull) {
-            LOGGER.log(Level.WARNING, "Trash tank of " + this + " is full, clean trash tank", new Throwable("Trash is full!"));
+            LOGGER.log(Level.WARNING, "Trash tank of " + this + " is full, clean trash tank",
+                    new Throwable("Trash is full!"));
             return null;
         } else {
             if (this.type.equals(Type.CAPSULE) && this.compartment.size() == 0) {
                 LOGGER.log(Level.WARNING, "Machine doesn't contains capsule");
             }
-            if (this.type.equals(Type.CAPSULE) && this.water.checkVolume() && (this.compartment.size() == 0 || this.compartment.get(0).getIsUsed())) {
+            if (this.type.equals(Type.CAPSULE) && this.water.checkVolume()
+                    && (this.compartment.size() == 0 || this.compartment.get(0).getIsUsed())) {
                 this.water.reduceVolume();
                 LOGGER.info("You use capsule coffee machine. "
                         + "Old capsule in use or there is no capsule in the compartment. Dink is water");

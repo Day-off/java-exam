@@ -2,8 +2,6 @@ package ee.taltech.iti0202.coffeeMachine;
 
 import ee.taltech.iti0202.drinks.Drinks;
 
-import java.util.logging.Logger;
-
 import static ee.taltech.iti0202.example.Main.LOGGER;
 
 public class Capsule {

@@ -36,7 +36,8 @@ public class Kitchen {
                 return machin.start(drink);
             }
         }
-        LOGGER.log(Level.WARNING, "There is no machine or drink of the required type", new Throwable("Not required type"));
+        LOGGER.log(Level.WARNING, "There is no machine or drink of the required type",
+                new Throwable("Not required type"));
         return null;
     }
 
