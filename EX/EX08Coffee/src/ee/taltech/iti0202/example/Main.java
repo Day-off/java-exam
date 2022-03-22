@@ -17,17 +17,17 @@ import java.util.logging.Logger;
 
 public class Main {
 
-    public final static Logger LOGGER = Logger.getLogger(Main.class.getName());
+    public static Logger LOGGER = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) throws IOException {
         Handler fileHandler = new FileHandler();
         LOGGER.addHandler(fileHandler);
 
-        int elev = 11;
-        int six = 6;
 
-        WaterTank tank1 = new WaterTank(elev);
-        WaterTank tank2 = new WaterTank(six);
+        int ELEVEN = 11;
+        WaterTank tank1 = new WaterTank(ELEVEN);
+        int SIX = 6;
+        WaterTank tank2 = new WaterTank(SIX);
 
 
         CoffeeMachine m1 = new CoffeeMachineBuilder().setType(CoffeeMachine.Type.AUTOMATIC)
@@ -87,10 +87,11 @@ public class Main {
 
         caffe2.order(m3, Drinks.DrinksTypes.CAPPUCCINO);
 
+
         int one = 1;
+        int NINE = 9;
         int a = 0;
-        int res1 = 9;
-        while (a != res1) {
+        while (a != NINE) {
             m3.removeCapsule();
             m3.setCapsule(new Capsule(Drinks.DrinksTypes.LATTE));
             caffe2.order(m3, Drinks.DrinksTypes.CAPPUCCINO);
@@ -104,8 +105,8 @@ public class Main {
 
         //AUTO
         int b = 0;
-        int res2 = 15;
-        while (b != res2) {
+        int FIFTEEN = 15;
+        while (b != FIFTEEN) {
             caffe1.order(m1, Drinks.DrinksTypes.CAPPUCCINO);
             b += one;
         }
