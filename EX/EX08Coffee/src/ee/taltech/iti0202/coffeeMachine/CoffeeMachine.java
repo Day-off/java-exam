@@ -57,13 +57,13 @@ public class CoffeeMachine {
             logger.info("AUTO.Coffee machine was created the " + drink.name());
             return new Drinks(drink);
         } else if (type.equals(Type.ORDINARY) && !isFull && this.water.checkVolume()) {
-            if (this.beans.checkVolume()){
+            if (this.beans.checkVolume()) {
                 this.water.reduceVolume();
                 this.beans.reduceBeansVolume();
                 totalTrash += 1;
                 logger.info("ORD.Coffee machine was created the " + drink.name());
                 return new Drinks(drink);
-            }else {
+            } else {
                 logger.log(Level.WARNING, "Refill beans tank", new Throwable("Beans tank is empty"));
                 return null;
             }
