@@ -34,10 +34,12 @@ public class CoffeeMachine {
     GENERAL METHODS
      */
 
-    public void checkTrash() {
+    public boolean checkTrash() {
         if (totalTrash == maxTrash) {
             this.isFull = true;
+            return true;
         }
+        return false;
     }
 
     public void cleanTrashTank() {
@@ -66,14 +68,16 @@ public class CoffeeMachine {
      METHODS FOR CAPSULE MACHINE
      */
 
-    public void setCapsule(Capsule capsule) {
+    public boolean setCapsule(Capsule capsule) {
         if (compartment.size() == 0) {
             compartment.add(capsule);
             LOGGER.info("Capsule was added");
+            return true;
         } else {
             LOGGER.log(Level.WARNING, "Remove old capsule",
                     new RuntimeException("Compartment already contains capsule"));
         }
+        return false;
     }
 
     public void removeCapsule() {
