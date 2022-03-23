@@ -17,11 +17,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class KitchenTest {
 
     private final int one = 1;
-    private final int NINE = 9;
+    private final int nine = 9;
     private int a = 0;
 
     private int b = 0;
-    private final int FIFTEEN = 15;
+    private final int fifteen = 15;
 
     private final WaterTank tank1 = new WaterTank(11);
     private final WaterTank tank2 = new WaterTank(6);
@@ -66,6 +66,7 @@ class KitchenTest {
         caffe1.order(m2, Drinks.DrinksTypes.COFFEE);
 
         caffe1.order(m2, Drinks.DrinksTypes.KAKAO);//error trash is full
+
         assertTrue(m2.checkTrash());
 
     }
@@ -73,7 +74,9 @@ class KitchenTest {
     @Test
     public void cleanTrash() {
         ordMachineTrash();
+
         m2.cleanTrashTank();//trash is cleaned
+
         assertFalse(m2.checkTrash());
     }
 
@@ -118,7 +121,7 @@ class KitchenTest {
     @Test
     public void capsuleTrash() {
         testWithCapsule();
-        while (a != NINE) {
+        while (a != nine) {
             m3.removeCapsule();
             m3.setCapsule(new Capsule(Drinks.DrinksTypes.LATTE));
             caffe2.order(m3, Drinks.DrinksTypes.CAPPUCCINO);
@@ -140,7 +143,7 @@ class KitchenTest {
     @Test
     public void autoMachine() {
         addStuff();
-        while (b != FIFTEEN) {
+        while (b != fifteen) {
             caffe1.order(m1, Drinks.DrinksTypes.CAPPUCCINO);
             b += 1;
         }
