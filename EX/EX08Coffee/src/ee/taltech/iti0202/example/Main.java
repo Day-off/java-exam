@@ -19,11 +19,11 @@ public class Main {
 
     public static Logger logger = Logger.getLogger(Main.class.getName());
 
-    private static int eleven = 11;
-    private static int six = 6;
-    private static int one = 1;
-    private static int nine = 9;
-    private static int fifteen = 15;
+    private static final int eleven = 11;
+    private static final int six = 6;
+    private static final int one = 1;
+    private static final int nine = 9;
+    private static final int fifteen = 15;
 
 
     public static void main(String[] args) throws IOException {
@@ -67,7 +67,7 @@ public class Main {
 
         caffe1.order(m2, Drinks.DrinksTypes.KAKAO); //error trash is full
 
-        m2.cleanTrashTank();//trash is cleaned
+        m2.cleanTrashTank(); //trash is cleaned
         caffe1.order(m2, Drinks.DrinksTypes.CAPPUCCINO);
 
         caffe1.order(m2, Drinks.DrinksTypes.CAPPUCCINO); //tank is empty
