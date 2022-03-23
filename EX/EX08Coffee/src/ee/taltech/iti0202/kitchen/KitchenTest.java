@@ -10,9 +10,19 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class KitchenTest {
+
+    private final int one = 1;
+    private final int NINE = 9;
+    private int a = 0;
+
+    private int b = 0;
+    private final int FIFTEEN = 15;
+
     private final WaterTank tank1 = new WaterTank(11);
     private final WaterTank tank2 = new WaterTank(6);
 
@@ -50,6 +60,7 @@ class KitchenTest {
         caffe1.order(m2, Drinks.DrinksTypes.COFFEE);
 
         caffe1.order(m2, Drinks.DrinksTypes.COFFEE);
+
         assertFalse(m2.checkTrash());
 
         caffe1.order(m2, Drinks.DrinksTypes.COFFEE);
@@ -107,9 +118,6 @@ class KitchenTest {
     @Test
     public void capsuleTrash() {
         testWithCapsule();
-        int one = 1;
-        int NINE = 9;
-        int a = 0;
         while (a != NINE) {
             m3.removeCapsule();
             m3.setCapsule(new Capsule(Drinks.DrinksTypes.LATTE));
@@ -132,8 +140,6 @@ class KitchenTest {
     @Test
     public void autoMachine() {
         addStuff();
-        int b = 0;
-        int FIFTEEN = 15;
         while (b != FIFTEEN) {
             caffe1.order(m1, Drinks.DrinksTypes.CAPPUCCINO);
             b += 1;
