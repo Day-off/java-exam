@@ -13,6 +13,7 @@ public class CoffeeMachine {
     private final Integer maxTrash;
     private final Type type;
     private final WaterTank water;
+    private final CoffeeBeans beans;
 
     private boolean isFull = false;
 
@@ -23,10 +24,11 @@ public class CoffeeMachine {
         ORDINARY, AUTOMATIC, CAPSULE
     }
 
-    public CoffeeMachine(Type type, int maxTrash, WaterTank water) {
+    public CoffeeMachine(Type type, int maxTrash, WaterTank water, CoffeeBeans beans) {
         this.type = type;
         this.maxTrash = maxTrash;
         this.water = water;
+        this.beans = beans;
         logger.info("Coffee machine was created");
     }
 
@@ -55,10 +57,16 @@ public class CoffeeMachine {
             logger.info("AUTO.Coffee machine was created the " + drink.name());
             return new Drinks(drink);
         } else if (type.equals(Type.ORDINARY) && !isFull && this.water.checkVolume()) {
-            this.water.reduceVolume();
-            totalTrash += 1;
-            logger.info("ORD.Coffee machine was created the " + drink.name());
-            return new Drinks(drink);
+            if (this.beans.checkVolume()){
+                this.water.reduceVolume();
+                this.beans.reduceBeansVolume();
+                totalTrash += 1;
+                logger.info("ORD.Coffee machine was created the " + drink.name());
+                return new Drinks(drink);
+            }else {
+                logger.log(Level.WARNING, "Refill beans tank", new Throwable("Beans tank is empty"));
+                return null;
+            }
         } else {
             return startCapsule(drink);
         }
@@ -126,5 +134,9 @@ public class CoffeeMachine {
 
     public WaterTank getWater() {
         return water;
+    }
+
+    public CoffeeBeans getBeans() {
+        return beans;
     }
 }

@@ -1,9 +1,6 @@
 package ee.taltech.iti0202.example;
 
-import ee.taltech.iti0202.coffeeMachine.Capsule;
-import ee.taltech.iti0202.coffeeMachine.CoffeeMachine;
-import ee.taltech.iti0202.coffeeMachine.CoffeeMachineBuilder;
-import ee.taltech.iti0202.coffeeMachine.WaterTank;
+import ee.taltech.iti0202.coffeeMachine.*;
 import ee.taltech.iti0202.drinks.Drinks;
 import ee.taltech.iti0202.kitchen.Kitchen;
 
@@ -29,16 +26,20 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Handler fileHandler = new FileHandler();
         logger.addHandler(fileHandler);
-
         WaterTank tank1 = new WaterTank(ELEVEN);
         WaterTank tank2 = new WaterTank(SIX);
 
+        CoffeeBeans beansTank = new CoffeeBeans(SIX);
 
-        CoffeeMachine m1 = new CoffeeMachineBuilder().setType(CoffeeMachine.Type.AUTOMATIC)
+        CoffeeMachine m1 = new CoffeeMachineBuilder()
+                .setType(CoffeeMachine.Type.AUTOMATIC)
                 .setWater(tank1).createCoffeeMachine();
         CoffeeMachine m2 = new CoffeeMachineBuilder()
-                .setType(CoffeeMachine.Type.ORDINARY).setWater(tank2).createCoffeeMachine();
-        CoffeeMachine m3 = new CoffeeMachineBuilder().setType(CoffeeMachine.Type.CAPSULE)
+                .setType(CoffeeMachine.Type.ORDINARY)
+                .setBeans(beansTank).setWater(tank2)
+                .createCoffeeMachine();
+        CoffeeMachine m3 = new CoffeeMachineBuilder()
+                .setType(CoffeeMachine.Type.CAPSULE)
                 .setWater(tank1).createCoffeeMachine();
 
         Kitchen caffe1 = new Kitchen(new ArrayList<>());
@@ -48,11 +49,8 @@ public class Main {
         caffe1.addCoffeeMachines(m1);
         caffe1.addCoffeeMachines(m2);
 
-        System.out.println(caffe1.getCoffeeMachines().size()); // 2
-        System.out.println(caffe2.getCoffeeMachines().size()); // 1
-
         /*
-        WATER TANK
+        WATER TANK AND BEANS
          */
 
         caffe1.order(m2, Drinks.DrinksTypes.COFFEE);
@@ -64,17 +62,20 @@ public class Main {
         caffe1.order(m2, Drinks.DrinksTypes.COFFEE);
 
         caffe1.order(m2, Drinks.DrinksTypes.COFFEE);
-
         caffe1.order(m2, Drinks.DrinksTypes.KAKAO); //error trash is full
-
         m2.cleanTrashTank(); //trash is cleaned
         caffe1.order(m2, Drinks.DrinksTypes.CAPPUCCINO);
-
         caffe1.order(m2, Drinks.DrinksTypes.CAPPUCCINO); //tank is empty
 
         caffe1.order(m2, Drinks.DrinksTypes.CAPPUCCINO); //tank is empty
 
         m2.getWater().refillTank(); //refill tank
+
+        caffe1.order(m2, Drinks.DrinksTypes.CAPPUCCINO); //beans tank is empty
+
+        m2.getBeans().refillBeansTank();
+
+        caffe1.order(m2, Drinks.DrinksTypes.CAPPUCCINO);
 
         //Capsule
         caffe2.order(m3, Drinks.DrinksTypes.KAKAO); //Drink is water

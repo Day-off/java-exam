@@ -1,18 +1,17 @@
 package ee.taltech.iti0202.kitchen;
 
-import ee.taltech.iti0202.coffeeMachine.Capsule;
 import ee.taltech.iti0202.coffeeMachine.CoffeeMachine;
+import ee.taltech.iti0202.coffeeMachine.CoffeeBeans;
 import ee.taltech.iti0202.coffeeMachine.CoffeeMachineBuilder;
 import ee.taltech.iti0202.coffeeMachine.WaterTank;
+import ee.taltech.iti0202.coffeeMachine.Capsule;
 import ee.taltech.iti0202.drinks.Drinks;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class KitchenTest {
 
@@ -26,15 +25,22 @@ class KitchenTest {
     private final WaterTank tank1 = new WaterTank(11);
     private final WaterTank tank2 = new WaterTank(6);
 
+    private final CoffeeBeans beansTank = new CoffeeBeans(6);
+
 
     private final CoffeeMachine m1 = new CoffeeMachineBuilder().setType(CoffeeMachine.Type.AUTOMATIC)
             .setWater(tank1).createCoffeeMachine();
-    private final CoffeeMachine m4 = new CoffeeMachineBuilder().setType(CoffeeMachine.Type.AUTOMATIC).setMaxTrash(4)
-            .setWater(tank1).createCoffeeMachine();
+    private final CoffeeMachine m4 = new CoffeeMachineBuilder().setType(CoffeeMachine.Type.ORDINARY).setMaxTrash(4)
+            .setWater(tank1).createCoffeeMachine(); //specific coffee machine or light version
     private final CoffeeMachine m2 = new CoffeeMachineBuilder()
-            .setType(CoffeeMachine.Type.ORDINARY).setWater(tank2).createCoffeeMachine();
+            .setType(CoffeeMachine.Type.ORDINARY).setBeans(beansTank).setWater(tank2).createCoffeeMachine();
     private final CoffeeMachine m3 = new CoffeeMachineBuilder().setType(CoffeeMachine.Type.CAPSULE)
             .setWater(tank1).createCoffeeMachine();
+
+    //try creat capsule machine with diff trash tank
+    private final CoffeeMachine m5 = new CoffeeMachineBuilder().setType(CoffeeMachine.Type.CAPSULE)
+            .setWater(tank1).setMaxTrash(6).createCoffeeMachine();
+
 
     private final Kitchen caffe1 = new Kitchen(new ArrayList<>());
     private final Kitchen caffe2 = new Kitchen(List.of(m3));
@@ -63,13 +69,13 @@ class KitchenTest {
 
         caffe1.order(m2, Drinks.DrinksTypes.COFFEE);
 
-        assertFalse(m2.checkTrash());
+        assertFalse(m2.checkTrash()); //no trash
 
         caffe1.order(m2, Drinks.DrinksTypes.COFFEE);
 
         caffe1.order(m2, Drinks.DrinksTypes.KAKAO); //error trash is full
 
-        assertTrue(m2.checkTrash());
+        assertTrue(m2.checkTrash()); //trash tank is full
 
     }
 
@@ -79,16 +85,16 @@ class KitchenTest {
 
         m2.cleanTrashTank(); //trash is cleaned
 
-        assertFalse(m2.checkTrash());
+        assertFalse(m2.checkTrash()); //cleaning is works
     }
 
     @Test
     public void testWaterTank() {
         cleanTrash();
         caffe1.order(m2, Drinks.DrinksTypes.CAPPUCCINO);
-        caffe1.order(m2, Drinks.DrinksTypes.CAPPUCCINO);
-        assertFalse(m2.getWater().checkVolume());
-        assertEquals(0, m2.getWater().getLitersOfWater());
+        caffe1.order(m2, Drinks.DrinksTypes.CAPPUCCINO); //Water tank is empty
+        assertFalse(m2.getWater().checkVolume()); //check is empty
+        assertEquals(0, m2.getWater().getLitersOfWater()); // check amount of water in water tank
     }
 
     @Test
@@ -96,6 +102,21 @@ class KitchenTest {
         testWaterTank();
         m2.getWater().refillTank(); //refill tank
         assertTrue(m2.getWater().checkVolume());
+    }
+
+    @Test
+    public void checkBeansTank() {
+        refillTank();
+        caffe1.order(m2, Drinks.DrinksTypes.CAPPUCCINO); //error beans are empty
+        assertFalse(m2.getBeans().checkVolume()); //check is empty
+        assertEquals(0, m2.getBeans().getBeansAmount()); // check amount of water in water tank
+    }
+
+    @Test
+    public void refillBeansTank() {
+        checkBeansTank();
+        m2.getBeans().refillBeansTank();
+        assertTrue(m2.getBeans().checkVolume());
     }
 
     @Test
@@ -150,6 +171,12 @@ class KitchenTest {
             b += 1;
         }
         assertEquals(Drinks.DrinksTypes.CAPPUCCINO, caffe1.order(m1, Drinks.DrinksTypes.CAPPUCCINO).getType());
+    }
+
+    @Test
+    public void machineNotExist(){
+        addStuff();
+        assertNull(caffe2.order(m4, Drinks.DrinksTypes.KAKAO));
     }
 
 

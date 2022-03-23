@@ -7,6 +7,7 @@ public class CoffeeMachineBuilder {
     private CoffeeMachine.Type type;
     private int maxTrash = 5;
     private WaterTank water;
+    private CoffeeBeans beans;
 
     public CoffeeMachineBuilder setType(CoffeeMachine.Type type) {
         this.type = type;
@@ -20,9 +21,6 @@ public class CoffeeMachineBuilder {
         } else if (0 != maxTrash) {
             this.maxTrash = maxTrash;
             logger.info("machine trash volume was specified volume is " + maxTrash);
-        } else {
-            this.maxTrash = 5;
-            logger.info("machine trash volume doesn't specified volume is " + maxTrash);
         }
         return this;
     }
@@ -32,7 +30,12 @@ public class CoffeeMachineBuilder {
         return this;
     }
 
+    public CoffeeMachineBuilder setBeans(CoffeeBeans beans) {
+        this.beans = beans;
+        return this;
+    }
+
     public CoffeeMachine createCoffeeMachine() {
-        return new CoffeeMachine(type, maxTrash, water);
+        return new CoffeeMachine(type, maxTrash, water, beans);
     }
 }

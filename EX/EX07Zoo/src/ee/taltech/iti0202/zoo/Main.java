@@ -10,14 +10,26 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        Animal a1 = new AnimalBuilder().setName("Dog").setType(Animal.Type.MAMMAL)
-                .setSound1("BARK-BARK").setDays(1).createAnimal();
+        Animal a1 = new AnimalBuilder()
+                .setName("Dog")
+                .setType(Animal.Type.MAMMAL)
+                .setSound1("BARK-BARK")
+                .setDays(1).createAnimal();
         Animal a2 = new AnimalBuilder().setName("Turtle").setType(Animal.Type.AMPHIBIAN).setDays(3).createAnimal();
-        Animal a3 = new AnimalBuilder().setName("Monkey").setType(Animal.Type.MAMMAL).setSound1("uuh").setSound2("aah")
+        Animal a3 = new AnimalBuilder()
+                .setName("Monkey")
+                .setType(Animal.Type.MAMMAL)
+                .setSound1("uuh")
+                .setSound2("aah")
                 .setHungrySound("BANANA").setDays(1).createAnimal();
-        Animal a4 = new AnimalBuilder().setName("Lammas").setType(Animal.Type.MAMMAL).setSound1("MAA").createAnimal();
+        Animal a4 = new AnimalBuilder()
+                .setName("Lammas")
+                .setType(Animal.Type.MAMMAL)
+                .setSound1("MAA").createAnimal();
         Animal a5 = new AnimalBuilder().setName("Parrot")
-                .setType(Animal.Type.BIRD).setSound1("HI-HI").setDays(2).createAnimal();
+                .setType(Animal.Type.BIRD)
+                .setSound1("HI-HI")
+                .setDays(2).createAnimal();
 
         Zoo zoo = new Zoo();
 
