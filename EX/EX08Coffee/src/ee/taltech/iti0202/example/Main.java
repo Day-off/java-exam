@@ -19,19 +19,19 @@ public class Main {
 
     public static Logger logger = Logger.getLogger(Main.class.getName());
 
-    private static final int eleven = 11;
-    private static final int six = 6;
-    private static final int one = 1;
-    private static final int nine = 9;
-    private static final int fifteen = 15;
+    private static final int ELEVEN = 11;
+    private static final int SIX = 6;
+    private static final int ONE = 1;
+    private static final int NINE = 9;
+    private static final int FIFTEEN = 15;
 
 
     public static void main(String[] args) throws IOException {
         Handler fileHandler = new FileHandler();
         logger.addHandler(fileHandler);
 
-        WaterTank tank1 = new WaterTank(eleven);
-        WaterTank tank2 = new WaterTank(six);
+        WaterTank tank1 = new WaterTank(ELEVEN);
+        WaterTank tank2 = new WaterTank(SIX);
 
 
         CoffeeMachine m1 = new CoffeeMachineBuilder().setType(CoffeeMachine.Type.AUTOMATIC)
@@ -90,11 +90,11 @@ public class Main {
         caffe2.order(m3, Drinks.DrinksTypes.CAPPUCCINO);
 
         int a = 0;
-        while (a != nine) {
+        while (a != NINE) {
             m3.removeCapsule();
             m3.setCapsule(new Capsule(Drinks.DrinksTypes.LATTE));
             caffe2.order(m3, Drinks.DrinksTypes.CAPPUCCINO);
-            a += one;
+            a += ONE;
         }
 
         m3.cleanTrashTank();
@@ -104,9 +104,9 @@ public class Main {
 
         //AUTO
         int b = 0;
-        while (b != fifteen) {
+        while (b != FIFTEEN) {
             caffe1.order(m1, Drinks.DrinksTypes.CAPPUCCINO);
-            b += one;
+            b += ONE;
         }
 
     }
