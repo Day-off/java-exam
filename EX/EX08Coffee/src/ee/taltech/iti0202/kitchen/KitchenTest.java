@@ -29,6 +29,8 @@ class KitchenTest {
 
     private final CoffeeMachine m1 = new CoffeeMachineBuilder().setType(CoffeeMachine.Type.AUTOMATIC)
             .setWater(tank1).createCoffeeMachine();
+    private final CoffeeMachine m4 = new CoffeeMachineBuilder().setType(CoffeeMachine.Type.AUTOMATIC).setMaxTrash(4)
+            .setWater(tank1).createCoffeeMachine();
     private final CoffeeMachine m2 = new CoffeeMachineBuilder()
             .setType(CoffeeMachine.Type.ORDINARY).setWater(tank2).createCoffeeMachine();
     private final CoffeeMachine m3 = new CoffeeMachineBuilder().setType(CoffeeMachine.Type.CAPSULE)

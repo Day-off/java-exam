@@ -1,6 +1,6 @@
 package ee.taltech.iti0202.coffeeMachine;
 
-import static ee.taltech.iti0202.example.Main.LOGGER;
+import static ee.taltech.iti0202.example.Main.logger;
 
 public class WaterTank {
 
@@ -10,7 +10,7 @@ public class WaterTank {
     public WaterTank(int liters) {
         this.containerVolume = liters;
         setLitersOfWater(containerVolume);
-        LOGGER.info("Water tank was created volume " + containerVolume);
+        logger.info("Water tank was created volume " + containerVolume);
     }
 
     public int getLitersOfWater() {
@@ -27,11 +27,11 @@ public class WaterTank {
 
     public void reduceVolume() {
         litersOfWater -= 1;
-        LOGGER.info("Water was reduce");
+        logger.info("Water was reduce");
     }
 
     public void refillTank() {
         this.litersOfWater = containerVolume;
-        LOGGER.info("Water tank was refilled");
+        logger.info("Water tank was refilled");
     }
 }

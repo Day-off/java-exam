@@ -5,7 +5,7 @@ import ee.taltech.iti0202.drinks.Drinks;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
-import static ee.taltech.iti0202.example.Main.LOGGER;
+import static ee.taltech.iti0202.example.Main.logger;
 
 
 public class CoffeeMachine {
@@ -27,7 +27,7 @@ public class CoffeeMachine {
         this.type = type;
         this.maxTrash = maxTrash;
         this.water = water;
-        LOGGER.info("Coffee machine was created");
+        logger.info("Coffee machine was created");
     }
 
     /*
@@ -44,7 +44,7 @@ public class CoffeeMachine {
 
     public void cleanTrashTank() {
         totalTrash = 0;
-        LOGGER.info("Trash tank was cleaned");
+        logger.info("Trash tank was cleaned");
         this.isFull = false;
     }
 
@@ -52,12 +52,12 @@ public class CoffeeMachine {
         checkTrash();
         if (type.equals(Type.AUTOMATIC)) {
             totalTrash += 1;
-            LOGGER.info("AUTO.Coffee machine was created the " + drink.name());
+            logger.info("AUTO.Coffee machine was created the " + drink.name());
             return new Drinks(drink);
         } else if (type.equals(Type.ORDINARY) && !isFull && this.water.checkVolume()) {
             this.water.reduceVolume();
             totalTrash += 1;
-            LOGGER.info("ORD.Coffee machine was created the " + drink.name());
+            logger.info("ORD.Coffee machine was created the " + drink.name());
             return new Drinks(drink);
         } else {
             return startCapsule(drink);
@@ -71,10 +71,10 @@ public class CoffeeMachine {
     public boolean setCapsule(Capsule capsule) {
         if (compartment.size() == 0) {
             compartment.add(capsule);
-            LOGGER.info("Capsule was added");
+            logger.info("Capsule was added");
             return true;
         } else {
-            LOGGER.log(Level.WARNING, "Remove old capsule",
+            logger.log(Level.WARNING, "Remove old capsule",
                     new RuntimeException("Compartment already contains capsule"));
         }
         return false;
@@ -82,34 +82,34 @@ public class CoffeeMachine {
 
     public void removeCapsule() {
         if (compartment.size() != 0) {
-            LOGGER.info("Capsule was removed");
+            logger.info("Capsule was removed");
             compartment.remove(compartment.get(0));
         }
     }
 
     public Drinks startCapsule(Drinks.DrinksTypes flavor) {
         if (isFull) {
-            LOGGER.log(Level.WARNING, "Trash tank of " + this + " is full, clean trash tank",
+            logger.log(Level.WARNING, "Trash tank of " + this + " is full, clean trash tank",
                     new Throwable("Trash is full!"));
             return null;
         } else {
             if (this.type.equals(Type.CAPSULE) && this.compartment.size() == 0) {
-                LOGGER.log(Level.WARNING, "Machine doesn't contains capsule");
+                logger.log(Level.WARNING, "Machine doesn't contains capsule");
             }
             if (this.type.equals(Type.CAPSULE) && this.water.checkVolume()
                     && (this.compartment.size() == 0 || this.compartment.get(0).getIsUsed())) {
                 this.water.reduceVolume();
-                LOGGER.info("You use capsule coffee machine. "
+                logger.info("You use capsule coffee machine. "
                         + "Old capsule in use or there is no capsule in the compartment. Dink is water");
                 return new Drinks(Drinks.DrinksTypes.WATER);
             } else if (!this.water.checkVolume()) {
-                LOGGER.log(Level.WARNING, "Refill water tank", new Throwable("Water tank is empty"));
+                logger.log(Level.WARNING, "Refill water tank", new Throwable("Water tank is empty"));
                 return null;
             } else {
                 this.compartment.get(0).useCapsule();
                 this.water.reduceVolume();
                 totalTrash += 1;
-                LOGGER.info("CAPS.Coffee machine was created the " + flavor.name());
+                logger.info("CAPS.Coffee machine was created the " + flavor.name());
                 return new Drinks(flavor);
 
             }

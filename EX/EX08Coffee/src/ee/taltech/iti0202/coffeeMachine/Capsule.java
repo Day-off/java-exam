@@ -2,7 +2,7 @@ package ee.taltech.iti0202.coffeeMachine;
 
 import ee.taltech.iti0202.drinks.Drinks;
 
-import static ee.taltech.iti0202.example.Main.LOGGER;
+import static ee.taltech.iti0202.example.Main.logger;
 
 
 public class Capsule {
@@ -11,11 +11,11 @@ public class Capsule {
     private boolean isUsed = false;
 
     public Capsule(Drinks.DrinksTypes flavor) {
-        LOGGER.info("Capsule created");
+        logger.info("Capsule created");
     }
 
     public void useCapsule() {
-        LOGGER.info("Capsule was used");
+        logger.info("Capsule was used");
         this.isUsed = true;
     }
 

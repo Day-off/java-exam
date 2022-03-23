@@ -1,6 +1,6 @@
 package ee.taltech.iti0202.coffeeMachine;
 
-import static ee.taltech.iti0202.example.Main.LOGGER;
+import static ee.taltech.iti0202.example.Main.logger;
 
 public class CoffeeMachineBuilder {
 
@@ -16,13 +16,13 @@ public class CoffeeMachineBuilder {
     public CoffeeMachineBuilder setMaxTrash(int maxTrash) {
         if (type == CoffeeMachine.Type.CAPSULE) {
             this.maxTrash = 10;
-            LOGGER.info("Capsule machine set trash volume ");
+            logger.info("Capsule machine set trash volume ");
         } else if (0 != maxTrash) {
             this.maxTrash = maxTrash;
-            LOGGER.info("machine trash volume was specified volume is " + maxTrash);
+            logger.info("machine trash volume was specified volume is " + maxTrash);
         } else {
             this.maxTrash = 5;
-            LOGGER.info("machine trash volume doesn't specified volume is " + maxTrash);
+            logger.info("machine trash volume doesn't specified volume is " + maxTrash);
         }
         return this;
     }
