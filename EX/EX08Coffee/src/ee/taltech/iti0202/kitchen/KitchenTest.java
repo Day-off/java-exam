@@ -65,7 +65,7 @@ class KitchenTest {
 
         caffe1.order(m2, Drinks.DrinksTypes.COFFEE);
 
-        caffe1.order(m2, Drinks.DrinksTypes.KAKAO);//error trash is full
+        caffe1.order(m2, Drinks.DrinksTypes.KAKAO); //error trash is full
 
         assertTrue(m2.checkTrash());
 
@@ -75,7 +75,7 @@ class KitchenTest {
     public void cleanTrash() {
         ordMachineTrash();
 
-        m2.cleanTrashTank();//trash is cleaned
+        m2.cleanTrashTank(); //trash is cleaned
 
         assertFalse(m2.checkTrash());
     }
@@ -92,7 +92,7 @@ class KitchenTest {
     @Test
     public void refillTank() {
         testWaterTank();
-        m2.getWater().refillTank();//refill tank
+        m2.getWater().refillTank(); //refill tank
         assertTrue(m2.getWater().checkVolume());
     }
 
@@ -108,7 +108,7 @@ class KitchenTest {
         testEmptyCapsuleMachine();
         m3.setCapsule(new Capsule(Drinks.DrinksTypes.LATTE));
 
-        assertFalse(m3.setCapsule(new Capsule(Drinks.DrinksTypes.CAPPUCCINO)));//error capsule in machine
+        assertFalse(m3.setCapsule(new Capsule(Drinks.DrinksTypes.CAPPUCCINO))); //error capsule in machine
 
         m3.removeCapsule();
 
