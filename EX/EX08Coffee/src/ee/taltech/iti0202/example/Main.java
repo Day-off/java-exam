@@ -1,6 +1,10 @@
 package ee.taltech.iti0202.example;
 
-import ee.taltech.iti0202.coffeeMachine.*;
+import ee.taltech.iti0202.coffeeMachine.CoffeeMachine;
+import ee.taltech.iti0202.coffeeMachine.CoffeeMachineBuilder;
+import ee.taltech.iti0202.coffeeMachine.WaterTank;
+import ee.taltech.iti0202.coffeeMachine.CoffeeBeans;
+import ee.taltech.iti0202.coffeeMachine.Capsule;
 import ee.taltech.iti0202.drinks.Drinks;
 import ee.taltech.iti0202.kitchen.Kitchen;
 

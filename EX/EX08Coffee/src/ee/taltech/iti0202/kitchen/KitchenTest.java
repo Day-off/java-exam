@@ -11,7 +11,10 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class KitchenTest {
 
@@ -21,11 +24,12 @@ class KitchenTest {
 
     private int b = 0;
     private final int fifteen = 15;
+    private final int six = 6;
 
     private final WaterTank tank1 = new WaterTank(11);
-    private final WaterTank tank2 = new WaterTank(6);
+    private final WaterTank tank2 = new WaterTank(six);
 
-    private final CoffeeBeans beansTank = new CoffeeBeans(6);
+    private final CoffeeBeans beansTank = new CoffeeBeans(six);
 
 
     private final CoffeeMachine m1 = new CoffeeMachineBuilder().setType(CoffeeMachine.Type.AUTOMATIC)
@@ -39,7 +43,7 @@ class KitchenTest {
 
     //try creat capsule machine with diff trash tank
     private final CoffeeMachine m5 = new CoffeeMachineBuilder().setType(CoffeeMachine.Type.CAPSULE)
-            .setWater(tank1).setMaxTrash(6).createCoffeeMachine();
+            .setWater(tank1).setMaxTrash(six).createCoffeeMachine();
 
 
     private final Kitchen caffe1 = new Kitchen(new ArrayList<>());
@@ -174,7 +178,7 @@ class KitchenTest {
     }
 
     @Test
-    public void machineNotExist(){
+    public void machineNotExist() {
         addStuff();
         assertNull(caffe2.order(m4, Drinks.DrinksTypes.KAKAO));
     }
