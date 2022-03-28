@@ -58,13 +58,19 @@ public class Exam {
         if (withOutP.contains(prefix)) {
             return true;
         } else if (withOutP.length() < prefix.length()) {
-            return withOutP.contains(prefix.substring(0, withOutP.length()))
-                    || withOutP.contains(prefix.substring(1, withOutP.length()))
-                    || withOutP.contains(prefix.substring(2, withOutP.length()));
-        } else {
-            return false;
+            String cprefix = prefix;
+            for (int i = 0; i < withOutP.length(); i++) {
+                if (withOutP.contains(prefix.substring(i, withOutP.length()))) {
+                    return true;
+                }
+
+            }
+//            return withOutP.contains(prefix.substring(0, withOutP.length()))
+//                    || withOutP.contains(prefix.substring(1, withOutP.length()))
+//                    || withOutP.contains(prefix.substring(2, withOutP.length()));
         }
 
+        return false;
     }
 
     public static void main(String[] args) {
