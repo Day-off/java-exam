@@ -58,7 +58,9 @@ public class Exam {
         if (withOutP.contains(prefix)) {
             return true;
         } else if (withOutP.length() < prefix.length()) {
-            return withOutP.contains(prefix.substring(0, withOutP.length())) || withOutP.contains(prefix.substring(1, withOutP.length()));
+            return withOutP.contains(prefix.substring(0, withOutP.length()))
+                    || withOutP.contains(prefix.substring(1, withOutP.length()))
+                    || withOutP.contains(prefix.substring(2, withOutP.length()));
         } else {
             return false;
         }
