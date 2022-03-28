@@ -84,7 +84,7 @@ public class PostOffice {
     public static void main(String[] args) {
         PostOffice postOffice = new PostOffice("Tallinn");
 
-        Postman postman = new Postman("Martin", 40);
+        Postman postman = new Postman("Martin", MAX_AGE);
 
         postOffice.addPostman(postman);
 

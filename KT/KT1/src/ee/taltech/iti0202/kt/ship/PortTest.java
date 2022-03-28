@@ -18,8 +18,8 @@ class PortTest {
             .setCin("EE-ABC00042-A3-99").createShip();
     private final Ship pas = new ShipBuilder().setType(Ship.Type.PASSENGER).setMaxWeight(5)
             .setCin("EE-ABC00042-A3-99").createShip();
-    private final Ship bul = new ShipBuilder().setType(Ship.Type.BULK).setMaxWeight(FIFTHEEN).setCin("EE-ABC00042-A3-99")
-            .createShip();
+    private final Ship bul = new ShipBuilder().setType(Ship.Type.BULK).setMaxWeight(FIFTHEEN)
+            .setCin("EE-ABC00042-A3-99").createShip();
 
     private final Port sadam = new Port();
 
