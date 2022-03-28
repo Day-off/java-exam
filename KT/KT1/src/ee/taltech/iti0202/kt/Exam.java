@@ -46,13 +46,27 @@ public class Exam {
      * prefixExistsAgain("aaaa", 4) => false
      */
     public static boolean prefixExistsAgain(String str, int n) {
-        return false;
+        if (str.isEmpty() || n <= 0) {
+            return false;
+        }
+        String prefix = str.substring(0, n);
+        String withOutP = str.substring(n);
+
+        if (withOutP.contains(prefix)) {
+            return true;
+        } else if (withOutP.length() < prefix.length()) {
+            return withOutP.contains(prefix.substring(0, withOutP.length()));
+        } else {
+            return false;
+        }
     }
 
     public static void main(String[] args) {
-        Exam a = new Exam();
-        System.out.println(rotatedString("piimavunts", "ntspiimavu"));
-        System.out.println(rotatedString("ABC", "cab"));
-        System.out.println(rotatedString("kurgid", "gikur"));
+        System.out.println(prefixExistsAgain("abXXabc", 1));
+        System.out.println(prefixExistsAgain("abXXabc", 2));
+        System.out.println(prefixExistsAgain("abXXabc", 3));
+        System.out.println(prefixExistsAgain("ababa", 3));
+        System.out.println(prefixExistsAgain("aaaa", 3));
+        System.out.println(prefixExistsAgain("aaaa", 4));
     }
 }
