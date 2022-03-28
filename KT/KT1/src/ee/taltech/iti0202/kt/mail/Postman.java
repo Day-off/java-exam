@@ -35,14 +35,6 @@ public class Postman {
         }
     }
 
-    public int getCurrentAmount() {
-        int current = 0;
-        for (Letter l : this.letters) {
-            current += l.getAddress().length();
-        }
-        return current;
-    }
-
     /**
      * Adds a letter to postman.
      * The letter can be added if the name of the postman and the name of the letter's address
@@ -54,8 +46,7 @@ public class Postman {
      * Otherwise returns true and letter is added to postman.
      */
     public boolean addLetter(Letter letter) {
-        int current = getCurrentAmount();
-        if (this.name.charAt(0) != letter.getAddress().charAt(0) || (current >= this.limit)) {
+        if (this.name.charAt(0) != letter.getAddress().charAt(0) || (this.letters.size() >= this.limit)) {
             return false;
         }
         letters.add(letter);
