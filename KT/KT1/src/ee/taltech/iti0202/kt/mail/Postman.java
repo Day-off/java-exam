@@ -43,7 +43,7 @@ public class Postman {
      * If the age of the postman is 40 or larger, then the limit of the letters is: age - name length
      * If the age of the postman is below 40, the limit is age + name length.
      * If the first letters do not match or the letter limit is reached, returns false.
-     * Otherwise returns true and letter is added to postman.
+     * Otherwise, returns true and letter is added to postman.
      */
     public boolean addLetter(Letter letter) {
         if (this.name.charAt(0) != letter.getAddress().charAt(0) || (this.letters.size() >= this.limit)) {
