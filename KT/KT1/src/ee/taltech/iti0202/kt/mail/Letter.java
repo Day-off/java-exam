@@ -48,6 +48,6 @@ public class Letter {
      */
     public String toString() {
 
-        return " City: " + this.destinationCity + ", Address: " + this.address + ", Recipient: " + this.recipient;
+        return "City: " + this.destinationCity + ", Address: " + this.address + ", Recipient: " + this.recipient;
     }
 }

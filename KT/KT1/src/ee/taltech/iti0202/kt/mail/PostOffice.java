@@ -5,9 +5,9 @@ import java.util.List;
 
 public class PostOffice {
 
-    private String location;
-    private List<Letter> letters = new ArrayList<>();
-    private List<Postman> postmans = new ArrayList<>();
+    private final String location;
+    private final List<Letter> letters = new ArrayList<>();
+    private final List<Postman> postmans = new ArrayList<>();
 
     /**
      * Create a post office with the location.

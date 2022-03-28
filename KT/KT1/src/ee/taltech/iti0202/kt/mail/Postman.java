@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Postman {
 
-    private String name;
-    private int age;
-    private List<Letter> letters = new ArrayList<>();
+    private final String name;
+    private final int age;
+    private final List<Letter> letters = new ArrayList<>();
     private int limit;
 
     /**
@@ -38,7 +38,7 @@ public class Postman {
     public int getCurrentAmount() {
         int current = 0;
         for (Letter l : this.letters) {
-            current += l.getAddress().length() + l.getRecipient().length() + l.getDestinationCity().length();
+            current += l.getAddress().length();
         }
         return current;
     }
