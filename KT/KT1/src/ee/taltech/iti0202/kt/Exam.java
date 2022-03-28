@@ -52,10 +52,13 @@ public class Exam {
         String prefix = str.substring(0, n);
         String withOutP = str.substring(n);
 
+        if (withOutP.length() == 0) {
+            return false;
+        }
         if (withOutP.contains(prefix)) {
             return true;
         } else if (withOutP.length() < prefix.length()) {
-            return withOutP.contains(prefix.substring(0, withOutP.length()));
+            return withOutP.contains(prefix.substring(0, withOutP.length())) || withOutP.contains(prefix.substring(1, withOutP.length()));
         } else {
             return false;
         }
