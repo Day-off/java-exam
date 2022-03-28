@@ -8,6 +8,8 @@ public class PostOffice {
     private final String location;
     private final List<Letter> letters = new ArrayList<>();
     private final List<Postman> postmans = new ArrayList<>();
+    private static final int MAX_AGE = 40;
+
 
     /**
      * Create a post office with the location.

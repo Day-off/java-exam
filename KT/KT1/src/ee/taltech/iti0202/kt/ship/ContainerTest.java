@@ -8,12 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ContainerTest {
 
-    private static final int maxW = 7;
+    private static final int MAX_W = 7;
 
     @Test
     public void createContainer() {
-        Container con = new Container(maxW);
-        assertEquals(maxW, con.getWeight());
+        Container con = new Container(MAX_W);
+        assertEquals(MAX_W, con.getWeight());
         assertFalse(con.getStatus());
         con.changeStatuseOnShip();
         assertTrue(con.getStatus());

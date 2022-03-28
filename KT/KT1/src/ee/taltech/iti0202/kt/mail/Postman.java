@@ -9,6 +9,7 @@ public class Postman {
     private final int age;
     private final List<Letter> letters = new ArrayList<>();
     private int limit;
+    private static final int MAX_AGE = 40;
 
     /**
      * Create a postman with the name and the age.
@@ -28,7 +29,7 @@ public class Postman {
     }
 
     public void getLimit() {
-        if (this.age >= 40) {
+        if (this.age >= MAX_AGE) {
             this.limit = this.age - name.length();
         } else {
             this.limit = this.age + name.length();

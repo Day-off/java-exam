@@ -6,11 +6,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ShipTest {
 
-    private static final int maxW1 = 10;
-    private static final int maxW2 = 3;
-    private final Container con1 = new Container(maxW1);
-    private final Container con2 = new Container(maxW2);
-    private final Container con3 = new Container(maxW2);
+    private static final int MAX_W1 = 10;
+    private static final int MAX_W2 = 3;
+    private final Container con1 = new Container(MAX_W1);
+    private final Container con2 = new Container(MAX_W2);
+    private final Container con3 = new Container(MAX_W2);
 
     private final Ship tan = new ShipBuilder().setType(Ship.Type.TANKER).setMaxWeight(10).setMaxContainerAmount(2)
             .setCin("EE-ABC00042-A3-99").createShip();
