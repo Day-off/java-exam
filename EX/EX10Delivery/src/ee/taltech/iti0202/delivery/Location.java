@@ -1,27 +1,18 @@
 package ee.taltech.iti0202.delivery;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Locale;
+import java.util.*;
 
 public class Location {
 
     private final String name;
 
-    private final Map<String, Integer> othersLocations = new HashMap<>();
-
     private final ArrayList<Packet> packets = new ArrayList<>();
 
-    public Location(String name, List<String> otherLocations, List<Integer> distance) {
+    private final Map<String, Integer> othersLocations = new HashMap<>();
+
+
+    public Location(String name) {
         this.name = name;
-
-        for (int i = 0; i < otherLocations.size(); i++) {
-            othersLocations.put(otherLocations.get(i), distance.get(i));
-        }
-
     }
 
     public void addPacket(Packet packet) {
@@ -36,6 +27,7 @@ public class Location {
     }
 
     public Integer getDistanceTo(String name) {
+
         return othersLocations.getOrDefault(name, Integer.MAX_VALUE);
     }
 

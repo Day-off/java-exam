@@ -1,9 +1,6 @@
 package ee.taltech.iti0202.delivery;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 public class World {
 
@@ -14,7 +11,10 @@ public class World {
         if (distances.size() != otherLocations.size() || locations.stream().anyMatch(c -> c.getName().equals(name))) {
             return Optional.empty();
         } else {
-            Location location = new Location(name, otherLocations, distances);
+            Location location = new Location(name);
+            for (int i = 0; i < otherLocations.size(); i++) {
+                location.addDistance(otherLocations.get(i), distances.get(i));
+            }
             locations.add(location);
             return Optional.of(location);
         }
