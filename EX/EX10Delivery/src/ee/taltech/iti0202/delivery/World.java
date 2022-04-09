@@ -21,7 +21,7 @@ public class World {
     }
 
     public Optional<Courier> addCourier(String name, String to) {
-        if (locations.stream().anyMatch(c -> c.getName().equals(name)) || couriers.stream()
+        if (locations.stream().noneMatch(c -> c.getName().equals(to)) || couriers.stream()
                 .anyMatch(c -> c.getName().equals(name))) {
             return Optional.empty();
         } else {
