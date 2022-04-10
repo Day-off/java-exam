@@ -4,8 +4,8 @@ import java.util.*;
 
 public class World {
 
-    private final Map<String, Location> locations = new HashMap<>();
-    private final Map<String, Courier> couriers = new HashMap<>();
+    private final HashMap<String, Location> locations = new HashMap<>();
+    private final HashMap<String, Courier> couriers = new HashMap<>();
 
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
         if (locations.containsKey(name) || otherLocations.size() != distances.size() || locations.size() != otherLocations.size()) {
