@@ -8,20 +8,8 @@ public class World {
     private final Map<String, Courier> couriers = new HashMap<>();
 
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
-//        if (distances.size() != otherLocations.size() || locations.containsKey(name)
-//                || !locations.keySet().containsAll(otherLocations)) {
-//
-//        Location newLocation = new Location(name);
-//        for (int i = 0; i < otherLocations.size(); i++) {
-//            String destination = otherLocations.get(i);
-//            newLocation.addDistance(destination, distances.get(i));
-//            mapOfLocationName.get(destination).addDistance(newLocation.getName(), distances.get(i));
-//        }
-//        mapOfLocationName.put(name, newLocation);
-//        couriersOfLocations.put(newLocation, new ArrayList<>());
-//        return Optional.of(newLocation);
 
-        if (locations.size() != otherLocations.size() || otherLocations.size() != distances.size() || locations.containsKey(name) ||
+        if ( locations.containsKey(name) || otherLocations.size() != distances.size() || locations.size() != otherLocations.size() ||
                 !locations.keySet().containsAll(otherLocations)) {
             System.out.println("Empty");
             return Optional.empty();
@@ -30,7 +18,6 @@ public class World {
             for (int i = 0; i < otherLocations.size(); i++) {
                 newLocation.addDistance(otherLocations.get(i), distances.get(i));
                 locations.get(otherLocations.get(i)).addDistance(name, distances.get(i));
-
             }
             locations.put(name, newLocation);
             return Optional.of(newLocation);
