@@ -10,7 +10,6 @@ public class Location {
 
     private final Map<String, Integer> othersLocations = new HashMap<>();
 
-
     public Location(String name) {
         this.name = name;
     }
