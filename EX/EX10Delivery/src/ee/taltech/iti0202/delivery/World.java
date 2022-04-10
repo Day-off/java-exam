@@ -8,20 +8,19 @@ public class World {
     private final Map<String, Courier> couriers = new HashMap<>();
 
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
-        if ( locations.containsKey(name) || otherLocations.size() != distances.size() || locations.size() != otherLocations.size() ||
-                !locations.keySet().containsAll(otherLocations)) {
+        if (locations.containsKey(name) || otherLocations.size() != distances.size() || locations.size() != otherLocations.size()) {
             System.out.println("Empty");
             return Optional.empty();
-        } else {
-            Location newLocation = new Location(name);
-            for (int i = 0; i < otherLocations.size(); i++) {
-                newLocation.addDistance(otherLocations.get(i), distances.get(i));
-                locations.get(otherLocations.get(i)).addDistance(newLocation.getName(), distances.get(i));
-            }
-            locations.put(name, newLocation);
-            System.out.println("Added");
-            return Optional.of(newLocation);
         }
+        Location newLocation = new Location(name);
+        for (int i = 0; i < otherLocations.size(); i++) {
+            newLocation.addDistance(otherLocations.get(i), distances.get(i));
+            locations.get(otherLocations.get(i)).addDistance(newLocation.getName(), distances.get(i));
+        }
+        locations.put(name, newLocation);
+        System.out.println("Added");
+        return Optional.of(newLocation);
+
     }
 
     public Optional<Courier> addCourier(String name, String to) {
