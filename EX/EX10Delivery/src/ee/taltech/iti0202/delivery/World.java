@@ -8,7 +8,7 @@ public class World {
     private final Map<String, Courier> couriers = new HashMap<>();
 
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
-        if (distances.size() != otherLocations.size() || locations.containsKey(name)) {
+        if (distances.size() != otherLocations.size() || locations.containsKey(name) || !locations.keySet().containsAll(otherLocations)) {
             return Optional.empty();
         } else {
             Location location = new Location(name);
