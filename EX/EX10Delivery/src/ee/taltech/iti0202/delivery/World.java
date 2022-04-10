@@ -8,8 +8,7 @@ public class World {
     private final Map<String, Courier> couriers = new HashMap<>();
 
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
-
-        if ( locations.containsKey(name) || otherLocations.size() != distances.size() || locations.size() != otherLocations.size() ||
+        if ( locations.containsKey(name) || otherLocations.size() != distances.size() || locations.size() != Set.copyOf(otherLocations).size() ||
                 !locations.keySet().containsAll(otherLocations)) {
             System.out.println("Empty");
             return Optional.empty();
@@ -20,6 +19,7 @@ public class World {
                 locations.get(otherLocations.get(i)).addDistance(name, distances.get(i));
             }
             locations.put(name, newLocation);
+            System.out.println("Added");
             return Optional.of(newLocation);
         }
     }
