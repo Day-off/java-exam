@@ -10,6 +10,16 @@ public class World {
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
 //        if (distances.size() != otherLocations.size() || locations.containsKey(name)
 //                || !locations.keySet().containsAll(otherLocations)) {
+//
+//        Location newLocation = new Location(name);
+//        for (int i = 0; i < otherLocations.size(); i++) {
+//            String destination = otherLocations.get(i);
+//            newLocation.addDistance(destination, distances.get(i));
+//            mapOfLocationName.get(destination).addDistance(newLocation.getName(), distances.get(i));
+//        }
+//        mapOfLocationName.put(name, newLocation);
+//        couriersOfLocations.put(newLocation, new ArrayList<>());
+//        return Optional.of(newLocation);
 
         if (locations.containsKey(name) || otherLocations.size() != distances.size() || otherLocations.size() != locations.size()) {
             return Optional.empty();
@@ -17,9 +27,10 @@ public class World {
         Location location = new Location(name);
         for (int i = 0; i < otherLocations.size(); i++) {
             location.addDistance(otherLocations.get(i), distances.get(i));
-            if (locations.containsKey(otherLocations.get(i))) {
-                locations.get(otherLocations.get(i)).addDistance(name, distances.get(i));
-            }
+            locations.get(otherLocations.get(i)).addDistance(location.getName(), distances.get(i));
+//            if (locations.containsKey(otherLocations.get(i))) {
+//                locations.get(otherLocations.get(i)).addDistance(name, distances.get(i));
+//            }
         }
         locations.put(name, location);
         System.out.println("Added");
