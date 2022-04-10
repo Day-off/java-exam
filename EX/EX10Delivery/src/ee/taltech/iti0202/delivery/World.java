@@ -11,7 +11,7 @@ public class World {
 //        if (distances.size() != otherLocations.size() || locations.containsKey(name)
 //                || !locations.keySet().containsAll(otherLocations)) {
         if (locations.containsKey(name) || locations.keySet().size() > otherLocations.size() || !locations.keySet().containsAll(otherLocations)
-                || locations.keySet().size() != distances.size()) {
+                || locations.size() != distances.size()) {
             return Optional.empty();
         } else {
             Location location = new Location(name);
