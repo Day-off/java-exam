@@ -23,17 +23,17 @@ public class World {
 
         if (locations.size() != otherLocations.size() || otherLocations.size() != distances.size() || locations.containsKey(name) ||
                 !locations.keySet().containsAll(otherLocations)) {
+            System.out.println("Empty");
             return Optional.empty();
         } else {
-            Location location = new Location(name);
+            Location newLocation = new Location(name);
             for (int i = 0; i < otherLocations.size(); i++) {
-                location.addDistance(otherLocations.get(i), distances.get(i));
-                if (locations.containsKey(otherLocations.get(i))) {
-                    locations.get(otherLocations.get(i)).addDistance(name, distances.get(i));
-                }
+                newLocation.addDistance(otherLocations.get(i), distances.get(i));
+                locations.get(otherLocations.get(i)).addDistance(name, distances.get(i));
+
             }
-            locations.put(name, location);
-            return Optional.of(location);
+            locations.put(name, newLocation);
+            return Optional.of(newLocation);
         }
     }
 
