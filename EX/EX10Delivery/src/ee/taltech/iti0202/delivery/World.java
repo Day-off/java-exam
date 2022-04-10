@@ -10,12 +10,7 @@ public class World {
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
 //        if (distances.size() != otherLocations.size() || locations.containsKey(name)
 //                || !locations.keySet().containsAll(otherLocations)) {
-        if (locations.containsKey(name)
-                || locations.size() != otherLocations.size()
-                || !locations.keySet().containsAll(otherLocations)
-                || locations.size() != distances.size()) {
-            return Optional.empty();
-        } else {
+        if (!locations.containsKey(name) && locations.size() == otherLocations.size() && otherLocations.size() == distances.size()) {
             Location location = new Location(name);
             for (int i = 0; i < otherLocations.size(); i++) {
                 location.addDistance(otherLocations.get(i), distances.get(i));
@@ -25,6 +20,8 @@ public class World {
             }
             locations.put(name, location);
             return Optional.of(location);
+        } else {
+            return Optional.empty();
         }
     }
 
