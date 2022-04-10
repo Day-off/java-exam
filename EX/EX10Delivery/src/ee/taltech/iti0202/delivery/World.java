@@ -21,8 +21,10 @@ public class World {
 //        couriersOfLocations.put(newLocation, new ArrayList<>());
 //        return Optional.of(newLocation);
 
-        if (locations.size() == otherLocations.size() && otherLocations.size() == distances.size() && !locations.containsKey(name) &&
-                locations.keySet().containsAll(otherLocations)) {
+        if (locations.size() != otherLocations.size() || otherLocations.size() != distances.size() || locations.containsKey(name) ||
+                !locations.keySet().containsAll(otherLocations)) {
+            return Optional.empty();
+        } else {
             Location location = new Location(name);
             for (int i = 0; i < otherLocations.size(); i++) {
                 location.addDistance(otherLocations.get(i), distances.get(i));
@@ -32,8 +34,6 @@ public class World {
             }
             locations.put(name, location);
             return Optional.of(location);
-        } else {
-            return Optional.empty();
         }
     }
 
