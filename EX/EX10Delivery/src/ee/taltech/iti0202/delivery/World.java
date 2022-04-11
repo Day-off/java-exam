@@ -47,28 +47,28 @@ public class World {
     }
 
     public void tick() {
-//        for (Map.Entry<String, Courier> person : couriers.entrySet()) {
-//            Courier cor = person.getValue();
-//            if (cor.getLocation().isPresent()) {
-//                Location l = cor.getLocation().get();
-//                Strategy s = cor.getStrategy();
-//                Action a = s.getAction();
-//                for (String name : a.getDeposit()) {
-//                    if (cor.getPacket(name).isPresent()){
-//                        l.addPacket(cor.getPacket(name).get());
-//                        cor.removePacket(cor.getPacket(name).get());
-//                    }
-//                }
-//
-//                for (String name : a.getTake()) {
-//                    if (l.getPacket(name).isPresent()) {
-//                        cor.addPackets(l.getPacket(name).get());
-//                        l.removePacket(l.getPacket(name).get());
-//                    }
-//                }
-//                cor.setTargetLocation(a.getGoTo());
-//            }
-//            cor.moveTo();
-//        }
+        for (Map.Entry<String, Courier> person : couriers.entrySet()) {
+            Courier cor = person.getValue();
+            if (cor.getLocation().isPresent()) {
+                Location l = cor.getLocation().get();
+                Strategy s = cor.getStrategy();
+                Action a = s.getAction();
+                for (String name : a.getDeposit()) {
+                    if (cor.getPacket(name).isPresent()){
+                        l.addPacket(cor.getPacket(name).get());
+                        cor.removePacket(cor.getPacket(name).get());
+                    }
+                }
+
+                for (String name : a.getTake()) {
+                    if (l.getPacket(name).isPresent()) {
+                        cor.addPackets(l.getPacket(name).get());
+                        l.removePacket(l.getPacket(name).get());
+                    }
+                }
+                cor.setTargetLocation(a.getGoTo());
+            }
+            cor.moveTo();
+        }
     }
 }
