@@ -15,19 +15,16 @@ public class World {
             return Optional.empty();
         }
         Location newLocation = new Location(name);
-        addAllLocationToNewLocation(newLocation, otherLocations, distances, name);
-        return Optional.of(newLocation);
-    }
-
-    public void addAllLocationToNewLocation(Location newLocation, List<String> otherLocations, List<Integer> distances, String name) {
-        int size = otherLocations.size();
+        int size = locations.size();
         for (int i = 0; i < size; i++) {
-            if (locations.containsKey(otherLocations.get(i))) {
-                newLocation.addDistance(otherLocations.get(i), distances.get(i));
-                locations.get(otherLocations.get(i)).addDistance(name, distances.get(i));
+            String city = otherLocations.get(i);
+            if (locations.containsKey(city)) {
+                newLocation.addDistance(city, distances.get(i));
+                locations.get(city).addDistance(name, distances.get(i));
             }
         }
         locations.put(name, newLocation);
+        return Optional.of(newLocation);
     }
 
     public Optional<Courier> addCourier(String name, String to) {
@@ -50,28 +47,27 @@ public class World {
 
     public void tick() {
         for (Map.Entry<String, Courier> person : couriers.entrySet()) {
-            if (person.getValue().getLocation().isPresent()) {
-                Location l = person.getValue().getLocation().get();
-                Strategy s = person.getValue().getStrategy();
+            Courier cor = person.getValue();
+            if (cor.getLocation().isPresent()) {
+                Location l = cor.getLocation().get();
+                Strategy s = cor.getStrategy();
                 Action a = s.getAction();
                 for (String name : a.getDeposit()) {
-                    for (Packet pack : person.getValue().getPackets()) {
-                        if (Objects.equals(pack.getName(), name)) {
-                            l.addPacket(pack);
-                            person.getValue().removePackets(pack);
-                            break;
-                        }
+                    if (cor.getPacket(name).isPresent()){
+                        l.addPacket(cor.getPacket(name).get());
+                        cor.removePacket(cor.getPacket(name).get());
                     }
                 }
+
                 for (String name : a.getTake()) {
                     if (l.getPacket(name).isPresent()) {
-                        person.getValue().addPackets(l.getPacket(name).get());
+                        cor.addPackets(l.getPacket(name).get());
                         l.removePacket(l.getPacket(name).get());
                     }
                 }
-                person.getValue().setTargetLocation(a.getGoTo());
+                cor.setTargetLocation(a.getGoTo());
             }
-            person.getValue().moveTo();
+            cor.moveTo();
         }
     }
 }
