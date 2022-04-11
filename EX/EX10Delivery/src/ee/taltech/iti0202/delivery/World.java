@@ -19,10 +19,10 @@ public class World {
         for (int i = 0; i < size; i++) {
             String city = otherLocations.get(i);
             int dist = distances.get(i);
-            if (locations.containsKey(city)) {
+//            if (locations.containsKey(city)) {
                 newLocation.addDistance(city, dist);
                 locations.get(city).addDistance(name, dist);
-            }
+//            }
         }
         locations.put(name, newLocation);
         return Optional.of(newLocation);
