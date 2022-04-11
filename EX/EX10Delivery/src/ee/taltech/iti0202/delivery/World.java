@@ -10,10 +10,8 @@ public class World {
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
         if (locations.containsKey(name)
                 || otherLocations.size() != distances.size()
-                || !otherLocations.containsAll(locations.keySet())
-                || (!otherLocations.containsAll(locations.keySet()) && locations.size() != 0)) {
+                || !otherLocations.containsAll(locations.keySet())) {
 
-            System.out.println("Empty");
             return Optional.empty();
         }
         Location newLocation = new Location(name);
@@ -24,7 +22,6 @@ public class World {
             }
         }
         locations.put(name, newLocation);
-        System.out.println("Added");
         return Optional.of(newLocation);
     }
 
