@@ -26,8 +26,10 @@ public class Location {
     }
 
     public Integer getDistanceTo(String name) {
-
-        return othersLocations.getOrDefault(name, Integer.MAX_VALUE);
+        if (othersLocations.containsKey(name)){
+            return othersLocations.get(name);
+        }
+        return Integer.MAX_VALUE;
     }
 
     public void addDistance(String location, int distance) {
