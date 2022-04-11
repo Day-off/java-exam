@@ -11,7 +11,7 @@ public class World {
         if (locations.containsKey(name)
                 || otherLocations.size() != distances.size()
                 || !otherLocations.containsAll(locations.keySet())
-                || (otherLocations.stream().noneMatch(locations::containsKey) && locations.size() != 0)) {
+                || (!otherLocations.containsAll(locations.keySet()) && locations.size() != 0)) {
 
             System.out.println("Empty");
             return Optional.empty();
