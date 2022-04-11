@@ -10,6 +10,9 @@ public class Location {
 
     private final Map<String, Integer> othersLocations = new HashMap<>();
 
+    private HashMap<String, Integer> destinationDistances = new HashMap<>();
+    private HashMap<String, Location> destinationDistancesNames = new HashMap<>();
+
     public Location(String name) {
         this.name = name;
     }
@@ -33,9 +36,9 @@ public class Location {
     }
 
     public void addDistance(String location, int distance) {
-        if (!othersLocations.containsKey(location)) {
-            othersLocations.put(location, distance);
-        }
+//        if (!othersLocations.containsKey(location)) {
+           othersLocations.put(location, distance);
+//        }
     }
 
     public Optional<Packet> getPacket(String name) {
