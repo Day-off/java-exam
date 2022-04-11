@@ -4,12 +4,15 @@ import java.util.*;
 
 public class World {
 
-    private final HashMap<String, Location> locations = new HashMap<>();
-    private final HashMap<String, Courier> couriers = new HashMap<>();
+    private HashMap<String, Location> locations = new HashMap<>();
+    private HashMap<String, Courier> couriers = new HashMap<>();
 
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
-        if ( locations.containsKey(name) || otherLocations.size() != distances.size() || locations.size() != otherLocations.size() ||
-                !locations.keySet().containsAll(otherLocations)) {
+        if ( locations.containsKey(name)
+                || otherLocations.size() != distances.size()
+                || locations.size() != otherLocations.size()
+                || !locations.keySet().containsAll(otherLocations)) {
+
             System.out.println("Empty");
             return Optional.empty();
         }
