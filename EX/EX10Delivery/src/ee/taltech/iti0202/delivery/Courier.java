@@ -49,6 +49,10 @@ public class Courier {
         return packets;
     }
 
+    public Optional<Packet> getPacket(String name) {
+        return Optional.of(packetsMap.getOrDefault(name, null));
+    }
+
     public void addPackets(Packet pack) {
         if (!packetsMap.containsKey(pack.getName())) {
             packets.add(pack);
@@ -56,7 +60,7 @@ public class Courier {
         }
     }
 
-    public void removePackets(Packet pack) {
+    public void removePacket(Packet pack) {
         packets.remove(pack);
         packetsMap.remove(pack.getName());
     }
