@@ -4,8 +4,8 @@ import java.util.*;
 
 public class World {
 
-    private HashMap<String, Location> locations = new HashMap<>();
-    private HashMap<String, Courier> couriers = new HashMap<>();
+    private final HashMap<String, Location> locations = new HashMap<>();
+    private final HashMap<String, Courier> couriers = new HashMap<>();
 
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
         if (locations.containsKey(name)
@@ -15,19 +15,19 @@ public class World {
             return Optional.empty();
         }
         Location newLocation = new Location(name);
-        addAllLocationToNewLocation(newLocation, otherLocations, distances);
-        locations.put(name, newLocation);
+        addAllLocationToNewLocation(newLocation, otherLocations, distances, name);
         return Optional.of(newLocation);
     }
 
-    public void addAllLocationToNewLocation(Location newLocation, List<String> otherLocations, List<Integer> distances) {
+    public void addAllLocationToNewLocation(Location newLocation, List<String> otherLocations, List<Integer> distances, String name) {
         int size = otherLocations.size();
         for (int i = 0; i < size; i++) {
             if (locations.containsKey(otherLocations.get(i))) {
                 newLocation.addDistance(otherLocations.get(i), distances.get(i));
-                locations.get(otherLocations.get(i)).addDistance(newLocation.getName(), distances.get(i));
+                locations.get(otherLocations.get(i)).addDistance(name, distances.get(i));
             }
         }
+        locations.put(name, newLocation);
     }
 
     public Optional<Courier> addCourier(String name, String to) {
