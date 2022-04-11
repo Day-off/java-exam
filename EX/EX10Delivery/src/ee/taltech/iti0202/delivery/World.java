@@ -8,33 +8,22 @@ public class World {
     private HashMap<String, Courier> couriers = new HashMap<>();
 
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
-//        if (locations.containsKey(name)
-//                || otherLocations.size() != distances.size()
-//                || !locations.keySet().containsAll(otherLocations)) {
-//
-//            System.out.println("Empty");
-//            return Optional.empty();
-//        }
-//        Location newLocation = new Location(name);
-//        for (int i = 0; i < otherLocations.size(); i++) {
-//            if (locations.containsKey(otherLocations.get(i))) {
-//                newLocation.addDistance(otherLocations.get(i), distances.get(i));
-//                locations.get(otherLocations.get(i)).addDistance(newLocation.getName(), distances.get(i));
-//            }
-//        }
-//        locations.put(name, newLocation);
-//        System.out.println("Added");
-//        return Optional.of(newLocation);
-        if (locations.containsKey(name) || otherLocations.size() != distances.size() || otherLocations.size() != locations.size()) {
+        if (locations.containsKey(name)
+                || otherLocations.size() != distances.size()
+                || (otherLocations.stream().noneMatch(locations::containsKey) && locations.size() != 0)) {
+
+            System.out.println("Empty");
             return Optional.empty();
         }
         Location newLocation = new Location(name);
         for (int i = 0; i < otherLocations.size(); i++) {
-            String destination = otherLocations.get(i);
-            newLocation.addDistance(destination, distances.get(i));
-            locations.get(destination).addDistance(newLocation.getName(), distances.get(i));
+            if (locations.containsKey(otherLocations.get(i))) {
+                newLocation.addDistance(otherLocations.get(i), distances.get(i));
+                locations.get(otherLocations.get(i)).addDistance(newLocation.getName(), distances.get(i));
+            }
         }
         locations.put(name, newLocation);
+        System.out.println("Added");
         return Optional.of(newLocation);
     }
 
