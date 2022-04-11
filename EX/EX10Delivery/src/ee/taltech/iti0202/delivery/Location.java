@@ -6,46 +6,37 @@ public class Location {
 
     private final String name;
 
-    private final ArrayList<Packet> packets = new ArrayList<>();
-
     private final Map<String, Integer> othersLocations = new HashMap<>();
 
-    private HashMap<String, Integer> destinationDistances = new HashMap<>();
-    private HashMap<String, Location> destinationDistancesNames = new HashMap<>();
+    private final Map<String, Packet> packetsMap = new HashMap<>();
 
     public Location(String name) {
         this.name = name;
     }
 
     public void addPacket(Packet packet) {
-        if (!packets.contains(packet)) {
+        if (!packetsMap.containsKey(packet.getName())) {
             packet.setTarget(this);
-            packets.add(packet);
+            packetsMap.put(packet.getName(), packet);
         }
     }
 
     public void removePacket(Packet packet) {
-        packets.remove(packet);
+        packetsMap.remove(packet.getName());
     }
 
     public Integer getDistanceTo(String name) {
-        if (othersLocations.containsKey(name)){
-            return othersLocations.get(name);
-        }
-        return Integer.MAX_VALUE;
+        return othersLocations.getOrDefault(name, Integer.MAX_VALUE);
     }
 
     public void addDistance(String location, int distance) {
-//        if (!othersLocations.containsKey(location)) {
-           othersLocations.put(location, distance);
-//        }
+        if (!othersLocations.containsKey(location)) {
+            othersLocations.put(location, distance);
+        }
     }
 
     public Optional<Packet> getPacket(String name) {
-        return packets
-                .stream()
-                .filter(c -> c.getName().equals(name))
-                .findAny();
+        return Optional.of(packetsMap.getOrDefault(name, null));
     }
 
     public String getName() {
@@ -54,6 +45,6 @@ public class Location {
 
     @Override
     public String toString() {
-        return name.toUpperCase(Locale.ROOT) + " Packets: " + packets;
+        return name.toUpperCase(Locale.ROOT) + " Packets: " + packetsMap.keySet();
     }
 }

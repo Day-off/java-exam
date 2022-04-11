@@ -1,11 +1,16 @@
 package ee.taltech.iti0202.delivery;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 public class Courier {
 
     private final String name;
+
+    private final Map<String, Packet> packetsMap = new HashMap<>();
+
     private final ArrayList<Packet> packets = new ArrayList<>();
     private Location currentLocation;
     private Location direction;
@@ -45,13 +50,15 @@ public class Courier {
     }
 
     public void addPackets(Packet pack) {
-        if (!packets.contains(pack)) {
+        if (!packetsMap.containsKey(pack.getName())) {
             packets.add(pack);
+            packetsMap.put(pack.getName(), pack);
         }
     }
 
     public void removePackets(Packet pack) {
         packets.remove(pack);
+        packetsMap.remove(pack.getName());
     }
 
     public void setTargetLocation(Location location) {

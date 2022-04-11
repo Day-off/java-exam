@@ -15,13 +15,14 @@ public class World {
             return Optional.empty();
         }
         Location newLocation = new Location(name);
-        addDistanceToNewLocation(newLocation, otherLocations, distances);
+        addAllLocationToNewLocation(newLocation, otherLocations, distances);
         locations.put(name, newLocation);
         return Optional.of(newLocation);
     }
 
-    public void addDistanceToNewLocation(Location newLocation, List<String> otherLocations, List<Integer> distances) {
-        for (int i = 0; i < otherLocations.size(); i++) {
+    public void addAllLocationToNewLocation(Location newLocation, List<String> otherLocations, List<Integer> distances) {
+        int size = otherLocations.size();
+        for (int i = 0; i < size; i++) {
             if (locations.containsKey(otherLocations.get(i))) {
                 newLocation.addDistance(otherLocations.get(i), distances.get(i));
                 locations.get(otherLocations.get(i)).addDistance(newLocation.getName(), distances.get(i));
