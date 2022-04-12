@@ -58,7 +58,14 @@ public class World {
                         cor.removePacket(cor.getPacket(name).get());
                     }
                 }
-
+                for (String name : action.getDeposit()) {
+                    for (Packet pack : person.getValue().getPackets()) {
+                        if (Objects.equals(pack.getName(), name)) {
+                            cor_location.addPacket(pack);
+                            cor.removePacket(pack);
+                        }
+                    }
+                }
                 for (String name : action.getTake()) {
                     if (cor_location.getPacket(name).isPresent()) {
                         cor.addPackets(cor_location.getPacket(name).get());
