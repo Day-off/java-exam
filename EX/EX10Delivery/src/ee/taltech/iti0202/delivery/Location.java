@@ -38,7 +38,7 @@ public class Location {
     public Optional<Packet> getPacket(String name) {
         if (packetsMap.containsKey(name)){
             Packet pack = packetsMap.get(name);
-            packetsMap.remove(name, pack);
+            packetsMap.remove(name);
             return Optional.of(pack);
         }
         return Optional.empty();
