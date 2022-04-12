@@ -15,15 +15,10 @@ public class Location {
     }
 
     public void addPacket(Packet packet) {
-        if (!packetsMap.containsValue(packet)) {
-//            packet.setTarget(this);
+        if (!packetsMap.containsKey(packet.getName())) {
             packetsMap.put(packet.getName(), packet);
         }
     }
-
-//    public void removePacket(Packet packet) {
-//        packetsMap.remove(packet.getName(), packet);
-//    }
 
     public Integer getDistanceTo(String name) {
         return othersLocations.getOrDefault(name, Integer.MAX_VALUE);
@@ -42,7 +37,6 @@ public class Location {
             return Optional.of(pack);
         }
         return Optional.empty();
-//        return Optional.of(packetsMap.getOrDefault(name, null));
     }
 
     public String getName() {
