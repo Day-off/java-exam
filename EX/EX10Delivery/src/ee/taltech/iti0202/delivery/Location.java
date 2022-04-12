@@ -21,9 +21,9 @@ public class Location {
         }
     }
 
-    public void removePacket(Packet packet) {
-        packetsMap.remove(packet.getName(), packet);
-    }
+//    public void removePacket(Packet packet) {
+//        packetsMap.remove(packet.getName(), packet);
+//    }
 
     public Integer getDistanceTo(String name) {
         return othersLocations.getOrDefault(name, Integer.MAX_VALUE);
@@ -37,10 +37,10 @@ public class Location {
 
     public Optional<Packet> getPacket(String name) {
         if (packetsMap.containsKey(name)){
-
             return Optional.of(packetsMap.remove(name));
         }
         return Optional.empty();
+//        return Optional.of(packetsMap.getOrDefault(name, null));
     }
 
     public String getName() {
