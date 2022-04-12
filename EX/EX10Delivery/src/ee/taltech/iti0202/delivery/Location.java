@@ -16,7 +16,7 @@ public class Location {
 
     public void addPacket(Packet packet) {
         if (!packetsMap.containsValue(packet)) {
-            packet.setTarget(this);
+//            packet.setTarget(this);
             packetsMap.put(packet.getName(), packet);
         }
     }
