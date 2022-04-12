@@ -1,6 +1,9 @@
 package ee.taltech.iti0202.delivery;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
 
 public class Location {
 
@@ -31,7 +34,7 @@ public class Location {
     }
 
     public Optional<Packet> getPacket(String name) {
-        if (packetsMap.containsKey(name)){
+        if (packetsMap.containsKey(name)) {
             Packet pack = packetsMap.get(name);
             packetsMap.remove(name);
             return Optional.of(pack);

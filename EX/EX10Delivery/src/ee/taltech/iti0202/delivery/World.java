@@ -1,6 +1,9 @@
 package ee.taltech.iti0202.delivery;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class World {
 
@@ -26,10 +29,10 @@ public class World {
         return Optional.of(newLocation);
     }
 
-    public boolean isAllLocations(List<String> otherLocations){
+    public boolean isAllLocations(List<String> otherLocations) {
         int count = 0;
-        for (String loc: otherLocations){
-            if (locations.containsKey(loc)){
+        for (String loc : otherLocations) {
+            if (locations.containsKey(loc)) {
                 count += 1;
             }
         }
@@ -59,22 +62,19 @@ public class World {
             Courier cor = person.getValue();
             if (cor.getLocation().isPresent()) {
 
-                Location cor_location = cor.getLocation().get();
+                Location corLocation = cor.getLocation().get();
                 Action action = cor.getStrategy().getAction();
 
                 for (String name : action.getDeposit()) {
-                    if (cor.getPacket(name).isPresent()){
-                        cor_location.addPacket(cor.getPacket(name).get());
+                    if (cor.getPacket(name).isPresent()) {
+                        corLocation.addPacket(cor.getPacket(name).get());
                         cor.removePacket(cor.getPacket(name).get());
                     }
                 }
 
                 for (String name : action.getTake()) {
-                    cor_location.getPacket(name).ifPresentOrElse(cor::addPackets, () -> {});
-//                    if (cor_location.getPacket(name).isPresent()) {
-//                        cor.addPackets(cor_location.getPacket(name).get());
-//                        cor_location.removePacket(cor_location.getPacket(name).get());
-//                    }
+                    corLocation.getPacket(name).ifPresentOrElse(cor::addPackets, () -> {
+                    });
                 }
                 cor.setTargetLocation(action.getGoTo());
             }
