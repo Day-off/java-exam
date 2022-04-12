@@ -19,10 +19,8 @@ public class World {
         for (int i = 0; i < size; i++) {
             String city = otherLocations.get(i);
             int dist = distances.get(i);
-//            if (locations.containsKey(city)) {
-                newLocation.addDistance(city, dist);
-                locations.get(city).addDistance(name, dist);
-//            }
+            newLocation.addDistance(city, dist);
+            locations.get(city).addDistance(name, dist);
         }
         locations.put(name, newLocation);
         return Optional.of(newLocation);
@@ -50,23 +48,24 @@ public class World {
         for (Map.Entry<String, Courier> person : couriers.entrySet()) {
             Courier cor = person.getValue();
             if (cor.getLocation().isPresent()) {
-                Location l = cor.getLocation().get();
-                Strategy s = cor.getStrategy();
-                Action a = s.getAction();
-                for (String name : a.getDeposit()) {
+
+                Location cor_location = cor.getLocation().get();
+                Action action = cor.getStrategy().getAction();
+
+                for (String name : action.getDeposit()) {
                     if (cor.getPacket(name).isPresent()){
-                        l.addPacket(cor.getPacket(name).get());
+                        cor_location.addPacket(cor.getPacket(name).get());
                         cor.removePacket(cor.getPacket(name).get());
                     }
                 }
 
-                for (String name : a.getTake()) {
-                    if (l.getPacket(name).isPresent()) {
-                        cor.addPackets(l.getPacket(name).get());
-                        l.removePacket(l.getPacket(name).get());
+                for (String name : action.getTake()) {
+                    if (cor_location.getPacket(name).isPresent()) {
+                        cor.addPackets(cor_location.getPacket(name).get());
+                        cor_location.removePacket(cor_location.getPacket(name).get());
                     }
                 }
-                cor.setTargetLocation(a.getGoTo());
+                cor.setTargetLocation(action.getGoTo());
             }
             cor.moveTo();
         }

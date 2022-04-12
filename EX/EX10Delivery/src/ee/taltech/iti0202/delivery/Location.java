@@ -15,14 +15,14 @@ public class Location {
     }
 
     public void addPacket(Packet packet) {
-        if (!packetsMap.containsKey(packet.getName())) {
+        if (!packetsMap.containsValue(packet)) {
             packet.setTarget(this);
             packetsMap.put(packet.getName(), packet);
         }
     }
 
     public void removePacket(Packet packet) {
-        packetsMap.remove(packet.getName());
+        packetsMap.remove(packet.getName(), packet);
     }
 
     public Integer getDistanceTo(String name) {
