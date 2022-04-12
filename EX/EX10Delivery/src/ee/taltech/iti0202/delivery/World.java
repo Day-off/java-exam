@@ -10,7 +10,7 @@ public class World {
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
         if (locations.containsKey(name)
                 || otherLocations.size() != distances.size()
-                || !otherLocations.containsAll(locations.keySet())) {
+                || isAllLocations(otherLocations)) {
 
             return Optional.empty();
         }
@@ -24,6 +24,16 @@ public class World {
         }
         locations.put(name, newLocation);
         return Optional.of(newLocation);
+    }
+
+    public boolean isAllLocations(List<String> otherLocations){
+        int count = 0;
+        for (String loc: otherLocations){
+            if (locations.containsKey(loc)){
+                count += 1;
+            }
+        }
+        return count != locations.size();
     }
 
     public Optional<Courier> addCourier(String name, String to) {
@@ -58,19 +68,13 @@ public class World {
                         cor.removePacket(cor.getPacket(name).get());
                     }
                 }
-                for (String name : action.getDeposit()) {
-                    for (Packet pack : person.getValue().getPackets()) {
-                        if (Objects.equals(pack.getName(), name)) {
-                            cor_location.addPacket(pack);
-                            cor.removePacket(pack);
-                        }
-                    }
-                }
+
                 for (String name : action.getTake()) {
-                    if (cor_location.getPacket(name).isPresent()) {
-                        cor.addPackets(cor_location.getPacket(name).get());
-                        cor_location.removePacket(cor_location.getPacket(name).get());
-                    }
+                    cor_location.getPacket(name).ifPresentOrElse(cor::addPackets, () -> {});
+//                    if (cor_location.getPacket(name).isPresent()) {
+//                        cor.addPackets(cor_location.getPacket(name).get());
+//                        cor_location.removePacket(cor_location.getPacket(name).get());
+//                    }
                 }
                 cor.setTargetLocation(action.getGoTo());
             }
