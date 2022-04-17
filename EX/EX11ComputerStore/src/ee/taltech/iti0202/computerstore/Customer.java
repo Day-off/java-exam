@@ -15,4 +15,24 @@ public class Customer {
         this.name = name;
         this.balance = balance;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public List<Component> getComponents() {
+        return components;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
 }

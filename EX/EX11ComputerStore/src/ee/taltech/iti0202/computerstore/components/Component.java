@@ -1,4 +1,5 @@
 package ee.taltech.iti0202.computerstore.components;
+
 import java.math.BigDecimal;
 
 public class Component {
@@ -25,12 +26,12 @@ public class Component {
         this.powerConsumption = powerConsumption;
     }
 
-    public static int setId(){
+    public static int setId() {
         id += 1;
         return id;
     }
 
-    public static int getId() {
+    public int getId() {
         return id;
     }
 
@@ -61,4 +62,45 @@ public class Component {
     public String getManufacturer() {
         return manufacturer;
     }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public static void setId(int id) {
+        Component.id = id;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public void setPerformancePoints(int performancePoints) {
+        this.performancePoints = performancePoints;
+    }
+
+    public void setPowerConsumption(int powerConsumption) {
+        this.powerConsumption = powerConsumption;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public void increaseAmount(int amount) {
+        this.amount += amount;
+    }
+
+    public void decreaseAmount(int amount) {
+        this.amount -= amount;
+    }
+
 }
