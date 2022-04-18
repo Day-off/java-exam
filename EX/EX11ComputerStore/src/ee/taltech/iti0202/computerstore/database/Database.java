@@ -77,18 +77,26 @@ public class Database {
     }
 
     public void saveToFile(String location) throws IOException {
-        Gson gson = new Gson();
-        List<Component> comp = components.values().stream().toList();
-        gson.toJson(comp, new FileWriter("components.json"));
+        try {
+            Gson gson = new Gson();
+            List<Component> comp = components.values().stream().toList();
+            gson.toJson(comp, new FileWriter("components.json"));
+        } catch (IOException e) {
+            throw new IOException();
+        }
     }
 
     public void loadFromFile(String location) throws IOException {
-        Gson gson = new Gson();
-        Reader reader = Files.newBufferedReader(Paths.get("components.json"));
-        List<Component> componentsList = new Gson().fromJson(reader, new TypeToken<List<Component>>() {
-        }.getType());
-        components = componentsList.stream()
-                .collect(Collectors.toMap(Component::getId, Function.identity()));
+        try {
+            Gson gson = new Gson();
+            Reader reader = Files.newBufferedReader(Paths.get("components.json"));
+            List<Component> componentsList = new Gson().fromJson(reader, new TypeToken<List<Component>>() {
+            }.getType());
+            components = componentsList.stream()
+                    .collect(Collectors.toMap(Component::getId, Function.identity()));
+        } catch (IOException e) {
+            throw new IOException();
+        }
 
     }
 }
