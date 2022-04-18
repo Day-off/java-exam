@@ -82,7 +82,7 @@ public class Database {
         try {
             gson.toJson(comp, new FileWriter("components.json"));
         } catch (IOException e) {
-            throw new IOException();
+            e.printStackTrace();
         }
     }
 
@@ -95,7 +95,7 @@ public class Database {
             components = componentsList.stream()
                     .collect(Collectors.toMap(Component::getId, Function.identity()));
         } catch (IOException e) {
-            throw new IOException();
+            e.printStackTrace();
         }
 
     }
