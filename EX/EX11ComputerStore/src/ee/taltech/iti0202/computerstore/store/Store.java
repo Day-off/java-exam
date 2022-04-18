@@ -76,7 +76,7 @@ public class Store {
     }
 
     public int getBalance() {
-        return balance.intValue();
+        return balance.intValueExact();
     }
 
     public void setBalance(BigDecimal balance) {
@@ -84,7 +84,7 @@ public class Store {
     }
 
     public int getProfitMargin() {
-        return profitMargin.intValue();
+        return profitMargin.intValueExact();
     }
 
     public void setProfitMargin(BigDecimal profitMargin) {
