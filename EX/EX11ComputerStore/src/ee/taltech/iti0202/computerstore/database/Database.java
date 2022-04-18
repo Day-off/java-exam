@@ -22,7 +22,7 @@ public class Database {
     private static Database instance = null;
     private Map<Integer, Component> components = new HashMap<>();
 
-    public static Database getInstance() {
+    private static Database getInstance() {
         if (instance == null) {
             instance = new Database();
         }
@@ -48,6 +48,9 @@ public class Database {
     }
 
     public void increaseComponentStock(int id, int amount) throws ProductNotFoundException {
+        if (amount <= 0) {
+            throw new IllegalArgumentException();
+        }
         try {
             components.get(id).increaseAmount(amount);
         } catch (Exception e) {
