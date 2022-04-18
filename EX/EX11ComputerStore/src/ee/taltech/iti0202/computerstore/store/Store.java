@@ -44,7 +44,7 @@ public class Store {
     }
 
     public List<Component> getAvailableComponents() {
-       return new ArrayList<>();
+        return new ArrayList<>();
     }
 
     public List<Component> getComponentsSortedByAmount() {
@@ -75,16 +75,16 @@ public class Store {
         this.name = name;
     }
 
-    public int getBalance() {
-        return balance.intValue();
+    public BigDecimal getBalance() {
+        return balance;
     }
 
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 
-    public int getProfitMargin() {
-        return profitMargin.intValue();
+    public BigDecimal getProfitMargin() {
+        return profitMargin;
     }
 
     public void setProfitMargin(BigDecimal profitMargin) {
