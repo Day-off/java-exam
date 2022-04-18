@@ -76,20 +76,19 @@ public class Database {
         components.clear();
     }
 
-    public void saveToFile(String location) throws IOException {
-        Gson gson = new Gson();
-        List<Component> comp = components.values().stream().toList();
+    public void saveToFile(String location) {
         try {
-            gson.toJson(comp, new FileWriter("components.json"));
+            Gson gson = new Gson();
+            List<Component> comp = components.values().stream().toList();
+            gson.toJson(comp, new FileWriter(location));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void loadFromFile(String location) throws IOException {
-        Gson gson = new Gson();
+    public void loadFromFile(String location) {
         try {
-            Reader reader = Files.newBufferedReader(Paths.get("components.json"));
+            Reader reader = Files.newBufferedReader(Paths.get(location));
             List<Component> componentsList = new Gson().fromJson(reader, new TypeToken<List<Component>>() {
             }.getType());
             components = componentsList.stream()
