@@ -16,6 +16,10 @@ public class Customer {
         this.balance = balance;
     }
 
+    public void addComponent(Component component) {
+        components.add(component);
+    }
+
     public String getName() {
         return name;
     }

@@ -1,41 +1,66 @@
 package ee.taltech.iti0202.computerstore.store;
+
 import ee.taltech.iti0202.computerstore.Customer;
 import ee.taltech.iti0202.computerstore.components.Component;
+import ee.taltech.iti0202.computerstore.database.Database;
 import ee.taltech.iti0202.computerstore.exceptions.NotEnoughMoneyException;
 import ee.taltech.iti0202.computerstore.exceptions.OutOfStockException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductNotFoundException;
 
-import java.util.List;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Store {
+
+
+    private String name;
+    private BigDecimal balance;
+    private BigDecimal profitMargin;
+
     public Store(String name, BigDecimal balance, BigDecimal profitMargin) {
+        this.name = name;
+        this.balance = balance;
+        if (profitMargin.compareTo(new BigDecimal(1)) < 0) {
+            throw new IllegalArgumentException();
+        } else {
+            this.profitMargin = profitMargin;
+        }
+
     }
 
     public Component purchaseComponent(int id, Customer customer) throws OutOfStockException,
             ProductNotFoundException,
             NotEnoughMoneyException {
-        return null;
+        Component product = Database.getInstance().getComponents().get(id);
+        if (customer.getBalance().compareTo(profitMargin.multiply(product.getPrice())) < 0) {
+            throw new NotEnoughMoneyException();
+        } else {
+            Database.getInstance().decreaseComponentStock(id, 1);
+            this.balance = balance.subtract(product.getPrice());
+            customer.addComponent(product);
+            return product;
+        }
     }
 
     public List<Component> getAvailableComponents() {
-        return null;
+       return new ArrayList<>();
     }
 
     public List<Component> getComponentsSortedByAmount() {
-        return null;
+        return new ArrayList<>();
     }
 
     public List<Component> getComponentsSortedByName() {
-        return null;
+        return new ArrayList<>();
     }
 
     public List<Component> getComponentsSortedByPrice() {
-        return null;
+        return new ArrayList<>();
     }
 
     public List<Component> filterByType(Component.Type type) {
-        return null;
+        return new ArrayList<>();
     }
 
     public BigDecimal getInventoryValue() {
@@ -43,23 +68,26 @@ public class Store {
     }
 
     public String getName() {
-        return null;
+        return name;
     }
 
     public void setName(String name) {
+        this.name = name;
     }
 
     public int getBalance() {
-        return -1;
+        return balance.intValue();
     }
 
     public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 
     public int getProfitMargin() {
-        return -1;
+        return profitMargin.intValue();
     }
 
     public void setProfitMargin(BigDecimal profitMargin) {
+        this.profitMargin = profitMargin;
     }
 }

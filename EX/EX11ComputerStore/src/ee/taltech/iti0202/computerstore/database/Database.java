@@ -1,19 +1,32 @@
 package ee.taltech.iti0202.computerstore.database;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import ee.taltech.iti0202.computerstore.components.Component;
 import ee.taltech.iti0202.computerstore.exceptions.OutOfStockException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductAlreadyExistsException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductNotFoundException;
 
-
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Database {
-    private final Map<Integer, Component> components = new HashMap<>();
+    private static Database instance = null;
+    private Map<Integer, Component> components = new HashMap<>();
 
     public static Database getInstance() {
-        return null;
+        if (instance == null) {
+            instance = new Database();
+        }
+        return instance;
     }
 
     public void saveComponent(Component component) throws ProductAlreadyExistsException {
@@ -63,10 +76,19 @@ public class Database {
         components.clear();
     }
 
-    public void saveToFile(String location) {
-
+    public void saveToFile(String location) throws IOException {
+        Gson gson = new Gson();
+        List<Component> comp = components.values().stream().toList();
+        gson.toJson(comp, new FileWriter("components.json"));
     }
 
-    public void loadFromFile(String location) {
+    public void loadFromFile(String location) throws IOException {
+        Gson gson = new Gson();
+        Reader reader = Files.newBufferedReader(Paths.get("components.json"));
+        List<Component> componentsList = new Gson().fromJson(reader, new TypeToken<List<Component>>() {
+        }.getType());
+        components = componentsList.stream()
+                .collect(Collectors.toMap(Component::getId, Function.identity()));
+
     }
 }
