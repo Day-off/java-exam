@@ -22,7 +22,7 @@ public class Database {
     private static Database instance = null;
     private Map<Integer, Component> components = new HashMap<>();
 
-    private static Database getInstance() {
+    public static Database getInstance() {
         if (instance == null) {
             instance = new Database();
         }
