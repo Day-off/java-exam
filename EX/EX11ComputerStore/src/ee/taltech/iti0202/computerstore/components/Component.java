@@ -3,7 +3,7 @@ package ee.taltech.iti0202.computerstore.components;
 import java.math.BigDecimal;
 
 public class Component {
-    private static int id = -1;
+    private static int id;
     private String name;
     private Type type;
     private BigDecimal price;
@@ -11,6 +11,7 @@ public class Component {
     private String manufacturer;
     private int performancePoints;
     private int powerConsumption;
+
 
     public enum Type {
         CPU, GPU, RAM, MOTHERBOARD, HDD, SSD, PSU, KEYBOARD, TOUCHPAD, SCREEN, BATTERY, FAN
@@ -26,6 +27,18 @@ public class Component {
         this.powerConsumption = powerConsumption;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
     public static void idReset(){
         id = -1;
     }
@@ -35,8 +48,21 @@ public class Component {
         return id;
     }
 
-    public int getId() {
-        return id;
+
+    public void setPerformancePoints(int performancePoints) {
+        this.performancePoints = performancePoints;
+    }
+
+    public void setPowerConsumption(int powerConsumption) {
+        this.powerConsumption = powerConsumption;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public String getName() {
@@ -47,12 +73,12 @@ public class Component {
         return type;
     }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
-
     public int getAmount() {
         return amount;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
     }
 
     public int getPerformancePoints() {
@@ -63,48 +89,11 @@ public class Component {
         return powerConsumption;
     }
 
-    public String getManufacturer() {
-        return manufacturer;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public int getId() {
+        return id;
     }
-
-    public static void setId(int id) {
-        Component.id = id;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public void setPerformancePoints(int performancePoints) {
-        this.performancePoints = performancePoints;
-    }
-
-    public void setPowerConsumption(int powerConsumption) {
-        this.powerConsumption = powerConsumption;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
-
-    public void increaseAmount(int amount) {
-        this.amount += amount;
-    }
-
-    public void decreaseAmount(int amount) {
-        this.amount -= amount;
-    }
-
 }

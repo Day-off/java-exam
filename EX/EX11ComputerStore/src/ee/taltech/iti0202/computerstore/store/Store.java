@@ -31,6 +31,7 @@ public class Store {
             ProductNotFoundException,
             NotEnoughMoneyException {
         Component product = Database.getInstance().getComponents().get(id);
+
         if (customer.getBalance().compareTo(profitMargin.multiply(product.getPrice())) < 0) {
             throw new NotEnoughMoneyException();
         } else {
