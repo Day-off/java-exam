@@ -44,14 +44,16 @@ public class Store {
             throw new OutOfStockException();
         }
 
-        if (customer.getBalance().compareTo(profitMargin.multiply(product.getPrice())) < 0) {
+        Component component = Database.getInstance().getComponents().get(id);
+        BigDecimal finalPrice = component.getPrice().multiply(profitMargin);
+        if (customer.getBalance().compareTo(finalPrice) < 0) {
             throw new NotEnoughMoneyException();
         } else {
-            Database.getInstance().decreaseComponentStock(id, 1);
-            this.balance = balance.add(product.getPrice());
-            customer.setBalance(customer.getBalance().subtract(product.getPrice()));
-            customer.addComponent(product);
-            return product;
+            customer.addComponent(component);
+            balance = balance.add(finalPrice);
+            customer.setBalance(customer.getBalance().subtract(finalPrice));
+            Database.getInstance().decreaseComponentStock(id, component.getAmount());
+            return component;
         }
     }
 
