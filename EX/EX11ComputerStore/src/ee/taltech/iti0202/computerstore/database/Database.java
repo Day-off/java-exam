@@ -82,7 +82,7 @@ public class Database {
     public void saveToFile(String location) {
         try (Writer writer = new FileWriter(location)) {
             Gson gson = new GsonBuilder().create();
-            gson.toJson(Database.getInstance().components.values(), writer);
+            gson.toJson(Database.getInstance(), writer);
         } catch (Exception e) {
             e.printStackTrace();
         }
