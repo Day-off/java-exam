@@ -51,11 +51,16 @@ public class Database {
         if (amount <= 0) {
             throw new IllegalArgumentException();
         }
-        try {
-            components.get(id).increaseAmount(amount);
-        } catch (Exception e) {
+        if (!components.containsKey(id)){
             throw new ProductNotFoundException();
+        }else {
+            components.get(id).increaseAmount(amount);
         }
+//        try {
+//            components.get(id).increaseAmount(amount);
+//        } catch (Exception e) {
+//            throw new ProductNotFoundException();
+//        }
 
     }
 
