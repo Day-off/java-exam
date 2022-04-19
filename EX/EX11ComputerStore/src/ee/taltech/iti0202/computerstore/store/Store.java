@@ -68,7 +68,7 @@ public class Store {
 
     public List<Component> getComponentsSortedByAmount() {
         List<Component> no_filtered_list = new ArrayList<>(Database.getInstance().getComponents().values());
-        return no_filtered_list.stream().sorted(Comparator.comparing(Component::getAmount).reversed()).collect(Collectors.toList());
+        return no_filtered_list.stream().sorted(Comparator.comparing(Component::getAmount)).collect(Collectors.toList());
     }
 
     public List<Component> getComponentsSortedByName() {
