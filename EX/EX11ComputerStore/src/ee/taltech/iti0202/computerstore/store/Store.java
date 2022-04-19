@@ -71,12 +71,12 @@ public class Store {
 
     public List<Component> getComponentsSortedByName() {
         List<Component> no_filtered_list = new ArrayList<>(Database.getInstance().getComponents().values());
-        return no_filtered_list.stream().sorted(Comparator.comparing(Component::getName).reversed()).collect(Collectors.toList());
+        return no_filtered_list.stream().sorted(Comparator.comparing(Component::getName)).collect(Collectors.toList());
     }
 
     public List<Component> getComponentsSortedByPrice() {
         List<Component> no_filtered_list = new ArrayList<>(Database.getInstance().getComponents().values());
-        return no_filtered_list.stream().sorted(Comparator.comparing(Component::getPrice).reversed()).collect(Collectors.toList());
+        return no_filtered_list.stream().sorted(Comparator.comparing(Component::getPrice)).collect(Collectors.toList());
 
     }
 

@@ -3,7 +3,8 @@ package ee.taltech.iti0202.computerstore.components;
 import java.math.BigDecimal;
 
 public class Component {
-    private static int id;
+    private int id;
+    private static int globalid;
     private String name;
     private Type type;
     private BigDecimal price;
@@ -19,6 +20,7 @@ public class Component {
 
     public Component(String name, Type type, BigDecimal price, String manufacturer, int performancePoints, int powerConsumption) {
         id = setId();
+        setnextId();
         this.name = name;
         this.type = type;
         this.price = price;
@@ -39,15 +41,18 @@ public class Component {
         this.price = price;
     }
 
-    public static void idReset(){
-        id = -1;
+    public static void idReset() {
+        globalid = 0;
     }
 
-    public static int setId() {
-        id += 1;
+    public static void setnextId() {
+        globalid += 1;
+    }
+
+    public int setId() {
+        id = globalid;
         return id;
     }
-
 
     public void setPerformancePoints(int performancePoints) {
         this.performancePoints = performancePoints;
@@ -95,5 +100,12 @@ public class Component {
 
     public int getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Component{" +
+                "name='" + name + '\'' + " id: " + id +
+                '}';
     }
 }
