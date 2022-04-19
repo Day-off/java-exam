@@ -86,9 +86,9 @@ public class Store {
     }
 
     public BigDecimal getInventoryValue() {
-        BigDecimal inventory = null;
+        BigDecimal inventory = new BigDecimal(0);
         for (Component com: Database.getInstance().getComponents().values()){
-            inventory.add(com.getPrice().multiply(valueOf(com.getAmount())).multiply(profitMargin));
+            inventory = inventory.add(com.getPrice().multiply(valueOf(com.getAmount())).multiply(profitMargin));
         }
         return inventory;
     }
