@@ -30,33 +30,29 @@ public class Database {
     }
 
     public void saveComponent(Component component) throws ProductAlreadyExistsException {
-        try {
-            if (!components.containsKey(component.getId())) {
-                components.put(component.getId(), component);
-            }
-        } catch (Exception e) {
+        if (components.containsKey(component.getId())) {
             throw new ProductAlreadyExistsException();
+        } else {
+            components.put(component.getId(), component);
         }
     }
 
     public void deleteComponent(int id) throws ProductNotFoundException {
-        try {
-            components.remove(id);
-        } catch (Exception e) {
+        if (!components.containsKey(id)) {
             throw new ProductNotFoundException();
+        } else {
+            components.remove(id);
         }
     }
 
     public void increaseComponentStock(int id, int amount) throws ProductNotFoundException {
         if (amount <= 0) {
             throw new IllegalArgumentException();
-        }
-        try {
-            components.get(id).increaseAmount(amount);
-        } catch (Exception e) {
+        } else if (!components.containsKey(id)) {
             throw new ProductNotFoundException();
+        } else {
+            components.get(id).increaseAmount(amount);
         }
-
     }
 
     public void decreaseComponentStock(int id, int amount) throws OutOfStockException, ProductNotFoundException {
@@ -64,7 +60,7 @@ public class Database {
             throw new IllegalArgumentException();
         } else if (!components.containsKey(id)) {
             throw new ProductNotFoundException();
-        } else if (components.get(id).getAmount() > amount) {
+        } else if (components.get(id).getAmount() < amount) {
             throw new OutOfStockException();
         } else {
             components.get(id).decreaseAmount(amount);
