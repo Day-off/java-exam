@@ -34,10 +34,11 @@ public class Database {
     }
 
     public void saveComponent(Component component) throws ProductAlreadyExistsException {
-        if (!components.containsValue(component) && !components.containsKey(component.getId())) {
-            components.put(component.getId(), component);
-        } else {
+        if (components.containsValue(component)) {
             throw new ProductAlreadyExistsException();
+        }
+        else {
+            components.put(component.getId(), component);
         }
     }
 
