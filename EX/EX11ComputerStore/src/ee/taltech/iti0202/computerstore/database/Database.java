@@ -1,12 +1,20 @@
 package ee.taltech.iti0202.computerstore.database;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 import ee.taltech.iti0202.computerstore.components.Component;
 import ee.taltech.iti0202.computerstore.exceptions.OutOfStockException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductAlreadyExistsException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductNotFoundException;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Database {
     private static Database instance = null;
@@ -26,8 +34,7 @@ public class Database {
     public void saveComponent(Component component) throws ProductAlreadyExistsException {
         if (!components.containsValue(component)) {
             components.put(component.getId(), component);
-        }
-        else {
+        } else {
             throw new ProductAlreadyExistsException();
         }
     }
@@ -84,6 +91,17 @@ public class Database {
     }
 
     public void loadFromFile(String location) {
+        Gson gson = new Gson();
+        JsonReader reader = null;
+        try {
+            reader = new JsonReader(new FileReader(location));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        List<Component> componentsList = gson.fromJson(reader, new TypeToken<List<Component>>() {
+            }.getType());
+            components = componentsList.stream()
+                    .collect(Collectors.toMap(Component::getId, Function.identity()));
 //        try {
 //            Reader reader = Files.newBufferedReader(Paths.get(location));
 //            List<Component> componentsList = new Gson().fromJson(reader, new TypeToken<List<Component>>() {
@@ -94,5 +112,5 @@ public class Database {
 //            e.printStackTrace();
 //        }
 
+        }
     }
-}
