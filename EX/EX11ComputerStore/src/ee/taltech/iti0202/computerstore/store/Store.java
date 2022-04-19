@@ -32,7 +32,7 @@ public class Store {
             NotEnoughMoneyException {
         Component product = Database.getInstance().getComponents().get(id);
 
-        if (customer.getBalance().compareTo(profitMargin.multiply(product.getPrice().multiply(BigDecimal.valueOf(product.getAmount())))) < 0) {
+        if (customer.getBalance().compareTo(profitMargin.multiply(product.getPrice())) == -1) {
             throw new NotEnoughMoneyException();
         } else {
             Database.getInstance().decreaseComponentStock(id, product.getAmount());
