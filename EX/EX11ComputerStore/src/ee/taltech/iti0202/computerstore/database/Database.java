@@ -7,6 +7,7 @@ import ee.taltech.iti0202.computerstore.exceptions.OutOfStockException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductAlreadyExistsException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductNotFoundException;
 
+import java.io.FileWriter;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -81,13 +82,13 @@ public class Database {
     }
 
     public void saveToFile(String location) {
-//        try {
-//            Gson gson = new Gson();
-//            List<Component> comp = components.values().stream().toList();
-//            gson.toJson(comp, new FileWriter(location));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            Gson gson = new Gson();
+            List<Component> comp = components.values().stream().toList();
+            gson.toJson(comp, new FileWriter(location));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void loadFromFile(String location) {
