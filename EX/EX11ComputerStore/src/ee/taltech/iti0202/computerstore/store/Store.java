@@ -43,7 +43,14 @@ public class Store {
 
     public List<Component> getAvailableComponents() {
         List<Component> no_filtered_list = new ArrayList<>(Database.getInstance().getComponents().values());
-        return no_filtered_list.stream().filter(a -> a.getAmount() > 0).toList();
+        List<Component> res = new ArrayList<>();
+        for (Component com : no_filtered_list) {
+            if (com.getAmount() > 0) {
+                res.add(com);
+            }
+        }
+        return res;
+//        return no_filtered_list.stream().filter(a -> a.getAmount() > 0).toList();
     }
 
     public List<Component> getComponentsSortedByAmount() {
