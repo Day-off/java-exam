@@ -56,11 +56,6 @@ public class Database {
         }else {
             components.get(id).increaseAmount(amount);
         }
-//        try {
-//            components.get(id).increaseAmount(amount);
-//        } catch (Exception e) {
-//            throw new ProductNotFoundException();
-//        }
 
     }
 
@@ -69,7 +64,7 @@ public class Database {
             throw new IllegalArgumentException();
         } else if (!components.containsKey(id)) {
             throw new ProductNotFoundException();
-        } else if (components.get(id).getAmount() > amount) {
+        } else if (components.get(id).getAmount() < amount) {
             throw new OutOfStockException();
         } else {
             components.get(id).decreaseAmount(amount);
