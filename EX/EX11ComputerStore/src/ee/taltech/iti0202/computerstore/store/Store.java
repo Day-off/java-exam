@@ -45,7 +45,7 @@ public class Store {
         List<Component> no_filtered_list = new ArrayList<>(Database.getInstance().getComponents().values());
         List<Component> res = new ArrayList<>();
         for (Component com : no_filtered_list) {
-            if (com.getAmount() > 0) {
+            if (com.getAmount() >= 10) {
                 res.add(com);
             }
         }
