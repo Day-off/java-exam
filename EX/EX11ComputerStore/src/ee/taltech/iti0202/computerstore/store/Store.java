@@ -32,10 +32,10 @@ public class Store {
             NotEnoughMoneyException {
         Component product = Database.getInstance().getComponents().get(id);
 
-        if (customer.getBalance().compareTo(profitMargin.multiply(product.getPrice())) < 0) {
+        if (customer.getBalance().compareTo(profitMargin.multiply(product.getPrice().multiply(BigDecimal.valueOf(product.getAmount())))) < 0) {
             throw new NotEnoughMoneyException();
         } else {
-            Database.getInstance().decreaseComponentStock(id, 1);
+            Database.getInstance().decreaseComponentStock(id, product.getAmount());
             this.balance = balance.subtract(product.getPrice());
             customer.addComponent(product);
             return product;
@@ -43,7 +43,6 @@ public class Store {
     }
 
     public List<Component> getAvailableComponents() {
-//        List<Component> no_filtered_list = new ArrayList<>(Database.getInstance().getComponents().values());
         List<Component> l = new ArrayList<>();
         for (int id : Database.getInstance().getComponents().keySet()) {
             Component com = Database.getInstance().getComponents().get(id);
