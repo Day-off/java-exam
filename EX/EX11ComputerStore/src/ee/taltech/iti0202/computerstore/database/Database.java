@@ -11,7 +11,6 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Database {
@@ -81,8 +80,7 @@ public class Database {
     public void saveToFile(String location) {
         try {
             Gson gson = new Gson();
-            List<Component> comp = components.values().stream().toList();
-            gson.toJson(comp, new FileWriter(location));
+            gson.toJson(instance, new FileWriter(location));
         } catch (Exception e) {
             e.printStackTrace();
         }
