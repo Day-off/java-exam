@@ -22,6 +22,10 @@ public class Database {
     private static Database instance = null;
     private Map<Integer, Component> components = new HashMap<>();
 
+    private Database() {
+
+    }
+
     public static Database getInstance() {
         if (instance == null) {
             instance = new Database();
@@ -51,9 +55,9 @@ public class Database {
         if (amount <= 0) {
             throw new IllegalArgumentException();
         }
-        if (!components.containsKey(id)){
+        if (!components.containsKey(id)) {
             throw new ProductNotFoundException();
-        }else {
+        } else {
             components.get(id).increaseAmount(amount);
         }
 
