@@ -44,6 +44,7 @@ public class Store {
     }
 
     public List<Component> getAvailableComponents() {
+
         return new ArrayList<>();
     }
 

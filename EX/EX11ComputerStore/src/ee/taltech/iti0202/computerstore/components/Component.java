@@ -26,6 +26,10 @@ public class Component {
         this.powerConsumption = powerConsumption;
     }
 
+    public static void idReset(){
+        id = -1;
+    }
+
     public static int setId() {
         id += 1;
         return id;
