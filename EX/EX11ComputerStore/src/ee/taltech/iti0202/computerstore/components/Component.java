@@ -104,7 +104,8 @@ public class Component {
 
     @Override
     public String toString() {
-        return "Component{" + "Name: " + name + " \n"
-                + "Amount: " + amount + " \n" + "Price: " + price + '}';
+        return "Name: " + name + "\n"
+                + "Amount: " + amount + "\n"
+                + "Price: " + price  + "\n";
     }
 }

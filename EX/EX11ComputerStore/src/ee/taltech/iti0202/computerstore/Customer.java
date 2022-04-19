@@ -17,7 +17,8 @@ public class Customer {
     }
 
     public void addComponent(Component component) {
-        components.add(component);
+        if (!components.contains(component))
+            components.add(component);
     }
 
     public String getName() {
@@ -38,5 +39,11 @@ public class Customer {
 
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
+    }
+
+    @Override
+    public String toString() {
+        return name +
+                " balance: " + balance + " products: " + components + "\n";
     }
 }
