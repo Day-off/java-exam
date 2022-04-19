@@ -17,8 +17,11 @@ public class Customer {
     }
 
     public void addComponent(Component component) {
-        if (!components.contains(component))
-            components.add(component);
+        components.add(component);
+    }
+
+    public void decreaseBalance(BigDecimal decrease){
+        balance = balance.subtract(decrease);
     }
 
     public String getName() {
