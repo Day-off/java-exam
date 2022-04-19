@@ -40,7 +40,7 @@ public class Store {
             throw new OutOfStockException();
         }
 
-        if (customer.getBalance().compareTo(profitMargin.multiply(product.getPrice())) < 0) {
+        if (customer.getBalance().compareTo(profitMargin.multiply(product.getPrice())) > 0) {
             throw new NotEnoughMoneyException();
         } else {
             Database.getInstance().decreaseComponentStock(id, 1);
