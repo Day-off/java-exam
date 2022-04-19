@@ -8,6 +8,7 @@ import ee.taltech.iti0202.computerstore.exceptions.OutOfStockException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductNotFoundException;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -18,6 +19,7 @@ import static java.math.BigDecimal.valueOf;
 public class Store {
 
 
+    private static final int SIX = 6;
     private String name;
     private BigDecimal balance;
     private BigDecimal profitMargin;
@@ -87,11 +89,11 @@ public class Store {
 
     public BigDecimal getInventoryValue() {
         BigDecimal inventory = new BigDecimal(0);
-        for (Component com: Database.getInstance().getComponents().values()){
+        for (Component com : Database.getInstance().getComponents().values()) {
             inventory = inventory.add(com.getPrice()
                     .multiply(valueOf(com.getAmount())));
         }
-        return inventory.multiply(profitMargin);
+        return inventory.multiply(profitMargin).round(new MathContext(SIX));
     }
 
     public String getName() {
