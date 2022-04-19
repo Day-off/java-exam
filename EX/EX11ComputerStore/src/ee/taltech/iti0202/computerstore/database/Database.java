@@ -30,10 +30,12 @@ public class Database {
     }
 
     public void saveComponent(Component component) throws ProductAlreadyExistsException {
-        if (components.containsKey(component.getId())) {
+        try {
+            if (!components.containsKey(component.getId())) {
+                components.put(component.getId(), component);
+            }
+        } catch (Exception e) {
             throw new ProductAlreadyExistsException();
-        } else {
-            components.put(component.getId(), component);
         }
     }
 
@@ -62,7 +64,7 @@ public class Database {
             throw new IllegalArgumentException();
         } else if (!components.containsKey(id)) {
             throw new ProductNotFoundException();
-        } else if (components.get(id).getAmount() < amount) {
+        } else if (components.get(id).getAmount() > amount) {
             throw new OutOfStockException();
         } else {
             components.get(id).decreaseAmount(amount);
