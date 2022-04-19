@@ -23,6 +23,10 @@ public class Database {
 
     }
 
+    /***
+     * SingleTone
+     * @return
+     */
     public static Database getInstance() {
         if (instance == null) {
             instance = new Database();
@@ -30,6 +34,11 @@ public class Database {
         return instance;
     }
 
+    /***
+     * Save component to map
+     * @param component
+     * @throws ProductAlreadyExistsException
+     */
     public void saveComponent(Component component) throws ProductAlreadyExistsException {
         if (!components.containsValue(component)) {
             components.put(component.getId(), component);
@@ -38,6 +47,11 @@ public class Database {
         }
     }
 
+    /***
+     * delete component from map
+     * @param id
+     * @throws ProductNotFoundException
+     */
     public void deleteComponent(int id) throws ProductNotFoundException {
         if (!components.containsKey(id)) {
             throw new ProductNotFoundException();
@@ -46,6 +60,12 @@ public class Database {
         }
     }
 
+    /***
+     * Increase component amount
+     * @param id
+     * @param amount
+     * @throws ProductNotFoundException
+     */
     public void increaseComponentStock(int id, int amount) throws ProductNotFoundException {
         if (amount <= 0) {
             throw new IllegalArgumentException();
@@ -58,6 +78,12 @@ public class Database {
 
     }
 
+    /***
+     * Decrease component amount
+     * @param id
+     * @param amount
+     * @throws ProductNotFoundException
+     */
     public void decreaseComponentStock(int id, int amount) throws OutOfStockException, ProductNotFoundException {
         if (amount <= 0) {
             throw new IllegalArgumentException();
@@ -74,11 +100,18 @@ public class Database {
         return components;
     }
 
+    /***
+     * Resets id and database
+     */
     public void resetEntireDatabase() {
         Component.idReset();
         components.clear();
     }
 
+    /***
+     * Write database to file
+     * @param location
+     */
     public void saveToFile(String location) {
         try (Writer writer = new FileWriter(location)) {
             Gson gson = new GsonBuilder().create();
@@ -88,6 +121,10 @@ public class Database {
         }
     }
 
+    /***
+     * Read file to database
+     * @param location
+     */
     public void loadFromFile(String location) {
         try {
             // create Gson instance

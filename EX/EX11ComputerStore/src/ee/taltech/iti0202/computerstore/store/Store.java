@@ -31,6 +31,18 @@ public class Store {
 
     }
 
+    /***
+     * Check if all elements are correct to make purchase
+     * add component to customer
+     * change store and customer balance
+     * increase component amount in database
+     * @param id
+     * @param customer
+     * @return
+     * @throws OutOfStockException
+     * @throws ProductNotFoundException
+     * @throws NotEnoughMoneyException
+     */
     public Component purchaseComponent(int id, Customer customer) throws OutOfStockException,
             ProductNotFoundException,
             NotEnoughMoneyException {
@@ -58,6 +70,10 @@ public class Store {
         }
     }
 
+    /***
+     * returns all components which is not out of stock
+     * @return
+     */
     public List<Component> getAvailableComponents() {
         List<Component> l = new ArrayList<>();
         for (int id : Database.getInstance().getComponents().keySet()) {
@@ -70,26 +86,30 @@ public class Store {
     }
 
     public List<Component> getComponentsSortedByAmount() {
-        List<Component> no_filtered_list = new ArrayList<>(Database.getInstance().getComponents().values());
-        return no_filtered_list.stream().sorted(Comparator.comparing(Component::getAmount)).collect(Collectors.toList());
+        List<Component> noFilteredList = new ArrayList<>(Database.getInstance().getComponents().values());
+        return noFilteredList.stream().sorted(Comparator.comparing(Component::getAmount)).collect(Collectors.toList());
     }
 
     public List<Component> getComponentsSortedByName() {
-        List<Component> no_filtered_list = new ArrayList<>(Database.getInstance().getComponents().values());
-        return no_filtered_list.stream().sorted(Comparator.comparing(Component::getName)).collect(Collectors.toList());
+        List<Component> noFilteredList = new ArrayList<>(Database.getInstance().getComponents().values());
+        return noFilteredList.stream().sorted(Comparator.comparing(Component::getName)).collect(Collectors.toList());
     }
 
     public List<Component> getComponentsSortedByPrice() {
-        List<Component> no_filtered_list = new ArrayList<>(Database.getInstance().getComponents().values());
-        return no_filtered_list.stream().sorted(Comparator.comparing(Component::getPrice)).collect(Collectors.toList());
+        List<Component> noFilteredList = new ArrayList<>(Database.getInstance().getComponents().values());
+        return noFilteredList.stream().sorted(Comparator.comparing(Component::getPrice)).collect(Collectors.toList());
 
     }
 
     public List<Component> filterByType(Component.Type type) {
-        List<Component> no_filtered_list = new ArrayList<>(Database.getInstance().getComponents().values());
-        return no_filtered_list.stream().filter(a -> a.getType().equals(type)).toList();
+        List<Component> noFilteredList = new ArrayList<>(Database.getInstance().getComponents().values());
+        return noFilteredList.stream().filter(a -> a.getType().equals(type)).toList();
     }
 
+    /***
+     * get total price of component in database with profitMargin
+     * @return
+     */
     public BigDecimal getInventoryValue() {
         BigDecimal inventory = new BigDecimal(0);
         for (Component com : Database.getInstance().getComponents().values()) {

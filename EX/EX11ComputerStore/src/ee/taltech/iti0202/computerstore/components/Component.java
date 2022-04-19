@@ -18,7 +18,8 @@ public class Component {
         CPU, GPU, RAM, MOTHERBOARD, HDD, SSD, PSU, KEYBOARD, TOUCHPAD, SCREEN, BATTERY, FAN
     }
 
-    public Component(String name, Type type, BigDecimal price, String manufacturer, int performancePoints, int powerConsumption) {
+    public Component(String name, Type type, BigDecimal price, String manufacturer,
+                     int performancePoints, int powerConsumption) {
         id = setId();
         setnextId();
         this.name = name;
@@ -105,7 +106,7 @@ public class Component {
     @Override
     public String toString() {
         return "Name: " + name + "\n"
-                + "Amount: " + amount + "\n"
-                + "Price: " + price  + "\n";
+                + "Amount: " + amount + "\n" + "Id: " + id + "\n"
+                + "Price: " + price + "\n";
     }
 }

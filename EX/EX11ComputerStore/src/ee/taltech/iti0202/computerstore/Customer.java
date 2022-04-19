@@ -16,11 +16,19 @@ public class Customer {
         this.balance = balance;
     }
 
+    /***
+     * add component to list
+     * @param component
+     */
     public void addComponent(Component component) {
         components.add(component);
     }
 
-    public void decreaseBalance(BigDecimal decrease){
+    /***
+     * decrease customer balance
+     * @param decrease
+     */
+    public void decreaseBalance(BigDecimal decrease) {
         balance = balance.subtract(decrease);
     }
 
