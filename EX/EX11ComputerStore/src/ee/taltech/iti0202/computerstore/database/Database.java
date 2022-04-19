@@ -48,11 +48,13 @@ public class Database {
     public void increaseComponentStock(int id, int amount) throws ProductNotFoundException {
         if (amount <= 0) {
             throw new IllegalArgumentException();
-        } else if (!components.containsKey(id)) {
-            throw new ProductNotFoundException();
-        } else {
-            components.get(id).increaseAmount(amount);
         }
+        try {
+            components.get(id).increaseAmount(amount);
+        } catch (Exception e) {
+            throw new ProductNotFoundException();
+        }
+
     }
 
     public void decreaseComponentStock(int id, int amount) throws OutOfStockException, ProductNotFoundException {
