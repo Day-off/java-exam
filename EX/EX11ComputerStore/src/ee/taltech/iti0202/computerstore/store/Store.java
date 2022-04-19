@@ -46,13 +46,14 @@ public class Store {
 
         Component component = Database.getInstance().getComponents().get(id);
         BigDecimal finalPrice = component.getPrice().multiply(profitMargin);
+
         if (customer.getBalance().compareTo(finalPrice) < 0) {
             throw new NotEnoughMoneyException();
         } else {
             customer.addComponent(component);
             balance = balance.add(finalPrice);
             customer.decreaseBalance(finalPrice);
-            Database.getInstance().decreaseComponentStock(id, component.getAmount());
+            Database.getInstance().decreaseComponentStock(id, 1);
             return component;
         }
     }
