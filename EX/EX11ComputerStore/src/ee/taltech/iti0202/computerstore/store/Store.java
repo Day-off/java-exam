@@ -57,7 +57,7 @@ public class Store {
         List<Component> l = new ArrayList<>();
         for (int id : Database.getInstance().getComponents().keySet()) {
             Component com = Database.getInstance().getComponents().get(id);
-            if (com.getAmount() > 0) {
+            if (com.getAmount() > 0 && !l.contains(com)) {
                 l.add(com);
             }
         }
@@ -82,7 +82,7 @@ public class Store {
 
     public List<Component> filterByType(Component.Type type) {
         List<Component> no_filtered_list = new ArrayList<>(Database.getInstance().getComponents().values());
-        return no_filtered_list.stream().filter(a -> a.getType() == type).toList();
+        return no_filtered_list.stream().filter(a -> a.getType().equals(type)).toList();
     }
 
     public BigDecimal getInventoryValue() {
