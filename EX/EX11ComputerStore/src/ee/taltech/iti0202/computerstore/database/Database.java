@@ -14,8 +14,6 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public class Database {
     private static Database instance = null;
@@ -104,7 +102,10 @@ public class Database {
             }.getType());
 
             instance = new Database();
-            components = com.stream().collect(Collectors.toMap(Component::getId, Function.identity()));
+            for (Component c: com){
+                Database.getInstance().saveComponent(c);
+            }
+//            components = com.stream().collect(Collectors.toMap(Component::getId, Function.identity()));
 
             // close reader
             reader.close();
