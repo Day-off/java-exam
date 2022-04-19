@@ -44,7 +44,8 @@ public class Store {
             throw new NotEnoughMoneyException();
         } else {
             Database.getInstance().decreaseComponentStock(id, 1);
-            this.balance = balance.subtract(product.getPrice());
+            this.balance = balance.add(product.getPrice());
+            customer.setBalance(customer.getBalance().subtract(product.getPrice()));
             customer.addComponent(product);
             return product;
         }
