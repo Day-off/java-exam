@@ -2,14 +2,14 @@ package ee.taltech.iti0202.computerstore.database;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
 import ee.taltech.iti0202.computerstore.components.Component;
 import ee.taltech.iti0202.computerstore.exceptions.OutOfStockException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductAlreadyExistsException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductNotFoundException;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -91,26 +91,25 @@ public class Database {
     }
 
     public void loadFromFile(String location) {
-        Gson gson = new Gson();
-        JsonReader reader = null;
         try {
-            reader = new JsonReader(new FileReader(location));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        List<Component> componentsList = gson.fromJson(reader, new TypeToken<List<Component>>() {
-            }.getType());
-            components = componentsList.stream()
-                    .collect(Collectors.toMap(Component::getId, Function.identity()));
-//        try {
-//            Reader reader = Files.newBufferedReader(Paths.get(location));
-//            List<Component> componentsList = new Gson().fromJson(reader, new TypeToken<List<Component>>() {
-//            }.getType());
-//            components = componentsList.stream()
-//                    .collect(Collectors.toMap(Component::getId, Function.identity()));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+            // create Gson instance
+            Gson gson = new Gson();
 
+            // create a reader
+            Reader reader = Files.newBufferedReader(Paths.get(location));
+
+            // convert JSON array to list of users
+            List<Component> com = new Gson().fromJson(reader, new TypeToken<List<Component>>() {
+            }.getType());
+
+            components = com.stream().collect(Collectors.toMap(Component::getId, Function.identity()));
+
+            // close reader
+            reader.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
+
     }
+}
