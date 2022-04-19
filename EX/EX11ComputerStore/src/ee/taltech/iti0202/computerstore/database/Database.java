@@ -80,7 +80,7 @@ public class Database {
     public void saveToFile(String location) {
         try {
             Gson gson = new Gson();
-            gson.toJson(instance, new FileWriter(location));
+            gson.toJson(Database.getInstance(), new FileWriter(location));
         } catch (Exception e) {
             e.printStackTrace();
         }
