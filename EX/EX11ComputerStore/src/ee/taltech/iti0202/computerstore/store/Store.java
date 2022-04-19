@@ -40,10 +40,10 @@ public class Store {
             throw new OutOfStockException();
         }
 
-        if (customer.getBalance().compareTo(profitMargin.multiply(product.getPrice().multiply(BigDecimal.valueOf(product.getAmount())))) < 0) {
+        if (customer.getBalance().compareTo(profitMargin.multiply(product.getPrice())) < 0) {
             throw new NotEnoughMoneyException();
         } else {
-            Database.getInstance().decreaseComponentStock(id, product.getAmount());
+            Database.getInstance().decreaseComponentStock(id, 1);
             this.balance = balance.subtract(product.getPrice());
             customer.addComponent(product);
             return product;
