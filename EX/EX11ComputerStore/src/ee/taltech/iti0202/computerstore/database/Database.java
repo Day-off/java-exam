@@ -103,6 +103,7 @@ public class Database {
             List<Component> com = new Gson().fromJson(reader, new TypeToken<List<Component>>() {
             }.getType());
 
+            instance = new Database();
             components = com.stream().collect(Collectors.toMap(Component::getId, Function.identity()));
 
             // close reader
