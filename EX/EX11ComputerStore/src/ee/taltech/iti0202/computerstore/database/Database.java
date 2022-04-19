@@ -1,6 +1,7 @@
 package ee.taltech.iti0202.computerstore.database;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import ee.taltech.iti0202.computerstore.components.Component;
 import ee.taltech.iti0202.computerstore.exceptions.OutOfStockException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductAlreadyExistsException;
@@ -8,6 +9,7 @@ import ee.taltech.iti0202.computerstore.exceptions.ProductNotFoundException;
 
 import java.io.FileWriter;
 import java.io.Reader;
+import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -78,9 +80,9 @@ public class Database {
     }
 
     public void saveToFile(String location) {
-        try {
-            Gson gson = new Gson();
-            gson.toJson(Database.getInstance().components.values(), new FileWriter(location));
+        try (Writer writer = new FileWriter(location)) {
+            Gson gson = new GsonBuilder().create();
+            gson.toJson(Database.getInstance().components.values(), writer);
         } catch (Exception e) {
             e.printStackTrace();
         }
