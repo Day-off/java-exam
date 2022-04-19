@@ -34,18 +34,19 @@ public class Database {
     }
 
     public void saveComponent(Component component) throws ProductAlreadyExistsException {
-        if (components.containsKey(component.getId())) {
-            throw new ProductAlreadyExistsException();
-        } else {
+        if (!components.containsValue(component)) {
             components.put(component.getId(), component);
+        }
+        else {
+            throw new ProductAlreadyExistsException();
         }
     }
 
     public void deleteComponent(int id) throws ProductNotFoundException {
-        if (components.containsKey(id)) {
-            components.remove(id);
-        } else {
+        if (!components.containsKey(id)) {
             throw new ProductNotFoundException();
+        } else {
+            components.remove(id);
         }
     }
 
