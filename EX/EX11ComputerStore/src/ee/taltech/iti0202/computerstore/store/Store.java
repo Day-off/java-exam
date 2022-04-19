@@ -13,6 +13,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.math.BigDecimal.valueOf;
+
 public class Store {
 
 
@@ -84,7 +86,11 @@ public class Store {
     }
 
     public BigDecimal getInventoryValue() {
-        return balance.add(profitMargin);
+        BigDecimal inventory = null;
+        for (Component com: Database.getInstance().getComponents().values()){
+            inventory.add(com.getPrice().multiply(valueOf(com.getAmount())).multiply(profitMargin));
+        }
+        return inventory;
     }
 
     public String getName() {
