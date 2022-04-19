@@ -30,9 +30,17 @@ public class Store {
     public Component purchaseComponent(int id, Customer customer) throws OutOfStockException,
             ProductNotFoundException,
             NotEnoughMoneyException {
+
+        if (!Database.getInstance().getComponents().containsKey(id)) {
+            throw new ProductNotFoundException();
+        }
         Component product = Database.getInstance().getComponents().get(id);
 
-        if (customer.getBalance().compareTo(profitMargin.multiply(product.getPrice())) == -1) {
+        if (product.getAmount() < 1) {
+            throw new OutOfStockException();
+        }
+
+        if (customer.getBalance().compareTo(profitMargin.multiply(product.getPrice().multiply(BigDecimal.valueOf(product.getAmount())))) < 0) {
             throw new NotEnoughMoneyException();
         } else {
             Database.getInstance().decreaseComponentStock(id, product.getAmount());
