@@ -9,7 +9,9 @@ import ee.taltech.iti0202.computerstore.exceptions.ProductNotFoundException;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Store {
 
@@ -21,11 +23,7 @@ public class Store {
     public Store(String name, BigDecimal balance, BigDecimal profitMargin) {
         this.name = name;
         this.balance = balance;
-        if (profitMargin.compareTo(new BigDecimal(1)) < 0) {
-            throw new IllegalArgumentException();
-        } else {
-            this.profitMargin = profitMargin;
-        }
+        setProfitMargin(profitMargin);
 
     }
 
@@ -44,28 +42,33 @@ public class Store {
     }
 
     public List<Component> getAvailableComponents() {
-
-        return new ArrayList<>();
+        List<Component> no_filtered_list = new ArrayList<>(Database.getInstance().getComponents().values());
+        return no_filtered_list.stream().filter(a -> a.getAmount() > 0).toList();
     }
 
     public List<Component> getComponentsSortedByAmount() {
-        return new ArrayList<>();
+        List<Component> no_filtered_list = new ArrayList<>(Database.getInstance().getComponents().values());
+        return no_filtered_list.stream().sorted(Comparator.comparing(Component::getAmount)).collect(Collectors.toList());
     }
 
     public List<Component> getComponentsSortedByName() {
-        return new ArrayList<>();
+        List<Component> no_filtered_list = new ArrayList<>(Database.getInstance().getComponents().values());
+        return no_filtered_list.stream().sorted(Comparator.comparing(Component::getName)).collect(Collectors.toList());
     }
 
     public List<Component> getComponentsSortedByPrice() {
-        return new ArrayList<>();
+        List<Component> no_filtered_list = new ArrayList<>(Database.getInstance().getComponents().values());
+        return no_filtered_list.stream().sorted(Comparator.comparing(Component::getPrice)).collect(Collectors.toList());
+
     }
 
     public List<Component> filterByType(Component.Type type) {
-        return new ArrayList<>();
+        List<Component> no_filtered_list = new ArrayList<>(Database.getInstance().getComponents().values());
+        return no_filtered_list.stream().filter(a -> a.getType() == type).toList();
     }
 
     public BigDecimal getInventoryValue() {
-        return BigDecimal.ZERO;
+        return balance.add(profitMargin);
     }
 
     public String getName() {
@@ -89,6 +92,10 @@ public class Store {
     }
 
     public void setProfitMargin(BigDecimal profitMargin) {
-        this.profitMargin = profitMargin;
+        if (profitMargin.compareTo(BigDecimal.valueOf(1)) < 0) {
+            throw new IllegalArgumentException();
+        } else {
+            this.profitMargin = profitMargin;
+        }
     }
 }
