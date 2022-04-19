@@ -54,7 +54,6 @@ public class Customer {
 
     @Override
     public String toString() {
-        return name +
-                " balance: " + balance + " products: " + components + "\n";
+        return name + " balance: " + balance + " products: " + components + "\n";
     }
 }

@@ -38,7 +38,7 @@ public class Store {
      * increase component amount in database
      * @param id
      * @param customer
-     * @return
+     * @return component
      * @throws OutOfStockException
      * @throws ProductNotFoundException
      * @throws NotEnoughMoneyException
@@ -72,7 +72,7 @@ public class Store {
 
     /***
      * returns all components which is not out of stock
-     * @return
+     * @return list
      */
     public List<Component> getAvailableComponents() {
         List<Component> l = new ArrayList<>();
@@ -108,7 +108,7 @@ public class Store {
 
     /***
      * get total price of component in database with profitMargin
-     * @return
+     * @return BigDecimal
      */
     public BigDecimal getInventoryValue() {
         BigDecimal inventory = new BigDecimal(0);

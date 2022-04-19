@@ -15,9 +15,9 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Database {
+public final class Database {
     private static Database instance = null;
-    private Map<Integer, Component> components = new HashMap<>();
+    private final Map<Integer, Component> components = new HashMap<>();
 
     private Database() {
 
@@ -25,7 +25,7 @@ public class Database {
 
     /***
      * SingleTone
-     * @return
+     * @return instance
      */
     public static Database getInstance() {
         if (instance == null) {
