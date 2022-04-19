@@ -42,15 +42,15 @@ public class Store {
     }
 
     public List<Component> getAvailableComponents() {
-        List<Component> no_filtered_list = new ArrayList<>(Database.getInstance().getComponents().values());
-        List<Component> res = new ArrayList<>();
-        for (Component com : no_filtered_list) {
-            if (com.getAmount() >= 10) {
-                res.add(com);
+//        List<Component> no_filtered_list = new ArrayList<>(Database.getInstance().getComponents().values());
+        List<Component> l = new ArrayList<>();
+        for (int id : Database.getInstance().getComponents().keySet()) {
+            Component com = Database.getInstance().getComponents().get(id);
+            if (com.getAmount() > 0) {
+                l.add(com);
             }
         }
-        return res;
-//        return no_filtered_list.stream().filter(a -> a.getAmount() > 0).toList();
+        return l;
     }
 
     public List<Component> getComponentsSortedByAmount() {
