@@ -75,14 +75,14 @@ public class Store {
      * @return list
      */
     public List<Component> getAvailableComponents() {
-        List<Component> l = new ArrayList<>();
+        List<Component> list = new ArrayList<>();
         for (int id : Database.getInstance().getComponents().keySet()) {
             Component com = Database.getInstance().getComponents().get(id);
-            if (com.getAmount() > 0 && !l.contains(com)) {
-                l.add(com);
+            if (com.getAmount() > 0 && !list.contains(com)) {
+                list.add(com);
             }
         }
-        return l;
+        return list;
     }
 
     public List<Component> getComponentsSortedByAmount() {
