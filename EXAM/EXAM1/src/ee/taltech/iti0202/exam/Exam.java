@@ -58,7 +58,7 @@ public class Exam {
                 if (i + 1 < message.length()) {
                     if (Character.isDigit(message.charAt(i + 1))) {
                         String a = "" + message.charAt(i) + message.charAt(i + 1);
-                        if (Integer.parseInt(a) > 26) {
+                        if (Integer.parseInt(a) > 25) {
                             res.append(alph.get(Integer.parseInt(a) % 26));
                         } else {
                             res.append(alph.get(Integer.parseInt(a)));
