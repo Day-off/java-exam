@@ -26,7 +26,7 @@ public class Shop {
     public boolean addProductToOrder(int orderNumber, String itemName) {
         Optional<Order> order = orders.stream().filter(ord -> ord.getId() == orderNumber).findFirst();
         List<Product> prod = products.stream().filter(product -> product.getName().equals(itemName)).toList();
-        if (prod.size() == 0 || order.get().isCanseld()) {
+        if (order.isEmpty() || prod.size() == 0 || order.get().isCanseld()) {
             return false;
         } else {
             Product p = Collections.min(prod, Comparator.comparing(Product::getPrice));
@@ -38,7 +38,7 @@ public class Shop {
 
     public int getOrderSum(int orderNumber) {
         Optional<Order> order = orders.stream().filter(ord -> ord.getId() == orderNumber).findFirst();
-        if (order.get().isCanseld()) {
+        if (order.isEmpty() || order.get().isCanseld()) {
             return 0;
         }
         return order.get().getSum();
@@ -46,7 +46,7 @@ public class Shop {
 
     public boolean cancelOrder(int orderNumber) {
         Optional<Order> order = orders.stream().filter(ord -> ord.getId() == orderNumber).findFirst();
-        if (order.get().isCanseld()) {
+        if (order.isEmpty() || order.get().isCanseld()) {
             return false;
         }
         products.addAll(order.get().getProductsInOrder());
