@@ -51,7 +51,7 @@ public class Shop {
         }
         products.addAll(order.get().getProductsInOrder());
         order.get().cleanOrder();
-//        orders.remove(order.get());
+        orders.remove(order.get());
         return true;
     }
 
