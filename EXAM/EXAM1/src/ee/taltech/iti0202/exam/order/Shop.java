@@ -26,7 +26,7 @@ public class Shop {
     public boolean addProductToOrder(int orderNumber, String itemName) {
         Optional<Order> order = orders.stream().filter(ord -> ord.getId() == orderNumber).findFirst();
         List<Product> prod = products.stream().filter(product -> product.getName().equals(itemName)).toList();
-        if (order.isEmpty() || prod.size() == 0) {
+        if (order.isEmpty() || prod.size() == 0 || order.get().isCanseld()) {
             return false;
         } else {
             Product p = Collections.min(prod, Comparator.comparing(Product::getPrice));
