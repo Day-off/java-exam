@@ -46,6 +46,7 @@ public class Exam {
      * decodeMessage(":14 19h8s 8s 84e45t34n58 54oo37e523423") => ":o this is getting cooler"
      * decodeMessage("This one doesn't need to be changed!") => "This one doesn't need to be changed!"
      *
+     *
      * @param message the message that needs to be decoded
      * @return decoded message
      */
