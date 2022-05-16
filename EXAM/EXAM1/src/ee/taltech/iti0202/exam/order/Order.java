@@ -48,10 +48,15 @@ public class Order {
         sum = 0;
         productsInOrder.clear();
         isCanseld = true;
+        idReset();
     }
 
     public boolean isCanseld() {
         return isCanseld;
+    }
+
+    public static void idReset() {
+        globalid = 1;
     }
 
     @Override
