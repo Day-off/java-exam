@@ -6,7 +6,7 @@ import java.util.List;
 public class Order {
     private int id;
     private static int globalid = 1;
-    private List<Product> productsInOrder = new ArrayList<>();
+    private final List<Product> productsInOrder = new ArrayList<>();
     private int sum = 0;
     private boolean isCanseld = false;
 
