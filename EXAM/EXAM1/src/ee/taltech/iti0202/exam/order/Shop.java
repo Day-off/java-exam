@@ -38,8 +38,8 @@ public class Shop {
 
     public int getOrderSum(int orderNumber) {
         Optional<Order> order = orders.stream().filter(ord -> ord.getId() == orderNumber).findFirst();
-        if (order.isEmpty()) {
-            return -1;
+        if (order.isEmpty() || order.get().isCanseld()) {
+            return 0;
         }
         return order.get().getSum();
     }
