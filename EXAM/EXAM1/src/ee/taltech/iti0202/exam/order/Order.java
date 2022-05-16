@@ -55,9 +55,9 @@ public class Order {
         return isCanseld;
     }
 
-    public static void idReset() {
-        globalid = 1;
-    }
+//    public static void idReset() {
+//        globalid = 1;
+//    }
 
     @Override
     public String toString() {
