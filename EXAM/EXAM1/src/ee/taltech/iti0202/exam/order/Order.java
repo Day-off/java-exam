@@ -8,6 +8,7 @@ public class Order {
     private static int globalid = 1;
     private List<Product> productsInOrder = new ArrayList<>();
     private int sum = 0;
+    private boolean isCanseld = false;
 
 
     public Order() {
@@ -46,6 +47,11 @@ public class Order {
     public void cleanOrder() {
         sum = 0;
         productsInOrder.clear();
+        isCanseld = true;
+    }
+
+    public boolean isCanseld() {
+        return isCanseld;
     }
 
     @Override
@@ -56,4 +62,5 @@ public class Order {
                 ", sum=" + sum +
                 '}';
     }
+
 }

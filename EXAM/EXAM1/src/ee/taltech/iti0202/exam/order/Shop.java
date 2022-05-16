@@ -46,7 +46,7 @@ public class Shop {
 
     public boolean cancelOrder(int orderNumber) {
         Optional<Order> order = orders.stream().filter(ord -> ord.getId() == orderNumber).findFirst();
-        if (order.isEmpty() || (order.get().getSum() == 0)){
+        if (order.get().isCanseld()){
             return false;
         }
         products.addAll(order.get().getProductsInOrder());
