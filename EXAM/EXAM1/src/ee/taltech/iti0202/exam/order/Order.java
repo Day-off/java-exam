@@ -48,16 +48,16 @@ public class Order {
         sum = -1;
         productsInOrder.clear();
         isCanseld = true;
-        idReset();
+//        idReset();
     }
 
     public boolean isCanseld() {
         return isCanseld;
     }
 
-    public static void idReset() {
-        globalid = 1;
-    }
+//    public static void idReset() {
+//        globalid = 1;
+//    }
 
     @Override
     public String toString() {
