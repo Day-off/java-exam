@@ -45,19 +45,14 @@ public class Order {
     }
 
     public void cleanOrder() {
-        sum = -1;
+        sum = 0;
         productsInOrder.clear();
         isCanseld = true;
-//        idReset();
     }
 
     public boolean isCanseld() {
         return isCanseld;
     }
-
-//    public static void idReset() {
-//        globalid = 1;
-//    }
 
     @Override
     public String toString() {
