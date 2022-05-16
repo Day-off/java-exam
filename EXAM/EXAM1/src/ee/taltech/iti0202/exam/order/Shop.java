@@ -38,7 +38,10 @@ public class Shop {
 
     public int getOrderSum(int orderNumber) {
         Optional<Order> order = orders.stream().filter(ord -> ord.getId() == orderNumber).findFirst();
-        if (order.isEmpty() || order.get().isCanseld()) {
+        if (order.isEmpty()) {
+            return -1;
+        }
+        if (order.get().isCanseld()) {
             return 0;
         }
         return order.get().getSum();
@@ -51,7 +54,6 @@ public class Shop {
         }
         products.addAll(order.get().getProductsInOrder());
         order.get().cleanOrder();
-//        orders.remove(order.get());
         return true;
     }
 
