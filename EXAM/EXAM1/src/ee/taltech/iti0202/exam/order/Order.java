@@ -45,7 +45,7 @@ public class Order {
     }
 
     public void cleanOrder() {
-        sum = 0;
+        sum = -1;
         productsInOrder.clear();
         isCanseld = true;
 //        idReset();
