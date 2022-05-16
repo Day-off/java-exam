@@ -48,7 +48,7 @@ public class Order {
         sum = 0;
         productsInOrder.clear();
         isCanseld = true;
-        idReset();
+//        idReset();
     }
 
     public boolean isCanseld() {
