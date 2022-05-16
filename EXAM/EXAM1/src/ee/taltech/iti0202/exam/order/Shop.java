@@ -41,10 +41,7 @@ public class Shop {
         if (order.isEmpty()){
             return -1;
         }
-        else if (order.get().isCanseld()) {
-            return 0;
-        }
-        return order.get().getSum();
+        return order.get().getProductsInOrder().stream().mapToInt(Product::getPrice).sum();
     }
 
     public boolean cancelOrder(int orderNumber) {
