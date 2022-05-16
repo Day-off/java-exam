@@ -46,7 +46,6 @@ public class Exam {
      * decodeMessage(":14 19h8s 8s 84e45t34n58 54oo37e523423") => ":o this is getting cooler"
      * decodeMessage("This one doesn't need to be changed!") => "This one doesn't need to be changed!"
      *
-     *
      * @param message the message that needs to be decoded
      * @return decoded message
      */
@@ -58,21 +57,25 @@ public class Exam {
                 int index = Integer.parseInt(String.valueOf(message.charAt(i)));
                 if (i + 1 < message.length()) {
                     if (Character.isDigit(message.charAt(i + 1))) {
-                        String a = "" + message.charAt(i) + message.charAt(i + 1);
-                        if (Integer.parseInt(a) > 25) {
-                            res.append(alph.get(Integer.parseInt(a) % 26));
-                        } else {
-                            res.append(alph.get(Integer.parseInt(a)));
+                        StringBuilder a = new StringBuilder();
+                        for (Character c : message.substring(i).toCharArray()) {
+                            if (!Character.isDigit(c)) {
+                                i--;
+                                break;
+                            }
+                            a.append(c);
+                            i++;
                         }
-                        i++;
-//                    res.append(Character.toChars(Integer.parseInt(message.substring(i, i + 1))));
+                        if (Integer.parseInt(a.toString()) > 25) {
+                            res.append(alph.get(Integer.parseInt(a.toString()) % 26));
+                        } else {
+                            res.append(alph.get(Integer.parseInt(a.toString())));
+                        }
                     } else {
                         res.append(alph.get(index));
-//                    res.append(Character.toChars(Integer.parseInt(String.valueOf(message.charAt(i)))));
                     }
                 } else {
                     res.append(alph.get(index));
-//                    res.append(Character.toChars(Integer.parseInt(String.valueOf(message.charAt(i)))));
                 }
             } else {
                 res.append(message.charAt(i));
@@ -83,9 +86,9 @@ public class Exam {
     }
 
     public static void main(String[] args) {
-        System.out.println(decodeMessage("0"));
-        System.out.println(decodeMessage("0b2d4f6"));
-        System.out.println(decodeMessage("h8"));
+//        System.out.println(decodeMessage("0"));
+//        System.out.println(decodeMessage("0b2d4f6"));
+//        System.out.println(decodeMessage("h8"));
         System.out.println(decodeMessage("11o11"));
         System.out.println(decodeMessage("h8 th4r30 p17ogramme43"));
         System.out.println(decodeMessage(":14 19h8s 8s 84e45t34n58 54oo37e523423"));
