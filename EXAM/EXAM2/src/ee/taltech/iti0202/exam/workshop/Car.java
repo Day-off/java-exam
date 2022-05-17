@@ -10,6 +10,10 @@ public class Car {
         return isFixed;
     }
 
+    public void setFix(boolean fixed) {
+        isFixed = fixed;
+    }
+
     public void carRepaired(){
         timeFixed += 1;
     }

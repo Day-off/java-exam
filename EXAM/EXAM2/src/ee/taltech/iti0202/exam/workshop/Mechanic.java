@@ -15,7 +15,7 @@ public class Mechanic {
     }
 
     public boolean fixCar(Car car) {
-        if (car.isFixed() || !carsToBeFixed.contains(car)){
+        if (car.isFixed() || !carsToBeFixed.contains(car)) {
             return false;
         }
         car.setFix(true);
@@ -28,7 +28,7 @@ public class Mechanic {
         return carsToBeFixed;
     }
 
-    public void addCar(Car car){
+    public void addCar(Car car) {
         carsToBeFixed.add(car);
     }
 
