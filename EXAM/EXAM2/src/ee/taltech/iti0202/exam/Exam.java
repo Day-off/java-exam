@@ -1,6 +1,9 @@
 package ee.taltech.iti0202.exam;
 
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 
@@ -67,12 +70,13 @@ public class Exam {
                     List<Integer> i = map.get(colect.size());
                     i.addAll(colect);
                     map.put(colect.size(), i);
-                }colect.clear();
+                }
+                colect.clear();
             }
         }
         List<Integer> keys = map.keySet().stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
         List<Integer> res = new ArrayList<>();
-        for (int k: keys){
+        for (int k : keys) {
             res.addAll(map.get(k).stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
         }
         return res;
