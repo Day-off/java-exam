@@ -70,10 +70,10 @@ public class Exam {
                 }colect.clear();
             }
         }
-        Set<Integer> keys = map.keySet();
+        List<Integer> keys = map.keySet().stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
         List<Integer> res = new ArrayList<>();
-        for (int i = keys.size() - 1; i > 0; i-- ){
-            res.addAll(map.get(i).stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
+        for (int k: keys){
+            res.addAll(map.get(k).stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
         }
         return res;
     }
