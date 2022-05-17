@@ -27,7 +27,9 @@ public class Workshop {
             return false;
         }
         mechanic.addCar(car);
-        allCars.add(car);
+        if (!allCars.contains(car)){
+            allCars.add(car);
+        }
         return true;
     }
 
