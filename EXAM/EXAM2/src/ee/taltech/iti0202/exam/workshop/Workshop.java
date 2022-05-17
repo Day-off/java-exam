@@ -23,7 +23,7 @@ public class Workshop {
     }
 
     public boolean registerCarForRepair(Car car, Mechanic mechanic) {
-        if (!stuff.contains(mechanic) || mechanic.getCarsToBeFixed().contains(car) || !car.isFixed()){
+        if (!stuff.contains(mechanic) || mechanic.getCarsToBeFixed().contains(car) || car.isFixed()){
             return false;
         }
         mechanic.addCar(car);
@@ -38,8 +38,7 @@ public class Workshop {
                 fixedCars.add(car);
             }
         }
-        Optional<Car> mostFixed = Optional.of(Collections.max(fixedCars, Comparator.comparing(Car::getTimeFixed)));
-        return mostFixed;
+        return Optional.of(Collections.max(fixedCars, Comparator.comparing(Car::getTimeFixed)));
     }
 
     public List<Mechanic> getAllMechanics() {
