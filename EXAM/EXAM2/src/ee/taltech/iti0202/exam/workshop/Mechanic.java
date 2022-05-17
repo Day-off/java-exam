@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Mechanic {
 
-    private List<Car> carsToBeFixed = new ArrayList<>();
-    private List<Car> carsFixed = new ArrayList<>();
-    private String name;
+    private final List<Car> carsToBeFixed = new ArrayList<>();
+    private final List<Car> carsFixed = new ArrayList<>();
+    private final String name;
     private Workshop workshop;
 
     public Mechanic(String name) {

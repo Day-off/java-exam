@@ -1,4 +1,5 @@
 package ee.taltech.iti0202.exam.workshop;
+
 public class Car {
     private boolean isFixed = false;
     private int timeFixed = 0;
@@ -17,7 +18,7 @@ public class Car {
         isFixed = fixed;
     }
 
-    public void carRepaired(){
+    public void carRepaired() {
         timeFixed += 1;
     }
 
