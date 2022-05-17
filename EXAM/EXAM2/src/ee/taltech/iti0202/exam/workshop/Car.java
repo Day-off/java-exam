@@ -3,7 +3,10 @@ public class Car {
     private boolean isFixed = false;
     private int timeFixed = 0;
 
+    private String license;
+
     public Car(String licencePlate) {
+        license = licencePlate;
     }
 
     public boolean isFixed() {
@@ -23,7 +26,7 @@ public class Car {
     }
 
     public String getLicencePlate() {
-        return "";
+        return license;
     }
 
 }
