@@ -23,7 +23,17 @@ public class Exam {
      * @return "ordered" list
      */
     public static List<Integer> zeroFront(List<Integer> numbers) {
-        return numbers.stream().sorted().collect(Collectors.toList());
+        ArrayList<Integer> zero = new ArrayList<>();
+        ArrayList<Integer> others = new ArrayList<>();
+        for (int num: numbers){
+            if (num == 0){
+                zero.add(num);
+            }else {
+                others.add(num);
+            }
+        }
+        zero.addAll(others);
+        return zero;
     }
 
     /**
@@ -45,7 +55,7 @@ public class Exam {
     }
 
     public static void main(String[] args) {
-        System.out.println(zeroFront(Arrays.asList(0, 1, 0)));
+        System.out.println(zeroFront(Arrays.asList(0, 1, 0,3,4,5,6,7)));
         System.out.println(zeroFront(Arrays.asList(1, 0, 0, 1)));
         System.out.println(zeroFront(Arrays.asList(1, 0)));
         System.out.println(zeroFront(Arrays.asList(0, 1, 1, 0, 1)));
