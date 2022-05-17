@@ -27,10 +27,11 @@ public class Workshop {
     }
 
     public boolean registerCarForRepair(Car car, Mechanic mechanic) {
-        if (!stuff.contains(mechanic) || mechanic.getCarsToBeFixed().contains(car) || car.isFixed()) {
+        if (!stuff.contains(mechanic) || mechanic.getCarsToBeFixed().contains(car)) {
             return false;
         }
         mechanic.addCar(car);
+        car.setFix(false);
         if (!allCars.contains(car)) {
             allCars.add(car);
         }
