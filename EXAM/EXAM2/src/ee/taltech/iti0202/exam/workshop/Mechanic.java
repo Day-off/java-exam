@@ -6,6 +6,7 @@ import java.util.List;
 public class Mechanic {
 
     private List<Car> carsToBeFixed = new ArrayList<>();
+    private List<Car> carsFixed = new ArrayList<>();
     private String name;
     private Workshop workshop;
 
@@ -14,12 +15,16 @@ public class Mechanic {
     }
 
     public boolean fixCar(Car car) {
-
+        if (car.isFixed() || !carsToBeFixed.contains(car)){
+            return false;
+        }
+        car.setFix(true);
+        carsFixed.add(car);
+        carsToBeFixed.remove(car);
         return true;
     }
 
     public List<Car> getCarsToBeFixed() {
-
         return carsToBeFixed;
     }
 
