@@ -1,8 +1,7 @@
 package ee.taltech.iti0202.exam;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class Exam {
@@ -50,26 +49,37 @@ public class Exam {
      * @return a list that is sorted by to number popularity
      */
     public static List<Integer> frequencyBasedSort(String input) {
-        String[] numbers = input.split(",");
-        HashMap<Integer, Integer> res = new HashMap<>();
-        int count = 1;
-        for (String s : numbers) {
-            if (!res.containsKey(Integer.parseInt(s))) {
-                for (String n : numbers) {
-                    if (n.equals(s)) {
-                        count += 1;
+        String[] nums = input.split(",");
+        HashMap<Integer, List<Integer>> map = new HashMap<>();
+        List<String> control = new ArrayList<>();
+        for (String s : nums) {
+            if (!control.contains(s)) {
+                control.add(s);
+                List<Integer> colect = new ArrayList<>();
+                for (String n : nums) {
+                    if (s.equals(n)) {
+                        colect.add(Integer.parseInt(n));
                     }
                 }
-                res.put(Integer.parseInt(s), count);
-                count = 0;
+                if (!map.containsKey(colect.size())) {
+                    map.put(colect.size(), new ArrayList<>(colect));
+                } else {
+                    List<Integer> i = map.get(colect.size());
+                    i.addAll(colect);
+                    map.put(colect.size(), i);
+                }colect.clear();
             }
-
         }
-        return null;
+        Set<Integer> keys = map.keySet();
+        List<Integer> res = new ArrayList<>();
+        for (int i = keys.size() - 1; i > 0; i-- ){
+            res.addAll(map.get(i).stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
+        }
+        return res;
     }
 
     public static void main(String[] args) {
-        System.out.println(frequencyBasedSort("1,2,1,3"));  // 1, 1, 3, 2
+        System.out.println(frequencyBasedSort("1,2,1,3,4,4,4"));  // 1, 1, 3, 2
     }
 
 }
