@@ -3,8 +3,6 @@ package ee.taltech.iti0202.exam;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Arrays;
-
 
 
 public class Exam {
@@ -56,12 +54,13 @@ public class Exam {
         HashMap<Integer, Integer> res = new HashMap<>();
         int count = 1;
         for (String s : numbers) {
-            if (!res.containsKey(Integer.parseInt(s))){
-                for (String n : numbers){
-                    if (n.equals(s)){
+            if (!res.containsKey(Integer.parseInt(s))) {
+                for (String n : numbers) {
+                    if (n.equals(s)) {
                         count += 1;
                     }
-                }res.put(Integer.parseInt(s), count);
+                }
+                res.put(Integer.parseInt(s), count);
                 count = 0;
             }
 
