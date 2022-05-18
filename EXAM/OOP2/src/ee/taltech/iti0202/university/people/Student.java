@@ -8,7 +8,9 @@ import ee.taltech.iti0202.university.exeptions.grade.InvalidAssessmentTypeExcept
 import ee.taltech.iti0202.university.grade.Grade;
 import ee.taltech.iti0202.university.studyprogramm.StudyProgramme;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Student {
@@ -72,8 +74,8 @@ public class Student {
         return age;
     }
 
-    public Set<Course> getAllCourses() {
-        return allCourses.keySet();
+    public HashMap<Course, Grade> getAllCourses() {
+        return allCourses;
     }
 
     public University getCurrentUniversity() {
@@ -131,12 +133,13 @@ public class Student {
 
     @Override
     public String toString() {
-        return "name: '" + name + '\'' +
-                ", age: " + age +
-                ", currentUniversity: " + currentUniversity +
-                ", currentProgram: " + currentProgram +
-                "\n allCourses: " + allCourses +
-                "\n passedCourses: " + getPassedCourses() +
-                "\n notPassedCourses:" + getNotPassedCourses() + "\n";
+        return "name: '" + name + '\''
+                + ", age: " + age
+                + ", currentUniversity: "
+                + currentUniversity
+                + ", currentProgram: " + currentProgram
+                + "\n allCourses: " + allCourses
+                + "\n passedCourses: " + getPassedCourses()
+                + "\n notPassedCourses:" + getNotPassedCourses() + "\n";
     }
 }

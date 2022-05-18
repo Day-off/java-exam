@@ -28,7 +28,8 @@ public class Teacher {
         return myCourses;
     }
 
-    public void evaluateStudent(Student student, Course course, Character grade) throws InvalidCourseException, InvalidAssessmentTypeException {
+    public void evaluateStudent(Student student, Course course, Character grade) throws InvalidCourseException,
+            InvalidAssessmentTypeException {
         if (!myCourses.contains(course)) {
             throw new InvalidCourseException();
         }

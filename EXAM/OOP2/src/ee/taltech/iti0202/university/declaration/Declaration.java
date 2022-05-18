@@ -42,7 +42,7 @@ public class Declaration {
     MAIN METHODS
      */
     public int getSumEap() {
-        return coursesForDeclaration.stream().mapToInt(Course::getEAP).sum();
+        return coursesForDeclaration.stream().mapToInt(Course::getEap).sum();
     }
 
     public void setSumit(boolean res) {

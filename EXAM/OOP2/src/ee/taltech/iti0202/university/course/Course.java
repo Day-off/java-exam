@@ -13,18 +13,19 @@ public class Course {
 
     private final String name;
     private final List<Teacher> teachers = new ArrayList<>();
-    private int EAP;
+    private int eap;
     private final List<Student> students = new ArrayList<>();
     private final TypeOfPassing passingType;
     private CourseType type;
     private University university;
 
-    public Course(String name, Teacher teacher, int eap, TypeOfPassing passingType, CourseType type) throws TeacherAlreadyManageThisCourseException {
+    public Course(String name, Teacher teacher, int eap, TypeOfPassing passingType,
+                  CourseType type) throws TeacherAlreadyManageThisCourseException {
         if (name.isEmpty() || eap < 1 || type == null) {
             throw new IllegalArgumentException();
         } else {
             this.name = name;
-            this.EAP = eap;
+            this.eap = eap;
             this.passingType = passingType;
             addTeacher(teacher);
             setCourseType(type);
@@ -37,7 +38,7 @@ public class Course {
 
     public void setCourseType(CourseType type) {
         if (type == CourseType.SEMINAR) {
-            EAP = 1;
+            eap = 1;
         }
         this.type = type;
     }
@@ -92,8 +93,8 @@ public class Course {
         return name;
     }
 
-    public int getEAP() {
-        return EAP;
+    public int getEap() {
+        return eap;
     }
 
     public List<Student> getStudents() {
@@ -114,6 +115,6 @@ public class Course {
 
     @Override
     public String toString() {
-        return name + ", " + EAP + " eap " + type;
+        return name + ", " + eap + " eap " + type;
     }
 }

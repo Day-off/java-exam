@@ -88,7 +88,7 @@ public class University {
     }
 
     public void removeStudent(Student student) {
-        for (Course course : student.getAllCourses()) {
+        for (Course course : student.getAllCourses().keySet()) {
             course.removeStudent(student);
         }
         student.getAllCourses().clear();
@@ -147,7 +147,8 @@ public class University {
         }
     }
 
-    public void registerOnCourse(Student student, Course course) throws InvalidStudentOrCourseException, StudentAlreadyInThisCourseException, StudentAlreadyInThisCourseException {
+    public void registerOnCourse(Student student, Course course) throws InvalidStudentOrCourseException,
+            StudentAlreadyInThisCourseException {
         if (!allStudents.contains(student) || !allCourses.contains(course)) {
             throw new InvalidStudentOrCourseException();
         } else {

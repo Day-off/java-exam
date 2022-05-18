@@ -3,7 +3,10 @@ package ee.taltech.iti0202.university.studyprogramm;
 import ee.taltech.iti0202.university.course.Course;
 import ee.taltech.iti0202.university.exeptions.Course.CourseAlreadyExistException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 
 public class StudyProgramme {
 
@@ -58,7 +61,7 @@ public class StudyProgramme {
 
     @Override
     public String toString() {
-        return name + "\n allCourses: " + allCourses.size() +
-                ", coursesSortedByModule:" + coursesSortedByModule;
+        return name + "\n allCourses: " + allCourses.size()
+                + ", coursesSortedByModule:" + coursesSortedByModule;
     }
 }
