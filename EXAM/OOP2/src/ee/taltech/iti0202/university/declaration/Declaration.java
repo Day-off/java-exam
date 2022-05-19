@@ -9,8 +9,8 @@ public class Declaration {
 
     private final Student student;
     private final List<Course> coursesForDeclaration;
-    private static final int MIN_EAP = 10;//final eap 26
-    private static final int MAX_EAP = 20;//final eap 45
+    private static final int MIN_EAP = 10; //final eap 26
+    private static final int MAX_EAP = 20; //final eap 45
     private boolean isSubmitted = false;
     private boolean isCompleted = false;
 
