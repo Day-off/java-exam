@@ -113,6 +113,41 @@ public class MainFunctionTest {
     /*
     UNIVERSITY METHODS
      */
+
+    @Test
+    public void studentsRanking() throws InvalidAssessmentTypeException, InvalidCourseException {
+        mari.createDeclaration(mod);
+        mari.submittDeclaretion();
+        lili.createDeclaration(easy);
+        lili.submittDeclaretion();
+        kati.createDeclaration(pop);
+        kati.submittDeclaretion();
+
+        piret.evaluateStudent(kati, math, '4');
+        piret.evaluateStudent(lili, math, '5');
+        ago.evaluateStudent(kati, java, '3');
+        ago.evaluateStudent(lili, java, '5');
+        gert.evaluateStudent(kati, machineLearning, 'a');
+
+        u1.setRankingStudentList();
+
+        //by kkh
+        assertEquals(lili, u1.getRankingStudentList().get(0)); //5
+        assertEquals(kati, u1.getRankingStudentList().get(1)); //4.25
+        assertEquals(mari, u1.getRankingStudentList().get(2)); //0
+
+        ago.evaluateStudent(mari, java, '5');
+        piret.evaluateStudent(mari, math,'5');
+        gert.evaluateStudent(mari, machineLearning, 'a');
+
+        u1.setRankingStudentList();
+        assertEquals(mari, u1.getRankingStudentList().get(0)); //5 24eap
+        assertEquals(lili, u1.getRankingStudentList().get(1)); //5 12eap
+        assertEquals(kati, u1.getRankingStudentList().get(2)); //4.25
+
+
+    }
+
     @Test
     public void activeStudents() {
         mari.createDeclaration(mod);

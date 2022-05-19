@@ -14,6 +14,7 @@ public class Grade {
     private boolean isPassed = false;
     private final TypeOfPassing passing;
     private boolean courseIsVaba = false;
+    private boolean isAssest = false;
 
     public Grade(Student student, Course course) {
         this.student = student;
@@ -49,6 +50,10 @@ public class Grade {
         return passing;
     }
 
+    public boolean getIsAssest() {
+        return isAssest;
+    }
+
     public boolean isCourseIsVaba() {
         return courseIsVaba;
     }
@@ -56,6 +61,10 @@ public class Grade {
     /*
     SETTERS
      */
+
+    public void isAssest(boolean res) {
+        isAssest = res;
+    }
 
     public void setCourseIsVaba() {
         courseIsVaba = true;

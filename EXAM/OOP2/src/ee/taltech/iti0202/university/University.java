@@ -9,6 +9,7 @@ import ee.taltech.iti0202.university.people.Teacher;
 import ee.taltech.iti0202.university.studyprogramm.StudyProgramme;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class University {
@@ -19,7 +20,8 @@ public class University {
     private final List<Student> allStudents = new ArrayList<>();
     private final List<Student> allActiveStudents = new ArrayList<>();
     private final List<StudyProgramme> studyProgrammes = new ArrayList<>();
-//    private HashMap<StudyProgramme, List<Student>> studentsByProgrammes = new HashMap<>();
+    private List<Student> rankingStudentList = new ArrayList<>();
+
 
 
     public University(String name) {
@@ -110,6 +112,10 @@ public class University {
     GETTERS
      */
 
+    public List<Student> getRankingStudentList() {
+        return rankingStudentList;
+    }
+
     public String getName() {
         return name;
     }
@@ -157,6 +163,14 @@ public class University {
         } else {
             student.setCurrentProgram(studyProgramme);
         }
+    }
+
+    public void setRankingStudentList() {
+        rankingStudentList = new ArrayList<>(allStudents);
+        rankingStudentList.sort(Comparator.comparing(Student::getKkhDob)
+                .thenComparing(Student::getStudyProgrammeProgress)
+                .thenComparing(Student::getCurrentEapAmount)
+                .thenComparing(Student::getName).reversed());
     }
 
     @Override

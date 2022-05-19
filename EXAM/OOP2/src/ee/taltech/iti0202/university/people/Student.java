@@ -12,6 +12,7 @@ import ee.taltech.iti0202.university.strategy.Strategy;
 import ee.taltech.iti0202.university.studyprogramm.StudyProgramme;
 
 import javax.management.InvalidAttributeValueException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +25,8 @@ public class Student {
     private University currentUniversity;
     private StudyProgramme currentProgram;
     private float currentEapAmount;
+    private String kkh;
+    private DecimalFormat dfSharp = new DecimalFormat("#.##");
 
     private Declaration declaration;
 
@@ -83,6 +86,15 @@ public class Student {
     GETTERS
      */
 
+    public String getKkh() {
+        setKkh();
+        return kkh;
+    }
+
+    public double getKkhDob() {
+        return Double.parseDouble(dfSharp.format(Double.parseDouble(getKkh())));
+    }
+
     public Declaration getDeclaration() {
         return declaration;
     }
@@ -131,7 +143,7 @@ public class Student {
      */
     public List<Course> getNotPassedCourses() {
         return new ArrayList<Grade>(allCourses.values())
-                .stream().filter(g -> !g.getIsPassed())
+                .stream().filter(Grade::getIsAssest)
                 .map(Grade::getCourse).collect(Collectors.toList());
     }
 
@@ -151,6 +163,7 @@ public class Student {
         courseGrade.setGrade(grade);
         if (Character.isDigit(grade)) {
             courseGrade.setPassed(Integer.parseInt(String.valueOf(grade)) >= 1);
+            courseGrade.isAssest(true);
         }
     }
 
@@ -166,8 +179,12 @@ public class Student {
         courseGrade.setGrade(grade);
         if (grade.equals('a')) {
             courseGrade.setPassed(true);
+            courseGrade.setGrade(grade);
+            courseGrade.isAssest(true);
         } else if (grade.equals('m')) {
             courseGrade.setPassed(false);
+            courseGrade.setGrade(grade);
+            courseGrade.isAssest(true);
         } else {
             throw new InvalidAssessmentTypeException();
         }
@@ -244,6 +261,38 @@ public class Student {
         } else {
             throw new InvalidAttributeValueException("Not enough progress!");
         }
+    }
+
+    public void setKkh() {
+        double kkh = 0;
+//        List<Grade> allGrades = new ArrayList<>(allCourses.values()).stream().filter(Grade::getIsPassed).toList();
+        double eapAmount = getPassedCourses().stream().mapToDouble(Course::getEap).sum()
+                + getNotPassedCourses().stream().mapToDouble(Course::getEap).sum();
+        List<Course> graded = new ArrayList<>(getPassedCourses());
+        graded.addAll(getNotPassedCourses());
+        for (Course course : graded) {
+            int courseEap = 0;
+            int grade;
+            if (Character.isDigit(allCourses.get(course).getGrade())) {
+                grade = Integer.parseInt(String.valueOf(allCourses.get(course).getGrade()));
+            } else {
+                if (allCourses.get(course).getGrade().equals('a')) {
+                    grade = 5;
+                } else {
+                    grade = 0;
+                }
+            }
+            if (grade != 0) {
+                courseEap = course.getEap();
+            } else {
+                courseEap = course.getEap() / 2;
+            }
+            double coursePre = (courseEap * 100) / eapAmount;
+            double res = (coursePre * grade) / 100;
+            kkh += res;
+        }
+        DecimalFormat df = new DecimalFormat("#.###");
+        this.kkh = df.format(kkh);
     }
 
     @Override

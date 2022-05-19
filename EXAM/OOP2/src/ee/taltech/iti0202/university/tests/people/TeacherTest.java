@@ -17,11 +17,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.testng.Assert.assertEquals;
 
 public class TeacherTest {
-    private Teacher ago = new Teacher("Ago");
-    private University uni = new University("TTU");
-    private Student student = new Student("Kati Liis", 23);
-    private Course course = new Course("JAVA", ago, 6, TypeOfPassing.EXAM, CourseType.GENERAL);
-    private Course course2 = new Course("JAVA2", ago, 6,
+    private final Teacher ago = new Teacher("Ago");
+    private final University uni = new University("TTU");
+    private final Student student = new Student("Kati Liis", 23);
+    private final Course course = new Course("JAVA", ago, 6, TypeOfPassing.EXAM, CourseType.GENERAL);
+    private final Course course2 = new Course("JAVA2", ago, 6,
             TypeOfPassing.PASS_FALL_ASSESSMENT, CourseType.GENERAL);
 
     public TeacherTest() throws TeacherAlreadyManageThisCourseException, StudentToYoungOrOldException {

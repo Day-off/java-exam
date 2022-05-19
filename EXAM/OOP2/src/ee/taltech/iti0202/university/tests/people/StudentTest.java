@@ -4,6 +4,7 @@ import ee.taltech.iti0202.university.University;
 import ee.taltech.iti0202.university.course.Course;
 import ee.taltech.iti0202.university.course.CourseType;
 import ee.taltech.iti0202.university.course.TypeOfPassing;
+import ee.taltech.iti0202.university.exeptions.Course.CourseAlreadyExistException;
 import ee.taltech.iti0202.university.exeptions.Programme.InvalidProgrammException;
 import ee.taltech.iti0202.university.exeptions.Student.StudentToYoungOrOldException;
 import ee.taltech.iti0202.university.exeptions.Teacher.InvalidCourseException;
@@ -21,11 +22,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class StudentTest {
 
     private final Teacher ago = new Teacher("Ago");
-    private final StudyProgramme inform = new StudyProgramme("Inform", 170);
+    private final StudyProgramme inform = new StudyProgramme("Inform", 10);
     private final University uni = new University("TTU");
     private final Student kati = new Student("Kati Liis", 23);
     private final Course java = new Course("JAVA", ago, 6, TypeOfPassing.EXAM, CourseType.GENERAL);
-    private final Course python = new Course("PYTHON", ago, 6, TypeOfPassing.PASS_FALL_ASSESSMENT, CourseType.GENERAL);
+    private final Course python = new Course("PYTHON", ago, 3, TypeOfPassing.PASS_FALL_ASSESSMENT, CourseType.GENERAL);
 
 
     public StudentTest() throws StudentToYoungOrOldException, TeacherAlreadyManageThisCourseException {
@@ -75,6 +76,20 @@ public class StudentTest {
 
         assertEquals(python, kati.getNotPassedCourses().get(0));
         assertEquals(1, kati.getNotPassedCourses().size());
+    }
+
+    @Test
+    public void kkh() throws InvalidProgrammException, CourseAlreadyExistException {
+        kati.addCourse(java, new Grade(kati, java));
+        kati.addCourse(python, new Grade(kati, python));
+        kati.setCurrentUniversity(uni);
+        uni.addStudyProgramme(inform);
+        kati.setCurrentProgram(inform);
+        kati.getAllCourses().get(java).setGrade('5');
+        kati.getAllCourses().get(java).setPassed(true);
+        kati.getAllCourses().get(python).setGrade('4');
+        kati.getAllCourses().get(python).setPassed(true);
+        assertEquals(4.667, Double.valueOf(kati.getKkh()));
     }
 
 }
