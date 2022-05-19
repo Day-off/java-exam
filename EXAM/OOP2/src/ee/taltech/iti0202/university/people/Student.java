@@ -26,12 +26,13 @@ public class Student {
     private StudyProgramme currentProgram;
     private float currentEapAmount;
     private String kkh;
-    private DecimalFormat dfSharp = new DecimalFormat("#.##");
+    private final DecimalFormat dfSharp = new DecimalFormat("#.##");
+    private boolean isScholarship = false;
+    private int scholar;
 
     private Declaration declaration;
 
     private final HashMap<Course, Grade> allCourses = new HashMap<>();
-//    private final HashMap<Module, List<Course>> sortedByModuleCourses = new HashMap<>();
 
     public Student(String name, int age) throws StudentToYoungOrOldException {
         this.name = name;
@@ -75,9 +76,17 @@ public class Student {
         currentUniversity = null;
     }
 
+    public void isScholarship(boolean res) {
+        isScholarship = res;
+    }
+
+    public void setScholar(int scholar) {
+        this.scholar = scholar;
+    }
+
     /*
-    ADD
-     */
+        ADD
+         */
     public void addCourse(Course course, Grade grade) {
         allCourses.put(course, grade);
     }
@@ -89,6 +98,14 @@ public class Student {
     public String getKkh() {
         setKkh();
         return kkh;
+    }
+
+    public int getScholar() {
+        return scholar;
+    }
+
+    public boolean getIsScholarship() {
+        return isScholarship;
     }
 
     public double getKkhDob() {

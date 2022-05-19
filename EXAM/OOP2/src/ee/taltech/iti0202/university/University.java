@@ -8,7 +8,9 @@ import ee.taltech.iti0202.university.people.Student;
 import ee.taltech.iti0202.university.people.Teacher;
 import ee.taltech.iti0202.university.studyprogramm.StudyProgramme;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -21,6 +23,8 @@ public class University {
     private final List<Student> allActiveStudents = new ArrayList<>();
     private final List<StudyProgramme> studyProgrammes = new ArrayList<>();
     private List<Student> rankingStudentList = new ArrayList<>();
+
+    private int[] scholarship;
 
 
     public University(String name) {
@@ -79,6 +83,19 @@ public class University {
     /*
     REMOVE OBJECTS FROM UNI
      */
+
+    public void setScholarship(int amount, int money) {
+        this.scholarship = new int[amount];
+        Arrays.fill(scholarship, money);
+    }
+
+    public void giveScholar() {
+        for (int i = 0; i + 1 < scholarship.length; i++) {
+            allActiveStudents.get(i).setScholar(Array.getInt(scholarship, i));
+            scholarship[i] = 0;
+            allActiveStudents.get(i).isScholarship(true);
+        }
+    }
 
     public void removeCourse(Course course) {
         if (allCourses.contains(course)) {

@@ -147,6 +147,13 @@ public class MainFunctionTest {
         assertEquals(lili, u1.getRankingStudentList().get(1)); //5 12eap
         assertEquals(kati, u1.getRankingStudentList().get(2)); //4.25
 
+        //check scholar
+        u1.setScholarship(2, 80);
+        u1.giveScholar();
+
+        assertTrue(mari.getIsScholarship());
+        assertEquals(80, mari.getScholar());
+
 
     }
 
@@ -249,7 +256,7 @@ public class MainFunctionTest {
         assertTrue(kati.getDeclaration().getIsSubmitted());
         // mari+kati+lili = 3 most declare time
         assertEquals(new ArrayList<>(List.of(math, java, machineLearning)),
-                new ArrayList<>(kati.getAllCourses().keySet()));
+                new ArrayList<>(kati.getAllCourses().keySet())); // may break with all test together
     }
 
 
