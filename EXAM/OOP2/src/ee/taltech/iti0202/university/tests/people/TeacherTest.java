@@ -45,7 +45,7 @@ public class TeacherTest {
      * Assessment partly located in student class(but test is here)
      */
     @Test
-    public void InvalidAssessment() {
+    public void invalidAssessment() {
         student.addCourse(course, new Grade(student, course));
         student.addCourse(course2, new Grade(student, course2));
         Character grade = '9';
