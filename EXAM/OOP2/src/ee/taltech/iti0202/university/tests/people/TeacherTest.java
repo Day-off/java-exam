@@ -21,9 +21,10 @@ public class TeacherTest {
     private University uni = new University("TTU");
     private Student student = new Student("Kati Liis", 23);
     private Course course = new Course("JAVA", ago, 6, TypeOfPassing.EXAM, CourseType.GENERAL);
-    private Course course2 = new Course("JAVA2", ago, 6, TypeOfPassing.PASS_FALL_ASSESSMENT, CourseType.GENERAL);
+    private Course course2 = new Course("JAVA2", ago, 6,
+            TypeOfPassing.PASS_FALL_ASSESSMENT, CourseType.GENERAL);
 
-    public TeacherTest() throws StudentToYoungOrOldException, TeacherAlreadyManageThisCourseException, StudentToYoungOrOldException {
+    public TeacherTest() throws TeacherAlreadyManageThisCourseException, StudentToYoungOrOldException {
     }
 
     @Test
@@ -44,20 +45,18 @@ public class TeacherTest {
      * Assessment partly located in student class(but test is here)
      */
     @Test
-    public void InvalidAssessment(){
+    public void InvalidAssessment() {
         student.addCourse(course, new Grade(student, course));
         student.addCourse(course2, new Grade(student, course2));
         Character grade = '9';
-        InvalidAssessmentTypeException exception1 = assertThrows(InvalidAssessmentTypeException.class, () -> {
-                    ago.evaluateStudent(student, course,grade);
-                }
+        InvalidAssessmentTypeException exception1 = assertThrows(InvalidAssessmentTypeException.class,
+                () -> ago.evaluateStudent(student, course, grade)
         );
 
         assertEquals(InvalidAssessmentTypeException.class, exception1.getClass());
         Character grade2 = 'c'; //lubatut ainult a - arvestatud m - mittearvestatud
-        InvalidAssessmentTypeException exception2 = assertThrows(InvalidAssessmentTypeException.class, () -> {
-                    ago.evaluateStudent(student, course2, grade2);
-                }
+        InvalidAssessmentTypeException exception2 = assertThrows(InvalidAssessmentTypeException.class,
+                () -> ago.evaluateStudent(student, course2, grade2)
         );
         assertEquals(InvalidAssessmentTypeException.class, exception2.getClass());
 

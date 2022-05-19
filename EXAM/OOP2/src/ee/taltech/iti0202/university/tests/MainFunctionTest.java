@@ -24,7 +24,10 @@ import org.junit.Test;
 
 import javax.management.InvalidAttributeValueException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class MainFunctionTest {
 
@@ -44,13 +47,19 @@ public class MainFunctionTest {
     private final Course java = new Course("JAVA", ago, 6, TypeOfPassing.EXAM, CourseType.GENERAL);
     private final Course math = new Course("MATH", piret, 6, TypeOfPassing.EXAM, CourseType.GENERAL);
     private final Course python = new Course("PYTHON", ago, 6, TypeOfPassing.EXAM, CourseType.INTERNSHIP);
-    private final Course robots = new Course("ROBOTS", gert, 6, TypeOfPassing.PASS_FALL_ASSESSMENT, CourseType.DIPLOMA);
-    private final Course kunstHistory = new Course("KUNST HISTORY", ago, 9, TypeOfPassing.PASS_FALL_ASSESSMENT, CourseType.SEMINAR);
-    private final Course machineLearning = new Course("MACHINE LEARNING", gert, 12, TypeOfPassing.PASS_FALL_ASSESSMENT, CourseType.GENERAL);
-    private final Course oilPainting = new Course("OIL PAINTING", ago, 9, TypeOfPassing.PASS_FALL_ASSESSMENT, CourseType.GENERAL);
-    private final Course justPainting = new Course("JUST PAINTING", ago, 9, TypeOfPassing.PASS_FALL_ASSESSMENT, CourseType.GENERAL);
+    private final Course robots = new Course("ROBOTS", gert, 6,
+            TypeOfPassing.PASS_FALL_ASSESSMENT, CourseType.DIPLOMA);
+    private final Course kunstHistory = new Course("KUNST HISTORY", ago, 9,
+            TypeOfPassing.PASS_FALL_ASSESSMENT, CourseType.SEMINAR);
+    private final Course machineLearning = new Course("MACHINE LEARNING", gert, 12,
+            TypeOfPassing.PASS_FALL_ASSESSMENT, CourseType.GENERAL);
+    private final Course oilPainting = new Course("OIL PAINTING", ago, 9,
+            TypeOfPassing.PASS_FALL_ASSESSMENT, CourseType.GENERAL);
+    private final Course justPainting = new Course("JUST PAINTING", ago, 9,
+            TypeOfPassing.PASS_FALL_ASSESSMENT, CourseType.GENERAL);
 
-    private final StudyProgramme informaatika = new StudyProgramme("Informaatika", 18);//for test such small num
+    //for test such small num
+    private final StudyProgramme informaatika = new StudyProgramme("Informaatika", 18);
     private final StudyProgramme devOps = new StudyProgramme("Devops", 20);
     private final StudyProgramme design = new StudyProgramme("Devops design", 10);
 
@@ -62,7 +71,8 @@ public class MainFunctionTest {
     }
 
     @Before
-    public void setup() throws CourseAlreadyExistException, StudenAlreadyStudingUniversityException, InvalidProgrammException {
+    public void setup() throws CourseAlreadyExistException,
+            StudenAlreadyStudingUniversityException, InvalidProgrammException {
         //add course to programme
         informaatika.addCourse(java, Module.PRAKTIKALINE_INF);
         informaatika.addCourse(python, Module.INFORMAATIIKA_ALUSED);
@@ -104,7 +114,7 @@ public class MainFunctionTest {
     UNIVERSITY METHODS
      */
     @Test
-    public void activeStudents(){
+    public void activeStudents() {
         mari.createDeclaration(mod);
         mari.submittDeclaretion();
         lili.createDeclaration(easy);
@@ -122,7 +132,8 @@ public class MainFunctionTest {
     EVALUATE STUDENTS
      */
     @Test
-    public void extraCoursesIsVabaAndProgrammeProgress() throws InvalidAssessmentTypeException, InvalidCourseException, InvalidAttributeValueException {
+    public void extraCoursesIsVabaAndProgrammeProgress() throws InvalidAssessmentTypeException,
+            InvalidCourseException, InvalidAttributeValueException {
         mari.createDeclaration(mod);
         mari.submittDeclaretion();
         lili.createDeclaration(easy);
@@ -145,9 +156,8 @@ public class MainFunctionTest {
         assertTrue(kati.getAllCourses().containsKey(python));
 
         //not 100 programme
-        InvalidAttributeValueException exception = assertThrows(InvalidAttributeValueException.class, () -> {
-                    mari.specificCourseApplication(python);
-                }
+        InvalidAttributeValueException exception = assertThrows(InvalidAttributeValueException.class,
+                () -> mari.specificCourseApplication(python)
         );
         assertEquals(InvalidAttributeValueException.class, exception.getClass());
     }
@@ -181,7 +191,7 @@ public class MainFunctionTest {
 
         //enable make new declaration while student have active course
         IllegalArgumentException exception1 = assertThrows(IllegalArgumentException.class, () -> {
-                   mari.createDeclaration(easy); //already there
+                    mari.createDeclaration(easy); //already there
                 }
         );
         assertEquals(IllegalArgumentException.class, exception1.getClass());
@@ -200,7 +210,8 @@ public class MainFunctionTest {
         assertNotNull(kati.getDeclaration());
         kati.submittDeclaretion();
         assertTrue(kati.getDeclaration().getIsSubmitted());
-        assertEquals(3, kati.getNotPassedCourses().get(0).getDeclaretionAmount()); // mari+kati+lili = 3 most declare time
+        // mari+kati+lili = 3 most declare time
+        assertEquals(3, kati.getNotPassedCourses().get(0).getDeclaretionAmount());
     }
 
 
@@ -208,7 +219,8 @@ public class MainFunctionTest {
     public void invalidStrategy() {
         jaan.createDeclaration(mod);
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                jaan::submittDeclaretion //there is not enough sap as we take courses only by modules and there are few of them
+                jaan::submittDeclaretion //there is not enough sap as we take courses only
+                // by modules and there are few of them
         );
         assertEquals(IllegalArgumentException.class, exception.getClass());
     }
@@ -251,13 +263,15 @@ public class MainFunctionTest {
 
     @Test
     public void addInvalidStudent() {
-        StudenAlreadyStudingUniversityException exception = assertThrows(StudenAlreadyStudingUniversityException.class, () -> {
+        StudenAlreadyStudingUniversityException exception = assertThrows(StudenAlreadyStudingUniversityException.class,
+                () -> {
                     u1.registerStudent(kati); //student already in TTU
                 }
         );
         assertEquals(StudenAlreadyStudingUniversityException.class, exception.getClass());
 
-        StudenAlreadyStudingUniversityException exception1 = assertThrows(StudenAlreadyStudingUniversityException.class, () -> {
+        StudenAlreadyStudingUniversityException exception1 = assertThrows(StudenAlreadyStudingUniversityException.class,
+                () -> {
                     u1.registerStudent(jaan); //student from EKA
                 }
         );

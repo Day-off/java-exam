@@ -44,30 +44,30 @@ public class CourseTest {
 
     @Test
     public void createInvalidCourse() {
-        int ACTUAL_CREDIT_POINTS = 5;
+        int actualCreditPoints = 5;
         final TypeOfPassing ACTUAL_PASS_TYPE = TypeOfPassing.EXAM;
         final CourseType ACTUAL_TYPE = CourseType.GENERAL;
 
         //Illegal name
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> new Course("", teacher,
-                        ACTUAL_CREDIT_POINTS, ACTUAL_PASS_TYPE, ACTUAL_TYPE)
+                        actualCreditPoints, ACTUAL_PASS_TYPE, ACTUAL_TYPE)
         );
 
         assertEquals("Invalid info.", exception.getMessage());
 
         //Illegal eap
-        int ACTUAL_CREDIT_POINTS_1 = 0;
+        int actualCreditPoints1 = 0;
         IllegalArgumentException exception1 = assertThrows(IllegalArgumentException.class,
                 () -> new Course("", teacher,
-                        ACTUAL_CREDIT_POINTS_1, ACTUAL_PASS_TYPE, ACTUAL_TYPE)
+                        actualCreditPoints1, ACTUAL_PASS_TYPE, ACTUAL_TYPE)
         );
 
         assertEquals("Invalid info.", exception1.getMessage());
         //Illegal name
         IllegalArgumentException exception2 = assertThrows(IllegalArgumentException.class,
                 () -> new Course("", teacher,
-                        ACTUAL_CREDIT_POINTS, null, null)
+                        actualCreditPoints, null, null)
         );
 
         assertEquals("Invalid info.", exception2.getMessage());

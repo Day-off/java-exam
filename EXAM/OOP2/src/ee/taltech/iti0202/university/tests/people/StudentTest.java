@@ -57,10 +57,9 @@ public class StudentTest {
     }
 
     @Test
-    public void invalidProgramme(){
-        InvalidProgrammException exception12 = assertThrows(InvalidProgrammException.class, () -> {
-                    kati.setCurrentProgram(inform);
-                }
+    public void invalidProgramme() {
+        InvalidProgrammException exception12 = assertThrows(InvalidProgrammException.class,
+                () -> kati.setCurrentProgram(inform)
         );
         assertEquals(InvalidProgrammException.class, exception12.getClass());
 

@@ -53,7 +53,7 @@ public class Student {
 
     public void setCurrentProgram(StudyProgramme currentProgram) throws InvalidProgrammException {
         if (currentUniversity == null || !currentUniversity.getStudyProgrammes().contains(currentProgram)
-        || getCurrentProgram() == currentProgram) {
+                || getCurrentProgram() == currentProgram) {
             throw new InvalidProgrammException();
         } else {
             this.currentProgram = currentProgram;
@@ -241,7 +241,7 @@ public class Student {
         } else if (CourseType.INTERNSHIP == course.getType()
                 && getCurrentEapAmount() >= getCurrentProgram().getRequiredEapAmount()) {
             addCourse(course, new Grade(this, course));
-        }else {
+        } else {
             throw new InvalidAttributeValueException("Not enough progress!");
         }
     }

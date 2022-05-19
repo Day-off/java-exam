@@ -9,8 +9,8 @@ public class Declaration {
 
     private final Student student;
     private final List<Course> coursesForDeclaration;
-    private static int MIN_EAP = 16;
-    private static int MAX_EAP = 45;
+    private static int minEap = 16;
+    private static int maxEap = 45;
     private boolean isSubmitted = false;
     private boolean isCompleted = false;
 
@@ -41,11 +41,11 @@ public class Declaration {
     }
 
     public static int getMinEap() {
-        return MIN_EAP;
+        return minEap;
     }
 
     public static int getMaxEap() {
-        return MAX_EAP;
+        return maxEap;
     }
 
     /*
@@ -63,12 +63,12 @@ public class Declaration {
         isCompleted = res;
     }
 
-    public void setMinEap(int eap){
-        MIN_EAP = eap;
+    public void setMinEap(int eap) {
+        minEap = eap;
     }
 
-    public void setMaxEap(int eap){
-        MAX_EAP = eap;
+    public void setMaxEap(int eap) {
+        maxEap = eap;
     }
 
 }
