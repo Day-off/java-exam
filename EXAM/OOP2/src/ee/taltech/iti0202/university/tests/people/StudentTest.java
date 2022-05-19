@@ -74,8 +74,7 @@ public class StudentTest {
         assertEquals(java, kati.getPassedCourses().get(0));
         assertEquals(1, kati.getPassedCourses().size());
 
-        assertEquals(python, kati.getNotPassedCourses().get(0));
-        assertEquals(1, kati.getNotPassedCourses().size());
+        assertEquals(0, kati.getNotPassedCourses().size());
     }
 
     @Test

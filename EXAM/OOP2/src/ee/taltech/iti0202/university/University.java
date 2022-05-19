@@ -23,7 +23,6 @@ public class University {
     private List<Student> rankingStudentList = new ArrayList<>();
 
 
-
     public University(String name) {
         this.name = name;
     }
@@ -147,7 +146,8 @@ public class University {
 
     public void sortStudents() {
         for (Student student : allStudents) {
-            if (student.getNotPassedCourses().size() != 0) {
+            if (student.getNotPassedCourses().size()
+                    + student.getPassedCourses().size() != student.getAllCourses().keySet().size()) {
                 if (!allActiveStudents.contains(student)) {
                     allActiveStudents.add(student);
                 }

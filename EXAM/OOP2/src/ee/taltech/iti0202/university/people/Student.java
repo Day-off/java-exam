@@ -143,7 +143,7 @@ public class Student {
      */
     public List<Course> getNotPassedCourses() {
         return new ArrayList<Grade>(allCourses.values())
-                .stream().filter(Grade::getIsAssest)
+                .stream().filter(c -> !c.getIsPassed() && c.getIsAssest())
                 .map(Grade::getCourse).collect(Collectors.toList());
     }
 
@@ -213,7 +213,8 @@ public class Student {
      * @param strategy
      */
     public void createDeclaration(Strategy strategy) {
-        if (getNotPassedCourses().size() != 0) {
+        if (this.getNotPassedCourses().size()
+                + this.getPassedCourses().size() != this.getAllCourses().keySet().size()) {
             throw new IllegalArgumentException("You not finished your courses yet");
         }
         strategy.createCourseForDec(currentProgram, this);

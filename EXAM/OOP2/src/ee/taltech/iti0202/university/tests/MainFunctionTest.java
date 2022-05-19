@@ -23,11 +23,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import javax.management.InvalidAttributeValueException;
+import java.util.ArrayList;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MainFunctionTest {
 
@@ -183,7 +182,7 @@ public class MainFunctionTest {
 
         float progress = kati.getStudyProgrammeProgress();
         assertTrue(progress > 100);
-        assertTrue(kati.getAllCourses().get(math).isCourseIsVaba());
+        assertTrue(kati.getAllCourses().get(java).isCourseIsVaba());
         assertEquals(3, kati.getPassedCourses().size());
 
         //after completing the program by 100%, you can take an internship
@@ -246,7 +245,7 @@ public class MainFunctionTest {
         kati.submittDeclaretion();
         assertTrue(kati.getDeclaration().getIsSubmitted());
         // mari+kati+lili = 3 most declare time
-        assertEquals(3, kati.getNotPassedCourses().get(0).getDeclaretionAmount());
+        assertEquals(new ArrayList<>(List.of(math, java, machineLearning)), new ArrayList<>(kati.getAllCourses().keySet()));
     }
 
 
