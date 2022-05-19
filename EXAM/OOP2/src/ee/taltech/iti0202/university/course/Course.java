@@ -18,6 +18,7 @@ public class Course {
     private final TypeOfPassing passingType;
     private CourseType type;
     private University university;
+    private int declaretionAmount;
 
     public Course(String name, Teacher teacher, int eap, TypeOfPassing passingType,
                   CourseType type) throws TeacherAlreadyManageThisCourseException {
@@ -35,6 +36,10 @@ public class Course {
     /*
     SETTERS
      */
+
+    public void setDeclaretionAmount() {
+        this.declaretionAmount += 1;
+    }
 
     public void setCourseType(CourseType type) {
         if (type == CourseType.SEMINAR) {
@@ -85,6 +90,10 @@ public class Course {
     GETTERS
      */
 
+    public int getDeclaretionAmount() {
+        return declaretionAmount;
+    }
+
     public CourseType getType() {
         return type;
     }
@@ -115,6 +124,6 @@ public class Course {
 
     @Override
     public String toString() {
-        return name + ", " + eap + " eap " + type;
+        return name + ", " + eap + " eap " + type + ", DecTim:" + declaretionAmount;
     }
 }

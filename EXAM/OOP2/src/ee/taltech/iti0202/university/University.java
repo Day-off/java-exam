@@ -4,9 +4,6 @@ import ee.taltech.iti0202.university.course.Course;
 import ee.taltech.iti0202.university.exeptions.Course.CourseAlreadyExistException;
 import ee.taltech.iti0202.university.exeptions.Programme.InvalidProgrammException;
 import ee.taltech.iti0202.university.exeptions.Student.StudenAlreadyStudingUniversityException;
-import ee.taltech.iti0202.university.exeptions.Student.StudentAlreadyInThisCourseException;
-import ee.taltech.iti0202.university.exeptions.university.InvalidStudentOrCourseException;
-import ee.taltech.iti0202.university.grade.Grade;
 import ee.taltech.iti0202.university.people.Student;
 import ee.taltech.iti0202.university.people.Teacher;
 import ee.taltech.iti0202.university.studyprogramm.StudyProgramme;
@@ -33,6 +30,10 @@ public class University {
     ADD OBJECTS TO UNI
      */
 
+    public void addActiveStudent(Student student) {
+        allActiveStudents.add(student);
+    }
+
     public void addCourse(Course course) throws CourseAlreadyExistException {
         if (!allCourses.contains(course) && course.getUniversity() == null) {
             allCourses.add(course);
@@ -58,11 +59,11 @@ public class University {
         sortStudents();
     }
 
-    public void addStudyProgramm(StudyProgramme programme) throws CourseAlreadyExistException {
+    public void addStudyProgramme(StudyProgramme programme) throws CourseAlreadyExistException {
         if (!studyProgrammes.contains(programme)) {
             studyProgrammes.add(programme);
         }
-        for (Course c : programme.getAllCourses()) {
+        for (Course c : programme.getProgrammeCourses()) {
             if (!allCourses.contains(c)) {
                 try {
                     addCourse(c);
@@ -147,15 +148,15 @@ public class University {
         }
     }
 
-    public void registerOnCourse(Student student, Course course) throws InvalidStudentOrCourseException,
-            StudentAlreadyInThisCourseException {
-        if (!allStudents.contains(student) || !allCourses.contains(course)) {
-            throw new InvalidStudentOrCourseException();
-        } else {
-            course.addStudent(student);
-            student.addCourse(course, new Grade(student, course));
-        }
-    }
+//    public void registerOnCourse(Student student, Course course) throws InvalidStudentOrCourseException,
+//            StudentAlreadyInThisCourseException {
+//        if (!allStudents.contains(student) || !allCourses.contains(course)) {
+//            throw new InvalidStudentOrCourseException();
+//        } else {
+//            course.addStudent(student);
+//            student.addCourse(course, new Grade(student, course));
+//        }
+//    }
 
     public void setStudentToProgramme(Student student, StudyProgramme studyProgramme) throws InvalidProgrammException {
         if (!studyProgrammes.contains(studyProgramme)) {

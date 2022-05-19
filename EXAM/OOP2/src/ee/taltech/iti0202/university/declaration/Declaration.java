@@ -9,12 +9,10 @@ public class Declaration {
 
     private final Student student;
     private final List<Course> coursesForDeclaration;
-    private static final int MIN_EAP = 26;
-    private static final int MAX_EAP = 45;
-    private int minCreditPoints;
-    private int maxCreditPoints;
+    private static final int MIN_EAP = 10 ;//final eap 26
+    private static final int MAX_EAP = 20;//final eap 45
     private boolean isSubmitted = false;
-//    private boolean isCompleted = false;
+    private boolean isCompleted = false;
 
 
     public Declaration(Student student, List<Course> courses) {
@@ -25,6 +23,10 @@ public class Declaration {
     /*
     GETTERS
      */
+
+    public boolean getIsCompleted() {
+        return isCompleted;
+    }
 
     public Student getStudent() {
         return student;
@@ -38,9 +40,17 @@ public class Declaration {
         return isSubmitted;
     }
 
+    public static int getMinEap() {
+        return MIN_EAP;
+    }
+
+    public static int getMaxEap() {
+        return MAX_EAP;
+    }
+
     /*
-    MAIN METHODS
-     */
+            MAIN METHODS
+             */
     public int getSumEap() {
         return coursesForDeclaration.stream().mapToInt(Course::getEap).sum();
     }
@@ -48,4 +58,9 @@ public class Declaration {
     public void setSumit(boolean res) {
         isSubmitted = res;
     }
+
+    public void setCompleted(boolean res) {
+        isCompleted = res;
+    }
+
 }
