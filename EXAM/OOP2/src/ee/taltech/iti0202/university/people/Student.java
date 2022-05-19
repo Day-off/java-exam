@@ -186,7 +186,7 @@ public class Student {
      * @param strategy
      */
     public void createDeclaration(Strategy strategy) {
-        if (getNotPassedCourses().size() != 0){
+        if (getNotPassedCourses().size() != 0) {
             throw new IllegalArgumentException("You not finished your courses yet");
         }
         strategy.createCourseForDec(currentProgram, this);

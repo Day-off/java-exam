@@ -11,7 +11,7 @@ public abstract class Strategy {
 
     protected List<Course> coursesDec = new ArrayList<>();
 
-    public void createCourseForDec(StudyProgramme programme, Student student){
+    public void createCourseForDec(StudyProgramme programme, Student student) {
 
     }
 
@@ -19,7 +19,7 @@ public abstract class Strategy {
         return coursesDec;
     }
 
-    public void clearCoursesDec(){
+    public void clearCoursesDec() {
         coursesDec.clear();
     }
 }
