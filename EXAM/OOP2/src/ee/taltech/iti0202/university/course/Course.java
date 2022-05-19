@@ -23,7 +23,7 @@ public class Course {
     public Course(String name, Teacher teacher, int eap, TypeOfPassing passingType,
                   CourseType type) throws TeacherAlreadyManageThisCourseException {
         if (name.isEmpty() || eap < 1 || type == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Invalid info.");
         } else {
             this.name = name;
             this.eap = eap;
@@ -80,6 +80,7 @@ public class Course {
 
     public void removeStudent(Student student) {
         students.remove(student);
+        student.getAllCourses().remove(this);
     }
 
     public void removeUniversity() {

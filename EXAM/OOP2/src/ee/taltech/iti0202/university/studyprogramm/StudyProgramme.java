@@ -17,7 +17,7 @@ public class StudyProgramme {
 
     public StudyProgramme(String name, int eap) {
         this.name = name;
-        if (eap < 170) {
+        if (eap < 1) {
             throw new IllegalArgumentException("Eap amount too small");
         }
         requiredEapAmount = eap;

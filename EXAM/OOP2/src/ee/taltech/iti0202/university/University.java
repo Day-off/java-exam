@@ -80,8 +80,10 @@ public class University {
      */
 
     public void removeCourse(Course course) {
-        allCourses.remove(course);
-        course.removeUniversity();
+        if (allCourses.contains(course)) {
+            allCourses.remove(course);
+            course.removeUniversity();
+        }
     }
 
     public void removeTeacher(Teacher teacher) {
@@ -97,6 +99,7 @@ public class University {
         student.removeCurrentProgram();
         allStudents.remove(student);
         student.removeCurrentUniversity();
+        allCourses.forEach(course -> course.removeStudent(student));
     }
 
     public void removeStudyProgramm(StudyProgramme programme) {
@@ -147,16 +150,6 @@ public class University {
             }
         }
     }
-
-//    public void registerOnCourse(Student student, Course course) throws InvalidStudentOrCourseException,
-//            StudentAlreadyInThisCourseException {
-//        if (!allStudents.contains(student) || !allCourses.contains(course)) {
-//            throw new InvalidStudentOrCourseException();
-//        } else {
-//            course.addStudent(student);
-//            student.addCourse(course, new Grade(student, course));
-//        }
-//    }
 
     public void setStudentToProgramme(Student student, StudyProgramme studyProgramme) throws InvalidProgrammException {
         if (!studyProgrammes.contains(studyProgramme)) {

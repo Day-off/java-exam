@@ -13,6 +13,7 @@ public class Grade {
     private Character grade;
     private boolean isPassed = false;
     private final TypeOfPassing passing;
+    private boolean courseIsVaba = false;
 
     public Grade(Student student, Course course) {
         this.student = student;
@@ -48,9 +49,17 @@ public class Grade {
         return passing;
     }
 
+    public boolean isCourseIsVaba() {
+        return courseIsVaba;
+    }
+
     /*
     SETTERS
      */
+
+    public void setCourseIsVaba() {
+        courseIsVaba = true;
+    }
 
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;

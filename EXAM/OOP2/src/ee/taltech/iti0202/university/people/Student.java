@@ -2,6 +2,7 @@ package ee.taltech.iti0202.university.people;
 
 import ee.taltech.iti0202.university.University;
 import ee.taltech.iti0202.university.course.Course;
+import ee.taltech.iti0202.university.course.CourseType;
 import ee.taltech.iti0202.university.declaration.Declaration;
 import ee.taltech.iti0202.university.exeptions.Programme.InvalidProgrammException;
 import ee.taltech.iti0202.university.exeptions.Student.StudentToYoungOrOldException;
@@ -10,6 +11,7 @@ import ee.taltech.iti0202.university.grade.Grade;
 import ee.taltech.iti0202.university.strategy.Strategy;
 import ee.taltech.iti0202.university.studyprogramm.StudyProgramme;
 
+import javax.management.InvalidAttributeValueException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,7 +43,7 @@ public class Student {
      */
 
     public void setAge(int age) {
-        if (this.age <= age) {
+        if (this.age >= age) {
             throw new IllegalArgumentException("Invalid age.");
         } else {
             this.age = age;
@@ -50,10 +52,11 @@ public class Student {
     }
 
     public void setCurrentProgram(StudyProgramme currentProgram) throws InvalidProgrammException {
-        if (currentUniversity != null && currentUniversity.getStudyProgrammes().contains(currentProgram)) {
-            this.currentProgram = currentProgram;
-        } else {
+        if (currentUniversity == null || !currentUniversity.getStudyProgrammes().contains(currentProgram)
+        || getCurrentProgram() == currentProgram) {
             throw new InvalidProgrammException();
+        } else {
+            this.currentProgram = currentProgram;
         }
     }
 
@@ -74,14 +77,18 @@ public class Student {
      */
     public void addCourse(Course course, Grade grade) {
         allCourses.put(course, grade);
-//        sortCourses();
     }
 
     /*
     GETTERS
      */
 
+    public Declaration getDeclaration() {
+        return declaration;
+    }
+
     public float getCurrentEapAmount() {
+        getStudyProgrammeProgress();
         return currentEapAmount;
     }
 
@@ -176,6 +183,9 @@ public class Student {
         float studentPassedEapAmount = 0;
         for (Course c : getPassedCourses()) {
             if (getCurrentProgram().getProgrammeCourses().contains(c)) studentPassedEapAmount += c.getEap();
+            if (studentPassedEapAmount > programmeEapAmount) {
+                allCourses.get(c).setCourseIsVaba();
+            }
         }
         currentEapAmount = studentPassedEapAmount;
         return studentPassedEapAmount * 100 / programmeEapAmount;
@@ -217,6 +227,23 @@ public class Student {
             throw new IllegalArgumentException("Invalid eap amount");
         }
 
+    }
+
+
+    public void specificCourseApplication(Course course) throws InvalidAttributeValueException {
+        if (course.getUniversity() != currentUniversity) {
+            throw new InvalidAttributeValueException("Course doesn't exist");
+        }
+        if (course.getType() != CourseType.DIPLOMA && course.getType() != CourseType.INTERNSHIP) {
+            throw new InvalidAttributeValueException("It's not specific course you need declare it!");
+        } else if (CourseType.DIPLOMA == course.getType()) {
+            addCourse(course, new Grade(this, course));
+        } else if (CourseType.INTERNSHIP == course.getType()
+                && getCurrentEapAmount() >= getCurrentProgram().getRequiredEapAmount()) {
+            addCourse(course, new Grade(this, course));
+        }else {
+            throw new InvalidAttributeValueException("Not enough progress!");
+        }
     }
 
     @Override

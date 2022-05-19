@@ -9,11 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Teacher {
-    private String name;
     private final List<Course> myCourses = new ArrayList<>();
 
     public Teacher(String name) {
-        this.name = name;
+        if (name.isEmpty()) {
+            throw new IllegalArgumentException("Incorrect name");
+        }
     }
 
     public void addCourse(Course course) {
@@ -38,6 +39,7 @@ public class Teacher {
                 throw new InvalidAssessmentTypeException();
             }
         }
+        student.getAllCourses().get(course).setTeacher(this);
         if (course.getPassingType() == TypeOfPassing.EXAM) {
             student.changeGradeExam(course, grade);
         } else if (course.getPassingType() == TypeOfPassing.PASS_FALL_ASSESSMENT) {
