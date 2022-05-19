@@ -26,7 +26,10 @@ import javax.management.InvalidAttributeValueException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MainFunctionTest {
 
@@ -136,7 +139,7 @@ public class MainFunctionTest {
         assertEquals(mari, u1.getRankingStudentList().get(2)); //0
 
         ago.evaluateStudent(mari, java, '5');
-        piret.evaluateStudent(mari, math,'5');
+        piret.evaluateStudent(mari, math, '5');
         gert.evaluateStudent(mari, machineLearning, 'a');
 
         u1.setRankingStudentList();
@@ -245,7 +248,8 @@ public class MainFunctionTest {
         kati.submittDeclaretion();
         assertTrue(kati.getDeclaration().getIsSubmitted());
         // mari+kati+lili = 3 most declare time
-        assertEquals(new ArrayList<>(List.of(math, java, machineLearning)), new ArrayList<>(kati.getAllCourses().keySet()));
+        assertEquals(new ArrayList<>(List.of(math, java, machineLearning)),
+                new ArrayList<>(kati.getAllCourses().keySet()));
     }
 
 
