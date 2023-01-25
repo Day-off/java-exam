@@ -55,7 +55,7 @@ public class Grade {
     }
 
     public boolean isCourseIsVaba() {
-        return courseIsVaba;
+        return this.courseIsVaba;
     }
 
     /*
@@ -67,7 +67,7 @@ public class Grade {
     }
 
     public void setCourseIsVaba() {
-        courseIsVaba = true;
+        this.courseIsVaba = true;
     }
 
     public void setTeacher(Teacher teacher) {

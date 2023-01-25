@@ -230,8 +230,7 @@ public class Student {
      * @param strategy
      */
     public void createDeclaration(Strategy strategy) {
-        if (this.getNotPassedCourses().size()
-                + this.getPassedCourses().size() != this.getAllCourses().keySet().size()) {
+        if (this.getPassedCourses().size() != this.getAllCourses().keySet().size()) {
             throw new IllegalArgumentException("You not finished your courses yet");
         }
         strategy.createCourseForDec(currentProgram, this);
@@ -283,7 +282,6 @@ public class Student {
 
     public void setKkh() {
         double kkh = 0;
-//        List<Grade> allGrades = new ArrayList<>(allCourses.values()).stream().filter(Grade::getIsPassed).toList();
         double eapAmount = getPassedCourses().stream().mapToDouble(Course::getEap).sum()
                 + getNotPassedCourses().stream().mapToDouble(Course::getEap).sum();
         List<Course> graded = new ArrayList<>(getPassedCourses());

@@ -13,8 +13,8 @@ import ee.taltech.iti0202.university.people.Student;
 import ee.taltech.iti0202.university.people.Teacher;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.testng.Assert.assertEquals;
 
 public class TeacherTest {
     private final Teacher ago = new Teacher("Ago");

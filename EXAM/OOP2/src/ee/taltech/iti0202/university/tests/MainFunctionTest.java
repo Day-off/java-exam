@@ -192,7 +192,7 @@ public class MainFunctionTest {
 
         float progress = kati.getStudyProgrammeProgress();
         assertTrue(progress > 100);
-        assertTrue(kati.getAllCourses().get(java).isCourseIsVaba());
+        assertTrue(kati.getAllCourses().get(math).isCourseIsVaba());
         assertEquals(3, kati.getPassedCourses().size());
 
         //after completing the program by 100%, you can take an internship
